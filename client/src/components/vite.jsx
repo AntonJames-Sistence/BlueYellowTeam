@@ -18,8 +18,9 @@ function Vite() {
         </a> */}
       </div>
       <h1>Vite + React</h1>
-      <h2 className='text-red-500'>{import.meta.env.VITE_CARLOS}</h2>
-      <Link to="/">Back To Carlos</Link>
+      {/* <h2 className='text-red-500'>{import.meta.env.VITE_CARLOS}</h2> */}
+      <h2 className='text-red-500'>Hello Team 13!</h2>
+      <Link to="/">Back To Home</Link>
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}

@@ -21,7 +21,8 @@ app.get('/', (req, res) => {
   if(!reqToken) res.sendStatus(403)
   console.log(req.signedCookies.token)
   res.cookie("token", res?.signedCookies?.token)
-  res.send(`Hello ${process.env.CARLOS}!`)
+  // res.send(`Hello ${process.env.CARLOS}!`)
+  res.send("Hello Team 13!")
 })
 
 app.listen(port, () => {
