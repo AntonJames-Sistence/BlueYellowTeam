@@ -1,5 +1,6 @@
 #footer-cont {
   position: absolute;
+  width: 100%;
   left: 0;
   bottom: 0;
   background: linear-gradient(to bottom, #424242, #4c4c4c);
