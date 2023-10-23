@@ -1,10 +1,16 @@
-#footer-cont {
+#footer-wrapper {
   position: absolute;
   width: 100%;
   left: 0;
   bottom: 0;
   background: linear-gradient(to bottom, #424242, #4c4c4c);
-  padding: 20px 22%;
+  padding: 20px 15%;
+  display: flex;
+  justify-content: center;
+}
+
+#footer-cont {
+  max-width: 1000px;  
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 40px;
@@ -76,7 +82,7 @@
 #signup-thanks {
   background-color: #00a7ed;
   margin-top: 20px;
-  width: 60%;
+  width: 90%;
   font-size: 15px;
   padding: 10px;
 }
