@@ -6,6 +6,7 @@ import HomePage from './components/home.jsx';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import Vite from './components/vite.jsx';
 import ErrorPage from './components/error-page.jsx';
+import Footer from './components/Footer/footer.jsx';
 
 const router = createBrowserRouter([
   {
@@ -23,5 +24,6 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <RouterProvider router={router} />
+    <Footer/>
   </React.StrictMode>,
 )
