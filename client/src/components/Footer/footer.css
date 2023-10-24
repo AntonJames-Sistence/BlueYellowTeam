@@ -1,8 +1,5 @@
 #footer-wrapper {
-  position: absolute;
   width: 100%;
-  left: 0;
-  bottom: 0;
   background: linear-gradient(to bottom, #424242, #4c4c4c);
   padding: 20px 15%;
   display: flex;
@@ -10,7 +7,7 @@
 }
 
 #footer-cont {
-  max-width: 1000px;  
+  max-width: 1000px;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 40px;
@@ -31,13 +28,13 @@
 #legal,
 #copyright {
   text-align: left;
-  color: #a6a6a6
+  color: #a6a6a6;
 }
 
 #social-links {
   display: flex;
   gap: 30px;
-  color: white
+  color: white;
 }
 
 .social-link {
