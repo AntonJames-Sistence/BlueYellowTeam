@@ -1,0 +1,20 @@
+#About2 {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  padding-top: 100px;
+  /* flex-wrap: wrap; */
+}
+
+.About2-text {
+  font-size: 22px;
+  line-height: 1.5em;
+  letter-spacing: 0px;
+  padding: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.About2-img {
+  border-radius: 1rem;
+}
