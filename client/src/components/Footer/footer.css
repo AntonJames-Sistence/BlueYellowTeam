@@ -1,0 +1,88 @@
+#footer-wrapper {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  bottom: 0;
+  background: linear-gradient(to bottom, #424242, #4c4c4c);
+  padding: 20px 15%;
+  display: flex;
+  justify-content: center;
+}
+
+#footer-cont {
+  max-width: 1000px;  
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+
+#footer-left {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+#footer-left #byf-logo {
+  height: 125px;
+  float: left;
+  width: fit-content;
+}
+
+#legal,
+#copyright {
+  text-align: left;
+  color: #a6a6a6
+}
+
+#social-links {
+  display: flex;
+  gap: 30px;
+  color: white
+}
+
+.social-link {
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.social-link:hover {
+  color: #00a7ed;
+}
+
+#newsletter-form {
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+#newsletter-header {
+  font-weight: bold;
+  font-size: 20px;
+  float: left;
+  width: fit-content;
+}
+
+#newsletter-form input {
+  height: 47px;
+  padding-left: 20px;
+  width: 100%;
+  background-color: #5c5c5c;
+}
+
+#newsletter-form button {
+  background-color: #00a7ed;
+  width: 50%;
+  font-weight: bold;
+}
+
+#signup-thanks {
+  background-color: #00a7ed;
+  margin-top: 20px;
+  width: 90%;
+  font-size: 15px;
+  padding: 10px;
+}
