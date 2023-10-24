@@ -8,9 +8,9 @@ import logo from "./blue-yellow-logo.png";
 const NavBar = () => {
   return (
     <nav id="Nav">
-      <div className="Nav-img">
+      <Link to="/" className="Nav-img">
         <img src={logo} alt="" />
-      </div>
+      </Link>
       <div className="Nav-links">
         <div className="Nav-link">Donations</div>
         {/* <NavLink to="#FeaturedProjects">Donations</NavLink> */}

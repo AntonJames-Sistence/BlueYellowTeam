@@ -19,6 +19,11 @@
   height: auto;
 }
 
+.Nav-img:hover {
+  opacity: 80%;
+  cursor: pointer;
+}
+
 .Nav-links {
   display: flex;
 }
