@@ -7,6 +7,7 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Vite from "./components/vite.jsx";
 import ErrorPage from "./components/error-page.jsx";
 import NavBarWrapper from "./components/NavBarWrapper/NavBarWrapper.tsx";
+import IntroBanner from "./components/IntroBanner/IntroBanner.jsx";
 
 const router = createBrowserRouter([
   {
@@ -24,6 +25,12 @@ const router = createBrowserRouter([
     path: "/vite",
     element: <Vite />,
     errorElement: <ErrorPage />,
+  },
+  {
+    path: "/banner",
+    element: <IntroBanner />,
+    errorElement: <ErrorPage />,
+
   },
 ]);
 
