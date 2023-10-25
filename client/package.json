@@ -17,10 +17,7 @@
     "dotenv": "^16.3.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-<<<<<<< HEAD
     "tailwindcss": "^3.3.3",
-=======
->>>>>>> main
     "react-router-hash-link": "^2.4.3"
   },
   "devDependencies": {
