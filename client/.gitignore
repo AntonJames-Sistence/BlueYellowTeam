@@ -12,6 +12,7 @@ dist
 dist-ssr
 *.local
 .env
+flag_animation.mp4
 
 # Editor directories and files
 .vscode/*

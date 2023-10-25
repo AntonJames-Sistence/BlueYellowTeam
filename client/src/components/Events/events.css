@@ -18,7 +18,7 @@
 .event:hover {
     cursor: pointer;
     transform: scale(1.1);
-    box-shadow: 1px 1px 20px rgba(248, 219, 82, 1);
+    box-shadow: 1px 1px 10px rgb(248, 219, 82);
 }
 
 .event-bg {
@@ -45,7 +45,7 @@
     right: 10px;
     font-size: 14px;
     font-weight: 600;
-    color: black;
+    color: rgb(193, 76, 36);
 }
 
 .past-events {
@@ -77,6 +77,7 @@
     margin: 10px 0;
 }
 
-/* .venue {
-
-} */
+.venue {
+    font-size: 14px;
+    margin: 6% 0px 0px 10px;
+}

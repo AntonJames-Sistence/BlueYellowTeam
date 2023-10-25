@@ -33,29 +33,35 @@ const Event = ({ event }) => {
     const privateToken = import.meta.env.VITE_PRIVATE_TOKEN;
 
     const [venue, setVenue] = useState([]);
-    const [address, setAddress] = useState([]);
+    const [address, setAddress] = useState(null);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const url = `https://www.eventbriteapi.com/v3/events/${id}/?expand=venue`;
-
-        fetch(url, {
-            method: 'GET',
-            headers: {
-              'Authorization': `Bearer ${privateToken}`,
+        const fetchData = async () => {
+            try {
+                const url = `https://www.eventbriteapi.com/v3/events/${id}/?expand=venue`;
+                const response = await fetch(url, {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${privateToken}`,
+                    }
+                });
+                const data = await response.json();
+                setVenue(data.venue);
+                setAddress(data.venue.address.localized_area_display);
+                setLoading(false);
+            } catch (error) {
+                console.error('Error:', error);
             }
-        })
-        .then(response => response.json())
-        .then(data => {
-            // Handle the data
-            // Reverse events to display latest one on top
-            setVenue(data.venue);
-            setAddress(venue.localized_address_display);
-            console.log(address);
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
+        };
+
+        fetchData();
     }, [id, privateToken]);
+
+    if (loading) {
+        // Render a loading state while data is being fetched
+        return <div>Loading...</div>;
+    }
 
     return (
         <a href={url} target="_blank" rel="noopener noreferrer">
@@ -66,7 +72,7 @@ const Event = ({ event }) => {
                 <div className='event-date'>{formatDate(event.start.local)}</div>
             </div>
         </a>
-    )
-}
+    );
+};
 
 export default Event;
