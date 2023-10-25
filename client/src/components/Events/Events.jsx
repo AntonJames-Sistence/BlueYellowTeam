@@ -12,6 +12,7 @@ const Events = () => {
     const [pastEvents, setPastEvents] = useState([]);
 
     useEffect(() => {
+        const url = `https://www.eventbriteapi.com/v3/organizers/${organizerId}/events/`;
         fetch(url, {
             method: 'GET',
             headers: {
