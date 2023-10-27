@@ -1,18 +1,49 @@
+import Link from 'next/link';
 import { sampleData } from '../data/facebook';
 import { landingPageDescriptions } from '../data/homePage';
 import { allProjects } from '../data/projects';
 import FacebookPost from './components/FacebookPost';
 import MainProjectCard from './components/MainProjectCard';
+import WarClock from './components/WarClock';
+import './components/WarClock.css'
 
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
+      <div className='flex flex-row w-full justify-between'>
+        <div className='flex'>
+          <div 
+            className="w-32 h-16 bg-contain mb-8 mr-8 bg-no-repeat" 
+            style={{ backgroundImage: `url(./blue-yellow-logo.png)` }}
+          >
+          </div>
+          <WarClock />
+        </div>
+        <Link href='/donations'>
+          <button className='flex h-12 w-32 
+                        bg-gradient-to-b 
+                        from-blue-500 to-yellow-500 
+                        hover:from-indigo-600 
+                        hover:to-orange-600  
+                        text-black text-l
+                        hover:text-white 
+                        font-bold 
+                        shadow-md 
+                        rounded-2xl
+                        items-center
+                        justify-center
+                        hover-animation
+                        self-center'>
+            Donate
+          </button>
+        </Link>
+      </div>
       <div>
-        <div className="relative w-full overflow-hidden rounded-xl">
+        <div className="relative w-full overflow-hidden" style={{ borderRadius: '50px' }}>
           <div className="relative">
             <video
               className="absolute top-0 left-0 w-full h-full object-cover z-negative"
-              src="./src/components/IntroBanner/flag_bg.mp4"
+              src="./flag_bg.mp4"
               autoPlay
               loop
               muted
@@ -24,7 +55,7 @@ export default function Home() {
                 <div className="text-4xl text-yellow-400 font-bold leading-snug text-shadow-lg mb-4">
                   STAND WITH LOVE STAND WITH UKRAINE
                 </div>
-                <div className="text-blue-600 font-bold text-lg leading-tight text-shadow-sm">
+                <div className="text-blue-600 font-bold text-lg leading-tight text-shadow-sm mb-20">
                   100% OF PROFIT GOES TO SUPPORT UKRAINIANS IN NEED
                 </div>
               </div>
