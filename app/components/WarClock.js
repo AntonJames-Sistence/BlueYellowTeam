@@ -1,6 +1,6 @@
-"use client"
+'use client';
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 
 export default function WarClock() {
   function calculateTimeDifference(targetTime) {
@@ -8,20 +8,21 @@ export default function WarClock() {
     return currentTime - targetTime;
   }
 
-  const [elapsedTime, setElapsedTime] = useState(calculateTimeDifference(new Date('2022-02-24T05:00:00Z')));
+  const [elapsedTime, setElapsedTime] = useState(
+    calculateTimeDifference(new Date('2022-02-24T05:00:00Z'))
+  );
 
   useEffect(() => {
     const targetTime = new Date('2022-02-24T05:00:00Z');
 
     function updateTime() {
-        setElapsedTime(calculateTimeDifference(targetTime));
+      setElapsedTime(calculateTimeDifference(targetTime));
     }
     const intervalId = setInterval(updateTime, 60000);
 
     return () => {
-        clearInterval(intervalId);
+      clearInterval(intervalId);
     };
-
   }, []);
 
   function formatElapsedTime(elapsedTime) {
@@ -32,20 +33,16 @@ export default function WarClock() {
     // const seconds = totalSeconds % 60;
 
     return (
-        <>
-        <div>{ days } days</div>
+      <>
+        <div>{days} days</div>
         <div className="flex flex-row">
-            <div className="mr-2">{ hours } hours</div>
-            <div>{ minutes } minutes</div>
+          <div className="mr-2">{hours} hours</div>
+          <div>{minutes} minutes</div>
         </div>
         <div>since Russian invasion of Ukraine</div>
-        </>
-    )
+      </>
+    );
   }
 
-  return (
-    <div id="time">
-        {formatElapsedTime(elapsedTime)}
-    </div>
-  );
+  return <div id="time">{formatElapsedTime(elapsedTime)}</div>;
 }

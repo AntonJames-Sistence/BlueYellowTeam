@@ -2,7 +2,7 @@
 const stripe = require('stripe')(process.env.STRIPE_TEST);
 
 export async function POST(req, res) {
-    const url = '/create-checkout-session'
+  const url = '/create-checkout-session';
   const session = await stripe.checkout.sessions.create({
     line_items: [
       {
@@ -17,6 +17,6 @@ export async function POST(req, res) {
   });
 
   res.redirect(303, session.url);
-};
+}
 
 app.listen(4242, () => console.log('Running on port 4242'));

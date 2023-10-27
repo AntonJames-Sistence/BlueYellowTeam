@@ -1,12 +1,11 @@
-"use client"
+'use client';
 
 import React, { useState } from 'react';
 
 const stripe = require('stripe')(process.env.STRIPE_TEST);
 
-
 export default function Donation() {
-  const [donationAmount, setDonationAmount] = useState(100.00);
+  const [donationAmount, setDonationAmount] = useState(100.0);
   const [anonymousDonation, setAnonymousDonation] = useState(false);
 
   const handleDonationChange = (amount) => {
@@ -22,7 +21,7 @@ export default function Donation() {
       const response = await fetch('/api/stripe', {
         method: 'POST',
       });
-      
+
       if (response.ok) {
         const data = await response.json();
         // Now you have the payment intent's client secret in data.client_secret
@@ -34,10 +33,10 @@ export default function Donation() {
     } catch (error) {
       console.error('Error:', error);
     }
-  };
+  }
 
   return (
-    <div className='flex flex-col place-items-center p-3'>
+    <div className="flex flex-col place-items-center p-3">
       <h1>Donations</h1>
 
       <h2>Donation Amount</h2>
@@ -51,18 +50,23 @@ export default function Donation() {
       <div>
         <label>Custom Amount</label>
         <input
-            className='ml-2 border border-black'
-            type="number"
-            step="01.00"
-            value={donationAmount.toFixed(2)}
-            onChange={(e) => handleDonationChange(parseFloat(e.target.value))}
+          className="ml-2 border border-black"
+          type="number"
+          step="01.00"
+          value={donationAmount.toFixed(2)}
+          onChange={(e) => handleDonationChange(parseFloat(e.target.value))}
         />
       </div>
 
       <h2>Select Payment Method</h2>
       <div>
         <label>
-          <input type="radio" name="paymentMethod" value="stripe" defaultChecked />
+          <input
+            type="radio"
+            name="paymentMethod"
+            value="stripe"
+            defaultChecked
+          />
           Stripe - Credit Card
         </label>
       </div>
@@ -74,29 +78,29 @@ export default function Donation() {
       </div>
 
       <h2>Personal Info</h2>
-      <div className='mb-2'>
+      <div className="mb-2">
         <label>
           First Name
-          <input className='ml-2 border border-black' type="text" />
+          <input className="ml-2 border border-black" type="text" />
         </label>
       </div>
-      <div className='mb-2'>
+      <div className="mb-2">
         <label>
           Last Name
-          <input className='ml-2 border border-black' type="text" />
+          <input className="ml-2 border border-black" type="text" />
         </label>
       </div>
-      <div className='mb-2'>
+      <div className="mb-2">
         <label>
           Email Address
-          <input className='ml-2 border border-black' type="email" />
+          <input className="ml-2 border border-black" type="email" />
         </label>
       </div>
       <div>
         <label>
           Make this an anonymous donation
           <input
-            className='ml-2'
+            className="ml-2"
             type="checkbox"
             onChange={handleAnonymousChange}
             checked={anonymousDonation}
@@ -106,34 +110,39 @@ export default function Donation() {
 
       <h2>Credit Card Info</h2>
       <p>This is a secure SSL encrypted payment.</p>
-      <div className='mb-2'>
+      <div className="mb-2">
         <label>
           Card Number *
-          <input className='ml-2 border border-black' type="text" />
+          <input className="ml-2 border border-black" type="text" />
         </label>
       </div>
-      <div className='mb-2'>
+      <div className="mb-2">
         <label>
           CVC *
-          <input className='ml-2 border border-black' type="text" />
+          <input className="ml-2 border border-black" type="text" />
         </label>
       </div>
-      <div className='mb-2'>
+      <div className="mb-2">
         <label>
           Cardholder Name *
-          <input className='ml-2 border border-black' type="text" />
+          <input className="ml-2 border border-black" type="text" />
         </label>
       </div>
-      <div className='mb-2'>
+      <div className="mb-2">
         <label>
           Expiration *
-          <input className='ml-2 border border-black' type="text" placeholder="MM/YY" />
+          <input
+            className="ml-2 border border-black"
+            type="text"
+            placeholder="MM/YY"
+          />
         </label>
       </div>
 
       <p>Donation Total: ${donationAmount.toFixed(2)}</p>
 
-      <button className='flex h-8 w-32 
+      <button
+        className="flex h-8 w-32 
                         bg-gradient-to-b 
                         from-blue-500 to-yellow-500 
                         hover:from-indigo-600 
@@ -146,9 +155,11 @@ export default function Donation() {
                         items-center
                         justify-center
                         hover-animation
-                        self-center'
-              onClick={handlePayment}>
-        Donate</button>
+                        self-center"
+        onClick={handlePayment}
+      >
+        Donate
+      </button>
     </div>
   );
 }

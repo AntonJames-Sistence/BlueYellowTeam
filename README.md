@@ -1,66 +1,36 @@
-# React + Vite
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Getting Started
 
-Currently, two official plugins are available:
+First, run the development server:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+```
 
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-====================================================================================================================
+You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
 
-# FIRST OFF, WHY USE DOCKER? WHEN DOES IT MAKE SENSE TO USE IT?
-- Example: If you are a frontend-focused engineer, and you don't want to worry about setting up a backend you want to request from, just spin up the docker container and don't worry about dependencies or using the right version of tools!
+This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
+## Learn More
 
+To learn more about Next.js, take a look at the following resources:
 
-# PROJECT
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-### Setup notes (a reminder for setting up future projects):
-- in order to dockerize and hit into the docker port from the outside, add the vite --host flag to your run script, vite limited the standard run to localhost for security reasons, --host enables external access (from outside the docker container and network IP access as well).
-- if you see it being run on 5174 instead of 5173, it might be due to having an instance of vite currently running.
-source: https://github.com/vitejs/vite/discussions/3396
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
+## Deploy on Vercel
 
-### Running with docker compose(recommended):
-from project directory with the compose.yaml file:
-    docker-compose up -d
-it will spin up both the frontend and backend in their respective ports.
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-
-
-### Starting manually without docker compose
-head to directory with the Dockerfile you want to build.
-    docker build . -t <tagname>
-
-manually running docker instances:
-frontend:
-    docker run -it -p 5173:5173 frontend
-
-backend:
-    docker run -it -p 3000:3000 backend
-
-
-### .env files:
-frontend:
-- Vite comes with dotenv included out of the box
-- You need to prefix environment variables with `VITE_{environment variable name}` for vite to recognize the env variable.
-- does not need an import, instead you call it in any part of the frontend code with `import.meta.env.{VITE_variable name}`
-backend:
-- dotenv library added via npm
-- does not need VITE_ prefix to be recognized, just `import dotenv/config` to top of file
-- access with `process.env.{environment variable name}`
-    
-
-### BACKEND WORKFLOW:
-routes --> services --> models
-
-routes:
-Will be added to app.js file as middleware:
-    const authRouter = require('./routes/authentication')
-    ...
-    ...
-    ...
-    app.use("/auth", authRouter)
-- module.exports from your routes/auth folder
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
