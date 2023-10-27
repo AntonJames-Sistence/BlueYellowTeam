@@ -10,7 +10,7 @@ export const allProjects = [
     para: 'We collaborate with hospitals and medical professionals in the United States to collect and ship critical medical supplies to the front lines, where they save lives.',
   },
   {
-    img: './causes-medicaln.jpeg',
+    img: './causes-medical-2.jpeg',
     title: 'Displaced People',
     para: 'We identify people who lost their homes to the war and help them get back on their feet. We provide temporary shelter, food, and cover medical expenses for refugees and displaced people.',
   },
