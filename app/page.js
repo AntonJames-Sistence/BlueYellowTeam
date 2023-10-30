@@ -1,11 +1,11 @@
-import Link from 'next/link';
-import { sampleData } from '../data/facebook';
-import { allProjects, landingPageDescriptions } from '../data/projects';
-import Login from './components/LoginButton';
-import FacebookPost from './components/FacebookPost';
-import MainProjectCard from './components/MainProjectCard';
+import Link from "next/link";
+import { sampleData } from "../data/facebook";
+import { allProjects, landingPageDescriptions } from "../data/projects";
+import Login from "./components/LoginButton";
+import FacebookPost from "./components/FacebookPost";
+import MainProjectCard from "./components/MainProjectCard";
 
-// import WarClock from './components/WarClock.jsx';
+import WarClock from "./components/WarClock.jsx";
 
 export default async function Home() {
   const request = await fetch("http://localhost:3000/api/projects", {
@@ -39,7 +39,8 @@ export default async function Home() {
                         justify-center
                         hover:scale-125
                         ease-in-out duration-300
-                        self-center">
+                        self-center"
+          >
             Donate
           </button>
         </Link>
