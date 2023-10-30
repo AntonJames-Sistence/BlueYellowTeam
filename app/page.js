@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import { sampleData } from '../data/facebook';
-import { landingPageDescriptions } from '../data/homePage';
-import { allProjects } from '../data/projects';
+import { allProjects, landingPageDescriptions } from '../data/projects';
 import Login from './components/LoginButton';
 import FacebookPost from './components/FacebookPost';
 import MainProjectCard from './components/MainProjectCard';
