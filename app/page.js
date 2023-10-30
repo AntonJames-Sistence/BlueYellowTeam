@@ -1,13 +1,17 @@
-import Link from 'next/link';
-import { sampleData } from '../data/facebook';
-import { allProjects, landingPageDescriptions } from '../data/projects';
-import Login from './components/LoginButton';
-import FacebookPost from './components/FacebookPost';
-import MainProjectCard from './components/MainProjectCard';
-import WarClock from './components/WarClock';
-import './components/WarClock.css';
+import Link from "next/link";
+import { sampleData } from "../data/facebook";
+import { landingPageDescriptions } from "../data/projects";
+import Login from "./components/LoginButton";
+import FacebookPost from "./components/FacebookPost";
+import MainProjectCard from "./components/MainProjectCard";
+import WarClock from "./components/WarClock";
+import "./components/WarClock.css";
 
-export default function Home() {
+export default async function Home() {
+  const request = await fetch("http://localhost:3000/api/projects", {
+    cache: "no-store",
+  });
+  const allProjects = await request.json();
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <div className="flex flex-row w-full justify-between">
@@ -21,15 +25,15 @@ export default function Home() {
         </div>
         <Link href="/donations">
           <button
-            className="flex h-12 w-32 
-                        bg-gradient-to-b 
-                        from-blue-500 to-yellow-500 
-                        hover:from-indigo-600 
-                        hover:to-orange-600  
+            className="flex h-12 w-32
+                        bg-gradient-to-b
+                        from-blue-500 to-yellow-500
+                        hover:from-indigo-600
+                        hover:to-orange-600
                         text-black text-l
-                        hover:text-white 
-                        font-bold 
-                        shadow-md 
+                        hover:text-white
+                        font-bold
+                        shadow-md
                         rounded-2xl
                         items-center
                         justify-center
@@ -43,7 +47,7 @@ export default function Home() {
       <div>
         <div
           className="relative w-full overflow-hidden"
-          style={{ borderRadius: '50px' }}
+          style={{ borderRadius: "50px" }}
         >
           <div className="relative">
             <video
@@ -77,12 +81,21 @@ export default function Home() {
           </h3>
         </div>
       </div>
-      <div>
-        <div>WHO DO WE HELP?</div>
-        <div>
+      <div id="FeaturedProjects" className="pt-24">
+        <div
+          id="featured-project-title"
+          className="text-center text-3xl text-gray-500 pb-3"
+        >
+          WHO DO WE HELP?
+        </div>
+        <div
+          id="projects-cont"
+          className="flex flex-wrap p-2.5 gap-5 md:flex-row flex-col"
+        >
           {allProjects.map((item, index) => (
             <MainProjectCard
               key={index}
+              id={item.id}
               img={item.img}
               title={item.title}
               para={item.para}
