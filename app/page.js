@@ -14,37 +14,6 @@ export default async function Home() {
   const allProjects = await request.json();
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="flex flex-row w-full justify-between">
-        <div className="flex">
-          <div
-            className="w-32 h-16 bg-contain mb-8 mr-8 bg-no-repeat"
-            style={{ backgroundImage: `url(./blue-yellow-logo.png)` }}
-          ></div>
-          <WarClock />
-          <Login />
-        </div>
-        <Link href="/donate">
-          <button
-            className="flex h-12 w-32
-                        bg-gradient-to-b
-                        from-blue-500 to-yellow-500
-                        hover:from-indigo-600
-                        hover:to-orange-600
-                        text-black text-l
-                        hover:text-white
-                        font-bold
-                        shadow-md
-                        rounded-2xl
-                        items-center
-                        justify-center
-                        hover:scale-125
-                        ease-in-out duration-300
-                        self-center"
-          >
-            Donate
-          </button>
-        </Link>
-      </div>
       <div>
         <div
           className="relative w-full overflow-hidden"
