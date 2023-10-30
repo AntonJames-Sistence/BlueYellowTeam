@@ -33,14 +33,14 @@ const WarClock = () => {
     // const seconds = totalSeconds % 60;
 
     return (
-      <>
-        <div>{days} days</div>
-        <div className="flex flex-row">
-          <div className="mr-2">{hours} hours</div>
-          <div>{minutes} minutes</div>
+      <div>
+        <div className="flex flex-row font-bold text-red-700">
+          <div className="mr-2">{days}d </div>
+          <div className="mr-2">{hours}h</div>
+          <div>{minutes}m</div>
         </div>
-        <div>since Russian invasion of Ukraine</div>
-      </>
+        <div className='font-bold text-red-700'>since Russian invasion of Ukraine</div>
+      </div>
     );
   }
 

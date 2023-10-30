@@ -1,6 +1,8 @@
 "use client";
+
 import React from "react";
 import Link from "next/link";
+import WarClock from "./WarClock.jsx";
 // import { signIn, signOut, useSession } from "next-auth/react";
 
 export default function NavBar() {
@@ -32,7 +34,8 @@ export default function NavBar() {
                       hover:scale-125 
                       hover:cursor-pointer 
                       ease-in-out duration-300
-                      mr-6 bg-yellow-300 rounded-xl p-1">
+                      font-bold
+                      mr-6 rounded-xl p-1">
             Home
         </Link>
         <Link 
@@ -41,7 +44,8 @@ export default function NavBar() {
                       hover:scale-125 
                       hover:cursor-pointer 
                       ease-in-out duration-300
-                      mr-6 bg-yellow-300 rounded-xl p-1">
+                      font-bold
+                      mr-6 rounded-xl p-1">
             Donate
         </Link>
         <Link
@@ -50,7 +54,8 @@ export default function NavBar() {
                       hover:scale-125 
                       hover:cursor-pointer 
                       ease-in-out duration-300
-                      mr-6 bg-yellow-300 rounded-xl p-1">
+                      font-bold
+                      mr-6 rounded-xl p-1">
             Events & Projects
         </Link>
         <Link
@@ -59,7 +64,8 @@ export default function NavBar() {
                       hover:scale-125 
                       hover:cursor-pointer 
                       ease-in-out duration-300
-                      mr-6 bg-yellow-300 rounded-xl p-1">
+                      font-bold
+                      mr-6 rounded-xl p-1">
             Causes
         </Link>
         <Link
@@ -68,7 +74,8 @@ export default function NavBar() {
                       hover:scale-125 
                       hover:cursor-pointer 
                       ease-in-out duration-300
-                      mr-6 bg-yellow-300 rounded-xl p-1">
+                      font-bold
+                      mr-6 rounded-xl p-1">
             Team
         </Link>
         <Link
@@ -77,10 +84,13 @@ export default function NavBar() {
                       hover:scale-125 
                       hover:cursor-pointer 
                       ease-in-out duration-300
-                      bg-yellow-300 rounded-xl p-1">
+                      font-bold
+                     rounded-xl p-1">
             Contacts
         </Link>
       </div>
+
+      <WarClock />
     
       <Link href="/donate">
           <button
@@ -88,7 +98,7 @@ export default function NavBar() {
                         bg-gradient-to-b
                         from-blue-400 to-yellow-400
                         text-black text-l
-                        hover:text-white
+                        hover:text-blue-600 
                         font-bold
                         shadow-md
                         rounded-2xl

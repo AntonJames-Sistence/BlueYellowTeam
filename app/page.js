@@ -5,8 +5,6 @@ import Login from "./components/LoginButton";
 import FacebookPost from "./components/FacebookPost";
 import MainProjectCard from "./components/MainProjectCard";
 
-import WarClock from "./components/WarClock.jsx";
-
 export default async function Home() {
   const request = await fetch("http://localhost:3000/api/projects", {
     cache: "no-store",
