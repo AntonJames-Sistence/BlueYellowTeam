@@ -4,8 +4,7 @@ import { allProjects, landingPageDescriptions } from '../data/projects';
 import Login from './components/LoginButton';
 import FacebookPost from './components/FacebookPost';
 import MainProjectCard from './components/MainProjectCard';
-import WarClock from './components/WarClock';
-import './components/WarClock.css';
+import WarClock from './components/WarClock.jsx';
 
 export default function Home() {
   return (
@@ -19,7 +18,7 @@ export default function Home() {
           <WarClock />
           <Login />
         </div>
-        <Link href="/donations">
+        <Link href="/donate">
           <button
             className="flex h-12 w-32 
                         bg-gradient-to-b 
@@ -33,9 +32,9 @@ export default function Home() {
                         rounded-2xl
                         items-center
                         justify-center
-                        hover-animation
-                        self-center"
-          >
+                        hover:scale-125
+                        ease-in-out duration-300
+                        self-center">
             Donate
           </button>
         </Link>
