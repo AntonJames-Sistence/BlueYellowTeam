@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import Link from "next/link";
-// import { signIn, signOut, useSession } from "next-auth/react";
+import { signIn, signOut } from "next-auth/react";
 
 export default function NavBar() {
   // const { data: session } = useSession();
@@ -37,7 +37,7 @@ export default function NavBar() {
         </div>
       ) : (
         <div className="flex">
-          <div className="cursor-pointer" onClick={() => "idk"}>
+          <div className="cursor-pointer" onClick={() => signIn("google")}>
             Login
           </div>
           <div>&nbsp;/&nbsp;</div>
