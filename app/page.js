@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { sampleData } from '../data/facebook';
 import { landingPageDescriptions } from '../data/homePage';
 import { allProjects } from '../data/projects';
+import Login from './components/LoginButton';
 import FacebookPost from './components/FacebookPost';
 import MainProjectCard from './components/MainProjectCard';
 import WarClock from './components/WarClock';
@@ -17,6 +18,7 @@ export default function Home() {
             style={{ backgroundImage: `url(./blue-yellow-logo.png)` }}
           ></div>
           <WarClock />
+          <Login />
         </div>
         <Link href="/donations">
           <button
