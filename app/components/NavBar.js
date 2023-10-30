@@ -1,10 +1,10 @@
 "use client";
 import React from "react";
 import Link from "next/link";
-import { signIn, signOut } from "next-auth/react";
+import { signIn, signOut, useSession } from "next-auth/react";
 
 export default function NavBar() {
-  // const { data: session } = useSession();
+  const { data: session } = useSession();
   return (
     <nav
       id="Nav"
@@ -31,8 +31,8 @@ export default function NavBar() {
         <div>&nbsp;/&nbsp;</div>
         <div className="hover:text-sky-500 hover:cursor-pointer">Shop</div>
       </div>
-      {!"session" ? (
-        <div onClick={() => "idk"} className="cursor-pointer">
+      {session?.user ? (
+        <div className="cursor-pointer" onClick={() => signOut()}>
           logout
         </div>
       ) : (
@@ -41,7 +41,7 @@ export default function NavBar() {
             Login
           </div>
           <div>&nbsp;/&nbsp;</div>
-          <div className="cursor-pointer">SignUp</div>
+          <div className="cursor-pointer">Signup</div>
         </div>
       )}
     </nav>

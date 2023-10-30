@@ -21,7 +21,6 @@ export default async function Home() {
             style={{ backgroundImage: `url(./blue-yellow-logo.png)` }}
           ></div>
           <WarClock />
-          <Login />
         </div>
         <Link href="/donations">
           <button
