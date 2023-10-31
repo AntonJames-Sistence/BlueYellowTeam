@@ -39,12 +39,14 @@ const WarClock = () => {
           <div className="mr-2">{hours}h</div>
           <div>{minutes}m</div>
         </div>
-        <div className='font-bold text-red-700'>since Russian invasion of Ukraine</div>
+        <div className="font-bold text-red-700">
+          since Russian invasion of Ukraine
+        </div>
       </div>
     );
   }
 
   return <div id="time">{formatElapsedTime(elapsedTime)}</div>;
-}
+};
 
 export default WarClock;
