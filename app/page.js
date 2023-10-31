@@ -1,13 +1,13 @@
-import Link from "next/link";
-import { sampleData } from "../data/facebook";
-import { allProjects, landingPageDescriptions } from "../data/projects";
-import Login from "./components/LoginButton";
-import FacebookPost from "./components/FacebookPost";
-import MainProjectCard from "./components/MainProjectCard";
+import Link from 'next/link';
+import { sampleData } from '../data/facebook';
+import { allProjects, landingPageDescriptions } from '../data/projects';
+import Login from './components/LoginButton';
+import FacebookPost from './components/FacebookPost';
+import MainProjectCard from './components/MainProjectCard';
 
 export default async function Home() {
-  const request = await fetch("http://localhost:3000/api/projects", {
-    cache: "no-store",
+  const request = await fetch('http://localhost:3000/api/projects', {
+    cache: 'no-store',
   });
   const allProjects = await request.json();
   return (
@@ -15,7 +15,7 @@ export default async function Home() {
       <div>
         <div
           className="relative w-full overflow-hidden"
-          style={{ borderRadius: "50px" }}
+          style={{ borderRadius: '50px' }}
         >
           <div className="relative">
             <video

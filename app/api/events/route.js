@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+import { NextResponse } from 'next/server';
 import {
   Database,
   push,
@@ -7,15 +7,15 @@ import {
   get,
   remove,
   update,
-} from "firebase/database";
-import { DB } from "../../../data/firebase";
+} from 'firebase/database';
+import { DB } from '../../../data/firebase';
 
 export async function GET() {
   const url = `https://www.eventbriteapi.com/v3/organizers/60070710973/events/`;
-  console.log("hello");
+  console.log('hello');
 
   try {
-    const eventsRef = ref(DB, "events");
+    const eventsRef = ref(DB, 'events');
     const snapshot = await get(eventsRef);
     const privateToken = process.env.VITE_PRIVATE_TOKEN;
 
@@ -26,14 +26,14 @@ export async function GET() {
     }
 
     const eventRequest = await fetch(url, {
-      method: "GET",
+      method: 'GET',
       headers: {
         Authorization: `Bearer ${privateToken}`,
       },
     });
 
     if (!eventRequest.ok) {
-      throw new Error("Failed to fetch events from the API");
+      throw new Error('Failed to fetch events from the API');
     }
 
     let eventData = await eventRequest.json();
@@ -47,7 +47,7 @@ export async function GET() {
     for (let i = 0; i < eventData.length; i++) {
       const url = `https://www.eventbriteapi.com/v3/events/${eventData[i].id}/?expand=venue`;
       const response = await fetch(url, {
-        method: "GET",
+        method: 'GET',
         headers: {
           Authorization: `Bearer ${privateToken}`,
         },
@@ -72,19 +72,19 @@ export async function PUT() {
   const url = `https://www.eventbriteapi.com/v3/organizers/60070710973/events/`;
 
   try {
-    const eventsRef = ref(DB, "events");
+    const eventsRef = ref(DB, 'events');
 
     const privateToken = process.env.VITE_PRIVATE_TOKEN;
 
     const eventRequest = await fetch(url, {
-      method: "GET",
+      method: 'GET',
       headers: {
         Authorization: `Bearer ${privateToken}`,
       },
     });
 
     if (!eventRequest.ok) {
-      throw new Error("Failed to fetch events from the API");
+      throw new Error('Failed to fetch events from the API');
     }
 
     let eventData = await eventRequest.json();
@@ -100,7 +100,7 @@ export async function PUT() {
     for (let i = 0; i < eventData.length; i++) {
       const url = `https://www.eventbriteapi.com/v3/events/${eventData[i].id}/?expand=venue`;
       const response = await fetch(url, {
-        method: "GET",
+        method: 'GET',
         headers: {
           Authorization: `Bearer ${privateToken}`,
         },
@@ -113,7 +113,7 @@ export async function PUT() {
     }
 
     const updates = {};
-    updates["/events"] = eventData;
+    updates['/events'] = eventData;
     update(ref(DB), updates);
     return NextResponse.json(eventData);
   } catch (error) {

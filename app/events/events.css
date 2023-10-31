@@ -1,83 +1,83 @@
 .component-box {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .event {
-    /* display: block; */
-    background-color: rgb(73, 165, 231);
-    font-size: 18px;
-    height: 300px;
-    width: 280px;
-    border-radius: 15px;
-    position: relative;
-    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    transition: transform 0.3s;
-    margin: 20px 0px 0px 20px;
+  /* display: block; */
+  background-color: rgb(73, 165, 231);
+  font-size: 18px;
+  height: 300px;
+  width: 280px;
+  border-radius: 15px;
+  position: relative;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s;
+  margin: 20px 0px 0px 20px;
 }
 .event:hover {
-    cursor: pointer;
-    transform: scale(1.1);
-    box-shadow: 1px 1px 10px rgb(248, 219, 82);
+  cursor: pointer;
+  transform: scale(1.1);
+  box-shadow: 1px 1px 10px rgb(248, 219, 82);
 }
 
 .event-bg {
-    background-repeat: no-repeat;
-    background-size: cover;
-    /* object-fit: cover; */
-    height: 140px;
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  /* object-fit: cover; */
+  height: 140px;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
 }
 
 .event-title {
-    font-weight: 500;
-    color: rgba(248, 219, 82, 1);
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    margin: 5px 5px 5px 5px;
-    text-align: center;
-    text-decoration: none;
+  font-weight: 500;
+  color: rgba(248, 219, 82, 1);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  margin: 5px 5px 5px 5px;
+  text-align: center;
+  text-decoration: none;
 }
 
 .event-date {
-    position: absolute;
-    bottom: 5px;
-    right: 10px;
-    font-size: 14px;
-    font-weight: 600;
-    color: rgb(193, 76, 36);
+  position: absolute;
+  bottom: 5px;
+  right: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  color: rgb(193, 76, 36);
 }
 
 .past-events {
-    display: flex;
-    width: 90vw;
-    height: 340px;
-    overflow-x: scroll;
-    gap: 30px;
-    margin: 0px 10px 0px 10px;
+  display: flex;
+  width: 90vw;
+  height: 340px;
+  overflow-x: scroll;
+  gap: 30px;
+  margin: 0px 10px 0px 10px;
 }
 .upcoming-events {
-    display: flex;
-    width: 90vw;
-    height: 340px;
-    overflow-x: scroll;
-    gap: 30px;
-    margin: 0px 10px 0px 10px;
+  display: flex;
+  width: 90vw;
+  height: 340px;
+  overflow-x: scroll;
+  gap: 30px;
+  margin: 0px 10px 0px 10px;
 }
 
 .events-type {
-    font-size: 26px;
-    font-weight: 700;
-    margin: 10px 0px 0px 30px;
+  font-size: 26px;
+  font-weight: 700;
+  margin: 10px 0px 0px 30px;
 }
 
 .horizontal-line {
-    border: none;
-    border-top: 1px solid grey;
-    margin: 10px 0;
+  border: none;
+  border-top: 1px solid grey;
+  margin: 10px 0;
 }
 
 .venue {
-    font-size: 14px;
-    margin: 6% 0px 0px 10px;
+  font-size: 14px;
+  margin: 6% 0px 0px 10px;
 }

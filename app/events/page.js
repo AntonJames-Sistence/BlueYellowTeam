@@ -1,42 +1,59 @@
-import Event from "./components/Event";
-import "./events.css";
+'use client';
+import { useEffect, useState } from 'react';
+import Event from './components/Event';
+import './events.css';
 
 const Events = async () => {
-  const request = await fetch("http://localhost:3000/api/events", {
-    cache: "no-store",
-  });
-  const data = await request.json();
-  // console.log("data", data);
-  const eventData = Object.values(data);
+  const [realEventData, setRealEventData] = useState(null);
+
+  useEffect(() => {
+    const getData = async () => {
+      const request = await fetch('http://localhost:3000/api/events', {
+        cache: 'no-store',
+      });
+      const data = await request.json();
+      if (data) {
+        const eventData = Object.values(data);
+        setRealEventData(eventData);
+      }
+    };
+    getData();
+  }, []);
 
   const today = new Date();
-  const upcomingEvents = eventData.filter(
+  const upcomingEvents = realEventData?.filter(
     (event) => new Date(event.date) >= today
   );
-  const pastEvents = eventData.filter((event) => new Date(event.date) < today);
+  const pastEvents = realEventData?.filter(
+    (event) => new Date(event.date) < today
+  );
   // console.log(upcomingEvents);
   // console.log(pastEvents);
 
   return (
     <>
-      <div className="component-box">
-        <div className="events-type">Upcoming Events</div>
-        <hr className="horizontal-line"></hr>
-        <div className="upcoming-events">
-          {upcomingEvents.map((event, index) => (
-            <Event event={event} key={index} />
-          ))}
-        </div>
+      {realEventData ? (
+        <div className="component-box">
+          <div className="events-type">Upcoming Events</div>
+          <hr className="horizontal-line"></hr>
+          <div className="upcoming-events">
+            {upcomingEvents.map((event, index) => (
+              <Event event={event} key={index} />
+            ))}
+          </div>
 
-        <div className="events-type">Past Events</div>
-        <hr className="horizontal-line"></hr>
-        <div className="past-events">
-          {pastEvents.map((event) => (
-            <Event event={event} key={event.id} />
-          ))}
+          <div className="events-type">Past Events</div>
+          <hr className="horizontal-line"></hr>
+          <div className="past-events">
+            {pastEvents.map((event) => (
+              <Event event={event} key={event.id} />
+            ))}
+          </div>
+          <hr className="horizontal-line"></hr>
         </div>
-        <hr className="horizontal-line"></hr>
-      </div>
+      ) : (
+        <div>...loading</div>
+      )}
     </>
   );
 };
