@@ -6,10 +6,11 @@ import FacebookPost from './components/FacebookPost';
 import MainProjectCard from './components/MainProjectCard';
 
 export default async function Home() {
-  const request = await fetch('http://localhost:3000/api/projects', {
-    cache: 'no-store',
-  });
-  const allProjects = await request.json();
+  // const request = await fetch('http://localhost:3000/api/projects', {
+  //   cache: 'no-store',
+  // });
+  // const allProjects = await request.json();
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <div>
@@ -60,7 +61,7 @@ export default async function Home() {
           id="projects-cont"
           className="flex flex-wrap p-2.5 gap-5 md:flex-row flex-col"
         >
-          {allProjects.map((item, index) => (
+          {/* {allProjects.map((item, index) => (
             <MainProjectCard
               key={index}
               id={item.id}
@@ -68,7 +69,7 @@ export default async function Home() {
               title={item.title}
               para={item.para}
             />
-          ))}
+          ))} */}
         </div>
       </div>
       <div className="grid grid-cols-2 pt-24">
