@@ -69,6 +69,7 @@ export async function PUT(request) {
     const updates = {};
     updates[`/projects/${requestData.id}`] = requestData;
     update(ref(DB), updates);
+    return NextResponse.json("success");
   } catch (error) {
     return NextResponse.error(error);
   }

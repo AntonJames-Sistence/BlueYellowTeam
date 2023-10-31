@@ -23,7 +23,7 @@ export default function NavBar() {
         <div className="hover:text-sky-500 hover:cursor-pointer">Events </div>
         <div>&nbsp;/&nbsp;</div>
         <Link
-          href="#FeaturedProjects"
+          href="/#FeaturedProjects"
           className="hover:text-sky-500 hover:cursor-pointer"
         >
           Projects
