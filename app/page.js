@@ -1,4 +1,3 @@
-
 "use client";
 
 import Link from "next/link";
@@ -9,47 +8,50 @@ import Login from "./components/LoginButton";
 import FacebookPost from "./components/FacebookPost";
 import MainProjectCard from "./components/MainProjectCard";
 import Youtube from "./components/youtube";
-import Event from './events/components/Event';
+import Event from "./events/components/Event";
 
 export default function Home() {
-
-  const [projectsData, setProjectsData] = useState(null);
+  const [projectsData, setProjectsData] = useState([]);
   const [eventsData, setEventsData] = useState(null);
 
   useEffect(() => {
     const getProjects = async () => {
-      const request = await fetch('http://localhost:3000/api/projects', {
-        cache: 'no-store',
+      const request = await fetch("http://localhost:3000/api/projects", {
+        cache: "no-store",
       });
       const data = await request.json();
       if (data) {
         setProjectsData(Object.values(data));
       }
-    }
+    };
 
     const getEvents = async () => {
-      const request = await fetch('http://localhost:3000/api/events', {
-        cache: 'no-store',
+      const request = await fetch("http://localhost:3000/api/events", {
+        cache: "no-store",
       });
       const data = await request.json();
       if (data) {
+        console.log("data");
         const today = new Date();
         const events = Object.values(data).filter(
           (event) => new Date(event.date) >= today
         );
         setEventsData(events);
+        console.log("events", events);
       }
-    }
+    };
     getProjects();
     getEvents();
-  }, [])
+  }, []);
 
   let [facebookLists, setFacebookLists] = useState([[], [], []]);
   let [numOfPost, setNumOfPost] = useState(3);
 
   useEffect(() => {
     async function loadFaceBookData() {
-      const res = await fetch("/api/facebook");
+      const res = await fetch("/api/facebook", {
+        cache: "no-store",
+      });
       let Post = await res.json();
       Post = Post.reverse().slice(0, numOfPost);
       const tempList = [[], [], []];
@@ -64,7 +66,7 @@ export default function Home() {
     loadFaceBookData();
   }, [numOfPost]);
 
-  if ( !eventsData) return <h1>Loading...</h1>
+  if (!eventsData) return <h1>Loading...</h1>;
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
@@ -105,7 +107,6 @@ export default function Home() {
           </h3>
         </div>
       </div>
-
 
       <div className="component-box">
         <div className="events-type">Current Events</div>
