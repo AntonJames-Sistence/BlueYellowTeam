@@ -66,7 +66,7 @@ export default function Home() {
     loadFaceBookData();
   }, [numOfPost]);
 
-  if (!eventsData) return <h1>Loading...</h1>;
+  if (!eventsData) return <h1 className="text-white text-3xl">Loading...</h1>;
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
