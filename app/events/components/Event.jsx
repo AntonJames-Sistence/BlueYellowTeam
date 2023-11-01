@@ -1,5 +1,5 @@
 'use client';
-
+import '../events.css';
 import { useEffect, useState } from 'react';
 
 const Event = ({ event }) => {
@@ -35,9 +35,8 @@ const Event = ({ event }) => {
     const minutes = date.getUTCMinutes();
     const ampm = hours >= 12 ? 'PM' : 'AM';
 
-    const formattedDate = `${dayOfWeek}, ${month} ${day}, ${
-      hours % 12
-    }:${minutes.toString().padStart(2, '0')} ${ampm}`;
+    const formattedDate = `${dayOfWeek}, ${month} ${day}, ${hours % 12
+      }:${minutes.toString().padStart(2, '0')} ${ampm}`;
 
     return formattedDate;
   }
@@ -46,9 +45,12 @@ const Event = ({ event }) => {
     <a href={url} target="_blank" rel="noopener noreferrer">
       <div className="event">
         <div className="event-bg" style={backgroundStyle}></div>
-        <div className="event-title">{event.name}</div>
-        <div className="venue">{`${event.venue} * ${event.address}`}</div>
-        <div className="event-date">{formatDate(event.date)}</div>
+        <div className="event-details">
+          <div className="event-title">{event.name}</div>
+          <div className="event-date">{formatDate(event.date)}</div>
+          <div className="venue">{`${event.venue} • ${event.address}`}</div>
+          <div className="cost">{`Starts at $${event.cost}`}</div>
+        </div>
       </div>
     </a>
   );

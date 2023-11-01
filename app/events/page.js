@@ -1,9 +1,9 @@
 'use client';
 import { useEffect, useState } from 'react';
 import Event from './components/Event';
-import './events.css';
 
-const Events = async () => {
+
+const Events = () => {
   const [realEventData, setRealEventData] = useState(null);
 
   useEffect(() => {
@@ -27,8 +27,6 @@ const Events = async () => {
   const pastEvents = realEventData?.filter(
     (event) => new Date(event.date) < today
   );
-  // console.log(upcomingEvents);
-  // console.log(pastEvents);
 
   return (
     <>
@@ -52,7 +50,7 @@ const Events = async () => {
           <hr className="horizontal-line"></hr>
         </div>
       ) : (
-        <div>...loading</div>
+        <div>Loading...</div>
       )}
     </>
   );
