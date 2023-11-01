@@ -2,6 +2,7 @@
 import '../events.css';
 import { useEffect, useState } from 'react';
 
+
 const Event = ({ event }) => {
   const { id, url } = event;
   // Extract the background image URL
@@ -11,20 +12,20 @@ const Event = ({ event }) => {
   };
 
   function formatDate(inputDate) {
-    const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
     const months = [
-      'Jan',
-      'Feb',
-      'Mar',
-      'Apr',
-      'May',
-      'Jun',
-      'Jul',
-      'Aug',
-      'Sep',
-      'Oct',
-      'Nov',
-      'Dec',
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
     ];
 
     const date = new Date(inputDate);
@@ -33,10 +34,9 @@ const Event = ({ event }) => {
     const day = date.getUTCDate();
     const hours = date.getUTCHours();
     const minutes = date.getUTCMinutes();
-    const ampm = hours >= 12 ? 'PM' : 'AM';
+    const ampm = hours >= 12 ? "PM" : "AM";
 
-    const formattedDate = `${dayOfWeek}, ${month} ${day}, ${hours % 12
-      }:${minutes.toString().padStart(2, '0')} ${ampm}`;
+    const formattedDate = `${dayOfWeek}, ${month} ${day}, ${hours % 12}:${minutes.toString().padStart(2, '0')} ${ampm}`;
 
     return formattedDate;
   }

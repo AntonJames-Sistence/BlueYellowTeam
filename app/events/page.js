@@ -1,15 +1,15 @@
 'use client';
 import { useEffect, useState } from 'react';
 import Event from './components/Event';
-
+// import "./events.css";
 
 const Events = () => {
   const [realEventData, setRealEventData] = useState(null);
 
   useEffect(() => {
     const getData = async () => {
-      const request = await fetch('http://localhost:3000/api/events', {
-        cache: 'no-store',
+      const request = await fetch("http://localhost:3000/api/events", {
+        cache: "no-store",
       });
       const data = await request.json();
       if (data) {
@@ -22,10 +22,10 @@ const Events = () => {
 
   const today = new Date();
   const upcomingEvents = realEventData?.filter(
-    (event) => new Date(event.date) >= today
+    (event) => new Date(event.date) >= today,
   );
   const pastEvents = realEventData?.filter(
-    (event) => new Date(event.date) < today
+    (event) => new Date(event.date) < today,
   );
 
   return (
