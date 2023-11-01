@@ -1,3 +1,4 @@
+
 "use client";
 
 import Link from "next/link";
@@ -8,12 +9,40 @@ import Login from "./components/LoginButton";
 import FacebookPost from "./components/FacebookPost";
 import MainProjectCard from "./components/MainProjectCard";
 import Youtube from "./components/youtube";
+import Event from './events/components/Event';
 
 export default function Home() {
-  // const request = await fetch('http://localhost:3000/api/projects', {
-  //   cache: 'no-store',
-  // });
-  // const allProjects = await request.json();
+
+  const [projectsData, setProjectsData] = useState(null);
+  const [eventsData, setEventsData] = useState(null);
+
+  useEffect(() => {
+    const getProjects = async () => {
+      const request = await fetch('http://localhost:3000/api/projects', {
+        cache: 'no-store',
+      });
+      const data = await request.json();
+      if (data) {
+        setProjectsData(Object.values(data));
+      }
+    }
+
+    const getEvents = async () => {
+      const request = await fetch('http://localhost:3000/api/events', {
+        cache: 'no-store',
+      });
+      const data = await request.json();
+      if (data) {
+        const today = new Date();
+        const events = Object.values(data).filter(
+          (event) => new Date(event.date) >= today
+        );
+        setEventsData(events);
+      }
+    }
+    getProjects();
+    getEvents();
+  }, [])
 
   let [facebookLists, setFacebookLists] = useState([[], [], []]);
   let [numOfPost, setNumOfPost] = useState(3);
@@ -34,6 +63,8 @@ export default function Home() {
     }
     loadFaceBookData();
   }, [numOfPost]);
+
+  if ( !eventsData) return <h1>Loading...</h1>
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
@@ -74,6 +105,19 @@ export default function Home() {
           </h3>
         </div>
       </div>
+
+
+      <div className="component-box">
+        <div className="events-type">Current Events</div>
+        <hr className="horizontal-line"></hr>
+        <div className="upcoming-events">
+          {eventsData.map((event, index) => (
+            <Event event={event} key={index} />
+          ))}
+        </div>
+        <hr className="horizontal-line"></hr>
+      </div>
+
       <Youtube />
       <div id="FeaturedProjects" className="pt-40">
         <div
@@ -86,7 +130,7 @@ export default function Home() {
           id="projects-cont"
           className="flex flex-wrap p-2.5 gap-5 md:flex-row flex-col"
         >
-          {allProjects.map((item, index) => (
+          {projectsData.map((item, index) => (
             <MainProjectCard
               key={index}
               id={item.id}
