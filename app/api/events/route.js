@@ -55,7 +55,7 @@ export async function GET() {
 
       const data = await response.json();
 
-      console.log(data);
+      // console.log(data);
 
       eventData[i].venue = data.venue.name;
       eventData[i].address = data.venue.address.localized_area_display;
