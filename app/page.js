@@ -44,10 +44,6 @@ export default function Home() {
     getEvents();
   }, [])
 
-
-  if ( !eventsData) return <h1>Loading...</h1>
-
-
   let [facebookLists, setFacebookLists] = useState([[], [], []]);
   let [numOfPost, setNumOfPost] = useState(3);
 
@@ -67,6 +63,8 @@ export default function Home() {
     }
     loadFaceBookData();
   }, [numOfPost]);
+
+  if ( !eventsData) return <h1>Loading...</h1>
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
