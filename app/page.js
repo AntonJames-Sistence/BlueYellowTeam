@@ -20,8 +20,6 @@ export default function Home() {
     splitFacebookPost[place].push(sampleData[i]);
   }
 
-  console.log("spl", splitFacebookPost);
-
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <div>
