@@ -1,11 +1,14 @@
-'use client';
-import Link from 'next/link';
-import { useEffect, useState } from 'react';
-import { sampleData } from '../data/facebook';
-import { allProjects, landingPageDescriptions } from '../data/projects';
-import Login from './components/LoginButton';
-import FacebookPost from './components/FacebookPost';
-import MainProjectCard from './components/MainProjectCard';
+
+"use client";
+
+import Link from "next/link";
+import { sampleData } from "../data/facebook";
+import { allProjects, landingPageDescriptions } from "../data/projects";
+import { useEffect, useState } from "react";
+import Login from "./components/LoginButton";
+import FacebookPost from "./components/FacebookPost";
+import MainProjectCard from "./components/MainProjectCard";
+import Youtube from "./components/youtube";
 import Event from './events/components/Event';
 
 export default function Home() {
@@ -45,12 +48,25 @@ export default function Home() {
   if ( !eventsData) return <h1>Loading...</h1>
 
 
-  let splitFacebookPost = [[], [], []];
+  let [facebookLists, setFacebookLists] = useState([[], [], []]);
+  let [numOfPost, setNumOfPost] = useState(3);
 
-  for (let i = 0; i < sampleData.length; i++) {
-    const place = i % 3;
-    splitFacebookPost[place].push(sampleData[i]);
-  }
+  useEffect(() => {
+    async function loadFaceBookData() {
+      const res = await fetch("/api/facebook");
+      let Post = await res.json();
+      Post = Post.reverse().slice(0, numOfPost);
+      const tempList = [[], [], []];
+
+      for (let i = 0; i < Post.length; i++) {
+        const place = i % 3;
+        tempList[place].push(Post[i]);
+      }
+
+      setFacebookLists(tempList);
+    }
+    loadFaceBookData();
+  }, [numOfPost]);
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
@@ -92,6 +108,7 @@ export default function Home() {
         </div>
       </div>
 
+
       <div className="component-box">
         <div className="events-type">Current Events</div>
         <hr className="horizontal-line"></hr>
@@ -103,8 +120,8 @@ export default function Home() {
         <hr className="horizontal-line"></hr>
       </div>
 
-
-      <div id="FeaturedProjects" className="pt-24">
+      <Youtube />
+      <div id="FeaturedProjects" className="pt-40">
         <div
           id="featured-project-title"
           className="text-center text-3xl text-gray-500 pb-3"
@@ -132,14 +149,10 @@ export default function Home() {
         </h3>
         <img className="rounded-md" src="./team.jpeg" alt="" />
       </div>
-      <div>
-        <h3>{landingPageDescriptions[1]}</h3>
-        <img src="/intro_banner.png" alt="" />
-      </div>
-      <div className="pt-10">
+      <div className="pt-40">
         <div className="text-4xl text-center mb-12">Updates From Facebook</div>
         <div className="flex flex-wrap justify-between ">
-          {splitFacebookPost.map((postList, index) => {
+          {facebookLists.map((postList, index) => {
             return (
               <div
                 key={index}
@@ -152,6 +165,12 @@ export default function Home() {
               </div>
             );
           })}
+        </div>
+        <div
+          className="bg-white m-auto text-lg text-black w-fit px-5 rounded cursor-pointer"
+          onClick={() => setNumOfPost((state) => state + 3)}
+        >
+          ... Load more
         </div>
       </div>
     </main>

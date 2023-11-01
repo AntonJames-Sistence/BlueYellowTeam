@@ -7,14 +7,15 @@ import {
   get,
   remove,
   update,
-} from 'firebase/database';
-import { DB } from '../../../data/firebase';
+  off,
+} from "firebase/database";
+import { DB } from "../../../data/firebase";
 
 export async function GET() {
   const url = `https://www.eventbriteapi.com/v3/organizers/60070710973/events/`;
+  const eventsRef = ref(DB, "events");
 
   try {
-    const eventsRef = ref(DB, 'events');
     const snapshot = await get(eventsRef);
     const privateToken = process.env.VITE_PRIVATE_TOKEN;
 
@@ -84,6 +85,8 @@ export async function GET() {
     return NextResponse.json(eventData);
   } catch (error) {
     return NextResponse.error(error);
+  } finally {
+    off(eventsRef);
   }
 }
 

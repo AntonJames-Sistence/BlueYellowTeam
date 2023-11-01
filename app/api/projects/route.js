@@ -7,6 +7,7 @@ import {
   get,
   remove,
   update,
+  off,
 } from "firebase/database";
 import { DB } from "../../../data/firebase";
 import { error } from "console";
@@ -23,13 +24,15 @@ function isntValidProject(project) {
 }
 
 export async function GET() {
+  const projectRef = ref(DB, "projects");
   try {
-    const projectRef = ref(DB, "projects");
     const snapshot = await get(projectRef);
 
     return NextResponse.json(Object.values(snapshot.val()));
   } catch (error) {
     return NextResponse.error(error);
+  } finally {
+    off(projectRef);
   }
 }
 
