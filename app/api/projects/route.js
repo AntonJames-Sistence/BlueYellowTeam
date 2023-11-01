@@ -1,4 +1,4 @@
-import { NextResponse, NextRequest } from 'next/server';
+import { NextResponse, NextRequest } from "next/server";
 import {
   Database,
   push,
@@ -7,16 +7,16 @@ import {
   get,
   remove,
   update,
-} from 'firebase/database';
-import { DB } from '../../../data/firebase';
-import { error } from 'console';
+} from "firebase/database";
+import { DB } from "../../../data/firebase";
+import { error } from "console";
 
 function isntValidProject(project) {
   const errors = {};
 
-  if (!project.title) errors.name = 'Project needs a title';
-  if (!project.img) errors.img = 'project needs an image';
-  if (!project.para) errors.para = 'project needs a description';
+  if (!project.title) errors.name = "Project needs a title";
+  if (!project.img) errors.img = "project needs an image";
+  if (!project.para) errors.para = "project needs a description";
 
   if (Object.values(errors).length) return errors;
   return false;
@@ -24,7 +24,7 @@ function isntValidProject(project) {
 
 export async function GET() {
   try {
-    const projectRef = ref(DB, 'projects');
+    const projectRef = ref(DB, "projects");
     const snapshot = await get(projectRef);
 
     return NextResponse.json(Object.values(snapshot.val()));
@@ -37,7 +37,7 @@ export async function POST(request) {
   const requestData = await request.json();
 
   try {
-    const projectsRef = ref(DB, 'projects/');
+    const projectsRef = ref(DB, "projects/");
 
     const errors = isntValidProject(requestData);
     console.log(errors);

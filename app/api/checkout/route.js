@@ -1,5 +1,5 @@
-import Stripe from 'stripe';
-import { NextRequest, NextResponse } from 'next/server';
+import Stripe from "stripe";
+import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(request) {
   const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
@@ -18,9 +18,9 @@ export async function POST(request) {
 
     //     }
     // ]
-    mode: 'payment',
-    success_url: 'http://localhost:3000', // change before production
-    cancel_url: 'http://localhost:3000', // change before production
+    mode: "payment",
+    success_url: "http://localhost:3000", // change before production
+    cancel_url: "http://localhost:3000", // change before production
   });
 
   return NextResponse.json(session.url);
