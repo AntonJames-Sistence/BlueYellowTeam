@@ -1,22 +1,33 @@
-import Link from 'next/link';
-import { sampleData } from '../data/facebook';
-import { allProjects, landingPageDescriptions } from '../data/projects';
-import Login from './components/LoginButton';
-import FacebookPost from './components/FacebookPost';
-import MainProjectCard from './components/MainProjectCard';
+"use client";
 
-export default async function Home() {
+import Link from "next/link";
+import { sampleData } from "../data/facebook";
+import { allProjects, landingPageDescriptions } from "../data/projects";
+import Login from "./components/LoginButton";
+import FacebookPost from "./components/FacebookPost";
+import MainProjectCard from "./components/MainProjectCard";
+
+export default function Home() {
   // const request = await fetch('http://localhost:3000/api/projects', {
   //   cache: 'no-store',
   // });
   // const allProjects = await request.json();
+
+  let splitFacebookPost = [[], [], []];
+
+  for (let i = 0; i < sampleData.length; i++) {
+    const place = i % 3;
+    splitFacebookPost[place].push(sampleData[i]);
+  }
+
+  console.log("spl", splitFacebookPost);
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <div>
         <div
           className="relative w-full overflow-hidden"
-          style={{ borderRadius: '50px' }}
+          style={{ borderRadius: "50px" }}
         >
           <div className="relative">
             <video
@@ -84,9 +95,19 @@ export default async function Home() {
       </div>
       <div className="pt-10">
         <div className="text-4xl text-center mb-12">Updates From Facebook</div>
-        <div className="flex flex-wrap justify-between">
-          {sampleData.map((post, index) => {
-            return <FacebookPost key={index} post={post} />;
+        <div className="flex flex-wrap justify-between ">
+          {splitFacebookPost.map((postList, index) => {
+            return (
+              <div
+                key={index}
+                style={{ width: "32%" }}
+                className="flex flex-col"
+              >
+                {postList.map((post) => {
+                  return <FacebookPost key={post.id} post={post} />;
+                })}
+              </div>
+            );
           })}
         </div>
       </div>
