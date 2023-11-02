@@ -1,18 +1,18 @@
-import { NextResponse } from "next/server";
-import { set, ref, push, update, get, off } from "firebase/database";
-import { DB } from "../../../data/firebase";
+import { NextResponse } from 'next/server';
+import { set, ref, push, update, get, off } from 'firebase/database';
+import { DB } from '../../../data/firebase';
 
 export async function GET() {
-  const facebookRef = ref(DB, "facebook");
+  const facebookRef = ref(DB, 'facebook');
   try {
     const snapshot = await get(facebookRef);
     if (snapshot.exists()) {
       const allPost = Object.values(snapshot.val().posts);
       return NextResponse.json(allPost);
     }
-    throw new Error("idk");
+    throw new Error('idk');
   } catch (error) {
-    return NextResponse.error("No post yet");
+    return NextResponse.error('No post yet');
   } finally {
     off(facebookRef);
   }
@@ -26,7 +26,7 @@ export async function PUT() {
     const res = await fetch(url);
 
     if (!res.ok) {
-      throw new Error("Failed to fetch facebook post from the API");
+      throw new Error('Failed to fetch facebook post from the API');
     }
 
     const fbData = await res.json();
@@ -46,7 +46,7 @@ export async function PUT() {
         ? multiImg.data.map((ele) => ele.media.image.src)
         : [post.attachments.data[0].media.image.src];
 
-      newPost.createdAt = post["created_time"];
+      newPost.createdAt = post['created_time'];
 
       newPost.description =
         post.message ?? post?.attachments?.data[0].description;
@@ -59,11 +59,11 @@ export async function PUT() {
     }
 
     const updates = {};
-    updates["facebook"] = cleanedData;
+    updates['facebook'] = cleanedData;
     update(ref(DB), updates);
 
     return NextResponse.json(cleanedData);
   } catch (error) {
-    return NextResponse.error("didnt work");
+    return NextResponse.error('didnt work');
   }
 }

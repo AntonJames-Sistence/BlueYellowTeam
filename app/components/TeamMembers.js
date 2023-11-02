@@ -1,7 +1,7 @@
-"use client";
-import React from "react";
-import { useRef, useEffect } from "react";
-import TeamCard from "./TeamCard";
+'use client';
+import React from 'react';
+import { useRef, useEffect } from 'react';
+import TeamCard from './TeamCard';
 
 export default function TeamMembers() {
   const swiperRef = useRef();

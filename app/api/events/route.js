@@ -8,17 +8,16 @@ import {
   remove,
   update,
   off,
-} from "firebase/database";
-import { DB } from "../../../data/firebase";
+} from 'firebase/database';
+import { DB } from '../../../data/firebase';
 
 export async function GET() {
   const url = `https://www.eventbriteapi.com/v3/organizers/60070710973/events/`;
-  const eventsRef = ref(DB, "events");
+  const eventsRef = ref(DB, 'events');
 
   try {
     const snapshot = await get(eventsRef);
     const privateToken = process.env.VITE_PRIVATE_TOKEN;
-
 
     if (snapshot.exists()) {
       const events = snapshot.val();
@@ -59,11 +58,11 @@ export async function GET() {
       const ticketData = await ticketRes.json();
 
       let min = Infinity;
-      ticketData.ticket_classes.forEach(ticket => {
+      ticketData.ticket_classes.forEach((ticket) => {
         if (ticket.cost?.value) {
-          min = Math.min(min, ticket.cost.value)
+          min = Math.min(min, ticket.cost.value);
         }
-      })
+      });
       eventData[i].cost = Number((min / 100).toFixed(2));
 
       // Venue fetch
@@ -133,11 +132,11 @@ export async function PUT() {
       const ticketData = await ticketRes.json();
 
       let min = Infinity;
-      ticketData.ticket_classes.forEach(ticket => {
+      ticketData.ticket_classes.forEach((ticket) => {
         if (ticket.cost?.value) {
-          min = Math.min(min, ticket.cost.value)
+          min = Math.min(min, ticket.cost.value);
         }
-      })
+      });
       eventData[i].cost = Number((min / 100).toFixed(2));
 
       // Venue fetch
