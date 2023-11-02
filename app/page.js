@@ -6,6 +6,7 @@ import Event from "./events/components/Event";
 import TeamMembers from "./components/TeamMembers";
 import HomeProjects from "./components/HomeProjects";
 import FacebookPost from "./components/FacebookPost";
+import swiperParams from "../data/swiperParams";
 
 export default function Home() {
   const eventSwiperRef = useRef();
