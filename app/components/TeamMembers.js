@@ -3,34 +3,12 @@ import React from "react";
 import { useRef, useEffect } from "react";
 import TeamCard from "./TeamCard";
 import { register } from "swiper/element/bundle";
+import swiperParams from "../../data/swiperParams";
 register();
 
 export default function TeamMembers() {
   const swiperRef = useRef(null);
   const data = [1, 2, 3, 4, 5];
-
-  const swiperParams = {
-    slidesPerView: 4,
-    breakpoints: {
-      320: {
-        slidesPerView: 1,
-      },
-      600: {
-        slidesPerView: 2,
-      },
-      900: {
-        slidesPerView: 3,
-      },
-      1170: {
-        slidesPerView: 4,
-      },
-    },
-    on: {
-      init() {
-        // ...
-      },
-    },
-  };
 
   useEffect(() => {
     if (swiperRef.current) {
