@@ -8,7 +8,7 @@ export default function HomeProjects() {
   useEffect(() => {
     if (!projects.length) {
       const getProjects = async () => {
-        const request = await fetch("http://localhost:3000/api/projects");
+        const request = await fetch("/api/projects");
         if (request.ok) {
           const data = await request.json();
           setProjects(Object.values(data));

@@ -14,7 +14,7 @@ export default function Home() {
 
   useEffect(() => {
     const getEvents = async () => {
-      const request = await fetch("http://localhost:3000/api/events");
+      const request = await fetch("/api/events");
       if (request.ok) {
         const data = await request.json();
         const today = new Date();
