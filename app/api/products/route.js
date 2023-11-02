@@ -1,5 +1,5 @@
-import Stripe from "stripe";
-import { NextResponse } from "next/server";
+import Stripe from 'stripe';
+import { NextResponse } from 'next/server';
 
 export async function GET(request) {
   try {
@@ -10,6 +10,6 @@ export async function GET(request) {
 
     return NextResponse.json(prices.data);
   } catch (error) {
-    return NextResponse.error("strip failed");
+    return NextResponse.error('strip failed');
   }
 }

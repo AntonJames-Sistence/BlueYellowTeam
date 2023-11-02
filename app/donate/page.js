@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import ChildrenCauseDonate from "../components/ChildrenCauseDonate";
-import MWCauseDonate from "../components/MWCauseDonate";
-import DPCauseDonate from "../components/DPCauseDonate";
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import ChildrenCauseDonate from '../components/ChildrenCauseDonate';
+import MWCauseDonate from '../components/MWCauseDonate';
+import DPCauseDonate from '../components/DPCauseDonate';
 
 const Donate = () => {
   const [prices, setPrices] = useState([]);
@@ -14,7 +14,7 @@ const Donate = () => {
   }, []);
 
   const fetchPrices = async () => {
-    const { data } = await axios.get("/api/products");
+    const { data } = await axios.get('/api/products');
     setPrices(data);
   };
 

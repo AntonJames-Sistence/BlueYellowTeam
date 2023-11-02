@@ -1,11 +1,11 @@
-import React from "react";
-import axios from "axios";
-import { customFilter } from "./ChildrenCauseDonate";
+import React from 'react';
+import axios from 'axios';
+import { customFilter } from './ChildrenCauseDonate';
 
 const DPCauseDonate = ({ prices }) => {
   // constructor for buttons
   const constructor = () => {
-    let filtered = customFilter("displaced", prices);
+    let filtered = customFilter('displaced', prices);
     let buttonsArray = [];
 
     for (let i = 0; i < filtered.length; i++) {
@@ -23,15 +23,15 @@ const DPCauseDonate = ({ prices }) => {
       e.preventDefault();
 
       const { data } = await axios.post(
-        "/api/checkout",
+        '/api/checkout',
         {
           priceId: priceObject.id,
         },
         {
           headers: {
-            "Content-Type": "application/json",
+            'Content-Type': 'application/json',
           },
-        },
+        }
       );
       window.location.assign(data);
     };
@@ -53,9 +53,9 @@ const DPCauseDonate = ({ prices }) => {
         key={priceObject.id}
         onClick={handleCheckout}
       >
-        {(priceObject.unit_amount / 100).toLocaleString("en-US", {
-          style: "currency",
-          currency: "USD",
+        {(priceObject.unit_amount / 100).toLocaleString('en-US', {
+          style: 'currency',
+          currency: 'USD',
         })}
       </button>
     );
