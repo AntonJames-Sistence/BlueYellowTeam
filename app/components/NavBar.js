@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import React from "react";
-import Link from "next/link";
-import WarClock from "./WarClock.jsx";
+import React from 'react';
+import Link from 'next/link';
+import WarClock from './WarClock.jsx';
 // import { signIn, signOut, useSession } from "next-auth/react";
 
 export default function NavBar() {

@@ -1,5 +1,5 @@
-import React from "react";
-import YoutubeEmbed from "../helpers/youtube";
+import React from 'react';
+import YoutubeEmbed from '../helpers/youtube';
 
 const Youtube = () => {
   return (

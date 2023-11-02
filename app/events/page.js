@@ -2,6 +2,7 @@
 import { useEffect, useState, useRef } from "react";
 import Event from "./components/Event";
 import { register } from "swiper/element/bundle";
+import swiperParams from "../../data/swiperParams";
 // import "./events.css";
 
 const Events = () => {
@@ -31,29 +32,6 @@ const Events = () => {
   const pastEvents = realEventData?.filter(
     (event) => new Date(event.date) < today
   );
-
-  const swiperParams = {
-    slidesPerView: 4,
-    breakpoints: {
-      320: {
-        slidesPerView: 1,
-      },
-      600: {
-        slidesPerView: 2,
-      },
-      900: {
-        slidesPerView: 3,
-      },
-      1170: {
-        slidesPerView: 4,
-      },
-    },
-    on: {
-      init() {
-        // ...
-      },
-    },
-  };
 
   useEffect(() => {
     // const swiper = new Swiper(upcommingSwiperRef.current, swiperParams);

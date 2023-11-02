@@ -1,5 +1,5 @@
-import React from "react";
-import axios from "axios";
+import React from 'react';
+import axios from 'axios';
 
 // custom filter for cause prices
 export const customFilter = (keyword, array) => {
@@ -19,7 +19,7 @@ export const customFilter = (keyword, array) => {
 const ChildrenCauseDonate = ({ prices }) => {
   // constructor for buttons
   const constructor = () => {
-    let filtered = customFilter("children", prices);
+    let filtered = customFilter('children', prices);
     let buttonsArray = [];
 
     for (let i = 0; i < filtered.length; i++) {
@@ -37,15 +37,15 @@ const ChildrenCauseDonate = ({ prices }) => {
       e.preventDefault();
 
       const { data } = await axios.post(
-        "/api/checkout",
+        '/api/checkout',
         {
           priceId: priceObject.id,
         },
         {
           headers: {
-            "Content-Type": "application/json",
+            'Content-Type': 'application/json',
           },
-        },
+        }
       );
       window.location.assign(data);
     };
@@ -67,9 +67,9 @@ const ChildrenCauseDonate = ({ prices }) => {
         key={priceObject.id}
         onClick={handleCheckout}
       >
-        {(priceObject.unit_amount / 100).toLocaleString("en-US", {
-          style: "currency",
-          currency: "USD",
+        {(priceObject.unit_amount / 100).toLocaleString('en-US', {
+          style: 'currency',
+          currency: 'USD',
         })}
       </button>
     );

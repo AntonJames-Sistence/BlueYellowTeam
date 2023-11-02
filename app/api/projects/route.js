@@ -1,4 +1,4 @@
-import { NextResponse, NextRequest } from "next/server";
+import { NextResponse, NextRequest } from 'next/server';
 import {
   Database,
   push,
@@ -8,9 +8,9 @@ import {
   remove,
   update,
   off,
-} from "firebase/database";
-import { DB } from "../../../data/firebase";
-import { error } from "console";
+} from 'firebase/database';
+import { DB } from '../../../data/firebase';
+import { error } from 'console';
 
 function isntValidProject(project) {
   const errors = {};
@@ -24,7 +24,7 @@ function isntValidProject(project) {
 }
 
 export async function GET() {
-  const projectRef = ref(DB, "projects");
+  const projectRef = ref(DB, 'projects');
   try {
     const snapshot = await get(projectRef);
 
@@ -40,7 +40,7 @@ export async function POST(request) {
   const requestData = await request.json();
 
   try {
-    const projectsRef = ref(DB, "projects/");
+    const projectsRef = ref(DB, 'projects/');
 
     const errors = isntValidProject(requestData);
     console.log(errors);

@@ -1,5 +1,4 @@
 "use client";
-
 import Link from "next/link";
 import { sampleData } from "../data/facebook";
 import { allProjects, landingPageDescriptions } from "../data/projects";
@@ -12,41 +11,26 @@ import WhoWeHelp from "./components/WhoWeHelp"
 import Youtube from "./components/youtube";
 import Event from "./events/components/Event";
 import TeamMembers from "./components/TeamMembers";
-import { register } from "swiper/element/bundle";
+import HomeProjects from "./components/HomeProjects";
+import FacebookPost from "./components/FacebookPost";
+import swiperParams from "../data/swiperParams";
 
 export default function Home() {
-  register();
-  const swiperRef = useRef();
-  const [projectsData, setProjectsData] = useState([]);
+  const eventSwiperRef = useRef();
   const [eventsData, setEventsData] = useState(null);
 
   useEffect(() => {
-    const getProjects = async () => {
-      const request = await fetch("http://localhost:3000/api/projects", {
-        cache: "no-store",
-      });
-      const data = await request.json();
-      if (data) {
-        setProjectsData(Object.values(data));
-      }
-    };
-
     const getEvents = async () => {
-      const request = await fetch("http://localhost:3000/api/events", {
-        cache: "no-store",
-      });
+      const request = await fetch("http://localhost:3000/api/events");
       const data = await request.json();
       if (data) {
-        console.log("data", data);
         const today = new Date();
         const events = Object.values(data).filter(
           (event) => new Date(event.date) >= today
         );
         setEventsData(events);
-        console.log("events", events);
       }
     };
-    getProjects();
     getEvents();
   }, []);
 
@@ -55,24 +39,30 @@ export default function Home() {
 
   useEffect(() => {
     async function loadFaceBookData() {
-      const res = await fetch("/api/facebook", {
-        cache: "no-store",
-      });
-      let Post = await res.json();
-      Post = Post.reverse().slice(0, numOfPost);
-      const tempList = [[], [], []];
+      const res = await fetch("/api/facebook");
 
-      for (let i = 0; i < Post.length; i++) {
-        const place = i % 3;
-        tempList[place].push(Post[i]);
+      if (res.ok) {
+        let Post = await res.json();
+        Post = Post.reverse().slice(0, numOfPost);
+        const tempList = [[], [], []];
+
+        for (let i = 0; i < Post.length; i++) {
+          const place = i % 3;
+          tempList[place].push(Post[i]);
+        }
+
+        setFacebookLists(tempList);
       }
-
-      setFacebookLists(tempList);
     }
     loadFaceBookData();
   }, [numOfPost]);
 
-  if (!eventsData) return <h1 className="text-white text-3xl">Loading...</h1>;
+  useEffect(() => {
+    if (eventSwiperRef.current) {
+      Object.assign(eventSwiperRef.current, swiperParams);
+      eventSwiperRef.current.initialize();
+    }
+  }, [eventSwiperRef]);
 
   return (
     <main className="flex w-full max-w-7xl m-auto flex-col items-center justify-between pt-24 px-4">
@@ -138,22 +128,12 @@ export default function Home() {
         <div className="w-1/2 text-xl">Your donations and support provide essential supplies
           and services to the Ukrainian people.</div>
         <div className="w-full border-t-2 border-solid border-t-slate-400 relative">
-          <swiper-container
-            ref={swiperRef}
-            slides-per-view="4"
-            speed="500"
-            breakpoints={{
-              640: {
-                slidesPerView: 2,
-              },
-              1024: {
-                slidesPerView: 3,
-              },
-            }}
-          >
-            {eventsData.map((event, index) => (
-              <Event event={event} key={index} />
-            ))}
+          <swiper-container ref={eventSwiperRef}>
+            {eventsData && eventsData.length
+              ? eventsData.map((event, index) => (
+                  <Event event={event} key={index} />
+                ))
+              : null}
           </swiper-container>
         </div>
       </div>
@@ -183,6 +163,9 @@ export default function Home() {
               date={item.date}
             />
           ))}
+
+          <HomeProjects />
+
         </div>
       </div>
 
