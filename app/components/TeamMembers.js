@@ -1,24 +1,27 @@
-'use client';
-import React from 'react';
-import { useRef, useEffect } from 'react';
-import TeamCard from './TeamCard';
+"use client";
+import React from "react";
+import { useRef, useEffect } from "react";
+import TeamCard from "./TeamCard";
+import { register } from "swiper/element/bundle";
+register();
 
 export default function TeamMembers() {
-  const swiperRef = useRef();
+  const swiperRef = useRef(null);
   const data = [1, 2, 3, 4, 5];
+
   const swiperParams = {
     slidesPerView: 4,
     breakpoints: {
       320: {
         slidesPerView: 1,
       },
-      550: {
+      600: {
         slidesPerView: 2,
       },
-      1000: {
+      900: {
         slidesPerView: 3,
       },
-      1240: {
+      1170: {
         slidesPerView: 4,
       },
     },
@@ -30,9 +33,11 @@ export default function TeamMembers() {
   };
 
   useEffect(() => {
-    Object.assign(swiperRef.current, swiperParams);
-    swiperRef.current.initialize();
-  }, []);
+    if (swiperRef.current) {
+      Object.assign(swiperRef.current, swiperParams);
+      swiperRef.current.initialize();
+    }
+  }, [swiperRef]);
 
   return (
     <div className="w-full pt-36">
@@ -53,7 +58,7 @@ export default function TeamMembers() {
           </div>
         </div>
       </div>
-      <swiper-container ref={swiperRef} init={false}>
+      <swiper-container ref={swiperRef}>
         {data.map((item, index) => {
           return <TeamCard key={index} index={index} />;
         })}
