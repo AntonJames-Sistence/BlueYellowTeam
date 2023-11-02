@@ -5,7 +5,6 @@ import { allProjects, landingPageDescriptions } from "../data/projects";
 import { whoWeHelp } from "../data/whowehelp"
 import { useEffect, useState, useRef } from "react";
 import Login from "./components/LoginButton";
-import FacebookPost from "./components/FacebookPost";
 import MainProjectCard from "./components/MainProjectCard";
 import WhoWeHelp from "./components/WhoWeHelp"
 import Youtube from "./components/youtube";
