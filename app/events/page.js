@@ -13,7 +13,7 @@ const Events = () => {
 
   useEffect(() => {
     const getData = async () => {
-      const request = await fetch("http://localhost:3000/api/events", {
+      const request = await fetch("/api/events", {
         cache: "no-store",
       });
       const data = await request.json();
@@ -100,7 +100,7 @@ const Events = () => {
 export default Events;
 
 // export default async function Page() {
-//   const request = await fetch('http://localhost:3000/api/events');
+//   const request = await fetch('/api/events');
 //   const data = await request.json();
 //   // console.log(data);
 //   return <>
