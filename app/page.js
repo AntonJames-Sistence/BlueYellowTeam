@@ -10,19 +10,15 @@ import MainProjectCard from "./components/MainProjectCard";
 import Youtube from "./components/youtube";
 import Event from "./events/components/Event";
 import TeamMembers from "./components/TeamMembers";
-import { register } from "swiper/element/bundle";
 
 export default function Home() {
-  register();
-  const swiperRef = useRef();
+  const eventSwiperRef = useRef();
   const [projectsData, setProjectsData] = useState([]);
   const [eventsData, setEventsData] = useState(null);
 
   useEffect(() => {
     const getProjects = async () => {
-      const request = await fetch("http://localhost:3000/api/projects", {
-        cache: "no-store",
-      });
+      const request = await fetch("http://localhost:3000/api/projects");
       const data = await request.json();
       if (data) {
         setProjectsData(Object.values(data));
@@ -30,45 +26,49 @@ export default function Home() {
     };
 
     const getEvents = async () => {
-      const request = await fetch("http://localhost:3000/api/events", {
-        cache: "no-store",
-      });
+      const request = await fetch("http://localhost:3000/api/events");
       const data = await request.json();
       if (data) {
-        console.log("data", data);
         const today = new Date();
         const events = Object.values(data).filter(
           (event) => new Date(event.date) >= today
         );
         setEventsData(events);
-        console.log("events", events);
       }
     };
     getProjects();
     getEvents();
   }, []);
 
-  // let [facebookLists, setFacebookLists] = useState([[], [], []]);
-  // let [numOfPost, setNumOfPost] = useState(6);
+  let [facebookLists, setFacebookLists] = useState([[], [], []]);
+  let [numOfPost, setNumOfPost] = useState(6);
 
-  // useEffect(() => {
-  //   async function loadFaceBookData() {
-  //     const res = await fetch("/api/facebook", {
-  //       cache: "no-store",
-  //     });
-  //     let Post = await res.json();
-  //     Post = Post.reverse().slice(0, numOfPost);
-  //     const tempList = [[], [], []];
+  useEffect(() => {
+    async function loadFaceBookData() {
+      const res = await fetch("/api/facebook");
 
-  //     for (let i = 0; i < Post.length; i++) {
-  //       const place = i % 3;
-  //       tempList[place].push(Post[i]);
-  //     }
+      if (res.ok) {
+        let Post = await res.json();
+        Post = Post.reverse().slice(0, numOfPost);
+        const tempList = [[], [], []];
 
-  //     setFacebookLists(tempList);
-  //   }
-  //   loadFaceBookData();
-  // }, [numOfPost]);
+        for (let i = 0; i < Post.length; i++) {
+          const place = i % 3;
+          tempList[place].push(Post[i]);
+        }
+
+        setFacebookLists(tempList);
+      }
+    }
+    loadFaceBookData();
+  }, [numOfPost]);
+
+  useEffect(() => {
+    if (eventSwiperRef.current) {
+      Object.assign(eventSwiperRef.current, swiperParams);
+      eventSwiperRef.current.initialize();
+    }
+  }, [eventSwiperRef]);
 
   if (!eventsData) return <h1 className="text-white text-3xl">Loading...</h1>;
 
@@ -112,19 +112,7 @@ export default function Home() {
       <div className="pt-36 w-full">
         <div className="events-type">Current Events</div>
         <div className="w-full border-t-2 border-solid border-t-slate-400 relative">
-          <swiper-container
-            ref={swiperRef}
-            slides-per-view="4"
-            speed="500"
-            breakpoints={{
-              640: {
-                slidesPerView: 2,
-              },
-              1024: {
-                slidesPerView: 3,
-              },
-            }}
-          >
+          <swiper-container ref={eventSwiperRef}>
             {eventsData.map((event, index) => (
               <Event event={event} key={index} />
             ))}
@@ -164,7 +152,7 @@ export default function Home() {
       <div className="pt-36">
         <div className="text-4xl text-center mb-12">Updates From Facebook</div>
         <div className="flex flex-wrap justify-between ">
-          {/* {facebookLists.map((postList, index) => {
+          {facebookLists.map((postList, index) => {
             return (
               <div
                 key={index}
@@ -176,11 +164,11 @@ export default function Home() {
                 })}
               </div>
             );
-          })} */}
+          })}
         </div>
         <div
           className="bg-white m-auto text-lg text-black w-fit px-5 rounded cursor-pointer"
-          // onClick={() => setNumOfPost((state) => state + 3)}
+          onClick={() => setNumOfPost((state) => state + 3)}
         >
           ... Load more
         </div>

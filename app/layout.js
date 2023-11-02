@@ -14,10 +14,10 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
-        <Script
+        <script
           src="https://kit.fontawesome.com/5de844313b.js"
           crossOrigin="anonymous"
-        ></Script>
+        ></script>
       </head>
       <body className={inter.className}>
         <NavBar />
