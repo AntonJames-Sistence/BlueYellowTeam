@@ -1,5 +1,5 @@
-import Stripe from "stripe";
-import { NextRequest, NextResponse } from "next/server";
+import Stripe from 'stripe';
+import { NextRequest, NextResponse } from 'next/server';
 
 export async function POST(request) {
   const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
@@ -18,9 +18,9 @@ export async function POST(request) {
 
     //     }
     // ]
-    mode: "payment",
-    success_url: "https://blue-yellow-foundation.vercel.app", // change for thanks message
-    cancel_url: "https://blue-yellow-foundation.vercel.app/donate", // return to donate page
+    mode: 'payment',
+    success_url: 'https://blue-yellow-foundation.vercel.app', // change for thanks message
+    cancel_url: 'https://blue-yellow-foundation.vercel.app/donate', // return to donate page
   });
 
   return NextResponse.json(session.url);

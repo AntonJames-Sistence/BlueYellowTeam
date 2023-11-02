@@ -1,15 +1,11 @@
 "use client";
-
-import Link from "next/link";
-import { sampleData } from "../data/facebook";
-import { allProjects, landingPageDescriptions } from "../data/projects";
+import { landingPageDescriptions } from "../data/projects";
 import { useEffect, useState, useRef } from "react";
-import Login from "./components/LoginButton";
-import FacebookPost from "./components/FacebookPost";
-import MainProjectCard from "./components/MainProjectCard";
 import Youtube from "./components/youtube";
 import Event from "./events/components/Event";
 import TeamMembers from "./components/TeamMembers";
+import HomeProjects from "./components/HomeProjects";
+import FacebookPost from "./components/FacebookPost";
 
 export default function Home() {
   const eventSwiperRef = useRef();
@@ -17,14 +13,6 @@ export default function Home() {
   const [eventsData, setEventsData] = useState(null);
 
   useEffect(() => {
-    const getProjects = async () => {
-      const request = await fetch("http://localhost:3000/api/projects");
-      const data = await request.json();
-      if (data) {
-        setProjectsData(Object.values(data));
-      }
-    };
-
     const getEvents = async () => {
       const request = await fetch("http://localhost:3000/api/events");
       const data = await request.json();
@@ -36,7 +24,6 @@ export default function Home() {
         setEventsData(events);
       }
     };
-    getProjects();
     getEvents();
   }, []);
 
@@ -69,8 +56,6 @@ export default function Home() {
       eventSwiperRef.current.initialize();
     }
   }, [eventSwiperRef]);
-
-  if (!eventsData) return <h1 className="text-white text-3xl">Loading...</h1>;
 
   return (
     <main className="flex w-full max-w-7xl m-auto flex-col items-center justify-between pt-24 px-4">
@@ -113,9 +98,11 @@ export default function Home() {
         <div className="events-type">Current Events</div>
         <div className="w-full border-t-2 border-solid border-t-slate-400 relative">
           <swiper-container ref={eventSwiperRef}>
-            {eventsData.map((event, index) => (
-              <Event event={event} key={index} />
-            ))}
+            {eventsData && eventsData.length
+              ? eventsData.map((event, index) => (
+                  <Event event={event} key={index} />
+                ))
+              : null}
           </swiper-container>
         </div>
       </div>
@@ -131,15 +118,7 @@ export default function Home() {
           id="projects-cont"
           className="flex flex-wrap p-2.5 gap-5 md:flex-row flex-col"
         >
-          {projectsData.map((item, index) => (
-            <MainProjectCard
-              key={index}
-              id={item.id}
-              img={item.img}
-              title={item.title}
-              para={item.para}
-            />
-          ))}
+          <HomeProjects />
         </div>
       </div>
       <div className="grid grid-cols-2 pt-36">

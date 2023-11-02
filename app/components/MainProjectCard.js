@@ -1,5 +1,5 @@
-"use client";
-import Link from "next/link";
+'use client';
+import Link from 'next/link';
 
 export default function MainProjectCard({ id, img, title, para }) {
   const handleClick = (e) => {
