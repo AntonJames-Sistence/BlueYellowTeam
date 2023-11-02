@@ -7,7 +7,7 @@ const Youtube = () => {
       id="About"
       className=" w-full flex flex-col mt-28 lg:grid lg:grid-cols-2 lg:grid-rows-1 bg-darkTeal p-16"
     >
-      <div className="text-sky text-2xl lg:pr-8 pb-14 lg:pl-11 tracking-normal leading-normal py-6 lg:p-14">
+      <div className="text-white text-2xl lg:pr-8 pb-14 lg:pl-11 tracking-normal leading-normal py-6 lg:p-14">
         <h3>
           We are in the middle of the worst European humanitarian crisis since
           World War II. The Blue & Yellow Foundation supports those affected by
