@@ -9,7 +9,7 @@ import FacebookPost from "./components/FacebookPost";
 
 export default function Home() {
   const eventSwiperRef = useRef();
-  const [eventsData, setEventsData] = useState(null);
+  const [eventsData, setEventsData] = useState([]);
 
   useEffect(() => {
     const getEvents = async () => {
