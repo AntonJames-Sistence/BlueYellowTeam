@@ -1,5 +1,5 @@
-"use client";
-import Link from "next/link";
+'use client';
+import Link from 'next/link';
 
 export default function WhoWeHelp({ id, img, title, para }) {
   const handleClick = (e) => {
@@ -19,7 +19,6 @@ export default function WhoWeHelp({ id, img, title, para }) {
           {para}
         </div>
       </div>
-
     </div>
   );
 }

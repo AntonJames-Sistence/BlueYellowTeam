@@ -1,9 +1,9 @@
-"use client";
-import React from "react";
-import { useRef, useEffect } from "react";
-import TeamCard from "./TeamCard";
-import { register } from "swiper/element/bundle";
-import swiperParams from "../../data/swiperParams";
+'use client';
+import React from 'react';
+import { useRef, useEffect } from 'react';
+import TeamCard from './TeamCard';
+import { register } from 'swiper/element/bundle';
+import swiperParams from '../../data/swiperParams';
 register();
 
 export default function TeamMembers() {

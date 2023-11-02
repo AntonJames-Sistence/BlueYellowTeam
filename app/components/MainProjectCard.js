@@ -12,7 +12,11 @@ export default function MainProjectCard({ id, img, title, date }) {
       className="project-card
     flex-1 flex-basis-52 relative rounded-lg"
     >
-      <img className="border border-solid border-black w-full h-1/3 object-cover" src={img} alt="" />
+      <img
+        className="border border-solid border-black w-full h-1/3 object-cover"
+        src={img}
+        alt=""
+      />
       {/* <a
         href="https://www.paypal.com/donate/?hosted_button_id=6S6S2484WWCKN"
         target="_blank"

@@ -15,9 +15,9 @@ import { error } from 'console';
 function isntValidProject(project) {
   const errors = {};
 
-  if (!project.title) errors.name = "Project needs a title";
-  if (!project.img) errors.img = "Project needs an image";
-  if (!project.date) errors.date = "Project needs a date";
+  if (!project.title) errors.name = 'Project needs a title';
+  if (!project.img) errors.img = 'Project needs an image';
+  if (!project.date) errors.date = 'Project needs a date';
 
   if (Object.values(errors).length) return errors;
   return false;

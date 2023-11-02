@@ -20,10 +20,6 @@ const Youtube = () => {
         wrapper="lg:mr-11"
         embedId="qpWkGYq-cmE"
       />
-
-
-
-
     </div>
   );
 };
