@@ -1,9 +1,13 @@
-'use client';
-import { useEffect, useState } from 'react';
-import Event from './components/Event';
+"use client";
+import { useEffect, useState, useRef } from "react";
+import Event from "./components/Event";
+import { register } from "swiper/element/bundle";
 // import "./events.css";
 
 const Events = () => {
+  register();
+  const pastSwiperRef = useRef(null);
+  const upcommingSwiperRef = useRef(null);
   const [realEventData, setRealEventData] = useState(null);
 
   useEffect(() => {
@@ -22,32 +26,91 @@ const Events = () => {
 
   const today = new Date();
   const upcomingEvents = realEventData?.filter(
-    (event) => new Date(event.date) >= today,
+    (event) => new Date(event.date) >= today
   );
   const pastEvents = realEventData?.filter(
-    (event) => new Date(event.date) < today,
+    (event) => new Date(event.date) < today
   );
+
+  const swiperParams = {
+    slidesPerView: 4,
+    breakpoints: {
+      320: {
+        slidesPerView: 1,
+      },
+      600: {
+        slidesPerView: 2,
+      },
+      900: {
+        slidesPerView: 3,
+      },
+      1170: {
+        slidesPerView: 4,
+      },
+    },
+    on: {
+      init() {
+        // ...
+      },
+    },
+  };
+
+  useEffect(() => {
+    // const swiper = new Swiper(upcommingSwiperRef.current, swiperParams);
+    if (upcommingSwiperRef.current) {
+      Object.assign(upcommingSwiperRef.current, swiperParams);
+      upcommingSwiperRef.current.initialize();
+
+      Object.assign(pastSwiperRef.current, swiperParams);
+      pastSwiperRef.current.initialize();
+    }
+  }, [realEventData]);
 
   return (
     <>
       {realEventData ? (
-        <div className="component-box">
+        <div className="w-full max-w-7xl m-auto pt-36 pb-5">
           <div className="events-type">Upcoming Events</div>
-          <hr className="horizontal-line"></hr>
-          <div className="upcoming-events">
-            {upcomingEvents.map((event, index) => (
-              <Event event={event} key={index} />
-            ))}
+          <div className="w-full border-t-2 border-solid border-t-slate-400 relative">
+            <div
+              className="absolute -left-5 top-1/2 cursor-pointer"
+              onClick={() => upcommingSwiperRef.current.swiper.slidePrev()}
+            >
+              <i className="fa-solid fa-angle-left text-3xl"></i>
+            </div>
+            <div
+              className="absolute -right-5 top-1/2 cursor-pointer"
+              onClick={() => upcommingSwiperRef.current.swiper.slideNext()}
+            >
+              <i className="fa-solid fa-angle-right text-3xl"></i>
+            </div>
+            <swiper-container ref={upcommingSwiperRef} init={"false"}>
+              {upcomingEvents.map((event, index) => (
+                <Event event={event} key={index} />
+              ))}
+            </swiper-container>
           </div>
 
           <div className="events-type">Past Events</div>
-          <hr className="horizontal-line"></hr>
-          <div className="past-events">
-            {pastEvents.map((event) => (
-              <Event event={event} key={event.id} />
-            ))}
+          <div className="w-full border-t-2 border-solid border-t-slate-400 relative">
+            <div
+              className="absolute -left-5 top-1/2 cursor-pointer"
+              onClick={() => pastSwiperRef.current.swiper.slidePrev()}
+            >
+              <i className="fa-solid fa-angle-left text-3xl"></i>
+            </div>
+            <div
+              className="absolute -right-5 top-1/2 cursor-pointer"
+              onClick={() => pastSwiperRef.current.swiper.slideNext()}
+            >
+              <i className="fa-solid fa-angle-right text-3xl"></i>
+            </div>
+            <swiper-container ref={pastSwiperRef} init={"false"}>
+              {pastEvents.map((event, index) => (
+                <Event event={event} key={index} />
+              ))}
+            </swiper-container>
           </div>
-          <hr className="horizontal-line"></hr>
         </div>
       ) : (
         <div>Loading...</div>
@@ -65,3 +128,22 @@ export default Events;
 //   return <>
 //   </>;
 // }
+
+{
+  /* <div className="events-type">Upcoming Events</div>
+          <hr className="horizontal-line"></hr>
+          <div className="upcoming-events">
+            {upcomingEvents.map((event, index) => (
+              <Event event={event} key={index} />
+            ))}
+          </div>
+
+          <div className="events-type">Past Events</div>
+          <hr className="horizontal-line"></hr>
+          <div className="past-events">
+            {pastEvents.map((event) => (
+              <Event event={event} key={event.id} />
+            ))}
+          </div>
+          <hr className="horizontal-line"></hr> */
+}

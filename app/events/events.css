@@ -3,7 +3,8 @@
   flex-direction: column;
 }
 
-.past-events, .upcoming-events {
+.past-events,
+.upcoming-events {
   display: flex;
   width: 90vw;
   height: fit-content;
@@ -22,7 +23,7 @@
   position: relative;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   transition: transform 0.3s;
-  margin: 20px 0px 0px 20px;
+  margin: 25px 0px 25px 20px;
 }
 .event:hover {
   cursor: pointer;
@@ -62,7 +63,8 @@
   color: rgb(193, 76, 36);
 }
 
-.venue, .cost {
+.venue,
+.cost {
   font-size: 14px;
 }
 

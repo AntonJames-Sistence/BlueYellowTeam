@@ -3,12 +3,16 @@ import YoutubeEmbed from "../helpers/youtube";
 
 const Youtube = () => {
   return (
-    <div id="About" className="grid grid-cols-2 pt-40">
+    <div
+      id="About"
+      className=" w-full flex flex-col pt-36 lg:grid lg:grid-cols-2 lg:grid-rows-1"
+    >
       <YoutubeEmbed
-        idk="rounded-lg w-full h-full mr-11"
+        idk="w-full h-100 lg:h-full lg:mr-11 rounded-2xl"
+        wrapper="lg:mr-11"
         embedId="qpWkGYq-cmE"
       />
-      <div className="text-sky text-2xl pt-8 pr-8 pb-8 pl-11 tracking-normal leading-normal">
+      <div className="text-sky text-2xl lg:pr-8 pb-14 lg:pl-11 tracking-normal leading-normal py-6 lg:p-14">
         <h3>
           We are in the middle of the worst European humanitarian crisis since
           World War II. The Blue & Yellow Foundation supports those affected by
