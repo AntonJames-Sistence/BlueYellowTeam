@@ -1,7 +1,7 @@
 'use client';
 import Link from 'next/link';
 
-export default function MainProjectCard({ id, img, title, para }) {
+export default function MainProjectCard({ id, img, title, date }) {
   const handleClick = (e) => {
     e.preventDefault();
     console.log(id);
@@ -10,10 +10,14 @@ export default function MainProjectCard({ id, img, title, para }) {
   return (
     <div
       className="project-card
-    flex-1 flex-basis-52 relative pb-8"
+    flex-1 flex-basis-52 relative rounded-lg"
     >
-      <img className="rounded-lg" src={img} alt="" />
-      <a
+      <img
+        className="border border-solid border-black w-full h-1/3 object-cover"
+        src={img}
+        alt=""
+      />
+      {/* <a
         href="https://www.paypal.com/donate/?hosted_button_id=6S6S2484WWCKN"
         target="_blank"
       >
@@ -24,10 +28,12 @@ export default function MainProjectCard({ id, img, title, para }) {
         >
           Donate now
         </div>
-      </a>
-      <div className="text-3xl mt-0 mb-2 text-gray-700">{title}</div>
-      <div className="text-14 leading-2 tracking-wide text-gray-700">
-        {para}
+      </a> */}
+      <div className="p-10 pt-5">
+        <div className="text-14 leading-2 tracking-wide text-gray-700">
+          {date}
+        </div>
+        <div className="text-3xl mt-0 mb-2 text-gray-700">{title}</div>
       </div>
       {/* update button for testing props */}
       {/* <button

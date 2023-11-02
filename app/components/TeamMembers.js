@@ -1,9 +1,9 @@
-"use client";
-import React from "react";
-import { useRef, useEffect } from "react";
-import TeamCard from "./TeamCard";
-import { register } from "swiper/element/bundle";
-import swiperParams from "../../data/swiperParams";
+'use client';
+import React from 'react';
+import { useRef, useEffect } from 'react';
+import TeamCard from './TeamCard';
+import { register } from 'swiper/element/bundle';
+import swiperParams from '../../data/swiperParams';
 register();
 
 export default function TeamMembers() {
@@ -20,7 +20,7 @@ export default function TeamMembers() {
   return (
     <div className="w-full pt-36">
       <div className="flex justify-between pb-10">
-        <div className="text-white font-bold ">Team</div>
+        <div className="text-left text-5xl font-bold text-black-500">Team</div>
         <div className="flex gap-5">
           <div
             className="cursor-pointer "
