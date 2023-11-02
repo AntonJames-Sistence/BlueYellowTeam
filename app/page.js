@@ -9,7 +9,6 @@ import FacebookPost from "./components/FacebookPost";
 
 export default function Home() {
   const eventSwiperRef = useRef();
-  const [projectsData, setProjectsData] = useState([]);
   const [eventsData, setEventsData] = useState(null);
 
   useEffect(() => {
