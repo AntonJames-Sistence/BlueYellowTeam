@@ -48,27 +48,27 @@ export default function Home() {
     getEvents();
   }, []);
 
-  let [facebookLists, setFacebookLists] = useState([[], [], []]);
-  let [numOfPost, setNumOfPost] = useState(6);
+  // let [facebookLists, setFacebookLists] = useState([[], [], []]);
+  // let [numOfPost, setNumOfPost] = useState(6);
 
-  useEffect(() => {
-    async function loadFaceBookData() {
-      const res = await fetch("/api/facebook", {
-        cache: "no-store",
-      });
-      let Post = await res.json();
-      Post = Post.reverse().slice(0, numOfPost);
-      const tempList = [[], [], []];
+  // useEffect(() => {
+  //   async function loadFaceBookData() {
+  //     const res = await fetch("/api/facebook", {
+  //       cache: "no-store",
+  //     });
+  //     let Post = await res.json();
+  //     Post = Post.reverse().slice(0, numOfPost);
+  //     const tempList = [[], [], []];
 
-      for (let i = 0; i < Post.length; i++) {
-        const place = i % 3;
-        tempList[place].push(Post[i]);
-      }
+  //     for (let i = 0; i < Post.length; i++) {
+  //       const place = i % 3;
+  //       tempList[place].push(Post[i]);
+  //     }
 
-      setFacebookLists(tempList);
-    }
-    loadFaceBookData();
-  }, [numOfPost]);
+  //     setFacebookLists(tempList);
+  //   }
+  //   loadFaceBookData();
+  // }, [numOfPost]);
 
   if (!eventsData) return <h1 className="text-white text-3xl">Loading...</h1>;
 
@@ -164,7 +164,7 @@ export default function Home() {
       <div className="pt-36">
         <div className="text-4xl text-center mb-12">Updates From Facebook</div>
         <div className="flex flex-wrap justify-between ">
-          {facebookLists.map((postList, index) => {
+          {/* {facebookLists.map((postList, index) => {
             return (
               <div
                 key={index}
@@ -176,11 +176,11 @@ export default function Home() {
                 })}
               </div>
             );
-          })}
+          })} */}
         </div>
         <div
           className="bg-white m-auto text-lg text-black w-fit px-5 rounded cursor-pointer"
-          onClick={() => setNumOfPost((state) => state + 3)}
+          // onClick={() => setNumOfPost((state) => state + 3)}
         >
           ... Load more
         </div>
