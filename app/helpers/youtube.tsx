@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const YoutubeEmbed = ({ embedId, idk }) => (
-  <div style={{ marginRight: "45px" }}>
+const YoutubeEmbed = ({ embedId, idk, wrapper }) => (
+  <div className={wrapper}>
     <iframe
       className={idk}
       width="853"

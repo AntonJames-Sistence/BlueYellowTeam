@@ -3,14 +3,18 @@
 import Link from "next/link";
 import { sampleData } from "../data/facebook";
 import { allProjects, landingPageDescriptions } from "../data/projects";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Login from "./components/LoginButton";
 import FacebookPost from "./components/FacebookPost";
 import MainProjectCard from "./components/MainProjectCard";
 import Youtube from "./components/youtube";
 import Event from "./events/components/Event";
+import TeamMembers from "./components/TeamMembers";
+import { register } from "swiper/element/bundle";
 
 export default function Home() {
+  register();
+  const swiperRef = useRef();
   const [projectsData, setProjectsData] = useState([]);
   const [eventsData, setEventsData] = useState(null);
 
@@ -31,7 +35,7 @@ export default function Home() {
       });
       const data = await request.json();
       if (data) {
-        console.log("data");
+        console.log("data", data);
         const today = new Date();
         const events = Object.values(data).filter(
           (event) => new Date(event.date) >= today
@@ -45,7 +49,7 @@ export default function Home() {
   }, []);
 
   let [facebookLists, setFacebookLists] = useState([[], [], []]);
-  let [numOfPost, setNumOfPost] = useState(3);
+  let [numOfPost, setNumOfPost] = useState(6);
 
   useEffect(() => {
     async function loadFaceBookData() {
@@ -69,8 +73,8 @@ export default function Home() {
   if (!eventsData) return <h1 className="text-white text-3xl">Loading...</h1>;
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div>
+    <main className="flex w-full max-w-7xl m-auto flex-col items-center justify-between pt-24 px-4">
+      <div className="w-full">
         <div
           className="relative w-full overflow-hidden"
           style={{ borderRadius: "50px" }}
@@ -101,26 +105,34 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div className="grid grid-cols-2 pt-24">
-          <h3 className="text-2xl flex justify-center items-center px-10 py-4">
-            {landingPageDescriptions[1]}
-          </h3>
-        </div>
-      </div>
-
-      <div className="component-box">
-        <div className="events-type">Current Events</div>
-        <hr className="horizontal-line"></hr>
-        <div className="upcoming-events">
-          {eventsData.map((event, index) => (
-            <Event event={event} key={index} />
-          ))}
-        </div>
-        <hr className="horizontal-line"></hr>
       </div>
 
       <Youtube />
-      <div id="FeaturedProjects" className="pt-40">
+
+      <div className="pt-36 w-full">
+        <div className="events-type">Current Events</div>
+        <div className="w-full border-t-2 border-solid border-t-slate-400 relative">
+          <swiper-container
+            ref={swiperRef}
+            slides-per-view="4"
+            speed="500"
+            breakpoints={{
+              640: {
+                slidesPerView: 2,
+              },
+              1024: {
+                slidesPerView: 3,
+              },
+            }}
+          >
+            {eventsData.map((event, index) => (
+              <Event event={event} key={index} />
+            ))}
+          </swiper-container>
+        </div>
+      </div>
+
+      <div id="FeaturedProjects" className="pt-36">
         <div
           id="featured-project-title"
           className="text-center text-3xl text-gray-500 pb-3"
@@ -142,13 +154,14 @@ export default function Home() {
           ))}
         </div>
       </div>
-      <div className="grid grid-cols-2 pt-24">
-        <h3 className="text-2xl flex justify-center items-center px-10 py-4">
+      <div className="grid grid-cols-2 pt-36">
+        <h3 className="text-2xl flex justify-center items-center pr-10 py-4">
           {landingPageDescriptions[2]}
         </h3>
         <img className="rounded-md" src="./team.jpeg" alt="" />
       </div>
-      <div className="pt-40">
+      <TeamMembers />
+      <div className="pt-36">
         <div className="text-4xl text-center mb-12">Updates From Facebook</div>
         <div className="flex flex-wrap justify-between ">
           {facebookLists.map((postList, index) => {
