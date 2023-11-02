@@ -1,6 +1,6 @@
-'use client';
-import { useEffect, useState } from 'react';
-import MainProjectCard from './MainProjectCard';
+"use client";
+import { useEffect, useState } from "react";
+import MainProjectCard from "./MainProjectCard";
 
 export default function HomeProjects() {
   const [projects, setProjects] = useState([]);
@@ -8,11 +8,9 @@ export default function HomeProjects() {
   useEffect(() => {
     if (!projects.length) {
       const getProjects = async () => {
-        const request = await fetch('http://localhost:3000/api/projects', {
-          cache: 'no-store',
-        });
-        const data = await request.json();
-        if (data) {
+        const request = await fetch("http://localhost:3000/api/projects");
+        if (request.ok) {
+          const data = await request.json();
           setProjects(Object.values(data));
         }
       };

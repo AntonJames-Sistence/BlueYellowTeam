@@ -15,8 +15,8 @@ export default function Home() {
   useEffect(() => {
     const getEvents = async () => {
       const request = await fetch("http://localhost:3000/api/events");
-      const data = await request.json();
-      if (data) {
+      if (request.ok) {
+        const data = await request.json();
         const today = new Date();
         const events = Object.values(data).filter(
           (event) => new Date(event.date) >= today
@@ -67,7 +67,7 @@ export default function Home() {
           <div className="relative">
             <video
               className="absolute top-0 left-0 w-full h-full object-cover z-negative"
-              src="./flag_bg.mp4"
+              src="/flag_bg.mp4"
               autoPlay
               loop
               muted
