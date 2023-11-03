@@ -1,14 +1,14 @@
-'use client';
-import { landingPageDescriptions } from '../data/projects';
-import { whoWeHelp } from '../data/whowehelp';
-import { useEffect, useState, useRef } from 'react';
-import WhoWeHelp from './components/WhoWeHelp';
-import Youtube from './components/youtube';
-import Event from './events/components/Event';
-import TeamMembers from './components/TeamMembers';
-import HomeProjects from './components/HomeProjects';
-import FacebookPost from './components/FacebookPost';
-import swiperParams from '../data/swiperParams';
+"use client";
+import { landingPageDescriptions } from "../data/projects";
+import { whoWeHelp } from "../data/whowehelp";
+import { useEffect, useState, useRef } from "react";
+import WhoWeHelp from "./components/WhoWeHelp";
+import Youtube from "./components/youtube";
+import Event from "./events/components/Event";
+import TeamMembers from "./components/TeamMembers";
+import HomeProjects from "./components/HomeProjects";
+import FacebookPost from "./components/FacebookPost";
+import swiperParams from "../data/swiperParams";
 
 export default function Home() {
   const eventSwiperRef = useRef();
@@ -16,7 +16,7 @@ export default function Home() {
 
   useEffect(() => {
     const getEvents = async () => {
-      const request = await fetch('/api/events');
+      const request = await fetch("/api/events");
       if (request.ok) {
         const data = await request.json();
         const today = new Date();
@@ -34,7 +34,7 @@ export default function Home() {
 
   useEffect(() => {
     async function loadFaceBookData() {
-      const res = await fetch('/api/facebook');
+      const res = await fetch("/api/facebook");
 
       if (res.ok) {
         let Post = await res.json();
@@ -60,11 +60,11 @@ export default function Home() {
   }, [eventSwiperRef]);
 
   return (
-    <main className="flex w-full max-w-7xl m-auto flex-col items-center justify-between pt-24 px-4">
-      <div className="w-full">
+    <main className="flex w-full m-auto flex-col items-center justify-between pt-24 px-4">
+      <div className="w-full max-w-7xl">
         <div
           className="relative w-full overflow-hidden"
-          style={{ borderRadius: '50px' }}
+          style={{ borderRadius: "50px" }}
         >
           <div className="relative">
             <video
@@ -96,7 +96,7 @@ export default function Home() {
 
       <Youtube />
 
-      <div id="WhoWeHelp" className="pt-36">
+      <div id="WhoWeHelp" className="pt-36 max-w-7xl">
         <div
           id="who-help-title"
           className="text-left text-5xl font-bold text-black-500 pb-3"
@@ -123,7 +123,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="pt-36 w-full">
+      <div className="pt-36 w-full max-w-7xl">
         <div className="text-left text-5xl font-bold text-black-500 pb-3">
           Events
         </div>
@@ -131,7 +131,7 @@ export default function Home() {
           Your donations and support provide essential supplies and services to
           the Ukrainian people.
         </div>
-        <div className="w-full border-t-2 border-solid border-t-slate-400 relative">
+        <div className="w-full border-t-2 border-solid  relative">
           <swiper-container ref={eventSwiperRef}>
             {eventsData && eventsData.length
               ? eventsData.map((event, index) => (
@@ -142,13 +142,12 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="grid grid-cols-2 pt-36">
+      <div className="grid grid-cols-2 pt-36 max-w-7xl">
         <h3 className="text-2xl flex justify-center items-center pr-10 py-4">
           {landingPageDescriptions[2]}
         </h3>
         <img className="rounded-md" src="./team.jpeg" alt="" />
       </div>
-      <TeamMembers />
 
       <div id="FeaturedProjects" className="pt-36">
         <div
@@ -165,8 +164,10 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="pt-36">
-        <div className="text-left text-5xl font-bold text-black-500 pb-3">
+      <TeamMembers />
+
+      <div className="pt-36 max-w-7xl">
+        <div className="text-left text-5xl font-bold text-black-500 pb-3 mb-4">
           Updates From Facebook
         </div>
         <div className="flex flex-wrap justify-between ">
@@ -174,7 +175,7 @@ export default function Home() {
             return (
               <div
                 key={index}
-                style={{ width: '32%' }}
+                style={{ width: "32%" }}
                 className="flex flex-col"
               >
                 {postList.map((post) => {
