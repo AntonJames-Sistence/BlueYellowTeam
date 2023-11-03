@@ -84,7 +84,7 @@ export default function Home() {
               id={item.id}
               img={item.img}
               title={item.title}
-              para={item.para}
+              date={item.date}
             />
           ))}
         </div>

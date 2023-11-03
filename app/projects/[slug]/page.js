@@ -1,12 +1,20 @@
 import { allProjects } from '../../../data/projects';
+import "./style.css"
 
 export default function ProjectIndexPage({ params: { slug } }) {
   const project = allProjects.find((project) => project.slug === slug);
   return (
-    <div className="pt-24 min-h-[100vh]">
-      <div className="p-5">
-        <div className="text-3xl mt-0 mb-2 text-gray-700">{project.title}</div>
-        <div className="text-3xl mt-0 mb-2 text-gray-700">{project.para}</div>
+    <div id="project-page">
+      <div>
+        <a href="/projects">
+        <button id="back-button">« ALL PROJECTS</button>
+        </a>
+        <div id="project-cont">
+          <div id="title">{project.title}</div>
+          <div id="date">{project.date}</div>
+          <img id="img" src={`.${project.img}`}></img>
+          <div id="para">{project.para}</div>
+        </div>
       </div>
     </div>
   );
