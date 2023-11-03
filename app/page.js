@@ -32,31 +32,31 @@ export default function Home() {
   }, [numOfPost]);
 
   return (
-    <main className="flex w-full flex-col items-center justify-between pt-24 ">
-      <div className="relative w-[100vw] overflow-hidden" style={{}}>
+    <main className="flex w-full flex-col items-center justify-between pt-24 p-5">
+      <div className="relative w-full overflow-hidden" style={{}}>
         <div className="relative">
-          <video
+          {/* <video
             className="absolute top-0 left-0 w-full h-full object-cover z-negative"
             src="/flag_bg.mp4"
             autoPlay
             loop
             muted
             controls={false}
-          ></video>
+          ></video> */}
 
-          <div className="flex w-full h-96 min-h-[500px]">
-            <div className="flex flex-col justify-center p-5 w-1/2 z-10">
-              <div className="text-4xl text-yellow-400 font-bold leading-snug text-shadow-lg mb-4">
+          <div className="flex w-full h-96 min-h-[500px] ">
+            <div className="w-full flex flex-col md:flex-row justify-center items-center z-10">
+              <div className="text-4xl md:text-6xl text-darkTeal font-bold leading-snug text-shadow-lg">
                 STAND WITH LOVE STAND WITH UKRAINE
+                <div className="text-darkTeal font-bold text-lg md:text-3xl leading-tight text-shadow-sm mb-5">
+                  100% OF PROFIT GOES TO SUPPORT UKRAINIANS IN NEED
+                </div>
               </div>
-              <div className="text-blue-600 font-bold text-lg leading-tight text-shadow-sm mb-20">
-                100% OF PROFIT GOES TO SUPPORT UKRAINIANS IN NEED
-              </div>
+              <div
+                className="w-full md:w-1/2 h-full bg-cover bg-no-repeat z-10"
+                style={{ backgroundImage: `url(./intro_banner.png)` }}
+              ></div>
             </div>
-            <div
-              className="w-1/2 h-full bg-cover bg-no-repeat z-10"
-              style={{ backgroundImage: `url(./intro_banner.png)` }}
-            ></div>
           </div>
         </div>
       </div>
