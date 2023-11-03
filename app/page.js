@@ -167,7 +167,7 @@ export default function Home() {
       <TeamMembers />
 
       <div className="pt-36 max-w-7xl">
-        <div className="text-left text-5xl font-bold text-black-500 pb-3 mb-4">
+        {/* <div className="text-left text-5xl font-bold text-black-500 pb-3 mb-4">
           Updates From Facebook
         </div>
         <div className="flex flex-wrap justify-between ">
@@ -184,13 +184,13 @@ export default function Home() {
               </div>
             );
           })}
-        </div>
-        <div
+        </div> */}
+        {/* <div
           className="bg-white m-auto text-lg text-black w-fit px-5 rounded cursor-pointer"
           onClick={() => setNumOfPost((state) => state + 3)}
         >
           ... Load more
-        </div>
+        </div> */}
       </div>
     </main>
   );

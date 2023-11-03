@@ -10,14 +10,20 @@ export default function FooterForm() {
   return (
     <form className="w-full" onSubmit={handleSubmit}>
       <h6 className="font-semibold text-2xl pb-2">Join our Newsletter</h6>
-      <div className="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-2">
+      <div className="flex flex-col md:flex-row items-center justify-center space-y-2 sm:space-y-0 sm:space-x-2">
         <input
           type="email"
           ref={emailRef}
           placeholder="Email Address"
-          className="w-full rounded-full pl-3 py-3 bg-slate-200 dark:bg-[#3B4758]"
+          className="w-[85%] md:w-[80%] rounded-full h-full  pl-3 py-3 bg-[#3B4758]"
           required
         />
+        <button
+          className="w-[30%] md:w-[15%] p-3 bg-[#3B4758] h-full rounded-full"
+          type="submit"
+        >
+          Send
+        </button>
       </div>
     </form>
   );
