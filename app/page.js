@@ -1,6 +1,8 @@
 "use client";
 import { landingPageDescriptions } from "../data/projects";
+import { whoWeHelp } from "../data/whowehelp";
 import { useEffect, useState, useRef } from "react";
+import WhoWeHelp from "./components/WhoWeHelp";
 import Youtube from "./components/youtube";
 import Event from "./events/components/Event";
 import TeamMembers from "./components/TeamMembers";
@@ -58,8 +60,8 @@ export default function Home() {
   }, [eventSwiperRef]);
 
   return (
-    <main className="flex w-full max-w-7xl m-auto flex-col items-center justify-between pt-24 px-4">
-      <div className="w-full">
+    <main className="flex w-full m-auto flex-col items-center justify-between pt-24 px-4">
+      <div className="w-full max-w-7xl">
         <div
           className="relative w-full overflow-hidden"
           style={{ borderRadius: "50px" }}
@@ -94,9 +96,42 @@ export default function Home() {
 
       <Youtube />
 
-      <div className="pt-36 w-full">
-        <div className="events-type">Current Events</div>
-        <div className="w-full border-t-2 border-solid border-t-slate-400 relative">
+      <div id="WhoWeHelp" className="pt-36 max-w-7xl">
+        <div
+          id="who-help-title"
+          className="text-left text-5xl font-bold text-black-500 pb-3"
+        >
+          Who do we help?
+        </div>
+        <div className="w-1/2 text-xl">
+          Your donations and support provide essential supplies and services to
+          the Ukranian people.
+        </div>
+        <div
+          id="who-help-cont"
+          className="flex flex-wrap p-2.5 gap-5 md:flex-row flex-col"
+        >
+          {whoWeHelp.map((item, index) => (
+            <WhoWeHelp
+              key={index}
+              id={item.id}
+              img={item.img}
+              title={item.title}
+              para={item.para}
+            />
+          ))}
+        </div>
+      </div>
+
+      <div className="pt-36 w-full max-w-7xl">
+        <div className="text-left text-5xl font-bold text-black-500 pb-3">
+          Events
+        </div>
+        <div className="w-1/2 text-xl">
+          Your donations and support provide essential supplies and services to
+          the Ukrainian people.
+        </div>
+        <div className="w-full border-t-2 border-solid  relative">
           <swiper-container ref={eventSwiperRef}>
             {eventsData && eventsData.length
               ? eventsData.map((event, index) => (
@@ -107,31 +142,36 @@ export default function Home() {
         </div>
       </div>
 
-      <div id="FeaturedProjects" className="pt-36">
-        <div
-          id="featured-project-title"
-          className="text-center text-3xl text-gray-500 pb-3"
-        >
-          WHO DO WE HELP?
-        </div>
-        <div
-          id="projects-cont"
-          className="flex flex-wrap p-2.5 gap-5 md:flex-row flex-col"
-        >
-          <HomeProjects />
-        </div>
-      </div>
-      <div className="grid grid-cols-2 pt-36">
+      <div className="grid grid-cols-2 pt-36 max-w-7xl">
         <h3 className="text-2xl flex justify-center items-center pr-10 py-4">
           {landingPageDescriptions[2]}
         </h3>
         <img className="rounded-md" src="./team.jpeg" alt="" />
       </div>
+
+      <div id="FeaturedProjects" className="mt-36">
+        <div
+          id="featured-project-title"
+          className="text-left text-5xl font-bold text-black-500 pb-7"
+        >
+          Projects
+        </div>
+        <div
+          id="projects-cont"
+          className="flex flex-wrap gap-5 md:flex-row flex-col max-w-7xl"
+        >
+          <HomeProjects />
+        </div>
+      </div>
+
       <TeamMembers />
-      <div className="pt-36">
-        <div className="text-4xl text-center mb-12">Updates From Facebook</div>
+
+      <div className="pt-36 max-w-7xl">
+        <div className="text-left text-5xl font-bold text-black-500 pb-3 mb-4">
+          Updates From Facebook
+        </div>
         <div className="flex flex-wrap justify-between ">
-          {facebookLists.map((postList, index) => {
+          {facebookLists?.map((postList, index) => {
             return (
               <div
                 key={index}

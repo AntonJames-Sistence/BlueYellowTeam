@@ -1,12 +1,12 @@
-'use client';
-import { useState } from 'react';
+"use client";
+import { useState } from "react";
 
 export default function FacebookPost({ post }) {
   const [hideExtra, setHideExtra] = useState(true);
   const tooBig = post.description.length > 250;
 
   return (
-    <div className="FaceBookLogs-post shadow shadow-white p-4 mb-3.5 min-content h-min rounded">
+    <div className="FaceBookLogs-post shadow p-4 mb-3.5 min-content h-min rounded shadow-slate-500">
       <div className="FaceBookLogs-post-header flex items-center gap-1.5 mb-3.5">
         <a
           href="https://www.facebook.com/BlueYellowFoundation/"
@@ -50,7 +50,7 @@ export default function FacebookPost({ post }) {
       </a>
       <div className="flex items-center mt-1 gap-0.5">
         <img src="/facebookLikes.png" className="h-auto w-2/12 rounded" />
-        <div className="text-sm">{5}</div>
+        <div className="text-sm">{post.likes}</div>
       </div>
     </div>
   );
@@ -62,21 +62,21 @@ const getDate = (inputDate) => {
   const timeDif = curDate.getTime() - date.getTime();
 
   const months = Math.floor(timeDif / 1000 / 60 / 60 / 24 / 30);
-  if (months > 0) return `${months} ${months > 1 ? 'months' : 'month'} ago`;
+  if (months > 0) return `${months} ${months > 1 ? "months" : "month"} ago`;
 
   const weeks = Math.floor(timeDif / 1000 / 60 / 60 / 24 / 7);
-  if (weeks > 0) return `${weeks} ${weeks > 1 ? 'weeks' : 'week'} ago`;
+  if (weeks > 0) return `${weeks} ${weeks > 1 ? "weeks" : "week"} ago`;
 
   const days = Math.floor(timeDif / 1000 / 60 / 60 / 24);
-  if (days > 0) return `${days} ${days > 1 ? 'days' : 'day'} ago`;
+  if (days > 0) return `${days} ${days > 1 ? "days" : "day"} ago`;
 
   const hourDif = Math.floor(timeDif / 1000 / 60 / 60);
-  if (hourDif > 0) return `${hourDif} ${hourDif > 1 ? 'hours' : 'hour'} ago`;
+  if (hourDif > 0) return `${hourDif} ${hourDif > 1 ? "hours" : "hour"} ago`;
 
   const minuteDif = Math.floor(timeDif / 1000 / 60);
 
   if (minuteDif > 0)
-    return `${minuteDif} ${minuteDif > 1 ? 'minutes' : 'minute'} ago`;
+    return `${minuteDif} ${minuteDif > 1 ? "minutes" : "minute"} ago`;
 
-  return 'now';
+  return "now";
 };

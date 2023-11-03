@@ -18,9 +18,9 @@ export default function TeamMembers() {
   }, [swiperRef]);
 
   return (
-    <div className="w-full pt-36">
+    <div className="w-full pt-36 max-w-7xl">
       <div className="flex justify-between pb-10">
-        <div className="text-white font-bold ">Team</div>
+        <div className="text-left text-5xl font-bold text-black-500">Team</div>
         <div className="flex gap-5">
           <div
             className="cursor-pointer "
