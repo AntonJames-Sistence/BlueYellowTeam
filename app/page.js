@@ -1,34 +1,13 @@
 'use client';
-import { landingPageDescriptions } from '../data/projects';
 import { whoWeHelp } from '../data/whowehelp';
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState } from 'react';
 import WhoWeHelp from './components/WhoWeHelp';
 import Youtube from './components/youtube';
-import Event from './events/components/Event';
-import TeamMembers from './components/TeamMembers';
 import HomeProjects from './components/HomeProjects';
 import FacebookPost from './components/FacebookPost';
-import swiperParams from '../data/swiperParams';
+import HomeEvents from './components/HomeEvents';
 
 export default function Home() {
-  const eventSwiperRef = useRef();
-  const [eventsData, setEventsData] = useState([]);
-
-  useEffect(() => {
-    const getEvents = async () => {
-      const request = await fetch('/api/events');
-      if (request.ok) {
-        const data = await request.json();
-        const today = new Date();
-        const events = Object.values(data).filter(
-          (event) => new Date(event.date) >= today
-        );
-        setEventsData(events);
-      }
-    };
-    getEvents();
-  }, []);
-
   let [facebookLists, setFacebookLists] = useState([[], [], []]);
   let [numOfPost, setNumOfPost] = useState(6);
 
@@ -52,51 +31,39 @@ export default function Home() {
     loadFaceBookData();
   }, [numOfPost]);
 
-  useEffect(() => {
-    if (eventSwiperRef.current) {
-      Object.assign(eventSwiperRef.current, swiperParams);
-      eventSwiperRef.current.initialize();
-    }
-  }, [eventSwiperRef]);
-
   return (
-    <main className="flex w-full m-auto flex-col items-center justify-between pt-24 px-4">
-      <div className="w-full max-w-7xl">
-        <div
-          className="relative w-full overflow-hidden"
-          style={{ borderRadius: '50px' }}
-        >
-          <div className="relative">
-            <video
-              className="absolute top-0 left-0 w-full h-full object-cover z-negative"
-              src="/flag_bg.mp4"
-              autoPlay
-              loop
-              muted
-              controls={false}
-            ></video>
+    <main className="flex w-full flex-col items-center justify-between pt-24 ">
+      <div className="relative w-[100vw] overflow-hidden" style={{}}>
+        <div className="relative">
+          <video
+            className="absolute top-0 left-0 w-full h-full object-cover z-negative"
+            src="/flag_bg.mp4"
+            autoPlay
+            loop
+            muted
+            controls={false}
+          ></video>
 
-            <div className="flex w-full h-96 rounded-xl">
-              <div className="flex flex-col justify-center p-5 w-1/2 z-10">
-                <div className="text-4xl text-yellow-400 font-bold leading-snug text-shadow-lg mb-4">
-                  STAND WITH LOVE STAND WITH UKRAINE
-                </div>
-                <div className="text-blue-600 font-bold text-lg leading-tight text-shadow-sm mb-20">
-                  100% OF PROFIT GOES TO SUPPORT UKRAINIANS IN NEED
-                </div>
+          <div className="flex w-full h-96 min-h-[500px]">
+            <div className="flex flex-col justify-center p-5 w-1/2 z-10">
+              <div className="text-4xl text-yellow-400 font-bold leading-snug text-shadow-lg mb-4">
+                STAND WITH LOVE STAND WITH UKRAINE
               </div>
-              <div
-                className="w-1/2 h-full bg-cover bg-no-repeat rounded-r-xl z-10"
-                style={{ backgroundImage: `url(./intro_banner.png)` }}
-              ></div>
+              <div className="text-blue-600 font-bold text-lg leading-tight text-shadow-sm mb-20">
+                100% OF PROFIT GOES TO SUPPORT UKRAINIANS IN NEED
+              </div>
             </div>
+            <div
+              className="w-1/2 h-full bg-cover bg-no-repeat z-10"
+              style={{ backgroundImage: `url(./intro_banner.png)` }}
+            ></div>
           </div>
         </div>
       </div>
 
       <Youtube />
 
-      <div id="WhoWeHelp" className="pt-36 max-w-7xl">
+      <div id="who-we-help" className="pt-36 max-w-7xl">
         <div
           id="who-help-title"
           className="text-left text-5xl font-bold text-black-500 pb-3"
@@ -123,7 +90,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="pt-36 w-full max-w-7xl">
+      <div id="events" className="pt-36 w-full max-w-7xl">
         <div className="text-left text-5xl font-bold text-black-500 pb-3">
           Events
         </div>
@@ -131,25 +98,10 @@ export default function Home() {
           Your donations and support provide essential supplies and services to
           the Ukrainian people.
         </div>
-        <div className="w-full border-t-2 border-solid  relative">
-          <swiper-container ref={eventSwiperRef}>
-            {eventsData && eventsData.length
-              ? eventsData.map((event, index) => (
-                  <Event event={event} key={index} />
-                ))
-              : null}
-          </swiper-container>
-        </div>
+        <HomeEvents />
       </div>
 
-      <div className="grid grid-cols-2 pt-36 max-w-7xl">
-        <h3 className="text-2xl flex justify-center items-center pr-10 py-4">
-          {landingPageDescriptions[2]}
-        </h3>
-        <img className="rounded-md" src="./team.jpeg" alt="" />
-      </div>
-
-      <div id="FeaturedProjects" className="mt-36">
+      <div id="projects" className="mt-36">
         <div
           id="featured-project-title"
           className="text-left text-5xl font-bold text-black-500 pb-7"
@@ -163,8 +115,6 @@ export default function Home() {
           <HomeProjects />
         </div>
       </div>
-
-      <TeamMembers />
 
       <div className="pt-36 max-w-7xl">
         <div className="text-left text-5xl font-bold text-black-500 pb-3 mb-4">

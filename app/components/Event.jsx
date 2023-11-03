@@ -1,5 +1,5 @@
 'use client';
-import '../events.css';
+import './event.css';
 import { useEffect, useState } from 'react';
 
 const Event = ({ event }) => {
