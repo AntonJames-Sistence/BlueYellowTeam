@@ -44,8 +44,8 @@ export default function Home() {
             controls={false}
           ></video> */}
 
-          <div className="flex w-full h-96 min-h-[500px] ">
-            <div className="w-full flex flex-col md:flex-row justify-center items-center z-10">
+          <div className="flex w-full h-96 min-h-[80vh] ">
+            <div className="w-full flex flex-col justify-evenly items-center z-10">
               <div className="text-4xl md:text-6xl text-darkTeal font-bold leading-snug text-shadow-lg">
                 STAND WITH LOVE STAND WITH UKRAINE
                 <div className="text-darkTeal font-bold text-lg md:text-3xl leading-tight text-shadow-sm mb-5">
@@ -53,7 +53,7 @@ export default function Home() {
                 </div>
               </div>
               <div
-                className="w-full md:w-1/2 h-full bg-cover bg-no-repeat z-10"
+                className="w-full h-full md:w-1/2 md:h-1/2 bg-cover bg-no-repeat z-10"
                 style={{ backgroundImage: `url(./intro_banner.png)` }}
               ></div>
             </div>
@@ -61,7 +61,7 @@ export default function Home() {
         </div>
       </div>
 
-      <Youtube />
+      {/* <Youtube /> */}
 
       <div id="who-we-help" className="pt-36 max-w-7xl">
         <div
