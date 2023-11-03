@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 export default function TeamCard({ index }) {
   return (
@@ -30,7 +30,7 @@ export default function TeamCard({ index }) {
             sadlkfjadsk lfksjda kfldj fk daslkjfladksjf lsdkajf ksald fjklsdajf
             klj sdaklf j lkasdjf klasdj fklas lkj
           </div>
-          <div className="bg-blue-500 text-lg w-fit mx-auto my-4 py-1 px-3 rounded-md cursor-pointer">
+          <div className="bg-blue-500 hover:bg-yellow-300 text-lg w-fit mx-auto my-4 py-1 px-3 rounded-md cursor-pointer transition-colors duration-300">
             View more
           </div>
         </div>
