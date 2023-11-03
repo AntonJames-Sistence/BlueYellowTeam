@@ -19,7 +19,7 @@ export default function Footer() {
           {socialLinks.map((social, index) => {
             return (
               <div className="p-2" key={index}>
-                <SocialIcon url={social.url} />
+                <SocialIcon url={social} />
               </div>
             );
           })}
