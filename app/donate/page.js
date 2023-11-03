@@ -19,8 +19,7 @@ const Donate = () => {
   };
 
   return (
-    <section>
-      <div className="h-24"></div>
+    <section className="min-h-[100vh] pt-24">
       <div className="h-fit mx-8 grid grid-cols-3 gap-8">
         <div className="flex flex-col justify-between">
           <div>
