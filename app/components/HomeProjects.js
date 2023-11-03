@@ -28,7 +28,7 @@ export default function HomeProjects() {
               id={item.id}
               img={item.img}
               title={item.title}
-              para={item.para}
+              date={item.date}
             />
           );
         })}
