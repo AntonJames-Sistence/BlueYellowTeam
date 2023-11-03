@@ -6,7 +6,7 @@ export default function Footer() {
     <footer className="w-full bg-darkTeal text-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col sm:flex-row justify-between items-center py-4">
-          <div className="w-1/2 flex items-center mb-4 sm:mb-0">
+          <div className="w-full md:w-1/2 flex items-center mb-4 sm:mb-0">
             <img
               src="/blue-yellow-logo.png"
               alt="Blue and Yellow Logo"
