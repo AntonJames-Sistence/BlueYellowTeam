@@ -1,13 +1,29 @@
 // "use client"
 import FooterForm from './FooterForm';
+import { SocialIcon } from 'react-social-icons';
+
+const socialLinks = [
+  'https://www.instagram.com/',
+  'https://www.gofundme.com/',
+  'https://www.facebook.com/',
+];
 
 export default function Footer() {
   return (
-    <footer className="w-full bg-darkTeal text-white min-h-[400px] flex flex-col items-center">
+    <footer className="w-full bg-darkTeal text-white min-h-[300px] flex flex-col items-center justify-between pt-5 pb-10">
       <div className="pt-5 flex flex-col items-center justify-evenly">
         <h1 className="text-3xl text-white font-bold">
           FOLLOW US ON SOCIAL MEDIA BUTTONS
         </h1>
+        <div className="flex">
+          {socialLinks.map((social, index) => {
+            return (
+              <div className="p-2" key={index}>
+                <SocialIcon url={social.url} />
+              </div>
+            );
+          })}
+        </div>
       </div>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col sm:flex-row justify-between items-center py-4">
