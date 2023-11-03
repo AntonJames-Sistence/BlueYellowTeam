@@ -33,8 +33,8 @@ export default function NavBar() {
           <WarClock />
 
           <div className="flex w-1/2 justify-evenly">
-            {navLinks.map((navlink) => {
-              return <Link href={navlink.href}>{navlink.title}</Link>;
+            {navLinks.map((navlink, index) => {
+              return <Link key={index} href={navlink.href}>{navlink.title}</Link>;
             })}
           </div>
         </nav>
@@ -55,8 +55,8 @@ export default function NavBar() {
           </nav>
           {isOpen ? (
             <div className="flex flex-col items-center justify-evenly">
-              {navLinks.map((navlink) => {
-                return <Link href={navlink.href}>{navlink.title}</Link>;
+              {navLinks.map((navlink, index) => {
+                return <Link key={index} href={navlink.href}>{navlink.title}</Link>;
               })}
             </div>
           ) : null}{' '}
