@@ -9,8 +9,7 @@ import {
   update,
   off,
 } from "firebase/database";
-import { DB, Db } from "../../../data/firebase";
-import { collection, doc, setDoc, addDoc } from "firebase/firestore";
+import { DB } from "../../../data/firebase";
 
 export async function GET() {
   const url = `https://www.eventbriteapi.com/v3/organizers/60070710973/events/`;
@@ -94,7 +93,7 @@ export async function PUT() {
   const url = `https://www.eventbriteapi.com/v3/organizers/60070710973/events/`;
 
   try {
-    const eventsRef = collection(Db, "events");
+    const eventsRef = ref(DB, "events");
 
     const privateToken = process.env.VITE_PRIVATE_TOKEN;
 
@@ -154,13 +153,11 @@ export async function PUT() {
       eventData[i].venue = venueData.venue.name;
       eventData[i].address = venueData.venue.address.localized_area_display;
     }
-    const eventObj = {};
-    for (let i = 0; i < eventData.length; i++) {
-      const event = eventData[i];
-      eventObj[event.id] = event;
-    }
-    await setDoc(doc(eventsRef), eventObj);
-    return NextResponse.json(eventObj);
+
+    const updates = {};
+    updates["/events"] = eventData;
+    update(ref(DB), updates);
+    return NextResponse.json(eventData);
   } catch (error) {
     return NextResponse.error(error);
   }
