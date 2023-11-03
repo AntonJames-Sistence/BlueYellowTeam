@@ -2,16 +2,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import WarClock from './WarClock.jsx';
-
-const navLinks = [
-  { href: '', title: 'Home' },
-  { href: '/donate', title: 'Donate' },
-  { href: '#EventsAndProjects', title: 'Events & Projects' },
-  { href: '#Causes', title: 'Causes' },
-  { href: '#Team', title: 'Team' },
-  { href: '#Contacts', title: 'Contacts' },
-  { href: '/donate', title: 'Donate Now' },
-];
+import { navLinks } from '../../data/navbar';
 
 export default function NavBar() {
   const isDesktop = window.innerWidth > 900;
