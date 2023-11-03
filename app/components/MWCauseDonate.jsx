@@ -13,7 +13,7 @@ const MWCauseDonate = ({ prices }) => {
       buttonsArray.push(constructDonateButton(priceObject));
     }
 
-    return buttonsArray;
+    return buttonsArray.reverse();
   };
 
   // create button instance
@@ -43,6 +43,7 @@ const MWCauseDonate = ({ prices }) => {
                         from-blue-400 to-yellow-400  
                         text-black text-l
                         hover:text-white 
+                        hover:scale-125
                         font-bold
                         rounded-lg
                         items-center
