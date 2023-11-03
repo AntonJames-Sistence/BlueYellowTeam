@@ -48,7 +48,7 @@ const Events = () => {
       {realEventData ? (
         <div className="w-full max-w-7xl m-auto pt-5 pb-5">
           <div className="events-type">Upcoming</div>
-          <div className="w-full border-t-2 border-solid border-t-slate-400 relative">
+          <div className="w-full  relative">
             <div
               className="absolute -left-5 top-1/2 cursor-pointer"
               onClick={() => upcommingSwiperRef.current.swiper.slidePrev()}
@@ -69,7 +69,7 @@ const Events = () => {
           </div>
 
           <div className="events-type">Past</div>
-          <div className="w-full border-t-2 border-solid border-t-slate-400 relative">
+          <div className="w-full  relative">
             <div
               className="absolute -left-5 top-1/2 cursor-pointer"
               onClick={() => pastSwiperRef.current.swiper.slidePrev()}
