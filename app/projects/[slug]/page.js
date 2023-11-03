@@ -1,6 +1,6 @@
 import { allProjects } from '../../../data/projects';
 
-export default function ProjectPage({ params: { slug } }) {
+export default function ProjectIndexPage({ params: { slug } }) {
   const project = allProjects.find((project) => project.slug === slug);
   return (
     <div className="pt-24 min-h-[100vh]">
