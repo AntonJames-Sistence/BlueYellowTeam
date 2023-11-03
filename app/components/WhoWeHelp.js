@@ -1,14 +1,9 @@
-'use client';
 import Link from 'next/link';
 
 export default function WhoWeHelp({ id, img, title, para }) {
-  const handleClick = (e) => {
-    e.preventDefault();
-    console.log(id);
-  };
-
   return (
-    <div
+    <Link
+      href="/donate"
       className="project-card
     flex-1 flex-basis-52 relative border border-solid border-black rounded-lg"
     >
@@ -19,6 +14,6 @@ export default function WhoWeHelp({ id, img, title, para }) {
           {para}
         </div>
       </div>
-    </div>
+    </Link>
   );
 }
