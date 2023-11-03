@@ -1,5 +1,5 @@
-'use client';
-import Link from 'next/link';
+"use client";
+import Link from "next/link";
 
 export default function MainProjectCard({ id, img, title, date }) {
   const handleClick = (e) => {
@@ -10,10 +10,10 @@ export default function MainProjectCard({ id, img, title, date }) {
   return (
     <div
       className="project-card
-    flex-1 flex-basis-52 relative rounded-lg"
+    flex-1 flex-basis-52 relative rounded-lg h-fit"
     >
       <img
-        className="border border-solid border-black w-full h-1/3 object-cover"
+        className="border border-solid border-black w-full object-cover max-h-64"
         src={img}
         alt=""
       />
@@ -29,7 +29,7 @@ export default function MainProjectCard({ id, img, title, date }) {
           Donate now
         </div>
       </a> */}
-      <div className="p-10 pt-5">
+      <div className="p-5">
         <div className="text-14 leading-2 tracking-wide text-gray-700">
           {date}
         </div>

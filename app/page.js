@@ -149,7 +149,7 @@ export default function Home() {
         <img className="rounded-md" src="./team.jpeg" alt="" />
       </div>
 
-      <div id="FeaturedProjects" className="pt-36">
+      <div id="FeaturedProjects" className="mt-36">
         <div
           id="featured-project-title"
           className="text-left text-5xl font-bold text-black-500 pb-7"
@@ -158,7 +158,7 @@ export default function Home() {
         </div>
         <div
           id="projects-cont"
-          className="flex flex-wrap gap-5 md:flex-row flex-col"
+          className="flex flex-wrap gap-5 md:flex-row flex-col max-w-7xl"
         >
           <HomeProjects />
         </div>
