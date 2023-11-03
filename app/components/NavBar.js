@@ -5,7 +5,12 @@ import WarClock from './WarClock.jsx';
 import { navLinks } from '../../data/navbar';
 
 export default function NavBar() {
-  const isDesktop = window.innerWidth > 900;
+  let isDesktop = true;
+  if (typeof window !== 'undefined') {
+    if (window.innerWidth < 900) {
+      isDesktop = false;
+    }
+  }
 
   const [isOpen, setIsOpen] = useState(false);
 
