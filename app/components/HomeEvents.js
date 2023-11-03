@@ -1,9 +1,8 @@
 'use client';
 import { useEffect, useState, useRef } from 'react';
-import Event from './components/Event';
+import Event from './Event';
 import { register } from 'swiper/element/bundle';
 import swiperParams from '../../data/swiperParams';
-// import "./events.css";
 
 const Events = () => {
   register();
@@ -47,8 +46,8 @@ const Events = () => {
   return (
     <>
       {realEventData ? (
-        <div className="w-full max-w-7xl m-auto pt-36 pb-5">
-          <div className="events-type">Upcoming Events</div>
+        <div className="w-full max-w-7xl m-auto pt-5 pb-5">
+          <div className="events-type">Upcoming</div>
           <div className="w-full border-t-2 border-solid border-t-slate-400 relative">
             <div
               className="absolute -left-5 top-1/2 cursor-pointer"
@@ -69,7 +68,7 @@ const Events = () => {
             </swiper-container>
           </div>
 
-          <div className="events-type">Past Events</div>
+          <div className="events-type">Past</div>
           <div className="w-full border-t-2 border-solid border-t-slate-400 relative">
             <div
               className="absolute -left-5 top-1/2 cursor-pointer"
