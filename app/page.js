@@ -1,14 +1,14 @@
-"use client";
-import { landingPageDescriptions } from "../data/projects";
-import { whoWeHelp } from "../data/whowehelp";
-import { useEffect, useState, useRef } from "react";
-import WhoWeHelp from "./components/WhoWeHelp";
-import Youtube from "./components/youtube";
-import Event from "./events/components/Event";
-import TeamMembers from "./components/TeamMembers";
-import HomeProjects from "./components/HomeProjects";
-import FacebookPost from "./components/FacebookPost";
-import swiperParams from "../data/swiperParams";
+'use client';
+import { landingPageDescriptions } from '../data/projects';
+import { whoWeHelp } from '../data/whowehelp';
+import { useEffect, useState, useRef } from 'react';
+import WhoWeHelp from './components/WhoWeHelp';
+import Youtube from './components/youtube';
+import Event from './events/components/Event';
+import TeamMembers from './components/TeamMembers';
+import HomeProjects from './components/HomeProjects';
+import FacebookPost from './components/FacebookPost';
+import swiperParams from '../data/swiperParams';
 
 export default function Home() {
   const eventSwiperRef = useRef();
@@ -16,7 +16,7 @@ export default function Home() {
 
   useEffect(() => {
     const getEvents = async () => {
-      const request = await fetch("/api/events");
+      const request = await fetch('/api/events');
       if (request.ok) {
         const data = await request.json();
         const today = new Date();
@@ -34,7 +34,7 @@ export default function Home() {
 
   useEffect(() => {
     async function loadFaceBookData() {
-      const res = await fetch("/api/facebook");
+      const res = await fetch('/api/facebook');
 
       if (res.ok) {
         let Post = await res.json();
@@ -64,7 +64,7 @@ export default function Home() {
       <div className="w-full max-w-7xl">
         <div
           className="relative w-full overflow-hidden"
-          style={{ borderRadius: "50px" }}
+          style={{ borderRadius: '50px' }}
         >
           <div className="relative">
             <video
@@ -175,7 +175,7 @@ export default function Home() {
             return (
               <div
                 key={index}
-                style={{ width: "32%" }}
+                style={{ width: '32%' }}
                 className="flex flex-col"
               >
                 {postList.map((post) => {

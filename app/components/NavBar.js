@@ -1,16 +1,25 @@
-"use client";
-
-import React from "react";
-import Link from "next/link";
-import WarClock from "./WarClock.jsx";
-// import { signIn, signOut, useSession } from "next-auth/react";
+'use client';
+import React, { useState } from 'react';
+import Link from 'next/link';
+import WarClock from './WarClock.jsx';
+import { navLinks } from '../../data/navbar';
 
 export default function NavBar() {
-  // const { data: session } = useSession();
+  let isDesktop = true;
+  if (typeof window !== 'undefined') {
+    if (window.innerWidth < 900) {
+      isDesktop = false;
+    }
+  }
+
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
-    <nav
-      id="Nav"
-      className="fixed flex w-full
+    <>
+      {isDesktop ? (
+        <nav
+          id="Nav"
+          className="fixed flex w-full
                 justify-between
                 items-center
                 p-4
@@ -18,119 +27,54 @@ export default function NavBar() {
                 mt-8
                 left-1/2
                 transform -translate-x-1/2 -translate-y-1/2 z-30 bg-inherit rounded-bl-2xl rounded-br-2xl"
-    >
-      <Link href="/">
-        <img
-          className="w-28 h-auto  hover:cursor-pointer hover:opacity-80"
-          src="/blue-yellow-logo.png"
-          alt="BlueYellowFoundation logo"
-        />
-      </Link>
+        >
+          <Link href="/">
+            <img
+              className="w-28 h-auto  hover:cursor-pointer hover:opacity-80"
+              src="/blue-yellow-logo.png"
+              alt="BlueYellowFoundation logo"
+            />
+          </Link>
+          <WarClock />
 
-      <WarClock />
-
-      <div className="flex text-base">
-        <Link
-          href="/"
-          className="hover:text-blue-600
-                      hover:scale-125
-                      hover:cursor-pointer
-                      ease-in-out duration-300
-                      font-bold
-                      mr-6 rounded-xl p-1"
-        >
-          Home
-        </Link>
-        <Link
-          href="/donate"
-          className="hover:text-blue-600
-                      hover:scale-125
-                      hover:cursor-pointer
-                      ease-in-out duration-300
-                      font-bold
-                      mr-6 rounded-xl p-1"
-        >
-          Donate
-        </Link>
-        <Link
-          href="#EventsAndProjects"
-          className="hover:text-blue-600
-                      hover:scale-125
-                      hover:cursor-pointer
-                      ease-in-out duration-300
-                      font-bold
-                      mr-6 rounded-xl p-1"
-        >
-          Events & Projects
-        </Link>
-        <Link
-          href="#Causes"
-          className="hover:text-blue-600
-                      hover:scale-125
-                      hover:cursor-pointer
-                      ease-in-out duration-300
-                      font-bold
-                      mr-6 rounded-xl p-1"
-        >
-          Causes
-        </Link>
-        <Link
-          href="#Team"
-          className="hover:text-blue-600
-                      hover:scale-125
-                      hover:cursor-pointer
-                      ease-in-out duration-300
-                      font-bold
-                      mr-6 rounded-xl p-1"
-        >
-          Team
-        </Link>
-        <Link
-          href="#Contacts"
-          className="hover:text-blue-600
-                      hover:scale-125
-                      hover:cursor-pointer
-                      ease-in-out duration-300
-                      font-bold
-                     rounded-xl p-1"
-        >
-          Contact
-        </Link>
-      </div>
-
-      <Link href="/donate">
-        <button
-          className="flex h-10 w-36
-                        bg-gradient-to-b
-                        from-blue-400 to-yellow-400
-                        text-black text-l
-                        hover:text-blue-600
-                        font-bold
-                        shadow-md
-                        rounded-2xl
-                        items-center
-                        justify-center
-                        ease-in-out duration-300
-                        self-center"
-        >
-          Donate Now
-        </button>
-      </Link>
-
-      {/* {!"session" ? (
-        <div onClick={() => "idk"} className="cursor-pointer">
-          logout
-        </div>
-        ) : (
-          <div className="flex">
-            <div className="cursor-pointer" onClick={() => "idk"}>
-              Login
-            </div>
-            <div>&nbsp;/&nbsp;</div>
-            <div className="cursor-pointer">SignUp</div>
+          <div className="flex w-1/2 justify-evenly">
+            {navLinks.map((navlink, index) => {
+              return (
+                <Link key={index} href={navlink.href}>
+                  {navlink.title}
+                </Link>
+              );
+            })}
           </div>
-        )} */}
-      {/* <Login /> */}
-    </nav>
+        </nav>
+      ) : (
+        <>
+          <nav className="flex items-center justify-evenly">
+            <button onClick={() => setIsOpen(!isOpen)}>
+              {isOpen ? 'close' : 'open'}
+            </button>
+
+            <Link href="/">
+              <img
+                className="w-28 h-auto  hover:cursor-pointer hover:opacity-80"
+                src="/blue-yellow-logo.png"
+                alt="BlueYellowFoundation logo"
+              />
+            </Link>
+          </nav>
+          {isOpen ? (
+            <div className="flex flex-col items-center justify-evenly">
+              {navLinks.map((navlink, index) => {
+                return (
+                  <Link key={index} href={navlink.href}>
+                    {navlink.title}
+                  </Link>
+                );
+              })}
+            </div>
+          ) : null}{' '}
+        </>
+      )}
+    </>
   );
 }
