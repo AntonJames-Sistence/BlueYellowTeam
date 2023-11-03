@@ -34,7 +34,11 @@ export default function NavBar() {
 
           <div className="flex w-1/2 justify-evenly">
             {navLinks.map((navlink, index) => {
-              return <Link key={index} href={navlink.href}>{navlink.title}</Link>;
+              return (
+                <Link key={index} href={navlink.href}>
+                  {navlink.title}
+                </Link>
+              );
             })}
           </div>
         </nav>
@@ -56,7 +60,11 @@ export default function NavBar() {
           {isOpen ? (
             <div className="flex flex-col items-center justify-evenly">
               {navLinks.map((navlink, index) => {
-                return <Link key={index} href={navlink.href}>{navlink.title}</Link>;
+                return (
+                  <Link key={index} href={navlink.href}>
+                    {navlink.title}
+                  </Link>
+                );
               })}
             </div>
           ) : null}{' '}
