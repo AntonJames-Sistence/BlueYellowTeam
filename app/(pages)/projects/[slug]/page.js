@@ -1,4 +1,4 @@
-import { allProjects } from '../../../data/projects';
+import { allProjects } from "../../../../data/projects";
 
 export default function ProjectIndexPage({ params: { slug } }) {
   const project = allProjects.find((project) => project.slug === slug);
