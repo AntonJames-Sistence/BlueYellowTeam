@@ -34,17 +34,25 @@ export default function FacebookPost({ post }) {
           ? post.description.slice(0, 250)
           : post.description}
         {tooBig && hideExtra && (
-          <div onClick={() => setHideExtra(false)}> ...show more </div>
+          <div
+            className="cursor-pointer w-fit"
+            onClick={() => setHideExtra(false)}
+          >
+            {" "}
+            ...show more{" "}
+          </div>
         )}
         {tooBig && !hideExtra && (
-          <div onClick={() => setHideExtra(true)}> ...show less </div>
+          <div
+            className="cursor-pointer w-fit"
+            onClick={() => setHideExtra(true)}
+          >
+            {" "}
+            ...show less{" "}
+          </div>
         )}
       </div>
-      <a
-        href="https://www.facebook.com/BlueYellowFoundation/"
-        className="relative"
-        target="_blank"
-      >
+      <a href={post.url} className="relative" target="_blank">
         <div className="absolute w-full h-full bg-black/0 duration-300 hover:bg-black/50"></div>
         <img src={post.images[0]} alt="" />
       </a>
