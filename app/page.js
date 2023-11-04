@@ -93,7 +93,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="w-full pt-36">
+      <div className="w-full pt-36 flex items-center justify-start">
         <Facebook />
       </div>
     </main>
