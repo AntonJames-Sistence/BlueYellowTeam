@@ -7,6 +7,7 @@ const swiperParams = {
     },
     320: {
       slidesPerView: 1,
+      centeredSlides: true,
     },
     600: {
       slidesPerView: 2,
@@ -19,7 +20,7 @@ const swiperParams = {
       slidesPerView: 4,
     },
   },
-  pagination: true,
+  // pagination: true,
   on: {
     init() {
       // ...

@@ -1,8 +1,8 @@
-'use client';
-import { useEffect, useState, useRef } from 'react';
-import Event from './Event';
-import { register } from 'swiper/element/bundle';
-import swiperParams from '../../data/swiperParams';
+"use client";
+import { useEffect, useState, useRef } from "react";
+import Event from "./Event";
+import { register } from "swiper/element/bundle";
+import swiperParams from "../../data/swiperParams";
 
 const Events = () => {
   register();
@@ -12,8 +12,8 @@ const Events = () => {
 
   useEffect(() => {
     const getData = async () => {
-      const request = await fetch('/api/events', {
-        cache: 'no-store',
+      const request = await fetch("/api/events", {
+        cache: "no-store",
       });
       const data = await request.json();
       if (data) {
@@ -47,42 +47,42 @@ const Events = () => {
     <>
       {realEventData ? (
         <div className="w-full max-w-7xl m-auto pt-5 pb-5">
-          <div className="events-type">Upcoming</div>
+          <div className="text-3xl font-bold my-6 ml-8">Upcoming</div>
           <div className="w-full  relative">
             <div
-              className="absolute -left-5 top-1/2 cursor-pointer"
+              className="absolute -left-8 top-1/2 cursor-pointer"
               onClick={() => upcommingSwiperRef.current.swiper.slidePrev()}
             >
               <i className="fa-solid fa-angle-left text-3xl"></i>
             </div>
             <div
-              className="absolute -right-5 top-1/2 cursor-pointer"
+              className="absolute -right-8 top-1/2 cursor-pointer"
               onClick={() => upcommingSwiperRef.current.swiper.slideNext()}
             >
               <i className="fa-solid fa-angle-right text-3xl"></i>
             </div>
-            <swiper-container ref={upcommingSwiperRef} init={'false'}>
+            <swiper-container ref={upcommingSwiperRef} init={"false"}>
               {upcomingEvents.map((event, index) => (
                 <Event event={event} key={index} />
               ))}
             </swiper-container>
           </div>
 
-          <div className="events-type">Past</div>
+          <div className="text-3xl font-bold my-6 ml-8">Past</div>
           <div className="w-full  relative">
             <div
-              className="absolute -left-5 top-1/2 cursor-pointer"
+              className="absolute -left-8 top-1/2 cursor-pointer"
               onClick={() => pastSwiperRef.current.swiper.slidePrev()}
             >
               <i className="fa-solid fa-angle-left text-3xl"></i>
             </div>
             <div
-              className="absolute -right-5 top-1/2 cursor-pointer"
+              className="absolute -right-8 top-1/2 cursor-pointer"
               onClick={() => pastSwiperRef.current.swiper.slideNext()}
             >
               <i className="fa-solid fa-angle-right text-3xl"></i>
             </div>
-            <swiper-container ref={pastSwiperRef} init={'false'}>
+            <swiper-container ref={pastSwiperRef} init={"false"}>
               {pastEvents.map((event, index) => (
                 <Event event={event} key={index} />
               ))}

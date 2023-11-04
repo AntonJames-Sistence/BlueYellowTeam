@@ -1,11 +1,17 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import FacebookPost from "./FacebookPost";
 
 export default function Facebook() {
   let [facebookData, setFacebookData] = useState(null);
   let [facebookColumns, setFacebookColumns] = useState(null);
   let [numOfPost, setNumOfPost] = useState(6);
+  const faceBookDataRef = useRef(facebookData);
+  const numOfPostRef = useRef(numOfPost);
+
+  useEffect(() => {
+    numOfPostRef.current = numOfPost;
+  }, [numOfPost]);
 
   useEffect(() => {
     const loadFaceBookData = async () => {
@@ -13,6 +19,7 @@ export default function Facebook() {
 
       if (res.ok) {
         const data = await res.json();
+        faceBookDataRef.current = data;
         setFacebookData(data);
       }
     };
@@ -22,29 +29,59 @@ export default function Facebook() {
   useEffect(() => {
     if (facebookData) {
       const shrunkFbList = facebookData.slice(0, numOfPost);
-      const tempFacebookColumns = [[], [], []];
+      let tempFacebookColumns = [[], [], []];
+
+      if (window.innerWidth >= 1024) tempFacebookColumns = [[], [], []];
+      else if (window.innerWidth >= 768) tempFacebookColumns = [[], []];
+      else tempFacebookColumns = [[]];
 
       //divides facebookData into three columns to make layout/css easier
       for (let i = 0; i < shrunkFbList.length; i++) {
-        const index = i % 3;
+        const index = i % tempFacebookColumns.length;
         tempFacebookColumns[index].push(shrunkFbList[i]);
       }
       setFacebookColumns(tempFacebookColumns);
     }
   }, [numOfPost, facebookData]);
+
+  useEffect(() => {
+    let handleResize = () => {
+      if (faceBookDataRef.current) {
+        const shrunkFbList = faceBookDataRef.current.slice(
+          0,
+          numOfPostRef.current
+        );
+        let tempFacebookColumns = [[], [], []];
+
+        if (window.innerWidth >= 1024) tempFacebookColumns = [[], [], []];
+        else if (window.innerWidth >= 768) tempFacebookColumns = [[], []];
+        else tempFacebookColumns = [[]];
+
+        //divides facebookData into three columns to make layout/css easier
+        for (let i = 0; i < shrunkFbList.length; i++) {
+          const index = i % tempFacebookColumns.length;
+          tempFacebookColumns[index].push(shrunkFbList[i]);
+        }
+        setFacebookColumns(tempFacebookColumns);
+      }
+    };
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
-    <div className="pt-36 max-w-7xl">
-      <div className="text-left text-5xl font-bold text-black-500 pb-3 mb-4">
+    <div className="pt-36 max-w-7xl w-full m-auto">
+      <div className="text-center lg:text-left text-5xl font-bold text-black-500 pb-3 mb-4 w-full">
         Updates From Facebook
       </div>
-      <div className="flex flex-wrap justify-between ">
+      <div className="flex flex-wrap justify-evenly lg:justify-between w-full">
         {facebookColumns ? (
           facebookColumns.map((postList, index) => {
             return (
               <div
                 key={index}
-                style={{ width: "32%" }}
-                className="flex flex-col"
+                className="flex flex-col w-[90%] sm:w-[80%] md:w-[40%] lg:w-[32%]"
               >
                 {postList.map((post) => {
                   return <FacebookPost key={post.id} post={post} />;

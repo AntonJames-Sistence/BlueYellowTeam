@@ -17,9 +17,10 @@
   /* display: block; */
   background-color: rgb(73, 165, 231);
   font-size: 18px;
-  height: 350px;
+  height: 100%;
+  /* height: max-content; */
   width: 280px;
-  border-radius: 15px;
+  /* border-radius: 15px; */
   position: relative;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   transition: transform 0.3s;
@@ -36,19 +37,22 @@
   background-size: cover;
   /* object-fit: cover; */
   height: 140px;
-  border-top-left-radius: 15px;
-  border-top-right-radius: 15px;
+  /* border-top-left-radius: 15px; */
+  /* border-top-right-radius: 15px; */
 }
 
 .event-details {
-  padding: 20px 15px 15px 15px;
-  display: flex;
-  flex-direction: column;
+  padding: 20px 10px 15px 10px;
+  /* display: flex; */
+  /* flex-direction: column; */
+  height: 100%;
   gap: 10px;
 }
 
 .event-title {
   font-weight: 500;
+  width: 100%;
+  height: 25%;
   color: rgba(248, 219, 82, 1);
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   text-align: left;
@@ -58,6 +62,7 @@
 .event-date {
   bottom: 5px;
   right: 10px;
+  height: 10%;
   font-size: 14px;
   font-weight: 600;
   color: rgb(193, 76, 36);

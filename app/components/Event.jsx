@@ -43,25 +43,53 @@ const Event = ({ event }) => {
   }
 
   return (
-    <swiper-slide className="bg-red-400 w-full mb-96">
-      <a
-        className="w-fit m-auto"
-        href={url}
-        target="_blank"
-        rel="noopener noreferrer"
+    <swiper-slide className="">
+      <div
+        id="card"
+        className="mx-2 bg-white shadow-[0px_6px_6px_0px_lightgrey] max-w-sm m-auto"
       >
-        <div className="event">
-          <div className="event-bg" style={backgroundStyle}></div>
-          <div className="event-details">
-            <div className="event-title">{event.name}</div>
-            <div className="event-date">{formatDate(event.date)}</div>
-            <div className="venue">{`${event.venue} • ${event.address}`}</div>
-            <div className="cost">{`Starts at $${event.cost}`}</div>
+        <img src={event.image} alt="" />
+
+        <div className="text-center p-2">
+          <h2 className="text-left text-xl font-bold h-20">
+            {event.name.slice(0, 50)}
+            {event.name.length > 50 && "..."}
+          </h2>
+          <div className="text-md mt-2 text-left h-32 flex flex-col justify-between text-gray-500">
+            <div className="">{formatDate(event.date)}</div>
+            <div className="">{`${event.venue} • ${event.address}`}</div>
+            <div className="">{`Starts at $${event.cost}`}</div>
           </div>
         </div>
-      </a>
+        <a href={event.url} target="_blank">
+          <div className="bg-black text-white text-right font-bold pr-4 py-2">
+            LEARN MORE
+          </div>
+        </a>
+      </div>
     </swiper-slide>
   );
 };
 
 export default Event;
+
+{
+  /* <a
+  className="h-100 m-auto"
+  href={url}
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  <div className="h-100 bg-sky-700">
+    <div className="event-bg" style={backgroundStyle}></div>
+    <img src={event.image}></img>
+    <div className="event-details">
+      <div className="event-title">{event.name}</div>
+      <div className="event-date">{formatDate(event.date)}</div>
+      <div className="venue">{`${event.venue} • ${event.address}`}</div>
+      <div className="cost">{`Starts at $${event.cost}`}</div>
+    </div>
+    <div className="bg-black text-white text-right">LEARN MORE</div>
+  </div>
+</a>; */
+}
