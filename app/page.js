@@ -3,28 +3,13 @@ import WhoWeHelp from './components/WhoWeHelp';
 import HomeProjects from './components/HomeProjects';
 import HomeEvents from './components/HomeEvents';
 import Facebook from './components/Facebook';
+import Banner from "./components/Banner";
 
 export default function Home() {
   return (
     <main className="flex w-full flex-col items-center justify-between pt-24 p-5">
-      <div className="relative w-full overflow-hidden" style={{}}>
-        <div className="relative">
-          <div className="flex w-full h-96 min-h-[80vh] ">
-            <div className="w-full flex flex-col justify-evenly items-center z-10">
-              <div className="text-4xl md:text-6xl text-center md:text-lef text-darkTeal font-bold leading-snug text-shadow-lg">
-                STAND WITH LOVE STAND WITH UKRAINE
-                <div className="text-darkTeal font-bold text-lg md:text-3xl leading-tight text-shadow-sm mb-5 text-center md:text-left pt-4">
-                  100% OF PROFIT GOES TO SUPPORT UKRAINIANS IN NEED
-                </div>
-              </div>
-              <div
-                className="w-full h-full md:w-1/2 md:h-1/2 bg-cover bg-no-repeat z-10"
-                style={{ backgroundImage: `url(./intro_banner.png)` }}
-              ></div>
-            </div>
-          </div>
-        </div>
-      </div>
+      
+      <Banner />
 
       <div id="who-we-help" className="pt-36 max-w-7xl">
         <div
