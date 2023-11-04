@@ -1,6 +1,6 @@
-"use client";
-import React, { useState, useEffect } from "react";
-import FacebookPost from "./FacebookPost";
+'use client';
+import React, { useState, useEffect } from 'react';
+import FacebookPost from './FacebookPost';
 
 export default function Facebook() {
   let [facebookData, setFacebookData] = useState(null);
@@ -9,7 +9,7 @@ export default function Facebook() {
 
   useEffect(() => {
     const loadFaceBookData = async () => {
-      const res = await fetch("/api/facebook");
+      const res = await fetch('/api/facebook');
 
       if (res.ok) {
         const data = await res.json();
@@ -33,7 +33,7 @@ export default function Facebook() {
     }
   }, [numOfPost, facebookData]);
   return (
-    <div className="pt-36 max-w-7xl w-full">
+    <div className="max-w-7xl w-full">
       <div className="text-center md:text-left text-5xl font-bold text-black-500 pb-3 mb-4">
         Updates From Facebook
       </div>
@@ -43,7 +43,7 @@ export default function Facebook() {
             return (
               <div
                 key={index}
-                style={{ width: "32%" }}
+                style={{ width: '32%' }}
                 className="flex flex-col"
               >
                 {postList.map((post) => {

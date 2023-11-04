@@ -1,11 +1,11 @@
-"use client";
-import { whoWeHelp } from "../data/whowehelp";
-import { useEffect, useState } from "react";
-import WhoWeHelp from "./components/WhoWeHelp";
-import Youtube from "./components/youtube";
-import HomeProjects from "./components/HomeProjects";
-import HomeEvents from "./components/HomeEvents";
-import Facebook from "./components/Facebook";
+'use client';
+import { whoWeHelp } from '../data/whowehelp';
+import { useEffect, useState } from 'react';
+import WhoWeHelp from './components/WhoWeHelp';
+import Youtube from './components/youtube';
+import HomeProjects from './components/HomeProjects';
+import HomeEvents from './components/HomeEvents';
+import Facebook from './components/Facebook';
 
 export default function Home() {
   return (
@@ -93,7 +93,9 @@ export default function Home() {
         </div>
       </div>
 
-      <Facebook />
+      <div className="w-full pt-36">
+        <Facebook />
+      </div>
     </main>
   );
 }
