@@ -1,8 +1,8 @@
-import { whoWeHelp } from '../data/whowehelp';
-import WhoWeHelp from './components/WhoWeHelp';
-import HomeProjects from './components/HomeProjects';
-import HomeEvents from './components/HomeEvents';
-import Facebook from './components/Facebook';
+import { whoWeHelp } from "../data/whowehelp";
+import WhoWeHelp from "./components/WhoWeHelp";
+import HomeProjects from "./components/HomeProjects";
+import HomeEvents from "./components/HomeEvents";
+import Facebook from "./components/Facebook";
 
 export default function Home() {
   return (
@@ -67,7 +67,7 @@ export default function Home() {
       <div id="projects" className="mt-36">
         <div
           id="featured-project-title"
-          className="text-left text-5xl font-bold text-black-500 pb-7"
+          className="text-center md:text-left text-5xl font-bold text-black-500 pb-7"
         >
           Projects
         </div>
