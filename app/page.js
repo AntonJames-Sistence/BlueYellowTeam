@@ -1,26 +1,14 @@
-"use client";
-import { whoWeHelp } from "../data/whowehelp";
-import { useEffect, useState } from "react";
-import WhoWeHelp from "./components/WhoWeHelp";
-import Youtube from "./components/youtube";
-import HomeProjects from "./components/HomeProjects";
-import HomeEvents from "./components/HomeEvents";
-import Facebook from "./components/Facebook";
+import { whoWeHelp } from '../data/whowehelp';
+import WhoWeHelp from './components/WhoWeHelp';
+import HomeProjects from './components/HomeProjects';
+import HomeEvents from './components/HomeEvents';
+import Facebook from './components/Facebook';
 
 export default function Home() {
   return (
     <main className="flex w-full flex-col items-center justify-between pt-24 p-5">
       <div className="relative w-full overflow-hidden" style={{}}>
         <div className="relative">
-          {/* <video
-            className="absolute top-0 left-0 w-full h-full object-cover z-negative"
-            src="/flag_bg.mp4"
-            autoPlay
-            loop
-            muted
-            controls={false}
-          ></video> */}
-
           <div className="flex w-full h-96 min-h-[80vh] ">
             <div className="w-full flex flex-col justify-evenly items-center z-10">
               <div className="text-4xl md:text-6xl text-center md:text-lef text-darkTeal font-bold leading-snug text-shadow-lg">
@@ -37,8 +25,6 @@ export default function Home() {
           </div>
         </div>
       </div>
-
-      {/* <Youtube /> */}
 
       <div id="who-we-help" className="pt-36 max-w-7xl">
         <div
@@ -93,7 +79,24 @@ export default function Home() {
         </div>
       </div>
 
-      <Facebook />
+      <div className="w-full pt-36 flex items-center">
+        <Facebook />
+      </div>
     </main>
   );
+}
+
+{
+  /* <video
+            className="absolute top-0 left-0 w-full h-full object-cover z-negative"
+            src="/flag_bg.mp4"
+            autoPlay
+            loop
+            muted
+            controls={false}
+          ></video> */
+}
+
+{
+  /* <Youtube /> */
 }
