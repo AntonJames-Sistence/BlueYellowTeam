@@ -24,9 +24,9 @@ export default function Facebook() {
       const shrunkFbList = facebookData.slice(0, numOfPost);
       let tempFacebookColumns = [[], [], []];
 
-      if (window.innerWidth >= 1000) tempFacebookColumns = [[], [], []];
-      else if (window.innerWidth >= 700) tempFacebookColumns = [[], []];
-      else tempFacebookColumns = [[]];
+      // if (window.innerWidth >= 1000) tempFacebookColumns = [[], [], []];
+      // else if (window.innerWidth >= 700) tempFacebookColumns = [[], []];
+      // else tempFacebookColumns = [[]];
 
       //divides facebookData into three columns to make layout/css easier
       for (let i = 0; i < shrunkFbList.length; i++) {
