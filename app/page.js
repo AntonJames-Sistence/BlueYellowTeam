@@ -1,36 +1,13 @@
-'use client';
-import { whoWeHelp } from '../data/whowehelp';
-import { useEffect, useState } from 'react';
-import WhoWeHelp from './components/WhoWeHelp';
-import Youtube from './components/youtube';
-import HomeProjects from './components/HomeProjects';
-import FacebookPost from './components/FacebookPost';
-import HomeEvents from './components/HomeEvents';
+"use client";
+import { whoWeHelp } from "../data/whowehelp";
+import { useEffect, useState } from "react";
+import WhoWeHelp from "./components/WhoWeHelp";
+import Youtube from "./components/youtube";
+import HomeProjects from "./components/HomeProjects";
+import HomeEvents from "./components/HomeEvents";
+import Facebook from "./components/Facebook";
 
 export default function Home() {
-  let [facebookLists, setFacebookLists] = useState([[], [], []]);
-  let [numOfPost, setNumOfPost] = useState(6);
-
-  useEffect(() => {
-    async function loadFaceBookData() {
-      const res = await fetch('/api/facebook');
-
-      if (res.ok) {
-        let Post = await res.json();
-        Post = Post.reverse().slice(0, numOfPost);
-        const tempList = [[], [], []];
-
-        for (let i = 0; i < Post.length; i++) {
-          const place = i % 3;
-          tempList[place].push(Post[i]);
-        }
-
-        setFacebookLists(tempList);
-      }
-    }
-    loadFaceBookData();
-  }, [numOfPost]);
-
   return (
     <main className="flex w-full flex-col items-center justify-between pt-24 p-5">
       <div className="relative w-full overflow-hidden" style={{}}>
@@ -46,9 +23,9 @@ export default function Home() {
 
           <div className="flex w-full h-96 min-h-[80vh] ">
             <div className="w-full flex flex-col justify-evenly items-center z-10">
-              <div className="text-4xl md:text-6xl text-darkTeal font-bold leading-snug text-shadow-lg">
+              <div className="text-4xl md:text-6xl text-center md:text-lef text-darkTeal font-bold leading-snug text-shadow-lg">
                 STAND WITH LOVE STAND WITH UKRAINE
-                <div className="text-darkTeal font-bold text-lg md:text-3xl leading-tight text-shadow-sm mb-5">
+                <div className="text-darkTeal font-bold text-lg md:text-3xl leading-tight text-shadow-sm mb-5 text-center md:text-left pt-4">
                   100% OF PROFIT GOES TO SUPPORT UKRAINIANS IN NEED
                 </div>
               </div>
@@ -66,11 +43,11 @@ export default function Home() {
       <div id="who-we-help" className="pt-36 max-w-7xl">
         <div
           id="who-help-title"
-          className="text-left text-5xl font-bold text-black-500 pb-3"
+          className="text-center md:text-left text-5xl font-bold text-black-500 pb-3"
         >
           Who do we help?
         </div>
-        <div className="w-1/2 text-xl">
+        <div className="text-center md:text-left w-full md:w-1/2 text-xl">
           Your donations and support provide essential supplies and services to
           the Ukranian people.
         </div>
@@ -91,10 +68,10 @@ export default function Home() {
       </div>
 
       <div id="events" className="pt-36 w-full max-w-7xl">
-        <div className="text-left text-5xl font-bold text-black-500 pb-3">
+        <div className="text-center md:text-left text-5xl font-bold text-black-500 pb-3">
           Events
         </div>
-        <div className="w-1/2 text-xl">
+        <div className="w-full md:w-1/2 text-xl text-center md:text-left">
           Your donations and support provide essential supplies and services to
           the Ukrainian people.
         </div>
@@ -116,32 +93,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="pt-36 max-w-7xl">
-        {/* <div className="text-left text-5xl font-bold text-black-500 pb-3 mb-4">
-          Updates From Facebook
-        </div>
-        <div className="flex flex-wrap justify-between ">
-          {facebookLists?.map((postList, index) => {
-            return (
-              <div
-                key={index}
-                style={{ width: '32%' }}
-                className="flex flex-col"
-              >
-                {postList.map((post) => {
-                  return <FacebookPost key={post.id} post={post} />;
-                })}
-              </div>
-            );
-          })}
-        </div> */}
-        {/* <div
-          className="bg-white m-auto text-lg text-black w-fit px-5 rounded cursor-pointer"
-          onClick={() => setNumOfPost((state) => state + 3)}
-        >
-          ... Load more
-        </div> */}
-      </div>
+      <Facebook />
     </main>
   );
 }
