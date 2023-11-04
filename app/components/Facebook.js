@@ -22,22 +22,26 @@ export default function Facebook() {
   useEffect(() => {
     if (facebookData) {
       const shrunkFbList = facebookData.slice(0, numOfPost);
-      const tempFacebookColumns = [[], [], []];
+      let tempFacebookColumns = [[], [], []];
+
+      if (window.innerWidth >= 1000) tempFacebookColumns = [[], [], []];
+      else if (window.innerWidth >= 700) tempFacebookColumns = [[], []];
+      else tempFacebookColumns = [[]];
 
       //divides facebookData into three columns to make layout/css easier
       for (let i = 0; i < shrunkFbList.length; i++) {
-        const index = i % 3;
+        const index = i % tempFacebookColumns.length;
         tempFacebookColumns[index].push(shrunkFbList[i]);
       }
       setFacebookColumns(tempFacebookColumns);
     }
   }, [numOfPost, facebookData]);
   return (
-    <div className="pt-36 max-w-7xl">
-      <div className="text-left text-5xl font-bold text-black-500 pb-3 mb-4">
+    <div className="pt-36 max-w-7xl w-full">
+      <div className="text-center md:text-left text-5xl font-bold text-black-500 pb-3 mb-4">
         Updates From Facebook
       </div>
-      <div className="flex flex-wrap justify-between ">
+      <div className="flex flex-wrap justify-evenly lg:justify-between ">
         {facebookColumns ? (
           facebookColumns.map((postList, index) => {
             return (
