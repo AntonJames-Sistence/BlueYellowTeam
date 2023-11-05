@@ -6,7 +6,7 @@ export default function FacebookPost({ post }) {
   const tooBig = post.description.length > 250;
 
   return (
-    <div className="FaceBookLogs-post shadow p-4 mb-3.5 min-content h-min rounded shadow-slate-500">
+    <div className="FaceBookLogs-post p-4 mb-3.5 min-content h-min rounded shadow-[0px_7px_7px_0px_lightgrey] bg-[#fff]">
       <div className="FaceBookLogs-post-header flex items-center gap-1.5 mb-3.5">
         <a
           href="https://www.facebook.com/BlueYellowFoundation/"
@@ -34,22 +34,30 @@ export default function FacebookPost({ post }) {
           ? post.description.slice(0, 250)
           : post.description}
         {tooBig && hideExtra && (
-          <div onClick={() => setHideExtra(false)}> ...show more </div>
+          <div
+            className="cursor-pointer w-fit"
+            onClick={() => setHideExtra(false)}
+          >
+            {' '}
+            ...show more{' '}
+          </div>
         )}
         {tooBig && !hideExtra && (
-          <div onClick={() => setHideExtra(true)}> ...show less </div>
+          <div
+            className="cursor-pointer w-fit"
+            onClick={() => setHideExtra(true)}
+          >
+            {' '}
+            ...show less{' '}
+          </div>
         )}
       </div>
-      <a
-        href="https://www.facebook.com/BlueYellowFoundation/"
-        className="relative"
-        target="_blank"
-      >
+      <a href={post.url} className="relative" target="_blank">
         <div className="absolute w-full h-full bg-black/0 duration-300 hover:bg-black/50"></div>
         <img src={post.images[0]} alt="" />
       </a>
       <div className="flex items-center mt-1 gap-0.5">
-        <img src="/facebookLikes.png" className="h-auto w-2/12 rounded" />
+        <img src="/facebookLikes.png" className="h-auto rounded w-1/6" />
         <div className="text-sm">{post.likes}</div>
       </div>
     </div>

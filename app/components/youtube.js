@@ -5,18 +5,16 @@ const Youtube = () => {
   return (
     <div
       id="About"
-      className=" w-full flex flex-col mt-28 lg:grid lg:grid-cols-2 lg:grid-rows-1 bg-darkTeal p-16 lg:py-24"
+      className=" w-full flex flex-col md:flex-row bg-darkTeal items-center justify-center min-h-[500px]"
     >
-      <div className="text-white text-2xl pb-14 tracking-normal leading-normal py-6 lg:pl-11 lg:pr-8">
-        <h3>
-          We are in the middle of the worst European humanitarian crisis since
-          World War II. The Blue & Yellow Foundation supports those affected by
-          the war in Ukraine with humanitarian aid. We are volunteer-driven,
-          501c3 certified, and 100% of every donation is tax deductible.
+      <div className="h-full w-full md:w-1/2 text-white flex items-center justify-center text-3xl font-bold">
+        <h3 className="p-6">
+          We are volunteer-driven, 501c3 certified, and 100% of every donation
+          is tax deductible.
         </h3>
       </div>
       <YoutubeEmbed
-        idk="w-full h-100 lg:h-full lg:mr-11 rounded-2xl"
+        idk="w-full h-full md:min-h-[400px] md:min-w-[400px] lg:h-full lg:mr-11 rounded-2xl"
         wrapper="lg:mr-11"
         embedId="qpWkGYq-cmE"
       />

@@ -1,14 +1,9 @@
-'use client';
 import Link from 'next/link';
 
-export default function MainProjectCard({ id, img, title, date }) {
-  const handleClick = (e) => {
-    e.preventDefault();
-    console.log(id);
-  };
-
+export default function MainProjectCard({ img, title, date, slug }) {
   return (
-    <div
+    <Link
+      href={`/projects/${slug}`}
       className="project-card
     flex-1 flex-basis-52 relative rounded-lg h-fit"
     >
@@ -41,6 +36,6 @@ export default function MainProjectCard({ id, img, title, date }) {
       >
         Update
       </button> */}
-    </div>
+    </Link>
   );
 }
