@@ -34,17 +34,17 @@ const WarClock = () => {
 
     return (
       <div className="">
-        <div className="flex flex-row w-full justify-between font-bold m-auto text-3xl">
+        <div className="flex flex-row w-full justify-between font-bold m-auto text-2xl">
           <div className="mr-2">
             {days}
             <span className="text-lg">d</span>
           </div>
-          <div class="h-10 border-l-2 border-gray-500"></div>
+          <div class="h-5 mt-1 border-l-2 border-gray-500"></div>
           <div className="mr-2">
             {hours}
             <span className="text-lg">h</span>
           </div>
-          <div class="h-10 border-l-2 border-gray-500"></div>
+          <div class="h-5 mt-1 border-l-2 border-gray-500"></div>
           <div>
             {minutes}
             <span className="text-lg">m</span>
