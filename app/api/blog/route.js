@@ -6,8 +6,18 @@ import {
   addDoc,
   getDoc,
   getDocs,
+  updateDoc,
+  deleteDoc,
 } from "firebase/firestore";
 import { storeDB } from "../../../data/firebase";
+import { getServerSession } from "next-auth";
+
+const isAdmin = async () => {
+  const session = await getServerSession();
+  if (!session || !session.user) {
+    throw new Error("You are not an admin");
+  }
+};
 
 const postHasErrors = (post) => {
   const errors = {};
@@ -20,8 +30,24 @@ const postHasErrors = (post) => {
   return false;
 };
 
-export async function POST(request) {
+export async function GET() {
   try {
+    const allPostSS = await getDocs(collection(storeDB, "posts"));
+    const data = [];
+
+    allPostSS.forEach((doc) => {
+      data.push(doc.data());
+    });
+
+    return NextResponse.json(data);
+  } catch (error) {
+    return NextResponse.error("couldn't retreive all blog post");
+  }
+}
+
+export async function POST(request, res) {
+  try {
+    await isAdmin();
     const post = await request.json();
 
     const errors = postHasErrors(post);
@@ -29,21 +55,15 @@ export async function POST(request) {
       return NextResponse.json({ errors });
     }
 
-    const checkTitleRef = doc(storeDB, "posts", post.title);
-    const alredyExist = await getDoc(checkTitleRef);
+    const newPostRef = doc(collection(storeDB, "posts"));
 
-    if (alredyExist.exists()) {
-      return NextResponse.json({
-        errors: "Two blog posts can't have the same title",
-      });
-    }
-
-    await setDoc(doc(storeDB, "posts", post.title), {
+    await setDoc(newPostRef, {
       ...post,
       createdAt: new Date(),
+      id: newPostRef.id,
     });
 
-    const newPost = await getDoc(checkTitleRef);
+    const newPost = await getDoc(newPostRef);
 
     return NextResponse.json(newPost.data());
   } catch (error) {
@@ -51,13 +71,37 @@ export async function POST(request) {
   }
 }
 
-export async function GET() {
+export async function PUT(request) {
   try {
-    const allPostSS = await getDocs(collection(storeDB, "posts"));
-    const allPost = {};
+    await isAdmin();
+    const post = await request.json();
 
-    return NextResponse.json("idk");
+    const errors = postHasErrors(post);
+    if (errors) {
+      return NextResponse.json({ errors });
+    }
+    console.log("postid", post.id);
+    const postRef = doc(storeDB, "posts", post.id);
+
+    await updateDoc(postRef, {
+      ...post,
+    });
+
+    const newPost = await getDoc(postRef);
+
+    return NextResponse.json(newPost.data());
   } catch (error) {
-    return NextResponse.error(error);
+    return NextResponse.error(error.message);
+  }
+}
+
+export async function DELETE(request) {
+  try {
+    await isAdmin();
+    const { id } = await request.json();
+    await deleteDoc(doc(storeDB, "posts", id));
+    return NextResponse.json("successfully deleted");
+  } catch (error) {
+    return NextResponse.error("couldn't delete post");
   }
 }

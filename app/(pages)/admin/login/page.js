@@ -15,7 +15,7 @@ export default function AdminLogin() {
     if (session?.data?.user) {
       toast.success("Logged In!");
     }
-  }, [session]);
+  }, []);
 
   return (
     <div>
