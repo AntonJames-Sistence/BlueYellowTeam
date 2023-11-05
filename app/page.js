@@ -4,7 +4,7 @@ import HomeProjects from './components/HomeProjects';
 import HomeEvents from './components/HomeEvents';
 import Facebook from './components/Facebook';
 import Banner from "./components/Banner";
-import Youtube from "./components/Youtube";
+import Youtube from "./components/youtube";
 
 export default function Home() {
   return (
