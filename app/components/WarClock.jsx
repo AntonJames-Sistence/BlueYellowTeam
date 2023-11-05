@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 
 const WarClock = () => {
   function calculateTimeDifference(targetTime) {
@@ -9,11 +9,11 @@ const WarClock = () => {
   }
 
   const [elapsedTime, setElapsedTime] = useState(
-    calculateTimeDifference(new Date('2022-02-24T05:00:00Z'))
+    calculateTimeDifference(new Date("2022-02-24T05:00:00Z"))
   );
 
   useEffect(() => {
-    const targetTime = new Date('2022-02-24T05:00:00Z');
+    const targetTime = new Date("2022-02-24T05:00:00Z");
 
     function updateTime() {
       setElapsedTime(calculateTimeDifference(targetTime));
@@ -39,12 +39,12 @@ const WarClock = () => {
             {days}
             <span className="text-lg">d</span>
           </div>
-          <div class="h-10 border-l-2 border-gray-500"></div>
+          <div className="h-10 border-l-2 border-gray-500"></div>
           <div className="mr-2">
             {hours}
             <span className="text-lg">h</span>
           </div>
-          <div class="h-10 border-l-2 border-gray-500"></div>
+          <div className="h-10 border-l-2 border-gray-500"></div>
           <div>
             {minutes}
             <span className="text-lg">m</span>
