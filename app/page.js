@@ -4,12 +4,14 @@ import HomeProjects from './components/HomeProjects';
 import HomeEvents from './components/HomeEvents';
 import Facebook from './components/Facebook';
 import Banner from "./components/Banner";
+import Youtube from "./components/Youtube";
 
 export default function Home() {
   return (
     <main className="flex w-full flex-col items-center justify-between pt-24 p-5">
       
       <Banner />
+      <Youtube />
 
       <div id="who-we-help" className="pt-36 max-w-7xl">
         <div
@@ -69,19 +71,4 @@ export default function Home() {
       </div>
     </main>
   );
-}
-
-{
-  /* <video
-            className="absolute top-0 left-0 w-full h-full object-cover z-negative"
-            src="/flag_bg.mp4"
-            autoPlay
-            loop
-            muted
-            controls={false}
-          ></video> */
-}
-
-{
-  /* <Youtube /> */
 }
