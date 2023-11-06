@@ -1,9 +1,9 @@
 import { whoWeHelp } from '../data/whowehelp';
 import PastUpcomingEvents from './components/PastUpcomingEvents';
 import Facebook from './components/Facebook';
-import Youtube from './components/youtube';
+import Youtube from '../components/youtube';
 import Link from 'next/link';
-import ImageTextContainer from './components/ImageTextContainer';
+import ImageTextContainer from '../components/ui/ImageTextContainer';
 import { allProjects } from '../data/projects';
 
 export default function Home() {

@@ -1,5 +1,5 @@
 import { allProjects } from '../../../data/projects';
-import ImageTextContainer from '../../components/ImageTextContainer';
+import ImageTextContainer from '../../../components/ui/ImageTextContainer';
 
 export default function ProjectsPage() {
   return (
