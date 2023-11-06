@@ -1,14 +1,15 @@
 import { whoWeHelp } from '../data/whowehelp';
 import PastUpcomingEvents from './components/PastUpcomingEvents';
 import Facebook from './components/Facebook';
-import Youtube from '../components/youtube';
 import Link from 'next/link';
 import ImageTextContainer from '../components/ui/ImageTextContainer';
 import { allProjects } from '../data/projects';
+import Youtube from './components/youtube';
 
 export default function Home() {
   return (
     <main className="flex w-full flex-col items-center justify-between">
+      {/* HERO SECTION */}
       <div
         className="relative h-screen w-full overflow-hidden bg-no-repeat bg-cover bg-center"
         style={{ backgroundImage: "url('./causes-children.jpeg')" }}
@@ -33,8 +34,10 @@ export default function Home() {
         </div>
       </div>
 
+      {/* YOUTUBE SECTION */}
       <Youtube />
 
+      {/* DONATE SECTION */}
       <div id="who-we-help" className="pt-20 max-w-7xl">
         <div className="text-center md:text-left text-5xl font-bold text-black-500 pb-3">
           Who do we help?
@@ -59,6 +62,7 @@ export default function Home() {
         </div>
       </div>
 
+      {/*  EVENTS SECTION */}
       <div id="events" className="pt-20 w-full max-w-7xl">
         <div className="text-center md:text-left text-5xl font-bold text-black-500 pb-3">
           Events
@@ -70,6 +74,7 @@ export default function Home() {
         <PastUpcomingEvents />
       </div>
 
+      {/* PROJECTS SECTION */}
       <div id="projects" className="pt-20 max-w-7xl">
         <div className="text-center md:text-left text-5xl font-bold text-black-500 pb-3">
           Projects

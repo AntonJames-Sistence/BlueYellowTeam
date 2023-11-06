@@ -1,6 +1,6 @@
 import React from 'react';
-import YoutubeEmbed from './ui/YoutubeEmded';
-import WarClock from '../app/components/WarClock';
+import YoutubeEmbed from '../helpers/YoutubeEmded';
+import WarClock from '../components/WarClock';
 
 const Youtube = () => {
   return (
