@@ -101,7 +101,7 @@ export default function Home() {
         </div>
       </div>
 
-      <hr className="pt-20" />
+      <hr className="pt-20 max-w-7xl" />
 
       <Facebook />
     </main>

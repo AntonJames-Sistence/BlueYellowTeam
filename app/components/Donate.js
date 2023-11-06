@@ -1,7 +1,6 @@
 'use client';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import MWCauseDonate from './MWCauseDonate';
 import { causeData } from '../../data/donate';
 import ImageTextContainer from '../../components/ui/ImageTextContainer';
 
@@ -17,9 +16,25 @@ export default function Donate() {
     setPrices(data);
   };
 
+  const generateLink = async (e) => {
+    e.preventDefault();
+    const { data } = await axios.post(
+      '/api/checkout',
+      {
+        priceId: prices[0].id,
+      },
+      {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+    );
+    window.location.assign(data);
+    return;
+  };
+
   return (
     <div className="w-full flex flex-col items-center">
-      <MWCauseDonate prices={prices} />
       <section className="flex flex-wrap gap-5 md:flex-row flex-col max-w-7xl pt-10">
         {causeData.map((cause, index) => (
           <ImageTextContainer
@@ -28,6 +43,7 @@ export default function Donate() {
             link={''}
             title={cause.title}
             para={cause.para}
+            onClick={generateLink}
           />
         ))}
       </section>
