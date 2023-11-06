@@ -9,7 +9,7 @@ export default function ImageTextContainer({
 }) {
   return (
     <Link
-      onClick={onClick}
+      onClick={() => onClick()}
       href={link}
       className="project-card
     flex-1 flex-basis-52 relative border border-solid border-black rounded-lg bg-white"
