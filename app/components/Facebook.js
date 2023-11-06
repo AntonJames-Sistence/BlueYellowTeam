@@ -81,7 +81,7 @@ export default function Facebook() {
             return (
               <div
                 key={index}
-                className="flex flex-col w-[90%] sm:w-[80%] md:w-[40%] lg:w-[32%]"
+                className="flex flex-col w-full sm:w-[80%] md:w-[40%] lg:w-[32%]"
               >
                 {postList.map((post) => {
                   return <FacebookPost key={post.id} post={post} />;
