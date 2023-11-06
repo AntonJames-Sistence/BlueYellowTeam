@@ -1,8 +1,6 @@
 import { whoWeHelp } from '../data/whowehelp';
-import HomeProjects from './components/HomeProjects';
-import HomeEvents from './components/HomeEvents';
+import PastUpcomingEvents from './components/PastUpcomingEvents';
 import Facebook from './components/Facebook';
-import Banner from './components/Banner';
 import Youtube from './components/youtube';
 import Link from 'next/link';
 import ImageTextContainer from './components/ImageTextContainer';
@@ -70,7 +68,7 @@ export default function Home() {
           Your donations and support provide essential supplies and services to
           the Ukrainian people.
         </div>
-        <HomeEvents />
+        <PastUpcomingEvents />
       </div>
 
       <div id="projects" className="pt-20 max-w-7xl">

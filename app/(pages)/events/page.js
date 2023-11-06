@@ -1,9 +1,9 @@
-import HomeEvents from '../../components/HomeEvents';
+import PastUpcomingEvents from '../../components/PastUpcomingEvents';
 
 export default function EventsPage() {
   return (
     <div className="min-h-[100vh] w-full">
-      <HomeEvents />
+      <PastUpcomingEvents />
     </div>
   );
 }
