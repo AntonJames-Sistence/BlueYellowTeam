@@ -24,13 +24,13 @@ export default function Donate() {
       <MWCauseDonate prices={prices} />
       <section className="flex flex-wrap gap-5 md:flex-row flex-col max-w-7xl pt-24">
         {causeData.map((cause, index) => (
-            <ImageTextContainer
-              key={index}
-              img={cause.image}
-              link={''}
-              title={cause.title}
-              para={cause.para}
-            />
+          <ImageTextContainer
+            key={index}
+            img={cause.image}
+            link={''}
+            title={cause.title}
+            para={cause.para}
+          />
         ))}
       </section>
     </div>
