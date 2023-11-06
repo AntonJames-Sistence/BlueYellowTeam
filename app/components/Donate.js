@@ -16,12 +16,12 @@ export default function Donate() {
     setPrices(data);
   };
 
-  const generateLink = async () => {
-    // e.preventDefault()
+  const generateLink = async (e) => {
+    e.preventDefault();
     const { data } = await axios.post(
       '/api/checkout',
       {
-        priceId: data[0].id,
+        priceId: prices[0].id,
       },
       {
         headers: {
@@ -29,7 +29,6 @@ export default function Donate() {
         },
       }
     );
-    console.log(data, 'data');
     window.location.assign(data);
     return;
   };
