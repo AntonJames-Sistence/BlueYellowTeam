@@ -1,5 +1,4 @@
-import HomeEvents from "../../components/HomeEvents";
-import PageHeader from "../components/PageHeader";
+import PastUpcomingEvents from "../../components/PastUpcomingEvents";
 
 export default function EventsPage() {
   return (

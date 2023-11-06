@@ -1,11 +1,9 @@
 'use client';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import ChildrenCauseDonate from './ChildrenCauseDonate';
 import MWCauseDonate from './MWCauseDonate';
-import DPCauseDonate from './DPCauseDonate';
 import { causeData } from '../../data/donate';
-import ImageTextContainer from './ImageTextContainer';
+import ImageTextContainer from '../../components/ui/ImageTextContainer';
 
 export default function Donate() {
   const [prices, setPrices] = useState([]);

@@ -1,17 +1,15 @@
 import { whoWeHelp } from '../data/whowehelp';
-import HomeProjects from './components/HomeProjects';
-import HomeEvents from './components/HomeEvents';
+import PastUpcomingEvents from './components/PastUpcomingEvents';
 import Facebook from './components/Facebook';
-import Banner from './components/Banner';
-import Youtube from './components/youtube';
 import Link from 'next/link';
-import ImageTextContainer from './components/ImageTextContainer';
+import ImageTextContainer from '../components/ui/ImageTextContainer';
 import { allProjects } from '../data/projects';
+import Youtube from './components/youtube';
 
 export default function Home() {
   return (
     <main className="flex w-full flex-col items-center justify-between">
-      {/* <Banner /> video banner */}
+      {/* HERO SECTION */}
       <div
         className="relative h-screen w-full overflow-hidden bg-no-repeat bg-cover bg-center"
         style={{ backgroundImage: "url('./causes-children.jpeg')" }}
@@ -36,8 +34,10 @@ export default function Home() {
         </div>
       </div>
 
+      {/* YOUTUBE SECTION */}
       <Youtube />
 
+      {/* DONATE SECTION */}
       <div id="who-we-help" className="pt-20 max-w-7xl">
         <div className="text-center md:text-left text-5xl font-bold text-black-500 pb-3">
           Who do we help?
@@ -62,6 +62,7 @@ export default function Home() {
         </div>
       </div>
 
+      {/*  EVENTS SECTION */}
       <div id="events" className="pt-20 w-full max-w-7xl">
         <div className="text-center md:text-left text-5xl font-bold text-black-500 pb-3">
           Events
@@ -70,9 +71,10 @@ export default function Home() {
           Your donations and support provide essential supplies and services to
           the Ukrainian people.
         </div>
-        <HomeEvents />
+        <PastUpcomingEvents />
       </div>
 
+      {/* PROJECTS SECTION */}
       <div id="projects" className="pt-20 max-w-7xl">
         <div className="text-center md:text-left text-5xl font-bold text-black-500 pb-3">
           Projects
@@ -98,7 +100,9 @@ export default function Home() {
           })}
         </div>
       </div>
+
       <hr className="pt-20" />
+
       <Facebook />
     </main>
   );

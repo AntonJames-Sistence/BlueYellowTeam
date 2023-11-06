@@ -4,7 +4,7 @@ import Event from './Event';
 import { register } from 'swiper/element/bundle';
 import swiperParams from '../../data/swiperParams';
 
-const Events = () => {
+const PastUpcomingEvents = () => {
   register();
   const pastSwiperRef = useRef(null);
   const upcommingSwiperRef = useRef(null);
@@ -96,7 +96,7 @@ const Events = () => {
   );
 };
 
-export default Events;
+export default PastUpcomingEvents;
 
 // export default async function Page() {
 //   const request = await fetch('/api/events');

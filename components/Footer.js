@@ -1,12 +1,6 @@
-// "use client"
-import FooterForm from './FooterForm';
+import FooterForm from '../app/components/FooterForm';
 import { SocialIcon } from 'react-social-icons';
-
-const socialLinks = [
-  'https://www.instagram.com/',
-  'https://www.gofundme.com/',
-  'https://www.facebook.com/',
-];
+import { socialLinks } from '../data/social';
 
 export default function Footer() {
   return (
