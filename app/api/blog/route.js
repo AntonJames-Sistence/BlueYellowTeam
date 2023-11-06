@@ -43,19 +43,6 @@ export async function GET() {
       data.push(fullPost);
     });
 
-    // for (let post of data) {
-    //   const allSubSectionsSS = await getDocs(
-    //     collection(storeDB, "posts", post.id, "subSection")
-    //   );
-
-    //   const allSubSections = []; //allSubSectionsSS.map((sub) => sub.data());
-    //   allSubSectionsSS.forEach((sub) => {
-    //     allSubSections.push(sub.data());
-    //   });
-
-    //   post["subSections"] = allSubSections;
-    // }
-
     return NextResponse.json(data);
   } catch (error) {
     return NextResponse.error("couldn't retreive all blog post");

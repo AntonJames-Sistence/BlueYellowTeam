@@ -22,26 +22,30 @@ export const subSectionHasErrors = (subSection) => {
 };
 
 export async function GET(request, { params: { postId } }) {
-  const postRef = await getDoc(doc(storeDB, "posts", postId));
+  try {
+    const postRef = await getDoc(doc(storeDB, "posts", postId));
 
-  if (postRef.exists()) {
-    const post = { ...postRef.data() };
-    const allSubSectionsSS = await getDocs(
-      collection(storeDB, "posts", post.id, "subSection")
+    if (postRef.exists()) {
+      const post = { ...postRef.data() };
+      const allSubSectionsSS = await getDocs(
+        collection(storeDB, "posts", postId, "subSection")
+      );
+
+      const allSubSections = []; //allSubSectionsSS.map((sub) => sub.data());
+      allSubSectionsSS.forEach((sub) => {
+        allSubSections.push(sub.data());
+      });
+
+      post["subSections"] = allSubSections;
+      return NextResponse.json(post);
+    }
+    return NextResponse.json(
+      { errors: "Couldn't retreieve data" },
+      { status: 404 }
     );
-
-    const allSubSections = []; //allSubSectionsSS.map((sub) => sub.data());
-    allSubSectionsSS.forEach((sub) => {
-      allSubSections.push(sub.data());
-    });
-
-    post["subSections"] = allSubSections;
-    return NextResponse.json(post);
+  } catch (error) {
+    return NextResponse.error("Couldn't get post");
   }
-  return NextResponse.json(
-    { errors: "Couldn't retreieve data" },
-    { status: 404 }
-  );
 }
 
 export async function POST(request, { params: { postId } }) {
