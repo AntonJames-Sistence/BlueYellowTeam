@@ -9,7 +9,6 @@ import { allProjects } from '../data/projects';
 export default function Home() {
   return (
     <main className="flex w-full flex-col items-center justify-between">
-      {/* <Banner /> video banner */}
       <div
         className="relative h-screen w-full overflow-hidden bg-no-repeat bg-cover bg-center"
         style={{ backgroundImage: "url('./causes-children.jpeg')" }}
@@ -96,7 +95,9 @@ export default function Home() {
           })}
         </div>
       </div>
+
       <hr className="pt-20" />
+
       <Facebook />
     </main>
   );
