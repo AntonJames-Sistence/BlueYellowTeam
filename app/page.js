@@ -98,6 +98,7 @@ export default function Home() {
           })}
         </div>
       </div>
+      <hr className="pt-20" />
       <Facebook />
     </main>
   );
