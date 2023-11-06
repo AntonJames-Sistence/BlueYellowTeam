@@ -1,7 +1,10 @@
 export default async function getPost(postId) {
-  const res = await fetch(`${process.env.BASE_URL}/api/blog/${postId}`, {
-    next: { revalidate: 60 },
-  });
+  const res = await fetch(
+    `${"https://blue-yellow-foundation.vercel.app"}/api/blog/${postId}`,
+    {
+      next: { revalidate: 60 },
+    }
+  );
 
   if (!res.ok) return undefined;
 

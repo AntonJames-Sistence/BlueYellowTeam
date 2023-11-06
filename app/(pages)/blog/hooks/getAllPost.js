@@ -1,7 +1,10 @@
 export default async function getAllPost() {
-  const res = await fetch(`${process.env.BASE_URL}/api/blog`, {
-    next: { revalidate: 60 },
-  });
+  const res = await fetch(
+    `${"https://blue-yellow-foundation.vercel.app"}/api/blog`,
+    {
+      next: { revalidate: 60 },
+    }
+  );
 
   if (!res.ok) throw new Error("failed to fetch all blogs");
   let allPost = await res.json();
