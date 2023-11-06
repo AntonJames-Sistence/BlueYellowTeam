@@ -1,14 +1,14 @@
-import { Inter } from 'next/font/google';
-import './globals.css';
-import Script from 'next/script';
-import NavBar from './components/NavBar';
-import Footer from '../components/Footer';
+import { Inter } from "next/font/google";
+import "./globals.css";
+import Script from "next/script";
+import NavBar from "./components/NavBar";
+import Footer from "../components/Footer";
 
-const inter = Inter({ subsets: ['latin'] });
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: 'Blue Yellow Foundation',
-  description: 'Blue Yellow Foundation',
+  title: "Blue & Yellow Foundation",
+  description: "Blue & Yellow Foundation",
 };
 
 export default function RootLayout({ children }) {

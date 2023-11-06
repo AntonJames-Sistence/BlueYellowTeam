@@ -46,9 +46,9 @@ const Event = ({ event }) => {
     <swiper-slide className="">
       <div
         id="card"
-        className="mx-2 bg-white shadow-[0px_6px_6px_0px_lightgrey] max-w-sm m-auto"
+        className="mx-2 bg-white shadow-[0px_6px_6px_0px_lightgrey] max-w-sm m-auto rounded-md"
       >
-        <img src={event.image} alt="" />
+        <img src={event.image} className="rounded-t-md" alt="" />
 
         <div className="text-center p-2">
           <h2 className="text-left text-xl font-bold h-20">
@@ -64,7 +64,7 @@ const Event = ({ event }) => {
           </div>
         </div>
         <a href={event.url} target="_blank">
-          <div className="bg-black hover:bg-blue-600 text-white text-right font-bold pr-4 py-2 transition-colors duration-200 text-14 leading-2 tracking-wide">
+          <div className="bg-black hover:bg-blue-600 text-white text-right font-bold pr-4 py-2 transition-colors duration-200 text-14 leading-2 tracking-wide rounded-b-md">
             LEARN MORE
           </div>
         </a>
