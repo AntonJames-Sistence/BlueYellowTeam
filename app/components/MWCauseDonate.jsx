@@ -38,7 +38,7 @@ const MWCauseDonate = ({ prices }) => {
 
     return (
       <button
-      className="flex h-10 md:h-12 lg:h-14 px-6 md:px-8 lg:px-10 
+        className="flex h-10 md:h-12 lg:h-14 px-6 md:px-8 lg:px-10 
       bg-blue-500 hover:bg-blue-600 text-white font-semibold 
       rounded-full shadow-md hover:shadow-lg 
       items-center justify-center 
@@ -57,7 +57,7 @@ const MWCauseDonate = ({ prices }) => {
   };
 
   return (
-    <div className="w-full flex justify-evenly items-center pt-10">
+    <div className="w-full flex flex-col md:flex-row justify-evenly items-center pt-10">
       {prices && constructor()}
     </div>
   );

@@ -71,7 +71,7 @@ export default function Facebook() {
   }, []);
 
   return (
-    <div className="pt-20 max-w-7xl w-full m-auto">
+    <div className="max-w-7xl w-full m-auto">
       <div className="text-center lg:text-left text-5xl font-bold text-black-500 pb-3 mb-4 w-full">
         Updates From Facebook
       </div>
