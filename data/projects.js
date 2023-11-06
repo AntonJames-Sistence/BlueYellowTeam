@@ -1,6 +1,6 @@
 export const allProjects = [
   {
-    img: '/xmas.jpg',
+    img: '/causes-children.jpeg',
     title: 'Adopt a child for Christmas',
     slug: 'adopt-a-child-for-christmas',
     para: 'We support the education, wellness, and development of children in crisis. From clothes to learning materials, we work directly with families, refugee centers, and NGOs to get kids what they need.',

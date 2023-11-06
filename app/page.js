@@ -1,11 +1,12 @@
 import { whoWeHelp } from '../data/whowehelp';
-import WhoWeHelp from './components/WhoWeHelp';
 import HomeProjects from './components/HomeProjects';
 import HomeEvents from './components/HomeEvents';
 import Facebook from './components/Facebook';
 import Banner from './components/Banner';
 import Youtube from './components/youtube';
 import Link from 'next/link';
+import ImageTextContainer from './components/ImageTextContainer';
+import { allProjects } from '../data/projects';
 
 export default function Home() {
   return (
@@ -38,10 +39,7 @@ export default function Home() {
       <Youtube />
 
       <div id="who-we-help" className="pt-20 max-w-7xl">
-        <div
-          id="who-help-title"
-          className="text-center md:text-left text-5xl font-bold text-black-500 pb-3"
-        >
+        <div className="text-center md:text-left text-5xl font-bold text-black-500 pb-3">
           Who do we help?
         </div>
         <div className="text-center md:text-left w-full md:w-1/2 text-xl">
@@ -53,12 +51,12 @@ export default function Home() {
           className="flex flex-wrap p-2.5 gap-5 md:flex-row flex-col"
         >
           {whoWeHelp.map((item, index) => (
-            <WhoWeHelp
+            <ImageTextContainer
               key={index}
-              id={item.id}
               img={item.img}
               title={item.title}
               para={item.para}
+              link={'/donate'}
             />
           ))}
         </div>
@@ -75,18 +73,29 @@ export default function Home() {
         <HomeEvents />
       </div>
 
-      <div id="projects" className="pt-20">
-        <div
-          id="featured-project-title"
-          className="text-left text-5xl font-bold text-black-500 pb-7"
-        >
+      <div id="projects" className="pt-20 max-w-7xl">
+        <div className="text-center md:text-left text-5xl font-bold text-black-500 pb-3">
           Projects
         </div>
+        <div className="text-center md:text-left w-full md:w-1/2 text-xl">
+          Your donations and support provide essential supplies and services to
+          the Ukranian people.
+        </div>
         <div
-          id="projects-cont"
-          className="flex flex-wrap gap-5 md:flex-row flex-col max-w-7xl"
+          id="who-help-cont"
+          className="flex flex-wrap p-2.5 gap-5 md:flex-row flex-col"
         >
-          <HomeProjects />
+          {allProjects.map((item, index) => {
+            return (
+              <ImageTextContainer
+                key={index}
+                link={`/projects/${item.slug}`}
+                img={item.img}
+                title={item.title}
+                para={item.para}
+              />
+            );
+          })}
         </div>
       </div>
       <Facebook />

@@ -1,11 +1,11 @@
 import Link from 'next/link';
 
-export default function WhoWeHelp({ id, img, title, para }) {
+export default function ImageTextContainer({ img, title, para, link }) {
   return (
     <Link
-      href="/donate"
+      href={link}
       className="project-card
-    flex-1 flex-basis-52 relative border border-solid border-black rounded-lg"
+    flex-1 flex-basis-52 relative border border-solid border-black rounded-lg bg-white"
     >
       <img
         className="border-b border-solid border-black rounded-t-md"
