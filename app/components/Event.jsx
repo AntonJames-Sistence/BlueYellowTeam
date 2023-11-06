@@ -53,7 +53,7 @@ const Event = ({ event }) => {
         <div className="text-center p-2">
           <h2 className="text-left text-xl font-bold h-20">
             {event.name.slice(0, 50)}
-            {event.name.length > 50 && "..."}
+            {event.name.length > 50 && '...'}
           </h2>
           <div className="text-md mt-2 text-left h-32 flex flex-col justify-between text-gray-500">
             <div className="">{formatDate(event.date)}</div>

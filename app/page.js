@@ -3,14 +3,40 @@ import WhoWeHelp from './components/WhoWeHelp';
 import HomeProjects from './components/HomeProjects';
 import HomeEvents from './components/HomeEvents';
 import Facebook from './components/Facebook';
-import Banner from "./components/Banner";
-import Youtube from "./components/youtube";
+import Banner from './components/Banner';
+import Youtube from './components/youtube';
+import Link from 'next/link';
 
 export default function Home() {
   return (
-    <main className="flex w-full flex-col items-center justify-between pt-24 p-5">
-      
-      <Banner />
+    <main className="flex w-full flex-col items-center justify-between pt-24">
+      {/* <Banner /> video banner */}
+      <div
+        className="relative h-screen w-full overflow-hidden bg-no-repeat bg-cover bg-center"
+        style={{ backgroundImage: "url('./causes-children.jpeg')" }}
+      >
+        <div className="absolute inset-0 bg-black bg-opacity-60 flex md:flex-row items-center justify-between">
+          <div
+            style={{ paddingLeft: '150px' }}
+            className="z-10 md:w-[60%] space-y-6"
+          >
+            <h1 className="text-4xl md:text-5xl lg:text-7xl text-white font-bold leading-tight">
+              Stand with Love, Stand with Ukraine
+            </h1>
+            <p className="text-xl text-white font-semibold">
+              100% of the profits go to support Ukrainians in need.
+            </p>
+            <div className="w-[90%] flex justify-center items-center">
+              <Link
+                href="/donate"
+                className="w-full text-center inline-block bg-yellow-500 text-white font-bold py-3 px-8 rounded-md shadow-lg hover:bg-yellow-600 transition-colors duration-300 text-lg "
+              >
+                Donate Now
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
       <Youtube />
 
       <div id="who-we-help" className="pt-36 max-w-7xl">

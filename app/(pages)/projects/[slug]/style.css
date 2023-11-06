@@ -6,11 +6,11 @@
 }
 
 #project-page #back-button {
-  padding: .5rem 1.25rem;
+  padding: 0.5rem 1.25rem;
   background-color: hsl(215, 14%, 34%);
   color: white;
   border-radius: 1.5rem;
-  font-size: .875rem;
+  font-size: 0.875rem;
 }
 
 #project-cont {

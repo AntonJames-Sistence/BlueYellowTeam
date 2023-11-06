@@ -7,7 +7,11 @@ export default function WhoWeHelp({ id, img, title, para }) {
       className="project-card
     flex-1 flex-basis-52 relative border border-solid border-black rounded-lg"
     >
-      <img className="border-b border-solid border-black rounded-t-md" src={img} alt="" />
+      <img
+        className="border-b border-solid border-black rounded-t-md"
+        src={img}
+        alt=""
+      />
       <div className="p-10 pt-5">
         <div className="text-3xl mt-0 mb-2 text-gray-700">{title}</div>
         <div className="text-14 leading-2 tracking-wide text-gray-700">

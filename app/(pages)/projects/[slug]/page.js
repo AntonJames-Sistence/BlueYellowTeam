@@ -1,6 +1,6 @@
 import { allProjects } from '../../../../data/projects';
 import PageHeader from '../../components/PageHeader';
-import "./style.css"
+import './style.css';
 
 export default function ProjectIndexPage({ params: { slug } }) {
   const project = allProjects.find((project) => project.slug === slug);
@@ -8,7 +8,7 @@ export default function ProjectIndexPage({ params: { slug } }) {
     <div id="project-page">
       <div>
         <a href="/projects">
-        <button id="back-button">« ALL PROJECTS</button>
+          <button id="back-button">« ALL PROJECTS</button>
         </a>
         <div id="project-cont">
           <div id="title">{project.title}</div>
