@@ -14,6 +14,7 @@ const firebaseConfig = {
   storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
   messagingSenderId: process.env.FIREBASE_MESSENGER_SEND,
   appId: process.env.FIREBASE_APP_ID,
+  measurementId: "G-LJFXZNLY9C",
 };
 
 export const FIREBASE_APP =
