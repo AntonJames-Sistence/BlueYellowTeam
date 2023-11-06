@@ -23,3 +23,9 @@ const Youtube = () => {
 };
 
 export default Youtube;
+
+
+// We are in the middle of the worst European humanitarian crisis since
+// World War II. The Blue & Yellow Foundation supports those affected by
+// the war in Ukraine with humanitarian aid. We are volunteer-driven,
+// 501c3 certified, and 100% of every donation is tax deductible.
