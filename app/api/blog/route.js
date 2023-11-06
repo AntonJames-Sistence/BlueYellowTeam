@@ -11,6 +11,7 @@ import {
 } from "firebase/firestore";
 import { storeDB } from "../../../data/firebase";
 import { getServerSession } from "next-auth";
+import { subSectionHasErrors } from "./[postId]/route";
 
 const isAdmin = async () => {
   const session = await getServerSession();
@@ -23,8 +24,10 @@ const postHasErrors = (post) => {
   const errors = {};
 
   if (!post.title) errors.title = "Blog post missing title";
-  if (!post.text) errors.text = "Blog post missing text";
-  if (!post.img && !post.video) errors.media = "Blog need an image or a video";
+  if (!post.description) errors.description = "Blog post missing description";
+  if (!post.image) errors.media = "Blog needs an image";
+  if (!post.subSection || !post.subSection.length)
+    errors.subSection = "Blog needs at least one subSection";
 
   if (Object.values(errors).length) return errors;
   return false;
@@ -36,8 +39,22 @@ export async function GET() {
     const data = [];
 
     allPostSS.forEach((doc) => {
-      data.push(doc.data());
+      const fullPost = { ...doc.data() };
+      data.push(fullPost);
     });
+
+    // for (let post of data) {
+    //   const allSubSectionsSS = await getDocs(
+    //     collection(storeDB, "posts", post.id, "subSection")
+    //   );
+
+    //   const allSubSections = []; //allSubSectionsSS.map((sub) => sub.data());
+    //   allSubSectionsSS.forEach((sub) => {
+    //     allSubSections.push(sub.data());
+    //   });
+
+    //   post["subSections"] = allSubSections;
+    // }
 
     return NextResponse.json(data);
   } catch (error) {
@@ -47,25 +64,64 @@ export async function GET() {
 
 export async function POST(request, res) {
   try {
-    await isAdmin();
+    // await isAdmin();
     const post = await request.json();
 
     const errors = postHasErrors(post);
     if (errors) {
-      return NextResponse.json({ errors });
+      return NextResponse.json({ errors }, { status: 404 });
     }
 
     const newPostRef = doc(collection(storeDB, "posts"));
 
     await setDoc(newPostRef, {
-      ...post,
+      title: post.title,
+      description: post.description,
+      image: post.image,
       createdAt: new Date(),
       id: newPostRef.id,
     });
 
     const newPost = await getDoc(newPostRef);
 
-    return NextResponse.json(newPost.data());
+    if (!newPost.exists()) {
+      return NextResponse.json(
+        { errors: "couldn't created new post" },
+        { status: 404 }
+      );
+    }
+
+    for (let subSection of post.subSection) {
+      const errors = subSectionHasErrors(subSection);
+      if (errors) {
+        await deleteDoc(doc(storeDB, "posts", newPostRef.id));
+        return NextResponse.json(errors, { status: 404 });
+      }
+    }
+
+    for (let subSection of post.subSection) {
+      const subSectionRef = doc(
+        collection(storeDB, "posts", newPostRef.id, "subSection")
+      );
+
+      await setDoc(subSectionRef, {
+        ...subSection,
+        id: subSectionRef.id,
+      });
+    }
+
+    const allSubSectionsSS = await getDocs(
+      collection(storeDB, "posts", newPostRef.id, "subSection")
+    );
+
+    const allSubSections = []; //allSubSectionsSS.map((sub) => sub.data());
+    allSubSectionsSS.forEach((sub) => {
+      allSubSections.push(sub.data());
+    });
+
+    const finishedPost = { ...newPost.data(), subSection: allSubSections };
+
+    return NextResponse.json(finishedPost);
   } catch (error) {
     return NextResponse.error(error.message);
   }
@@ -73,14 +129,14 @@ export async function POST(request, res) {
 
 export async function PUT(request) {
   try {
-    await isAdmin();
+    // await isAdmin();
     const post = await request.json();
 
     const errors = postHasErrors(post);
     if (errors) {
-      return NextResponse.json({ errors });
+      return NextResponse.json({ errors }, { status: 404 });
     }
-    console.log("postid", post.id);
+
     const postRef = doc(storeDB, "posts", post.id);
 
     await updateDoc(postRef, {
@@ -97,7 +153,7 @@ export async function PUT(request) {
 
 export async function DELETE(request) {
   try {
-    await isAdmin();
+    // await isAdmin();
     const { id } = await request.json();
     await deleteDoc(doc(storeDB, "posts", id));
     return NextResponse.json("successfully deleted");
