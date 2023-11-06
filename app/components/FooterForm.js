@@ -15,11 +15,11 @@ export default function FooterForm() {
           type="email"
           ref={emailRef}
           placeholder="Email Address"
-          className="w-[85%] md:w-[80%] rounded-full h-full  pl-3 py-3 bg-[#3B4758]"
+          className="w-[85%] md:w-[80%] text-black rounded-full h-full  pl-3 py-3 bg-white"
           required
         />
         <button
-          className="w-[30%] md:w-[15%] p-3 bg-[#3B4758] h-full rounded-full"
+          className="w-[30%] md:w-[15%] p-3 bg-white text-black h-full rounded-full"
           type="submit"
         >
           Send

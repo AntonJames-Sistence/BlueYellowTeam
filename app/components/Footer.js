@@ -10,7 +10,7 @@ const socialLinks = [
 
 export default function Footer() {
   return (
-    <footer className="w-full bg-sky-500 text-white min-h-[300px] flex flex-col items-center justify-between pt-5 pb-10">
+    <footer className="w-full bg-darkTeal text-white min-h-[300px] flex flex-col items-center justify-between pt-5 pb-10">
       <div className="pt-5 flex flex-col items-center justify-evenly">
         <h1 className="text-3xl text-white font-bold p-5">
           FOLLOW US ON SOCIAL MEDIA

@@ -9,17 +9,14 @@ import Link from 'next/link';
 
 export default function Home() {
   return (
-    <main className="flex w-full flex-col items-center justify-between pt-24">
+    <main className="flex w-full flex-col items-center justify-between">
       {/* <Banner /> video banner */}
       <div
         className="relative h-screen w-full overflow-hidden bg-no-repeat bg-cover bg-center"
         style={{ backgroundImage: "url('./causes-children.jpeg')" }}
       >
         <div className="absolute inset-0 bg-black bg-opacity-60 flex md:flex-row items-center justify-between">
-          <div
-            style={{ paddingLeft: '150px' }}
-            className="z-10 md:w-[60%] space-y-6"
-          >
+          <div className="z-10 md:w-[60%] space-y-6 pl-5 md:pl-10">
             <h1 className="text-4xl md:text-5xl lg:text-7xl text-white font-bold leading-tight">
               Stand with Love, Stand with Ukraine
             </h1>
@@ -29,7 +26,7 @@ export default function Home() {
             <div className="w-[90%] flex justify-center items-center">
               <Link
                 href="/donate"
-                className="w-full text-center inline-block bg-yellow-500 text-white font-bold py-3 px-8 rounded-md shadow-lg hover:bg-yellow-600 transition-colors duration-300 text-lg "
+                className="w-full text-center inline-block bg-amber-400 text-white text-3xl font-bold py-3 px-8 rounded-md shadow-lg hover:bg-yellow-500 transition-colors duration-300"
               >
                 Donate Now
               </Link>
@@ -37,9 +34,10 @@ export default function Home() {
           </div>
         </div>
       </div>
+
       <Youtube />
 
-      <div id="who-we-help" className="pt-36 max-w-7xl">
+      <div id="who-we-help" className="pt-20 max-w-7xl">
         <div
           id="who-help-title"
           className="text-center md:text-left text-5xl font-bold text-black-500 pb-3"
@@ -66,7 +64,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div id="events" className="pt-36 w-full max-w-7xl">
+      <div id="events" className="pt-20 w-full max-w-7xl">
         <div className="text-center md:text-left text-5xl font-bold text-black-500 pb-3">
           Events
         </div>
@@ -77,7 +75,7 @@ export default function Home() {
         <HomeEvents />
       </div>
 
-      <div id="projects" className="mt-36">
+      <div id="projects" className="pt-20">
         <div
           id="featured-project-title"
           className="text-left text-5xl font-bold text-black-500 pb-7"
@@ -91,10 +89,7 @@ export default function Home() {
           <HomeProjects />
         </div>
       </div>
-
-      <div className="w-full pt-36 flex items-center">
-        <Facebook />
-      </div>
+      <Facebook />
     </main>
   );
 }

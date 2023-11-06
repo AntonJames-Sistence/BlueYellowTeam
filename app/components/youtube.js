@@ -3,16 +3,17 @@ import YoutubeEmbed from '../helpers/youtube';
 
 const Youtube = () => {
   return (
-    <div id="About" className="w-screen bg-sky-500 p-2 md:p-5 md:py-10 lg:p-10">
-      <div className="flex flex-col justify-evenly md:justify-between items-center lg:flex-row md:flex-row h-[50vh]">
-        <div className="w-full lg:w-1/2 md:w-1/3 text-white text-sm md:text-base lg:text-2xl font-bold p-4 md:p-0">
-          We are in the middle of the worst European humanitarian crisis since
-          World War II. The Blue & Yellow Foundation supports those affected by
-          the war in Ukraine with humanitarian aid. We are volunteer-driven,
-          501c3 certified, and 100% of every donation is tax deductible.
-        </div>
+    <div
+      id="About"
+      className="w-screen h-[80vh] p-2 md:p-5 md:py-10 lg:p-10 flex items-center justify-center pt-20"
+    >
+      <div className="flex flex-col justify-evenly md:justify-between items-center">
+        <h1 className="w-full text-black text-3xl text-center font-bold p-4 md:p-0">
+          Volunteer-driven, 501c3 certified, and 100% of every donation is tax
+          deductible
+        </h1>
         <YoutubeEmbed
-          idk="w-screen md:w-full p-4 h-[220px] md:w-[500px] md:h-[300px] lg:w-[800px] lg:h-[400px] lg:rounded-3xl"
+          idk="w-screen md:w-full p-4 h-[220px] md:w-[500px] md:h-[300px] lg:w-[800px] lg:h-[400px] lg:rounded-3xl pt-10"
           wrapper=""
           embedId="qpWkGYq-cmE"
         />
@@ -22,3 +23,9 @@ const Youtube = () => {
 };
 
 export default Youtube;
+
+
+// We are in the middle of the worst European humanitarian crisis since
+// World War II. The Blue & Yellow Foundation supports those affected by
+// the war in Ukraine with humanitarian aid. We are volunteer-driven,
+// 501c3 certified, and 100% of every donation is tax deductible.
