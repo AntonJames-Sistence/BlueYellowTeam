@@ -40,3 +40,10 @@
   font-size: 18px;
   color: #4a5568;
 }
+
+@media (max-width: 600px) {
+  #project-cont #title {
+    font-size: 2rem;
+    color: #4a5568;
+  }
+}
