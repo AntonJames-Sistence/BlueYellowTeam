@@ -1,8 +1,15 @@
 import Link from 'next/link';
 
-export default function ImageTextContainer({ img, title, para, link }) {
+export default function ImageTextContainer({
+  img,
+  title,
+  para,
+  link,
+  onClick,
+}) {
   return (
     <Link
+      onClick={onClick}
       href={link}
       className="project-card
     flex-1 flex-basis-52 relative border border-solid border-black rounded-lg bg-white"
