@@ -12,9 +12,13 @@ export default function PostLayout({ post }) {
       />
       <div className="p-5 bg-[#fff] rounded-b-lg">
         <div className="mt-2 text-sm">{`${month} ${date.getDate()}, ${date.getFullYear()}`}</div>
-        <div className="text-3xl mt-0 mb-2 text-gray-700">{post.title}</div>
-        <div className="mb-2 leading-2 tracking-wide text-gray-700">
-          {post.description}
+        <div className="text-3xl mt-0 mb-2 text-gray-700 h-20">
+          {post.title.slice(0, 40)}
+          {post.title.length > 40 ? "..." : ""}
+        </div>
+        <div className="mb-2 leading-2 tracking-wide text-gray-700 h-32">
+          {post.description.slice(0, 200)}
+          {post.description.length > 200 ? "..." : " "}
         </div>
         <Button
           text="continue reading"
