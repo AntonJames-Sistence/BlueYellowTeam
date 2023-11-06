@@ -16,10 +16,7 @@ export default function Home() {
         style={{ backgroundImage: "url('./causes-children.jpeg')" }}
       >
         <div className="absolute inset-0 bg-black bg-opacity-60 flex md:flex-row items-center justify-between">
-          <div
-            style={{ paddingLeft: '150px' }}
-            className="z-10 md:w-[60%] space-y-6"
-          >
+          <div className="z-10 md:w-[60%] space-y-6 pl-5 md:pl-10">
             <h1 className="text-4xl md:text-5xl lg:text-7xl text-white font-bold leading-tight">
               Stand with Love, Stand with Ukraine
             </h1>
