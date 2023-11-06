@@ -1,6 +1,6 @@
 export default async function getAllPost() {
   const res = await fetch(`${process.env.BASE_URL}/api/blog`, {
-    next: { revalidate: 15 },
+    next: { revalidate: 60 },
   });
 
   if (!res.ok) throw new Error("failed to fetch all blogs");
