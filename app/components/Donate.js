@@ -22,7 +22,7 @@ export default function Donate() {
   return (
     <div className="w-full flex flex-col items-center">
       <MWCauseDonate prices={prices} />
-      <section className="flex flex-wrap gap-5 md:flex-row flex-col max-w-7xl pt-24">
+      <section className="flex flex-wrap gap-5 md:flex-row flex-col max-w-7xl pt-10">
         {causeData.map((cause, index) => (
           <ImageTextContainer
             key={index}
