@@ -1,6 +1,6 @@
 import React from 'react';
-import YoutubeEmbed from '../helpers/youtube';
-import WarClock from './WarClock';
+import YoutubeEmbed from '../helpers/YoutubeEmded';
+import WarClock from '../components/WarClock';
 
 const Youtube = () => {
   return (
@@ -9,7 +9,6 @@ const Youtube = () => {
       className="w-screen h-screen p-10 flex flex-col items-center justify-center pt-20"
     >
       <WarClock />
-
       <hr className="pt-10" />
       <div className="w-full h-full flex items-center justify-center">
         <YoutubeEmbed embedId="qpWkGYq-cmE" />
