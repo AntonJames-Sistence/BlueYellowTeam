@@ -9,8 +9,8 @@ import SessionProvider from "./components/SessionProvider";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Blue Yellow Foundation",
-  description: "Blue Yellow Foundation",
+  title: "Blue & Yellow Foundation",
+  description: "Blue & Yellow Foundation",
 };
 
 export default async function RootLayout({ children }) {
