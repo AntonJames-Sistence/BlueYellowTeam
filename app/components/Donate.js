@@ -20,7 +20,7 @@ export default function Donate() {
     const { data } = await axios.post(
       '/api/checkout',
       {
-        priceId: priceObject.id,
+        priceId: data[0].id
       },
       {
         headers: {
