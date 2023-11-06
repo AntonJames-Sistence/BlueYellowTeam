@@ -1,6 +1,6 @@
-"use client";
-import React, { useState, useEffect, useRef } from "react";
-import FacebookPost from "./FacebookPost";
+'use client';
+import React, { useState, useEffect, useRef } from 'react';
+import FacebookPost from './FacebookPost';
 
 export default function Facebook() {
   let [facebookData, setFacebookData] = useState(null);
@@ -15,7 +15,7 @@ export default function Facebook() {
 
   useEffect(() => {
     const loadFaceBookData = async () => {
-      const res = await fetch("/api/facebook");
+      const res = await fetch('/api/facebook');
 
       if (res.ok) {
         const data = await res.json();
@@ -65,13 +65,13 @@ export default function Facebook() {
         setFacebookColumns(tempFacebookColumns);
       }
     };
-    window.addEventListener("resize", handleResize);
+    window.addEventListener('resize', handleResize);
 
-    return () => window.removeEventListener("resize", handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   return (
-    <div className="pt-36 max-w-7xl w-full m-auto">
+    <div className="max-w-7xl w-full m-auto">
       <div className="text-center lg:text-left text-5xl font-bold text-black-500 pb-3 mb-4 w-full">
         Updates From Facebook
       </div>

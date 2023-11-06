@@ -38,19 +38,13 @@ const MWCauseDonate = ({ prices }) => {
 
     return (
       <button
-        className="flex h-8 p-4 
-                        bg-gradient-to-b 
-                        from-blue-400 to-yellow-400  
-                        text-black text-l
-                        hover:text-white 
-                        hover:scale-125
-                        font-bold
-                        rounded-lg
-                        items-center
-                        justify-center
-                        ease-in-out duration-300
-                        place-self-center
-                        m-2"
+        className="flex h-10 md:h-12 lg:h-14 px-6 md:px-8 lg:px-10 
+      bg-blue-500 hover:bg-blue-600 text-white font-semibold 
+      rounded-full shadow-md hover:shadow-lg 
+      items-center justify-center 
+      transition-all duration-300 
+      ease-in-out transform hover:-translate-y-1
+      m-2"
         key={priceObject.id}
         onClick={handleCheckout}
       >
@@ -63,7 +57,7 @@ const MWCauseDonate = ({ prices }) => {
   };
 
   return (
-    <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 mt-4">
+    <div className="w-full flex flex-col md:flex-row justify-evenly items-center pt-10">
       {prices && constructor()}
     </div>
   );

@@ -1,80 +1,101 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import WarClock from './WarClock.jsx';
 import { navLinks } from '../../data/navbar';
 
 export default function NavBar() {
-  let isDesktop = true;
-  if (typeof window !== 'undefined') {
-    if (window.innerWidth < 900) {
-      isDesktop = false;
-    }
-  }
-
+  const [isMobile, setIsMobile] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
+  useEffect(() => {
+    function handleResize() {
+      setIsMobile(window.innerWidth < 900);
+    }
+
+    window.addEventListener('resize', handleResize);
+    handleResize();
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   return (
-    <>
-      {isDesktop ? (
-        <nav
-          id="Nav"
-          className="fixed flex w-full
-                justify-between
-                items-center
-                p-4
-                text-lg
-                mt-8
-                left-1/2
-                transform -translate-x-1/2 -translate-y-1/2 z-30 bg-inherit rounded-bl-2xl rounded-br-2xl"
-        >
-          <Link href="/">
+    <nav className="fixed top-0 left-0 w-full z-10 bg-white shadow-md">
+      <div className="max-w-6xl mx-auto px-4">
+        <div className="flex justify-between items-center h-16">
+          <Link href="/" className="flex items-center">
             <img
-              className="w-28 h-auto  hover:cursor-pointer hover:opacity-80"
+              className="h-8 w-auto sm:h-10"
               src="/blue-yellow-logo.png"
               alt="BlueYellowFoundation logo"
             />
           </Link>
-          <WarClock />
-
-          <div className="flex w-1/2 justify-evenly">
-            {navLinks.map((navlink, index) => {
-              return (
-                <Link key={index} href={navlink.href}>
-                  {navlink.title}
-                </Link>
-              );
-            })}
+          <div className="hidden md:flex space-x-8">
+            {navLinks.map((navlink, index) => (
+              <Link
+                key={index}
+                href={navlink.href}
+                className="text-gray-800 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200"
+              >
+                {navlink.title}
+              </Link>
+            ))}
           </div>
-        </nav>
-      ) : (
-        <>
-          <nav className="flex items-center justify-evenly">
-            <button onClick={() => setIsOpen(!isOpen)}>
-              {isOpen ? 'close' : 'open'}
-            </button>
-
-            <Link href="/">
-              <img
-                className="w-28 h-auto  hover:cursor-pointer hover:opacity-80"
-                src="/blue-yellow-logo.png"
-                alt="BlueYellowFoundation logo"
-              />
-            </Link>
-          </nav>
-          {isOpen ? (
-            <div className="flex flex-col items-center justify-evenly">
-              {navLinks.map((navlink, index) => {
-                return (
-                  <Link key={index} href={navlink.href}>
-                    {navlink.title}
-                  </Link>
-                );
-              })}
-            </div>
-          ) : null}{' '}
-        </>
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="md:hidden text-gray-800 hover:text-blue-600 focus:outline-none focus:text-blue-600"
+          >
+            <span className="sr-only">Open main menu</span>
+            {isOpen ? (
+              <svg
+                className="h-6 w-6"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                aria-hidden="true"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            ) : (
+              <svg
+                className="h-6 w-6"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                aria-hidden="true"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              </svg>
+            )}
+          </button>
+        </div>
+      </div>
+      {isOpen && (
+        <div className="md:hidden">
+          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+            {navLinks.map((navlink, index) => (
+              <Link
+                key={index}
+                href={navlink.href}
+                onClick={() => setIsOpen(false)}
+                className="text-gray-800 hover:text-blue-600 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200"
+              >
+                {navlink.title}
+              </Link>
+            ))}
+          </div>
+        </div>
       )}
-    </>
+    </nav>
   );
 }
