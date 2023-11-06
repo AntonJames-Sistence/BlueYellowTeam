@@ -46,7 +46,8 @@ const Event = ({ event }) => {
     <swiper-slide className="">
       <div
         id="card"
-        className="mx-2 bg-white shadow-[0px_6px_6px_0px_lightgrey] max-w-sm m-auto rounded-md"
+        style={{ border: '1px solid black' }}
+        className="mx-2 bg-white max-w-sm m-auto rounded-lg"
       >
         <img src={event.image} className="rounded-t-md" alt="" />
 
