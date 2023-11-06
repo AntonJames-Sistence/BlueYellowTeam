@@ -5,7 +5,7 @@ const Youtube = () => {
   return (
     <div
       id="About"
-      className="w-screen h-[80vh] p-2 md:p-5 md:py-10 lg:p-10 flex items-center justify-center pt-10"
+      className="w-screen h-[80vh] p-2 md:p-5 md:py-10 lg:p-10 flex items-center justify-center pt-20"
     >
       <div className="flex flex-col justify-evenly md:justify-between items-center">
         <h1 className="w-full text-black text-3xl text-center font-bold p-4 md:p-0">
