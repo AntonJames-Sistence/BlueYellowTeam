@@ -16,7 +16,8 @@ export default function Donate() {
     setPrices(data);
   };
 
-  const generateLink = async () => {
+  const generateLink = async (e) => {
+    e.preventDefault()
     const { data } = await axios.post(
       '/api/checkout',
       {
