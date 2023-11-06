@@ -9,7 +9,7 @@ import Link from 'next/link';
 
 export default function Home() {
   return (
-    <main className="flex w-full flex-col items-center justify-between pt-24">
+    <main className="flex w-full flex-col items-center justify-between">
       {/* <Banner /> video banner */}
       <div
         className="relative h-screen w-full overflow-hidden bg-no-repeat bg-cover bg-center"
@@ -29,7 +29,7 @@ export default function Home() {
             <div className="w-[90%] flex justify-center items-center">
               <Link
                 href="/donate"
-                className="w-full text-center inline-block bg-yellow-500 text-white font-bold py-3 px-8 rounded-md shadow-lg hover:bg-yellow-600 transition-colors duration-300 text-lg "
+                className="w-full text-center inline-block bg-amber-400 text-white text-3xl font-bold py-3 px-8 rounded-md shadow-lg hover:bg-yellow-500 transition-colors duration-300"
               >
                 Donate Now
               </Link>
