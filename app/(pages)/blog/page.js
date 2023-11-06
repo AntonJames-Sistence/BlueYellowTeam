@@ -11,7 +11,7 @@ export default async function Blog() {
   return (
     <div className="flex flex-col items-center justify-start p-5">
       <PageHeader title={"Welcome To Blue & Yellow foundations blog!"} />
-      <div className="pt-24 min-h-[100vh] w-full grid grid-cols-3 grid-rows-2 px-10 gap-5">
+      <div className="pt-24 min-h-[100vh] w-full grid grid-cols-3 px-10 gap-5 auto-rows-auto">
         {allBlogs.map((post) => (
           <PostLayout key={post.id} post={post} />
         ))}

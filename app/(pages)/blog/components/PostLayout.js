@@ -5,16 +5,23 @@ export default function PostLayout({ post }) {
 
   const month = months[date.getMonth()];
   return (
-    <div>
-      <img src={post.image} />
-      <div className="mt-2 text-sm">{`${month} ${date.getDate()}, ${date.getFullYear()}`}</div>
-      <div className="text-2xl font-bold my-2">{post.title}</div>
-      <div className="mb-2 ">{post.description}</div>
-      <Button
-        text="continue reading"
-        url={`/blog/${post.id}`}
-        css="hover:text-blue-500 font-semibold"
+    <div className=" flex-1 flex-basis-52 relative border border-solid border-black rounded-lg h-fit">
+      <img
+        className="object-cover object-top max-h-64 w-full"
+        src={post.image}
       />
+      <div className="p-5 bg-[#fff] rounded-b-lg">
+        <div className="mt-2 text-sm">{`${month} ${date.getDate()}, ${date.getFullYear()}`}</div>
+        <div className="text-3xl mt-0 mb-2 text-gray-700">{post.title}</div>
+        <div className="mb-2 leading-2 tracking-wide text-gray-700">
+          {post.description}
+        </div>
+        <Button
+          text="continue reading"
+          url={`/blog/${post.id}`}
+          css="hover:text-blue-600 font-semibold transition-colors duration-200"
+        />
+      </div>
     </div>
   );
 }

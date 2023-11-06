@@ -84,12 +84,12 @@ export async function POST(request, res) {
 
     const newPost = await getDoc(newPostRef);
 
-    if (!newPost.exists()) {
-      return NextResponse.json(
-        { errors: "couldn't created new post" },
-        { status: 404 }
-      );
-    }
+    // if (!newPost.exists()) {
+    //   return NextResponse.json(
+    //     { errors: "couldn't created new post" },
+    //     { status: 404 }
+    //   );
+    // }
 
     for (let subSection of post.subSection) {
       const errors = subSectionHasErrors(subSection);
@@ -107,6 +107,7 @@ export async function POST(request, res) {
       await setDoc(subSectionRef, {
         ...subSection,
         id: subSectionRef.id,
+        createdAt: new Date(),
       });
     }
 
@@ -119,7 +120,7 @@ export async function POST(request, res) {
       allSubSections.push(sub.data());
     });
 
-    const finishedPost = { ...newPost.data(), subSection: allSubSections };
+    const finishedPost = { ...newPost.data(), subSections: allSubSections };
 
     return NextResponse.json(finishedPost);
   } catch (error) {
