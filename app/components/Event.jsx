@@ -62,7 +62,7 @@ const Event = ({ event }) => {
           </div>
         </div>
         <a href={event.url} target="_blank">
-          <div className="bg-sky-500 text-white text-right font-bold pr-4 py-2">
+          <div className="bg-black text-white text-right font-bold pr-4 py-2">
             LEARN MORE
           </div>
         </a>

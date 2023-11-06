@@ -34,9 +34,10 @@ export default function Home() {
           </div>
         </div>
       </div>
+
       <Youtube />
 
-      <div id="who-we-help" className="pt-36 max-w-7xl">
+      <div id="who-we-help" className="pt-20 max-w-7xl">
         <div
           id="who-help-title"
           className="text-center md:text-left text-5xl font-bold text-black-500 pb-3"
@@ -63,7 +64,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div id="events" className="pt-36 w-full max-w-7xl">
+      <div id="events" className="pt-20 w-full max-w-7xl">
         <div className="text-center md:text-left text-5xl font-bold text-black-500 pb-3">
           Events
         </div>
@@ -74,7 +75,7 @@ export default function Home() {
         <HomeEvents />
       </div>
 
-      <div id="projects" className="mt-36">
+      <div id="projects" className="pt-20">
         <div
           id="featured-project-title"
           className="text-left text-5xl font-bold text-black-500 pb-7"
@@ -88,10 +89,7 @@ export default function Home() {
           <HomeProjects />
         </div>
       </div>
-
-      <div className="w-full pt-36 flex items-center">
-        <Facebook />
-      </div>
+      <Facebook />
     </main>
   );
 }
