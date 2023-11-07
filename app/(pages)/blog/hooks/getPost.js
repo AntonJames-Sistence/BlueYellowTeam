@@ -1,22 +1,28 @@
+import { collection, doc, getDoc, getDocs } from "firebase/firestore";
+import { storeDB } from "../../../../data/firebase";
+
 export default async function getPost(postId) {
-  const res = await fetch(
-    `https://blue-yellow-foundation.vercel.app/api/blog/${postId}`,
-    {
-      next: { revalidate: 60 },
-    }
-  );
+  const postRef = await getDoc(doc(storeDB, "posts", postId));
 
-  if (!res.ok) return undefined;
+  if (postRef.exists()) {
+    const post = { ...postRef.data() };
+    const allSubSectionsSS = await getDocs(
+      collection(storeDB, "posts", postId, "subSection")
+    );
 
-  const data = await res.json();
+    const allSubSections = [];
+    allSubSectionsSS.forEach((sub) => {
+      allSubSections.push(sub.data());
+    });
 
-  if (!data.subSections) return undefined;
+    post["subSections"] = allSubSections.sort((a, b) => {
+      if (a.createdAt.seconds !== b.createdAt.seconds) {
+        return a.createdAt.seconds - b.createdAt.seconds;
+      }
+      return a.createdAt.nanoseconds - b.createdAt.nanoseconds;
+    });
 
-  data.subSections = data.subSections.sort((a, b) => {
-    if (a.createdAt.seconds !== b.createdAt.seconds) {
-      return a.createdAt.seconds - b.createdAt.seconds;
-    }
-    return a.createdAt.nanoseconds - b.createdAt.nanoseconds;
-  });
-  return data;
+    return post;
+  }
+  return undefined;
 }
