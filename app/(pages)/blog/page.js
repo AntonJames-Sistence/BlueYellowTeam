@@ -3,9 +3,12 @@ import { getServerSession } from "next-auth";
 import PostLayout from "./components/PostLayout";
 import getAllPost from "./hooks/getAllPost";
 import PageHeader from "../components/PageHeader";
+import { notFound } from "next/navigation";
 
 export default async function Blog() {
   const allBlogs = await getAllPost();
+
+  if (!allBlogs) return notFound();
 
   return (
     <div className="flex flex-col items-center justify-start pb-5">

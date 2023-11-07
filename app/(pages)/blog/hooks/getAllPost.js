@@ -6,7 +6,7 @@ export default async function getAllPost() {
     }
   );
 
-  if (!res.ok) throw new Error("failed to fetch all blogs");
+  if (!res.ok) return undefined;
   let allPost = await res.json();
   allPost = allPost.sort((a, b) => b.createdAt.seconds - a.createdAt.seconds);
   return allPost;
