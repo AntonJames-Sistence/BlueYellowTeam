@@ -52,7 +52,7 @@ const ChildrenCauseDonate = ({ prices }) => {
 
     return (
       <button
-        className="flex h-4 p-3 
+      className="flex h-4 p-3 
                   bg-gradient-to-b 
                   from-blue-400 to-yellow-400  
                   text-black text-l
