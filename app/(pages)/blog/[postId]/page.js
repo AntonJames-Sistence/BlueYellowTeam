@@ -3,6 +3,7 @@ import getPost from "../hooks/getPost";
 import { notFound } from "next/navigation";
 import SubSectionCol from "../components/SubSectionCol";
 import { months } from "../components/PostLayout";
+import Image from "next/image";
 
 export default async function SinglePost({ params: { postId } }) {
   const post = await getPost(postId);
@@ -28,11 +29,12 @@ export default async function SinglePost({ params: { postId } }) {
           {post.title}
         </div>
         <div className="w-full px-8 m-auto">
-          <div className="relative">
-            <img
-              className="object-cover object-top max-h-64 w-full"
+          <div className="relative w-full h-64">
+            <Image
+              className="object-cover object-top"
               src={post.image}
               alt=""
+              fill={true}
             />
             <div className="absolute flex flex-col items-end px-4 py-1 bg-sky-500 text-white bottom-0 right-0 transform translate-y-1/2 translate-x-[15%]">
               <div>Blue & Yellow Foundation</div>
