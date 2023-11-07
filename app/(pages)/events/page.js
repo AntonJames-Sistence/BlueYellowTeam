@@ -1,4 +1,4 @@
-import PastUpcomingEvents from '../../components/PastUpcomingEvents';
+import PastUpcomingEvents from "../../components/PastUpcomingEvents";
 
 export default function EventsPage() {
   return (

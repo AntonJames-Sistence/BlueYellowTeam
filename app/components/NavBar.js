@@ -1,7 +1,7 @@
-'use client';
-import React, { useState, useEffect } from 'react';
-import Link from 'next/link';
-import { navLinks } from '../../data/navbar';
+"use client";
+import React, { useState, useEffect } from "react";
+import Link from "next/link";
+import { navLinks } from "../../data/navbar";
 
 export default function NavBar() {
   const [isMobile, setIsMobile] = useState(false);
@@ -12,9 +12,9 @@ export default function NavBar() {
       setIsMobile(window.innerWidth < 900);
     }
 
-    window.addEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
     handleResize();
-    return () => window.removeEventListener('resize', handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   return (
@@ -28,7 +28,7 @@ export default function NavBar() {
               alt="BlueYellowFoundation logo"
             />
           </Link>
-          <div className="hidden md:flex space-x-8">
+          <div className="hidden md:flex space-x-6">
             {navLinks.map((navlink, index) => (
               <Link
                 key={index}

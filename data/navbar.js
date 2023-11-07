@@ -1,6 +1,7 @@
 export const navLinks = [
-  { href: '/events', title: 'Events' },
-  { href: '/projects', title: 'Projects' },
-  { href: '/social-media', title: 'Social Media' },
-  { href: '/donate', title: 'Donate Now' },
+  { href: "/events", title: "Events" },
+  { href: "/projects", title: "Projects" },
+  { href: "/blog", title: "Blog" },
+  { href: "/social-media", title: "Social Media" },
+  { href: "/donate", title: "Donate Now" },
 ];

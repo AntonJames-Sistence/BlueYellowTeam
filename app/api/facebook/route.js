@@ -1,19 +1,19 @@
-import { NextResponse } from 'next/server';
-import { set, ref, push, update, get, off } from 'firebase/database';
-import { DB } from '../../../data/firebase';
-import { register } from 'module';
+import { NextResponse } from "next/server";
+import { set, ref, push, update, get, off } from "firebase/database";
+import { DB } from "../../../data/firebase";
+import { register } from "module";
 
 export async function GET() {
-  const facebookRef = ref(DB, 'facebook');
+  const facebookRef = ref(DB, "facebook");
   try {
     const snapshot = await get(facebookRef);
     if (snapshot.exists()) {
       const allPost = Object.values(snapshot.val());
       return NextResponse.json(allPost);
     }
-    throw new Error('No Facebook post');
+    throw new Error("No Facebook post");
   } catch (error) {
-    return NextResponse.error('No post yet');
+    return NextResponse.error("No post yet");
   } finally {
     off(facebookRef);
   }
@@ -27,7 +27,7 @@ export async function PUT() {
     const res = await fetch(url);
 
     if (!res.ok) {
-      throw new Error('Failed to fetch facebook post from the API');
+      throw new Error("Failed to fetch facebook post from the API");
     }
 
     const fbData = await res.json();
@@ -43,7 +43,7 @@ export async function PUT() {
       newPost.id = post.id;
       newPost.likes = post.likes.summary.total_count;
       newPost.url = post.attachments.data[0].url;
-      newPost.createdAt = post['created_time'];
+      newPost.createdAt = post["created_time"];
 
       newPost.name = fbData.name;
       newPost.pfp = fbData.photos.data[0].images[0].source;
@@ -59,7 +59,7 @@ export async function PUT() {
         newPost.images.push(post.attachments.data[0].media.image.src);
       }
 
-      newPost.description = '';
+      newPost.description = "";
 
       if (post.message) {
         newPost.description = post.message;
@@ -69,7 +69,7 @@ export async function PUT() {
       return newPost;
     });
     const firebase = {};
-    firebase['facebook'] = cleanData;
+    firebase["facebook"] = cleanData;
     update(ref(DB), firebase);
 
     return NextResponse.json(cleanData);
