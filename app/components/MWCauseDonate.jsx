@@ -2,10 +2,10 @@ import React from 'react';
 import axios from 'axios';
 import { customFilter } from './ChildrenCauseDonate';
 
-const DPCauseDonate = ({ prices }) => {
+const MWCauseDonate = ({ prices }) => {
   // constructor for buttons
   const constructor = () => {
-    let filtered = customFilter('displaced', prices);
+    let filtered = customFilter('medical', prices);
     let buttonsArray = [];
 
     for (let i = 0; i < filtered.length; i++) {
@@ -38,21 +38,21 @@ const DPCauseDonate = ({ prices }) => {
 
     return (
       <button
-      className="flex h-4 p-3 
-                  bg-gradient-to-b 
-                  from-blue-400 to-yellow-400  
-                  text-black text-l
-                  hover:text-white 
-                  hover:scale-125
-                  font-bold
-                  rounded-lg
-                  items-center
-                  justify-center
-                  ease-in-out duration-300
-                  place-self-center
-                  m-2
-                  md:h-4 md:p-4 md:text-lg
-                  lg:h-8 lg:p-4 lg:text-lg"
+        className="flex h-4 p-3 
+                        bg-gradient-to-b 
+                        from-blue-400 to-yellow-400  
+                        text-black text-l
+                        hover:text-white 
+                        hover:scale-125
+                        font-bold
+                        rounded-lg
+                        items-center
+                        justify-center
+                        ease-in-out duration-300
+                        place-self-center
+                        m-2
+                        md:h-4 md:p-4 md:text-lg
+                        lg:h-8 lg:p-4 lg:text-lg"
         key={priceObject.id}
         onClick={handleCheckout}
       >
@@ -71,4 +71,4 @@ const DPCauseDonate = ({ prices }) => {
   );
 };
 
-export default DPCauseDonate;
+export default MWCauseDonate;
