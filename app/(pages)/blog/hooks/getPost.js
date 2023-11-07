@@ -1,6 +1,6 @@
 export default async function getPost(postId) {
   const res = await fetch(
-    `${"https://blue-yellow-foundation.vercel.app"}/api/blog/${postId}`,
+    `https://blue-yellow-foundation.vercel.app/api/blog/${postId}`,
     {
       next: { revalidate: 60 },
     }

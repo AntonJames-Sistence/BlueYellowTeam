@@ -51,6 +51,7 @@ export default async function SinglePost({ params: { postId } }) {
 
 export async function generateStaticParams() {
   const allPost = await getAllPost();
+  console.log("[allPost]", allPost);
 
   return allPost.map((post) => ({
     postId: post.id,

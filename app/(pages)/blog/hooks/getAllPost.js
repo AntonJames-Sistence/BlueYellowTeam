@@ -1,6 +1,6 @@
 export default async function getAllPost() {
   const res = await fetch(
-    `${"https://blue-yellow-foundation.vercel.app"}/api/blog`,
+    `https://blue-yellow-foundation.vercel.app/api/blog`,
     {
       next: { revalidate: 60 },
     }
