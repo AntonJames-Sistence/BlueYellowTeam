@@ -38,7 +38,7 @@ const MWCauseDonate = ({ prices }) => {
 
     return (
       <button
-        className="flex h-8 p-4 
+        className="flex h-4 p-3 
                         bg-gradient-to-b 
                         from-blue-400 to-yellow-400  
                         text-black text-l
@@ -50,7 +50,9 @@ const MWCauseDonate = ({ prices }) => {
                         justify-center
                         ease-in-out duration-300
                         place-self-center
-                        m-2"
+                        m-2
+                        md:h-4 md:p-4 md:text-lg
+                        lg:h-8 lg:p-4 lg:text-lg"
         key={priceObject.id}
         onClick={handleCheckout}
       >
@@ -63,7 +65,7 @@ const MWCauseDonate = ({ prices }) => {
   };
 
   return (
-    <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 mt-4">
+    <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-2 mt-4">
       {prices && constructor()}
     </div>
   );

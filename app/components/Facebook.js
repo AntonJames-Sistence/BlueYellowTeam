@@ -71,7 +71,7 @@ export default function Facebook() {
   }, []);
 
   return (
-    <div className="pt-36 max-w-7xl w-full m-auto">
+    <div className="max-w-7xl w-full m-auto">
       <div className="text-center lg:text-left text-5xl font-bold text-black-500 pb-3 mb-4 w-full">
         Updates From Facebook
       </div>
@@ -81,7 +81,7 @@ export default function Facebook() {
             return (
               <div
                 key={index}
-                className="flex flex-col w-[90%] sm:w-[80%] md:w-[47%] lg:w-[32%]"
+                className="flex flex-col w-full sm:w-[80%] md:w-[40%] lg:w-[32%]"
               >
                 {postList.map((post) => {
                   return <FacebookPost key={post.id} post={post} />;

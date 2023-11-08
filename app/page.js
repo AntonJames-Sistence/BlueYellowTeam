@@ -1,36 +1,22 @@
 import { whoWeHelp } from "../data/whowehelp";
-import WhoWeHelp from "./components/WhoWeHelp";
-import HomeProjects from "./components/HomeProjects";
-import HomeEvents from "./components/HomeEvents";
+import PastUpcomingEvents from "./components/PastUpcomingEvents";
 import Facebook from "./components/Facebook";
+import Link from "next/link";
+import ImageTextContainer from "../components/ui/ImageTextContainer";
+import { allProjects } from "../data/projects";
+import Banner from "./components/Banner";
+import Youtube from "./components/youtube";
 
 export default function Home() {
   return (
-    <main className="flex w-full flex-col items-center justify-between pt-24 p-5">
-      <div className="relative w-full overflow-hidden" style={{}}>
-        <div className="relative">
-          <div className="flex w-full h-96 min-h-[80vh] ">
-            <div className="w-full flex flex-col justify-evenly items-center z-10">
-              <div className="text-4xl md:text-6xl text-center md:text-lef text-darkTeal font-bold leading-snug text-shadow-lg">
-                STAND WITH LOVE STAND WITH UKRAINE
-                <div className="text-darkTeal font-bold text-lg md:text-3xl leading-tight text-shadow-sm mb-5 text-center md:text-left pt-4">
-                  100% OF PROFIT GOES TO SUPPORT UKRAINIANS IN NEED
-                </div>
-              </div>
-              <div
-                className="w-full h-full md:w-1/2 md:h-1/2 bg-cover bg-no-repeat z-10"
-                style={{ backgroundImage: `url(./intro_banner.png)` }}
-              ></div>
-            </div>
-          </div>
-        </div>
-      </div>
+    <main className="flex w-full flex-col items-center justify-between">
+      {/* Banner & YouTube sections */}
+      <Banner />
+      <Youtube />
 
-      <div id="who-we-help" className="pt-36 max-w-7xl">
-        <div
-          id="who-help-title"
-          className="text-center md:text-left text-5xl font-bold text-black-500 pb-3"
-        >
+      {/* DONATE SECTION */}
+      <div id="who-we-help" className="pt-20 max-w-7xl">
+        <div className="text-center md:text-left text-5xl font-bold text-black-500 pb-3">
           Who do we help?
         </div>
         <div className="text-center md:text-left w-full md:w-1/2 text-xl">
@@ -42,18 +28,19 @@ export default function Home() {
           className="flex flex-wrap p-2.5 gap-5 md:flex-row flex-col"
         >
           {whoWeHelp.map((item, index) => (
-            <WhoWeHelp
+            <ImageTextContainer
               key={index}
-              id={item.id}
               img={item.img}
               title={item.title}
               para={item.para}
+              link={"/donate"}
             />
           ))}
         </div>
       </div>
 
-      <div id="events" className="pt-36 w-full max-w-7xl">
+      {/*  EVENTS SECTION */}
+      <div id="events" className="pt-20 w-full max-w-7xl">
         <div className="text-center md:text-left text-5xl font-bold text-black-500 pb-3">
           Events
         </div>
@@ -61,42 +48,39 @@ export default function Home() {
           Your donations and support provide essential supplies and services to
           the Ukrainian people.
         </div>
-        <HomeEvents />
+        <PastUpcomingEvents />
       </div>
 
-      <div id="projects" className="mt-36">
-        <div
-          id="featured-project-title"
-          className="text-center md:text-left text-5xl font-bold text-black-500 pb-7"
-        >
+      {/* PROJECTS SECTION */}
+      <div id="projects" className="pt-20 max-w-7xl">
+        <div className="text-center md:text-left text-5xl font-bold text-black-500 pb-3">
           Projects
         </div>
+        <div className="text-center md:text-left w-full md:w-1/2 text-xl">
+          Your donations and support provide essential supplies and services to
+          the Ukranian people.
+        </div>
         <div
-          id="projects-cont"
-          className="flex flex-wrap gap-5 md:flex-row flex-col max-w-7xl"
+          id="who-help-cont"
+          className="flex flex-wrap p-2.5 gap-5 md:flex-row flex-col"
         >
-          <HomeProjects />
+          {allProjects.map((item, index) => {
+            return (
+              <ImageTextContainer
+                key={index}
+                link={`/projects/${item.slug}`}
+                img={item.img}
+                title={item.title}
+                para={item.para}
+              />
+            );
+          })}
         </div>
       </div>
 
-      <div className="w-full pt-36 flex items-center">
-        <Facebook />
-      </div>
+      <hr className="pt-20 max-w-7xl" />
+
+      <Facebook />
     </main>
   );
-}
-
-{
-  /* <video
-            className="absolute top-0 left-0 w-full h-full object-cover z-negative"
-            src="/flag_bg.mp4"
-            autoPlay
-            loop
-            muted
-            controls={false}
-          ></video> */
-}
-
-{
-  /* <Youtube /> */
 }

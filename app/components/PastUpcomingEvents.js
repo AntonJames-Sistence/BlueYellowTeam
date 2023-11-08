@@ -1,10 +1,10 @@
-"use client";
-import { useEffect, useState, useRef } from "react";
-import Event from "./Event";
-import { register } from "swiper/element/bundle";
-import swiperParams from "../../data/swiperParams";
+'use client';
+import { useEffect, useState, useRef } from 'react';
+import Event from './Event';
+import { register } from 'swiper/element/bundle';
+import swiperParams from '../../data/swiperParams';
 
-const Events = () => {
+const PastUpcomingEvents = () => {
   register();
   const pastSwiperRef = useRef(null);
   const upcommingSwiperRef = useRef(null);
@@ -12,8 +12,8 @@ const Events = () => {
 
   useEffect(() => {
     const getData = async () => {
-      const request = await fetch("/api/events", {
-        cache: "no-store",
+      const request = await fetch('/api/events', {
+        cache: 'no-store',
       });
       const data = await request.json();
       if (data) {
@@ -61,7 +61,7 @@ const Events = () => {
             >
               <i className="fa-solid fa-angle-right text-3xl"></i>
             </div>
-            <swiper-container ref={upcommingSwiperRef} init={"false"}>
+            <swiper-container ref={upcommingSwiperRef} init={'false'}>
               {upcomingEvents.map((event, index) => (
                 <Event event={event} key={index} />
               ))}
@@ -82,7 +82,7 @@ const Events = () => {
             >
               <i className="fa-solid fa-angle-right text-3xl"></i>
             </div>
-            <swiper-container ref={pastSwiperRef} init={"false"}>
+            <swiper-container ref={pastSwiperRef} init={'false'}>
               {pastEvents.map((event, index) => (
                 <Event event={event} key={index} />
               ))}
@@ -96,7 +96,7 @@ const Events = () => {
   );
 };
 
-export default Events;
+export default PastUpcomingEvents;
 
 // export default async function Page() {
 //   const request = await fetch('/api/events');

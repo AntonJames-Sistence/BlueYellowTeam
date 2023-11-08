@@ -6,7 +6,7 @@ export default function FacebookPost({ post }) {
   const tooBig = post.description.length > 250;
 
   return (
-    <div className="FaceBookLogs-post p-4 mb-3.5 min-content h-min rounded shadow-[0px_7px_7px_0px_lightgrey] bg-[#fff]">
+    <div className="FaceBookLogs-post p-4 mb-3.5 min-content h-min rounded-md shadow-[0px_7px_7px_0px_lightgrey] bg-[#fff]">
       <div className="FaceBookLogs-post-header flex items-center gap-1.5 mb-3.5">
         <a
           href="https://www.facebook.com/BlueYellowFoundation/"

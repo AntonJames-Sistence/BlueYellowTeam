@@ -1,13 +1,20 @@
-import HomeProjects from '../../components/HomeProjects';
-import PageHeader from '../components/PageHeader';
+import { allProjects } from "../../../data/projects";
+import ImageTextContainer from "../../../components/ui/ImageTextContainer";
 
 export default function ProjectsPage() {
   return (
-    <div className="flex flex-col items-center justify-start p-5">
-      <PageHeader title={'Our Projects'} />
-      <div className="flex flex-wrap gap-5 md:flex-row flex-col max-w-7xl pt-24">
-        <HomeProjects />
-      </div>
+    <div className="flex flex-wrap gap-5 md:flex-row flex-col max-w-7xl pt-8 w-full">
+      {allProjects.map((item, index) => {
+        return (
+          <ImageTextContainer
+            key={index}
+            link={`/projects/${item.slug}`}
+            img={item.img}
+            title={item.title}
+            para={item.para}
+          />
+        );
+      })}
     </div>
   );
 }

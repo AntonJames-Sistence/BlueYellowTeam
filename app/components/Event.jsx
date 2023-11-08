@@ -46,23 +46,26 @@ const Event = ({ event }) => {
     <swiper-slide className="">
       <div
         id="card"
-        className="mx-2 bg-white shadow-[0px_6px_6px_0px_lightgrey] max-w-sm m-auto"
+        style={{ border: '1px solid black' }}
+        className="mx-2 bg-white max-w-sm m-auto rounded-lg"
       >
-        <img src={event.image} alt="" />
+        <img src={event.image} className="rounded-t-md" alt="" />
 
         <div className="text-center p-2">
           <h2 className="text-left text-xl font-bold h-20">
-            {event.name.slice(0, 50)}
-            {event.name.length > 50 && "..."}
+            {event.name.slice(0, 45)}
+            {event.name.length > 45 && '...'}
           </h2>
-          <div className="text-md mt-2 text-left h-32 flex flex-col justify-between text-gray-500">
-            <div className="">{formatDate(event.date)}</div>
-            <div className="">{`${event.venue} • ${event.address}`}</div>
-            <div className="">{`Starts at $${event.cost}`}</div>
+          <div className="text-md mt-2 text-left h-32 flex flex-col justify-between">
+            <div className="text-14 leading-2 tracking-wide text-gray-700">
+              {formatDate(event.date)}
+            </div>
+            <div className="text-14 leading-2 tracking-wide text-gray-700">{`${event.venue} • ${event.address}`}</div>
+            <div className="text-14 leading-2 tracking-wide text-gray-700">{`Starts at $${event.cost}`}</div>
           </div>
         </div>
         <a href={event.url} target="_blank">
-          <div className="bg-black text-white text-right font-bold pr-4 py-2">
+          <div className="bg-black hover:bg-blue-600 text-white text-right font-bold pr-4 py-2 transition-colors duration-200 text-14 leading-2 tracking-wide rounded-b-md">
             LEARN MORE
           </div>
         </a>

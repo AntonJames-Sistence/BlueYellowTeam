@@ -1,0 +1,50 @@
+#project-page {
+  padding-top: 9rem;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+#project-page #back-button {
+  padding: 0.5rem 1.25rem;
+  background-color: hsl(215, 14%, 34%);
+  color: white;
+  border-radius: 1.5rem;
+  font-size: 0.875rem;
+}
+
+#project-cont {
+  margin-top: 1.25rem;
+  max-width: 1000px;
+}
+
+#project-cont #title {
+  font-size: 4rem;
+  color: #4a5568;
+}
+
+#project-cont #date {
+  font-size: 1.5rem;
+  color: #4a5568;
+  margin-bottom: 30px;
+}
+
+#project-cont img {
+  max-height: 650px;
+  width: 100%;
+  object-fit: cover;
+  margin-bottom: 30px;
+}
+
+#project-cont #para {
+  font-size: 18px;
+  color: #4a5568;
+}
+
+@media (max-width: 600px) {
+  #project-cont #title {
+    font-size: 2rem;
+    color: #4a5568;
+  }
+}
