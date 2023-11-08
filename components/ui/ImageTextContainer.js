@@ -13,7 +13,7 @@ export default function ImageTextContainer({
         <Link
           href={link}
           className="project-card
-    flex-1 flex-basis-52 relative border border-solid border-black rounded-lg bg-white"
+    flex-1 flex-basis-52 relative rounded-lg bg-white shadow-lg"
         >
           <img
             className="border-b border-solid border-black rounded-t-md"
