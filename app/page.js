@@ -1,17 +1,15 @@
-import { whoWeHelp } from '../data/whowehelp';
-import PastUpcomingEvents from './components/PastUpcomingEvents';
-import Facebook from './components/Facebook';
-import Link from 'next/link';
-import ImageTextContainer from '../components/ui/ImageTextContainer';
-import { allProjects } from '../data/projects';
+import { whoWeHelp } from "../data/whowehelp";
+import PastUpcomingEvents from "./components/PastUpcomingEvents";
+import Facebook from "./components/Facebook";
+import Link from "next/link";
+import ImageTextContainer from "../components/ui/ImageTextContainer";
+import { allProjects } from "../data/projects";
 import Banner from "./components/Banner";
 import Youtube from "./components/youtube";
-
 
 export default function Home() {
   return (
     <main className="flex w-full flex-col items-center justify-between">
-      
       {/* Banner & YouTube sections */}
       <Banner />
       <Youtube />
@@ -35,7 +33,7 @@ export default function Home() {
               img={item.img}
               title={item.title}
               para={item.para}
-              link={'/donate'}
+              link={"/donate"}
             />
           ))}
         </div>
