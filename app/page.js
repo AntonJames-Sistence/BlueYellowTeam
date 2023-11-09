@@ -71,7 +71,7 @@ export default function Home() {
 
         <div className="grid grid-cols-2 grid-rows-2 justify-center md:flex md:justify-between mt-10">
           {whyDonate.map((message, index) => (
-            <div key={index} className="pb-5">
+            <div className="pb-5" key={index}>
               <div className="text-4xl font-bold text-black-500">
                 {message.amount}
               </div>
