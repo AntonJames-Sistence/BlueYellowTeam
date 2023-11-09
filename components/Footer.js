@@ -1,6 +1,6 @@
-import FooterForm from '../app/components/FooterForm';
-import { SocialIcon } from 'react-social-icons';
-import { socialLinks } from '../data/social';
+import FooterForm from "../app/components/FooterForm";
+import { SocialIcon } from "react-social-icons";
+import { socialLinks } from "../data/social";
 
 export default function Footer() {
   return (
@@ -13,7 +13,7 @@ export default function Footer() {
           {socialLinks.map((social, index) => {
             return (
               <div className="p-2" key={index}>
-                <SocialIcon url={social} />
+                <SocialIcon target="_blank" url={social} />
               </div>
             );
           })}
