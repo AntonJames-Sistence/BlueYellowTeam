@@ -20,17 +20,33 @@ const isAdmin = async () => {
   }
 };
 
-const postHasErrors = (post) => {
+const createId = (title) => {
+  const invalid = new Set(["!", ",", "?", "."]);
+  const filteredString = title
+    .split("")
+    .filter((char) => !invalid.has(char))
+    .join("");
+  const id = filteredString.replace(/ /g, "-");
+  return id;
+};
+
+const postHasErrors = (post, type) => {
   const errors = {};
 
   if (!post.title) errors.title = "Blog post missing title";
   if (!post.description) errors.description = "Blog post missing description";
   if (!post.image) errors.media = "Blog needs an image";
-  if (!post.subSection || !post.subSection.length)
+  if (type === "PUT" && !post.id) errors.id = "Blog needs an id to update";
+  if (type === "POST" && (!post.subSection || !post.subSection.length))
     errors.subSection = "Blog needs at least one subSection";
 
   if (Object.values(errors).length) return errors;
   return false;
+};
+
+const postExist = async (id) => {
+  const postSnap = await getDoc(doc(storeDB, "posts", id));
+  return postSnap.exists();
 };
 
 export async function GET() {
@@ -54,42 +70,38 @@ export async function POST(request, res) {
     // await isAdmin();
     const post = await request.json();
 
-    const errors = postHasErrors(post);
+    const errors = postHasErrors(post, "POST");
     if (errors) {
       return NextResponse.json({ errors }, { status: 404 });
     }
 
-    const newPostRef = doc(collection(storeDB, "posts"));
+    const id = createId(post.title);
 
-    await setDoc(newPostRef, {
+    if (await postExist(id)) {
+      return NextResponse.json(
+        { errors: "A post already exist with this title" },
+        { status: 404 }
+      );
+    }
+
+    await setDoc(doc(storeDB, "posts", id), {
       title: post.title,
       description: post.description,
       image: post.image,
       createdAt: new Date(),
-      id: newPostRef.id,
+      id: id,
     });
-
-    const newPost = await getDoc(newPostRef);
-
-    // if (!newPost.exists()) {
-    //   return NextResponse.json(
-    //     { errors: "couldn't created new post" },
-    //     { status: 404 }
-    //   );
-    // }
 
     for (let subSection of post.subSection) {
       const errors = subSectionHasErrors(subSection);
       if (errors) {
-        await deleteDoc(doc(storeDB, "posts", newPostRef.id));
+        await deleteDoc(doc(storeDB, "posts", id));
         return NextResponse.json(errors, { status: 404 });
       }
     }
 
     for (let subSection of post.subSection) {
-      const subSectionRef = doc(
-        collection(storeDB, "posts", newPostRef.id, "subSection")
-      );
+      const subSectionRef = doc(collection(storeDB, "posts", id, "subSection"));
 
       await setDoc(subSectionRef, {
         ...subSection,
@@ -99,7 +111,7 @@ export async function POST(request, res) {
     }
 
     const allSubSectionsSS = await getDocs(
-      collection(storeDB, "posts", newPostRef.id, "subSection")
+      collection(storeDB, "posts", id, "subSection")
     );
 
     const allSubSections = []; //allSubSectionsSS.map((sub) => sub.data());
@@ -107,6 +119,7 @@ export async function POST(request, res) {
       allSubSections.push(sub.data());
     });
 
+    const newPost = await getDoc(doc(storeDB, "posts", id));
     const finishedPost = { ...newPost.data(), subSections: allSubSections };
 
     return NextResponse.json(finishedPost);
@@ -120,12 +133,21 @@ export async function PUT(request) {
     // await isAdmin();
     const post = await request.json();
 
-    const errors = postHasErrors(post);
+    const errors = postHasErrors(post, "PUT");
     if (errors) {
       return NextResponse.json({ errors }, { status: 404 });
     }
 
     const postRef = doc(storeDB, "posts", post.id);
+
+    const realPost = await getDoc(postRef);
+
+    if (!realPost.exists()) {
+      return NextResponse.json(
+        { erros: "This blog does not exist" },
+        { status: 404 }
+      );
+    }
 
     await updateDoc(postRef, {
       ...post,

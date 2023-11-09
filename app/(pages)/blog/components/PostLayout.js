@@ -6,7 +6,7 @@ export default function PostLayout({ post }) {
 
   const month = months[date.getMonth()];
   return (
-    <div className=" flex-1 flex-basis-52 relative border border-solid border-black rounded-lg h-fit">
+    <div className=" flex-1 flex-basis-52 relative rounded-lg h-fit shadow-lg">
       <div className="h-64 w-full relative rounded-t-lg">
         <Image
           className="w-full h-full object-cover object-top rounded-t-lg"
