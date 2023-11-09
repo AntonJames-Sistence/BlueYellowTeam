@@ -20,18 +20,19 @@ export default function NavBar() {
 
   return (
     <nav className="fixed top-0 left-0 w-full  z-10 bg-white shadow-md">
-      <div className="w-11/12 mx-auto px-4">
-        <div className="flex justify-between items-center h-16">
-          <Link href="/" className="flex items-center">
-            <img
-              className="h-8 w-auto sm:h-10"
-              src="/blue-yellow-logo.png"
-              alt="BlueYellowFoundation logo"
-            />
-          </Link>
-
+      <div className="w-11/12 mx-auto px-4 flex justify-between items-center h-16">
+        <Link href="/" className="flex items-center">
+          <img
+            className="h-8 w-auto sm:h-10"
+            src="/blue-yellow-logo.png"
+            alt="BlueYellowFoundation logo"
+          />
+        </Link>
+        <div className="max-[500px]:hidden">
           <WarClock />
-          <div className="hidden md:flex space-x-1 lg:space-x-5">
+        </div>
+        <div className="flex items-center">
+          <div className="hidden lg:flex space-x-1 lg:space-x-5">
             {navLinks.map((navlink, index) => (
               <Link
                 key={index}
@@ -41,18 +42,17 @@ export default function NavBar() {
                 {navlink.title}
               </Link>
             ))}
-            {!isMobile && (
-              <Link
-                href="/donate"
-                className="text-gray-800 px-4 py-2 rounded-full text-md font-bold transition-colors duration-200 bg-[#FEDB25]"
-              >
-                Donate Now
-              </Link>
-            )}
           </div>
+
+          <Link
+            href="/donate"
+            className="text-gray-800 mr-3 px-4 py-2 rounded-full text-sm md:text-base font-bold transition-colors duration-200 bg-[#FEDB25]"
+          >
+            Donate Now
+          </Link>
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden text-gray-800 hover:text-blue-600 focus:outline-none focus:text-blue-600"
+            className="lg:hidden text-gray-800 hover:text-blue-600 focus:outline-none focus:text-blue-600"
           >
             <span className="sr-only">Open main menu</span>
             {isOpen ? (

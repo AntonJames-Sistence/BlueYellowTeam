@@ -32,7 +32,7 @@ const WarClock = () => {
     // const seconds = totalSeconds % 60;
 
     return (
-      <div className="flex flex-col h-full w-full">
+      <div className="flex flex-col h-full w-full max-w-[175px] sm:max-w-none">
         <div className="w-full flex flex-row justify-between items-center font-bold text-md lg:text-xl">
           <div className="mr-2">
             {days}
