@@ -20,9 +20,11 @@ export default function ImageTextContainer({
             src={img}
             alt=""
           />
-          <div className="p-10 pt-5">
-            <div className="text-3xl mt-0 mb-2 text-gray-700">{title}</div>
-            <div className="text-14 leading-2 tracking-wide text-gray-700">
+          <div className="p-10 md:p-5 lg:p-10 pt-5">
+            <div className="text-3xl md:text-2xl lg:text-3xl mt-0 mb-2 text-gray-700">
+              {title}
+            </div>
+            <div className="text-base md:text-sm lg:text-base leading-2 tracking-wide text-gray-700">
               {para}
             </div>
           </div>
