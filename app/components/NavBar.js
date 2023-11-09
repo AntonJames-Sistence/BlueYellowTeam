@@ -10,7 +10,7 @@ export default function NavBar() {
 
   useEffect(() => {
     function handleResize() {
-      setIsMobile(window.innerWidth < 900);
+      setIsMobile(window.innerWidth < 1250);
     }
 
     window.addEventListener("resize", handleResize);
@@ -31,7 +31,7 @@ export default function NavBar() {
           </Link>
 
           <WarClock />
-          <div className="hidden md:flex space-x-6">
+          <div className="hidden md:flex space-x-1 lg:space-x-5">
             {navLinks.map((navlink, index) => (
               <Link
                 key={index}
