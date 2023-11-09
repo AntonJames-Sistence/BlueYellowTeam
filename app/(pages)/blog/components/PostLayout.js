@@ -12,7 +12,7 @@ export default function PostLayout({ post }) {
           className="w-full h-full object-cover object-top rounded-t-lg"
           src={post.image}
           fill={true}
-          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          // sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
         />
       </div>
       <div className="p-5 bg-[#fff] rounded-b-lg h-max flex flex-col justify-between">
