@@ -81,7 +81,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="w-screen bg-darkTeal h-60 md:h-64 lg:h-72 xl:h-80 2xl:h-96"></div>
+      <div className="w-screen bg-darkTeal h-60 md:h-64 lg:h-72 xl:h-96"></div>
 
       {/* PROJECTS SECTION */}
       <div id="projects" className="pt-20 w-11/12 max-w-[1400px]">
