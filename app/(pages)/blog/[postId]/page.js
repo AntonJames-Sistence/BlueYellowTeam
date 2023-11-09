@@ -35,7 +35,7 @@ export default async function SinglePost({ params: { postId } }) {
               src={post.image}
               alt=""
               fill={true}
-              // sizes="(max-width: 768px) 100vw, 768px"
+              sizes="(max-width: 768px) 100vw, 768px"
             />
             <div className="absolute flex flex-col items-end px-4 py-1 bg-sky-500 text-white bottom-0 right-0 transform translate-y-1/2 translate-x-[15%]">
               <div>Blue & Yellow Foundation</div>
