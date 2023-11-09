@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { navLinks } from "../../data/navbar";
+import WarClock from "./WarClock";
 
 export default function NavBar() {
   const [isMobile, setIsMobile] = useState(false);
@@ -18,8 +19,8 @@ export default function NavBar() {
   }, []);
 
   return (
-    <nav className="fixed top-0 left-0 w-full z-10 bg-white shadow-md">
-      <div className="max-w-6xl mx-auto px-4">
+    <nav className="fixed top-0 left-0 w-full  z-10 bg-white shadow-md">
+      <div className="w-11/12 mx-auto px-4">
         <div className="flex justify-between items-center h-16">
           <Link href="/" className="flex items-center">
             <img
@@ -28,6 +29,8 @@ export default function NavBar() {
               alt="BlueYellowFoundation logo"
             />
           </Link>
+
+          <WarClock />
           <div className="hidden md:flex space-x-6">
             {navLinks.map((navlink, index) => (
               <Link
@@ -38,6 +41,14 @@ export default function NavBar() {
                 {navlink.title}
               </Link>
             ))}
+            {!isMobile && (
+              <Link
+                href="/donate"
+                className="text-gray-800 px-4 py-2 rounded-full text-md font-bold transition-colors duration-200 bg-[#FEDB25]"
+              >
+                Donate Now
+              </Link>
+            )}
           </div>
           <button
             onClick={() => setIsOpen(!isOpen)}
