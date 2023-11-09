@@ -2,11 +2,13 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { navLinks } from "../../data/navbar";
+import { usePathname } from "next/navigation";
 import WarClock from "./WarClock";
 
 export default function NavBar() {
   const [isMobile, setIsMobile] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const path = usePathname();
 
   useEffect(() => {
     function handleResize() {
@@ -37,7 +39,9 @@ export default function NavBar() {
               <Link
                 key={index}
                 href={navlink.href}
-                className="text-gray-800 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200"
+                className={`text-gray-800 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 ${
+                  path === navlink.href ? "text-blue-600" : ""
+                }`}
               >
                 {navlink.title}
               </Link>
@@ -46,7 +50,7 @@ export default function NavBar() {
 
           <Link
             href="/donate"
-            className="text-gray-800 mr-3 px-4 py-2 rounded-full text-sm md:text-base font-bold transition-colors duration-200 bg-[#FEDB25]"
+            className="text-gray-800 mr-3 px-4 py-2 rounded-full text-sm md:text-base font-bold transition-colors duration-200 bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300"
           >
             Donate Now
           </Link>

@@ -1,8 +1,8 @@
-'use client';
-import { useEffect, useState, useRef } from 'react';
-import Event from './Event';
-import { register } from 'swiper/element/bundle';
-import swiperParams from '../../data/swiperParams';
+"use client";
+import { useEffect, useState, useRef } from "react";
+import Event from "./Event";
+import { register } from "swiper/element/bundle";
+import swiperParams from "../../data/swiperParams";
 
 const PastUpcomingEvents = () => {
   register();
@@ -12,8 +12,8 @@ const PastUpcomingEvents = () => {
 
   useEffect(() => {
     const getData = async () => {
-      const request = await fetch('/api/events', {
-        cache: 'no-store',
+      const request = await fetch("/api/events", {
+        cache: "no-store",
       });
       const data = await request.json();
       if (data) {
@@ -46,7 +46,7 @@ const PastUpcomingEvents = () => {
   return (
     <>
       {realEventData ? (
-        <div className="w-full max-w-7xl m-auto pt-5 pb-5">
+        <div className="w-full max-w-7xl m-auto pb-5">
           <div className="text-3xl font-bold my-6 ml-8">Upcoming</div>
           <div className="w-full  relative">
             <div
@@ -61,7 +61,7 @@ const PastUpcomingEvents = () => {
             >
               <i className="fa-solid fa-angle-right text-3xl"></i>
             </div>
-            <swiper-container ref={upcommingSwiperRef} init={'false'}>
+            <swiper-container ref={upcommingSwiperRef} init={"false"}>
               {upcomingEvents.map((event, index) => (
                 <Event event={event} key={index} />
               ))}
@@ -82,7 +82,7 @@ const PastUpcomingEvents = () => {
             >
               <i className="fa-solid fa-angle-right text-3xl"></i>
             </div>
-            <swiper-container ref={pastSwiperRef} init={'false'}>
+            <swiper-container ref={pastSwiperRef} init={"false"}>
               {pastEvents.map((event, index) => (
                 <Event event={event} key={index} />
               ))}
