@@ -14,12 +14,12 @@ const Banner = () => {
           controls={false}
         ></video>
         <div className="absolute top-0 left-0 w-full h-full flex flex-col justify-between md:flex-row">
-          <div className="w-full lg:-mt-16 md:-mt-20 md:w-1/2 flex flex-col justify-center p-5 absolute md:static top-1/2 -translate-y-1/2 md:top-0 md:translate-y-0">
-            <div className="text-4xl md:text-4xl xl:text-4xl text-center md:text-left text-white font-bold text-shadow-lg md:pb-6">
-              STAND WITH LOVE, STAND WITH UKRAINE
+          <div className="w-full lg:-mt-10 md:-mt-14 mt-4 md:w-1/2 flex flex-col justify-center p-5 absolute md:static top-1/2 -translate-y-1/2 md:top-0 md:translate-y-0">
+            <div className="uppercase text-4xl md:text-3xl xl:text-4xl text-center md:text-left text-white font-bold text-shadow-lg -mt-8 md:pb-2 md:mt-4 lg:-mt-6">
+              Resilience and bravery in times of war
             </div>
-            <div className="text-white md:-mb-6 text-center lg:text-left font-bold mt-4 text-2xl md:text-lg xl:text-xl">
-              100% OF THE PROFITS GO <br /> TO SUPPORT UKRAINIANS IN NEED
+            <div className="uppercase text-white md:-mb-6 text-center lg:text-left mt-4 text-2xl md:text-lg xl:text-xl">
+              100% of profit goes to support ukraine through trusted funds or direct aid
             </div>
           </div>
           <div
