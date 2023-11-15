@@ -18,6 +18,23 @@ const Donate = () => {
     setPrices(data);
   };
 
+  const handleCustom = async (e) => {
+    e.preventDefault();
+
+    const { data } = await axios.post(
+      '/api/checkout/custom',
+      {
+        // priceId: priceObject.id,
+      },
+      {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+    );
+    window.location.assign(data);
+  }
+
   return (
     <section className="h-fit mx-8 my-6 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-8">
       <div className="flex flex-col justify-between">
@@ -39,6 +56,7 @@ const Donate = () => {
         <div>
           <hr className="border-t border-gray-400 my-4"></hr>
           {prices && <ChildrenCauseDonate prices={prices} />}
+          {<button onClick={handleCustom} className='h-10 w-full border border-black-400 bg-sky-300'>Custom</button>}
         </div>
       </div>
 
