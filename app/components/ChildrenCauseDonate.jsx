@@ -8,7 +8,7 @@ export const customFilter = (keyword, array) => {
   for (let i = 0; i < array.length; i++) {
     let ele = array[i];
 
-    if (ele.nickname.toLowerCase().includes(keyword.toLowerCase())) {
+    if ( ele.nickname && ele.nickname.toLowerCase().includes(keyword.toLowerCase())) {
       result.push(ele);
     }
   }
