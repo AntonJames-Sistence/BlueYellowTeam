@@ -5,11 +5,13 @@ export async function POST(request) {
     const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
     let data = await request.json(); // change for amount fetch
     let amount = data.amount;
+    let name = data.name;
+    let description = data.description;
 
     const product = await stripe.products.create({
-        name: 'T-shirt', // change to section cause name
-        description: 'Comfortable cotton t-shirt', // change to section cause
-        images: ['https://example.com/t-shirt.png'], // change image ./causes-children.jpeg
+        name: name,
+        description: description,
+        images: ['https://blueyellowfoundation.org/wp-content/uploads/2017/04/causes-children-1024x682.jpg'], // change image ./causes-children.jpeg
     });
 
     const price = await stripe.prices.create({

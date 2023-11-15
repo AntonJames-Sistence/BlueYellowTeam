@@ -32,7 +32,9 @@ const Donate = () => {
       const { data } = await axios.post(
         '/api/checkout/custom',
         {
-          amount: amount
+          amount: amount,
+          name: 'Children',
+          description: 'Donate to children cause'
         },
         {
           headers: {
