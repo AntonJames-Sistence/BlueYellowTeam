@@ -3,21 +3,21 @@ import { NextResponse } from 'next/server';
 
 export async function POST(request) {
     const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+    let data = await request.json(); // change for amount fetch
+    let amount = data.amount;
 
     const product = await stripe.products.create({
-        name: 'T-shirt',
-        description: 'Comfortable cotton t-shirt',
-        images: ['https://example.com/t-shirt.png'],
+        name: 'T-shirt', // change to section cause name
+        description: 'Comfortable cotton t-shirt', // change to section cause
+        images: ['https://example.com/t-shirt.png'], // change image ./causes-children.jpeg
     });
 
     const price = await stripe.prices.create({
         product: product.id,
-        unit_amount: 2000,
+        unit_amount: amount * 100, // change to amount got from data
         currency: 'usd',
     });
   
-    // let data = await request.json(); // change for amount fetch
-    // let amount = data.priceId;
     const session = await stripe.checkout.sessions.create({
         line_items: [{
             price: price.id,

@@ -23,6 +23,7 @@ const Donate = () => {
   const handleCustom = async (e) => {
     e.preventDefault();
 
+    // improve: add logic for cents
     const parsedAmount = parseInt(amount, 10); // Parses the string into an integer
 
     if (Number.isInteger(parsedAmount)) {
