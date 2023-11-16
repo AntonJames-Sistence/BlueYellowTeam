@@ -4,7 +4,7 @@ import Link from "next/link";
 const Banner = () => {
   return (
     <>
-      <div className="relative h-[400px] w-11/12 max-w-[1400px] mt-20">
+      <div className="relative h-[400px] w-11/12 max-w-[1400px] mt-32">
         <video
           className="absolute top-0 left-0 w-full h-full object-cover z-0 rounded-2xl"
           src="/flag_bg.mp4"
@@ -31,71 +31,83 @@ const Banner = () => {
           ></div>
         </div>
       </div>
-      {/* <div className="flex flex-row justify-between w-full h-[100px]">
-                <Link href="./donate" className='flex flex-grow'>
-                <button className="h-10
-                        bg-gradient-to-b
-                        from-blue-400 to-yellow-400
-                        text-black text-l
-                        hover:text-white
-                        hover:scale-110
-                        font-bold
-                        rounded-3xl
-                        items-center
-                        justify-center
-                        ease-in-out duration-300
-                        place-self-center
-                        m-4
-                        md:h-4 md:p-4 md:text-lg
-                        lg:h-14 lg:p-4 lg:text-lg">
-                        Donate now</button></Link>
-                <button className="flex flex-grow h-10
-                        bg-gradient-to-b
-                        from-blue-400 to-yellow-400
-                        text-black text-l
-                        hover:text-white
-                        hover:scale-110
-                        font-bold
-                        rounded-3xl
-                        items-center
-                        justify-center
-                        ease-in-out duration-300
-                        place-self-center
-                        m-4
-                        md:h-4 md:p-4 md:text-lg
-                        lg:h-14 lg:p-4 lg:text-lg">Credit Cart</button>
-                <button className="flex flex-grow h-10
-                        bg-gradient-to-b
-                        from-blue-400 to-yellow-400
-                        text-black text-l
-                        hover:text-white
-                        hover:scale-110
-                        font-bold
-                        rounded-3xl
-                        items-center
-                        justify-center
-                        ease-in-out duration-300
-                        place-self-center
-                        m-4
-                        md:h-4 md:p-4 md:text-lg
-                        lg:h-14 lg:p-4 lg:text-lg">By Check</button>
-                <button className="flex flex-grow h-10
-                        bg-gradient-to-b
-                        from-blue-400 to-yellow-400
-                        text-black text-l
-                        hover:text-white
-                        hover:scale-110
-                        font-bold
-                        rounded-3xl
-                        items-center
-                        justify-center
-                        ease-in-out duration-300
-                        place-self-center
-                        m-4
-                        md:h-4 md:p-4 md:text-lg
-                        lg:h-14 lg:p-4 lg:text-lg">
-                        <a href="https://www.paypal.com/donate/?hosted_button_id=6S6S2484WWCKN">Pay Pal</a></button>
-            </div> */}
+      <div className="flex flex-row w-11/12 justify-between max-w-[1400px] mt-4">
+                <Link href="./donate" className='w-2/6 md:w-1/5'>
+                  <button className="
+                          h-12
+                          w-full
+                          bg-yellow-400
+                          hover:bg-blue-400
+                          text-black
+                          hover:text-white
+                          hover:scale-110
+                          font-bold
+                          rounded-2xl
+                          items-center
+                          justify-center
+                          ease-in-out duration-300
+                          px-4
+                          text-sm
+                          "><i className="fa-brands fa-stripe fa-2xl mr-2" ></i>Donate with Stripe
+                  </button>
+                </Link>
+                <Link href="./donate" className='w-2/6 md:w-1/5'>
+                  <button className="
+                          h-12
+                          w-full
+                          bg-yellow-400
+                          hover:bg-blue-400
+                          text-black
+                          hover:text-white
+                          hover:scale-110
+                          font-medium
+                          rounded-2xl
+                          items-center
+                          justify-center
+                          ease-in-out duration-300
+                          px-4
+                          ">Donate now
+                  </button>
+                </Link>
+                <Link href="./donate" className='w-2/6 md:w-1/5'>
+                  <button className="
+                          h-12
+                          w-full
+                          bg-yellow-400
+                          hover:bg-blue-400
+                          text-black
+                          hover:text-white
+                          hover:scale-110
+                          font-medium
+                          rounded-2xl
+                          items-center
+                          justify-center
+                          ease-in-out duration-300
+                          px-4
+                          ">Donate now
+                  </button>
+                </Link>
+                <Link href="./donate" className='w-2/6 md:w-1/5'>
+                  <button className="
+                          h-12
+                          w-full
+                          bg-yellow-400
+                          hover:bg-blue-400
+                          text-black
+                          hover:text-white
+                          hover:scale-110
+                          font-medium
+                          rounded-2xl
+                          items-center
+                          justify-center
+                          ease-in-out duration-300
+                          px-4
+                          ">Donate now
+                  </button>
+                </Link>
+                
+                
+            </div>
     </>
   );
 };
