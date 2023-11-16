@@ -11,7 +11,7 @@ export async function POST(request) {
     const product = await stripe.products.create({
         name: name,
         description: description,
-        images: ['https://blueyellowfoundation.org/wp-content/uploads/2017/04/causes-children-1024x682.jpg'], // change image ./causes-children.jpeg
+        images: ['https://blueyellowfoundation.org/wp-content/uploads/2023/03/2023-03-19-09.32.51-1024x683.jpg'], // change image ./causes-children.jpeg
     });
 
     const price = await stripe.prices.create({

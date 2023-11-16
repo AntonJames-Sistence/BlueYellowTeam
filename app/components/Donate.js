@@ -25,10 +25,10 @@ const Donate = () => {
         <div>
           <h4 className="font-bold text-2xl my-2 text-center">Children</h4>
           <div
-            className="flex h-72 items-center font-bold rounded-2xl bg-cover bg-no-repeat"
+            className="flex h-64 lg:h-64 md:h-80 items-center rounded-2xl bg-cover bg-no-repeat"
             style={{ backgroundImage: `url(./causes-children.jpeg)` }}
           ></div>
-          <hr className="border-t border-gray-400 my-4"></hr>
+          <hr className="border-t border-gray-400 my-2"></hr>
           <div className="font-medium px-2">
             We empower children in crisis by offering vital support for their
             education, well-being, and personal growth. This includes providing
@@ -49,10 +49,10 @@ const Donate = () => {
             Medical Workers
           </h4>
           <div
-            className="flex h-72 items-center font-bold rounded-2xl bg-cover bg-no-repeat"
+            className="flex h-64 lg:h-64 md:h-52 items-center rounded-2xl bg-cover bg-no-repeat"
             style={{ backgroundImage: `url(./causes-medical-2.jpeg)` }}
           ></div>
-          <hr className="border-t border-gray-400 my-4"></hr>
+          <hr className="border-t border-gray-400 my-2"></hr>
           <div className="font-medium px-2">
             We partner with hospitals and healthcare experts across the United
             States to gather and deliver vital medical supplies to the front
@@ -71,10 +71,10 @@ const Donate = () => {
             Displaced People
           </h4>
           <div
-            className="flex h-72 items-center font-bold rounded-2xl bg-cover bg-no-repeat"
+            className="flex h-64 lg:h-64 md:h-52 items-center rounded-2xl bg-cover bg-no-repeat"
             style={{ backgroundImage: `url(./causes-displaced.jpeg)` }}
           ></div>
-          <hr className="border-t border-gray-400 my-4"></hr>
+          <hr className="border-t border-gray-400 my-2"></hr>
           <div className="font-medium px-2">
             We are committed to assisting individuals who have lost their homes
             due to conflict, supporting their journey towards recovery. Our

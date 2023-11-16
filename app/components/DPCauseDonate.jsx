@@ -64,11 +64,19 @@ const DPCauseDonate = ({ prices }) => {
     );
   };
 
+  const renderPlaceholder = () => {
+    return (
+      <div className="flex items-center justify-center w-full h-[80px] md:h-[48px]">
+        <p className="text-gray-400">Loading...</p>
+      </div>
+    );
+  };
+
   return (
     <>
       <hr className="border-t border-gray-400 my-2"></hr>
       <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 lg:grid-rows-1">
-        {prices && constructor()}
+        {prices && prices.length > 0 ? constructor() : renderPlaceholder()}
       </div>
       <hr className="border-t border-gray-400 my-2"></hr>
     </>

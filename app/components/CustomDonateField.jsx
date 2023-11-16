@@ -37,37 +37,41 @@ const CustomDonateField = ({ cause }) => {
 
     return (
         <div>
-            <div className='flex flex-row justify-between'>
+            <div className='flex flex-row lg:justify-between md:justify-center lg:-my-2'>
                 <div className="flex flex-row">
                     <div className='flex items-center justify-center ml-2 font-medium'>$</div>
                     <input 
                         onChange={(e) => setAmount(e.target.value)}
                         value={amount}
                         placeholder="Custom"
-                        className={`rounded-lg border m-2 w-28 text-center
+                        className={`rounded-lg h-8 border m-2 w-28 text-center md:m-4
                         ${errorMessage ? 'border-red-500' : 'border-black'}`}
                     />
                 </div>
                 <button onClick={handleCustomButton} 
-                        className='flex h-4 p-3 
+                        className='flex 
+                            h-10 
+                            p-1.5 
                             bg-gradient-to-b 
                             from-blue-400 to-yellow-400  
-                            text-black text-sm
+                            text-black
                             hover:text-white 
-                            hover:scale-125
+                            hover:scale-110
                             font-bold
                             rounded-lg
                             items-center
                             justify-center
                             ease-in-out duration-300
                             place-self-center
-                            m-2
-                            md:h-4 md:p-4 md:text-sm
-                            lg:h-8 lg:p-4 lg:text-xs'
+                            mx-2
+                            text-xs
+                            md:text-lg md:mx-4
+                            lg:text-xs lg:mx-2
+                            lg:hover:scale-125'
                 >Donate to {cause}</button>
             </div>
             {errorMessage ? (
-                <p className="text-red-600 ml-2">{errorMessage}</p>
+                <p className="text-red-600 ml-2 font-medium">{errorMessage}</p>
             ) : (
                 <p className="text-red-600 ml-2 invisible">Placeholder text</p>
             )}
