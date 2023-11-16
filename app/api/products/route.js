@@ -5,7 +5,7 @@ export async function GET() {
   try {
     const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
     const prices = await stripe.prices.list({
-      limit: 40,
+      limit: 100,
     });
 
     return NextResponse.json(prices.data);

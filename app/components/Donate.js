@@ -25,16 +25,16 @@ const Donate = () => {
         <div>
           <h4 className="font-bold text-2xl my-2 md:text-3xl text-center">Children</h4>
           <div
-            className="flex h-64 lg:h-64 md:h-80 items-center rounded-2xl bg-cover bg-no-repeat"
+            className="flex h-48 lg:h-64 md:h-72 items-center rounded-2xl bg-cover bg-no-repeat"
             style={{ backgroundImage: `url(./causes-children.jpeg)` }}
           ></div>
           <hr className="border-t border-gray-400 my-2"></hr>
-          <div className="font-medium px-2">
+          <div className="font-medium px-2 text-sm md:text-base lg:text-base">
             We empower children in crisis by offering vital support for their
-            education, well-being, and personal growth. This includes providing
+            education and well-being. This includes providing
             clothing, educational materials, and collaborating with families,
             refugee centers, and NGOs to ensure every child receives the care
-            and resources they deserve.
+            and resources they need.
           </div>
         </div>
         <div>
@@ -49,11 +49,11 @@ const Donate = () => {
             Medical Workers
           </h4>
           <div
-            className="flex h-64 lg:h-64 md:h-80 items-center rounded-2xl bg-cover bg-no-repeat"
+            className="flex h-48 lg:h-64 md:h-72 items-center rounded-2xl bg-cover bg-no-repeat"
             style={{ backgroundImage: `url(./causes-medical-2.jpeg)` }}
           ></div>
           <hr className="border-t border-gray-400 my-2"></hr>
-          <div className="font-medium px-2">
+          <div className="font-medium px-2 text-sm md:text-base lg:text-base">
             We partner with hospitals and healthcare experts across the United
             States to gather and deliver vital medical supplies to the front
             lines, where these resources play a pivotal role in saving lives.
@@ -71,11 +71,11 @@ const Donate = () => {
             Displaced People
           </h4>
           <div
-            className="flex h-64 lg:h-64 md:h-80 items-center rounded-2xl bg-cover bg-no-repeat"
+            className="flex h-48 lg:h-64 md:h-72 items-center rounded-2xl bg-cover bg-no-repeat"
             style={{ backgroundImage: `url(./causes-displaced.jpeg)` }}
           ></div>
           <hr className="border-t border-gray-400 my-2"></hr>
-          <div className="font-medium px-2">
+          <div className="font-medium px-2 text-sm md:text-base lg:text-base">
             We are committed to assisting individuals who have lost their homes
             due to conflict, supporting their journey towards recovery. Our
             services encompass offering temporary shelter, providing food, and

@@ -38,20 +38,20 @@ const CustomDonateField = ({ cause }) => {
 
     return (
         <div>
-            <div className='flex flex-row lg:justify-between md:justify-center lg:-my-2'>
+            <div className='flex flex-row justify-between lg:justify-between md:justify-center lg:-my-2'>
                 <div className="flex flex-row">
-                    <div className='flex items-center justify-center ml-2 font-medium'>$</div>
+                    <div className='flex items-center justify-center text-lg mr-1 ml-2 font-medium'>$</div>
                     <input 
                         onChange={(e) => setAmount(e.target.value)}
                         value={amount}
                         placeholder="Custom"
-                        className={`rounded-lg h-8 border m-2 w-28 text-center md:m-4
+                        className={`rounded-lg h-8 border w-28 text-center my-2
                         ${errorMessage ? 'border-red-500' : 'border-black'}`}
                     />
                 </div>
                 <button onClick={handleCustomButton} 
                         className='flex 
-                            h-10 
+                            h-8 
                             p-1.5 
                             bg-gradient-to-b 
                             from-blue-400 to-yellow-400  
@@ -72,9 +72,9 @@ const CustomDonateField = ({ cause }) => {
                 >Donate to {cause}</button>
             </div>
             {errorMessage ? (
-                <p className="text-red-600 ml-2 font-medium">{errorMessage}</p>
+                <p className="text-red-600 ml-2 font-medium md:text-center lg:text-left">{errorMessage}</p>
             ) : (
-                <p className="text-red-600 ml-2 invisible">Placeholder text</p>
+                <p className="ml-2 invisible">Placeholder text</p>
             )}
         </div>
     )
