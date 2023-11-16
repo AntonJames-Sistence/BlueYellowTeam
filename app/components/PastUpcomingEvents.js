@@ -12,9 +12,7 @@ const PastUpcomingEvents = () => {
 
   useEffect(() => {
     const getData = async () => {
-      const request = await fetch("/api/events", {
-        cache: "no-store",
-      });
+      const request = await fetch("/api/events", { next: { revalidate: 60 } });
       const data = await request.json();
       if (data) {
         const eventData = Object.values(data);

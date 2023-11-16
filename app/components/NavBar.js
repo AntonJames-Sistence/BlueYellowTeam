@@ -39,8 +39,8 @@ export default function NavBar() {
               <Link
                 key={index}
                 href={navlink.href}
-                className={`text-gray-800 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 ${
-                  path === navlink.href ? "text-blue-600" : ""
+                className={` hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 ${
+                  path === navlink.href ? "text-blue-600" : "text-gray-800"
                 }`}
               >
                 {navlink.title}
