@@ -1,5 +1,6 @@
 'use client';
 import { useState } from "react";
+import axios from 'axios';
 
 const CustomDonateField = ({ cause }) => {
     const [amount, setAmount] = useState('');
@@ -65,8 +66,8 @@ const CustomDonateField = ({ cause }) => {
                             place-self-center
                             mx-2
                             text-xs
-                            md:text-lg md:mx-4
-                            lg:text-xs lg:mx-2
+                            md:text-lg md:mx-4 md:px-6
+                            lg:text-xs lg:mx-2 lg:px-4
                             lg:hover:scale-125'
                 >Donate to {cause}</button>
             </div>

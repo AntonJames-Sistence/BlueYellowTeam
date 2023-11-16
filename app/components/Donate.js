@@ -20,10 +20,10 @@ const Donate = () => {
   };
 
   return (
-    <section className="h-fit mx-8 my-6 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-8">
+    <section className="h-fit mx-8 mt-6 grid grid-cols-1 lg:grid-cols-3 gap-8">
       <div className="flex flex-col justify-between">
         <div>
-          <h4 className="font-bold text-2xl my-2 text-center">Children</h4>
+          <h4 className="font-bold text-2xl my-2 md:text-3xl text-center">Children</h4>
           <div
             className="flex h-64 lg:h-64 md:h-80 items-center rounded-2xl bg-cover bg-no-repeat"
             style={{ backgroundImage: `url(./causes-children.jpeg)` }}
@@ -45,11 +45,11 @@ const Donate = () => {
 
       <div className="flex flex-col justify-between">
         <div>
-          <h4 className="font-bold text-2xl my-2 text-center">
+          <h4 className="font-bold text-2xl my-2 md:text-3xl text-center">
             Medical Workers
           </h4>
           <div
-            className="flex h-64 lg:h-64 md:h-52 items-center rounded-2xl bg-cover bg-no-repeat"
+            className="flex h-64 lg:h-64 md:h-80 items-center rounded-2xl bg-cover bg-no-repeat"
             style={{ backgroundImage: `url(./causes-medical-2.jpeg)` }}
           ></div>
           <hr className="border-t border-gray-400 my-2"></hr>
@@ -67,11 +67,11 @@ const Donate = () => {
 
       <div className="flex flex-col justify-between">
         <div>
-          <h4 className="font-bold text-2xl my-2 text-center">
+          <h4 className="font-bold text-2xl my-2 md:text-3xl text-center">
             Displaced People
           </h4>
           <div
-            className="flex h-64 lg:h-64 md:h-52 items-center rounded-2xl bg-cover bg-no-repeat"
+            className="flex h-64 lg:h-64 md:h-80 items-center rounded-2xl bg-cover bg-no-repeat"
             style={{ backgroundImage: `url(./causes-displaced.jpeg)` }}
           ></div>
           <hr className="border-t border-gray-400 my-2"></hr>
