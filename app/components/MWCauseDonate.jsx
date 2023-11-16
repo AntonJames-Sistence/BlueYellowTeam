@@ -65,9 +65,13 @@ const MWCauseDonate = ({ prices }) => {
   };
 
   return (
-    <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 lg:grid-rows-1 mt-4">
-      {prices && constructor()}
-    </div>
+    <>
+      <hr className="border-t border-gray-400 my-2"></hr>
+      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 lg:grid-rows-1">
+        {prices && constructor()}
+      </div>
+      <hr className="border-t border-gray-400 my-2"></hr>
+    </>
   );
 };
 

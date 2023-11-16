@@ -39,12 +39,12 @@ const CustomDonateField = ({ cause }) => {
         <div>
             <div className='flex flex-row justify-between'>
                 <div className="flex flex-row">
-                    <div className='flex items-center justify-center ml-2'>$</div>
+                    <div className='flex items-center justify-center ml-2 font-medium'>$</div>
                     <input 
                         onChange={(e) => setAmount(e.target.value)}
                         value={amount}
-                        placeholder="Custom amount"
-                        className={`rounded-lg border m-2 text-center
+                        placeholder="Custom"
+                        className={`rounded-lg border m-2 w-28 text-center
                         ${errorMessage ? 'border-red-500' : 'border-black'}`}
                     />
                 </div>

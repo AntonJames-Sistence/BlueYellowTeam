@@ -29,7 +29,7 @@ const Donate = () => {
             style={{ backgroundImage: `url(./causes-children.jpeg)` }}
           ></div>
           <hr className="border-t border-gray-400 my-4"></hr>
-          <div className="font-bold px-4">
+          <div className="font-medium px-2">
             We empower children in crisis by offering vital support for their
             education, well-being, and personal growth. This includes providing
             clothing, educational materials, and collaborating with families,
@@ -38,7 +38,6 @@ const Donate = () => {
           </div>
         </div>
         <div>
-          <hr className="border-t border-gray-400 my-4"></hr>
           {prices && <ChildrenCauseDonate prices={prices} />}
           <CustomDonateField cause={'Children'} />
         </div>
@@ -54,14 +53,13 @@ const Donate = () => {
             style={{ backgroundImage: `url(./causes-medical-2.jpeg)` }}
           ></div>
           <hr className="border-t border-gray-400 my-4"></hr>
-          <div className="font-bold px-4">
+          <div className="font-medium px-2">
             We partner with hospitals and healthcare experts across the United
             States to gather and deliver vital medical supplies to the front
             lines, where these resources play a pivotal role in saving lives.
           </div>
         </div>
         <div>
-          <hr className="border-t border-gray-400 my-4"></hr>
           {prices && <MWCauseDonate prices={prices} />}
           <CustomDonateField cause={'Medical workers'} />
         </div>
@@ -77,7 +75,7 @@ const Donate = () => {
             style={{ backgroundImage: `url(./causes-displaced.jpeg)` }}
           ></div>
           <hr className="border-t border-gray-400 my-4"></hr>
-          <div className="font-bold px-4">
+          <div className="font-medium px-2">
             We are committed to assisting individuals who have lost their homes
             due to conflict, supporting their journey towards recovery. Our
             services encompass offering temporary shelter, providing food, and
@@ -86,7 +84,6 @@ const Donate = () => {
           </div>
         </div>
         <div>
-          <hr className="border-t border-gray-400 my-2"></hr>
           {prices && <DPCauseDonate prices={prices} />}
           <CustomDonateField cause={'Displaced people'} />
         </div>
