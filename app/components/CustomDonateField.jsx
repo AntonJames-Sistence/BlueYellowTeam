@@ -18,8 +18,8 @@ const CustomDonateField = ({ cause }) => {
             '/api/checkout/custom',
             {
               amount: amount,
-              name: 'Children',
-              description: 'Donate to children cause'
+              name: cause,
+              description: `Donate to ${cause} cause`
             },
             {
               headers: {
@@ -38,14 +38,16 @@ const CustomDonateField = ({ cause }) => {
     return (
         <div>
             <div className='flex flex-row justify-between'>
-                {/* <div className=' flex items-center justify-center ml-2'>$</div> */}
-                <input 
-                onChange={(e) => setAmount(e.target.value)}
-                value={amount}
-                placeholder="Custom amount"
-                className={`rounded-lg border m-2 text-center w-2/5
-                ${errorMessage ? 'border-red-500' : 'border-black'}`}
-                />
+                <div className="flex flex-row">
+                    <div className='flex items-center justify-center ml-2'>$</div>
+                    <input 
+                        onChange={(e) => setAmount(e.target.value)}
+                        value={amount}
+                        placeholder="Custom amount"
+                        className={`rounded-lg border m-2 text-center
+                        ${errorMessage ? 'border-red-500' : 'border-black'}`}
+                    />
+                </div>
                 <button onClick={handleCustomButton} 
                         className='flex h-4 p-3 
                             bg-gradient-to-b 
@@ -64,7 +66,11 @@ const CustomDonateField = ({ cause }) => {
                             lg:h-8 lg:p-4 lg:text-xs'
                 >Donate to {cause}</button>
             </div>
-            {errorMessage && <p className="text-red-600 ml-2">{errorMessage}</p>}
+            {errorMessage ? (
+                <p className="text-red-600 ml-2">{errorMessage}</p>
+            ) : (
+                <p className="text-red-600 ml-2 invisible">Placeholder text</p>
+            )}
         </div>
     )
 }

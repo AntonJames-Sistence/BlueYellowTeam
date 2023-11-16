@@ -63,6 +63,7 @@ const Donate = () => {
         <div>
           <hr className="border-t border-gray-400 my-4"></hr>
           {prices && <MWCauseDonate prices={prices} />}
+          <CustomDonateField cause={'Medical workers'} />
         </div>
       </div>
 
@@ -87,6 +88,7 @@ const Donate = () => {
         <div>
           <hr className="border-t border-gray-400 my-2"></hr>
           {prices && <DPCauseDonate prices={prices} />}
+          <CustomDonateField cause={'Displaced people'} />
         </div>
       </div>
     </section>
