@@ -15,7 +15,7 @@ export default function Facebook() {
 
   useEffect(() => {
     const loadFaceBookData = async () => {
-      const res = await fetch("/api/facebook");
+      const res = await fetch("/api/facebook", { next: { revalidate: 60 } });
 
       if (res.ok) {
         const data = await res.json();
@@ -72,7 +72,7 @@ export default function Facebook() {
 
   return (
     <div className="w-11/12 max-w-[1400px] m-auto">
-      <div className="text-center lg:text-left text-5xl font-bold text-black-500 pb-3 mb-4 w-full pb-3">
+      <div className="text-center lg:text-left text-5xl font-bold text-black-500 pb-3 mb-4 w-full">
         Updates From Facebook
       </div>
       <div className="flex flex-wrap justify-evenly lg:justify-between w-full">

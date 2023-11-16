@@ -7,7 +7,7 @@ const Banner = () => {
       <div className="relative h-[400px] w-11/12 max-w-[1400px] mt-20">
         <video
           className="absolute top-0 left-0 w-full h-full object-cover z-0 rounded-2xl"
-          src="./flag_bg.mp4"
+          src="/flag_bg.mp4"
           autoPlay
           loop
           muted
@@ -19,7 +19,8 @@ const Banner = () => {
               Resilience and bravery in times of war
             </div>
             <div className="uppercase text-white md:-mb-6 text-center lg:text-left mt-4 text-2xl md:text-lg xl:text-xl">
-              100% of profit goes to support ukraine through trusted funds or direct aid
+              100% of profit goes to support ukraine through trusted funds or
+              direct aid
             </div>
           </div>
           <div
