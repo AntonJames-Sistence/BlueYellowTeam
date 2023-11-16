@@ -52,10 +52,10 @@ const ChildrenCauseDonate = ({ prices }) => {
 
     return (
       <button
-      className="flex h-4 p-3 
+      className="flex h-4 w-16 p-3 
                   bg-gradient-to-b 
                   from-blue-400 to-yellow-400  
-                  text-black text-l
+                  text-black text-sm
                   hover:text-white 
                   hover:scale-125
                   font-bold
@@ -65,8 +65,8 @@ const ChildrenCauseDonate = ({ prices }) => {
                   ease-in-out duration-300
                   place-self-center
                   m-2
-                  md:h-4 md:p-4 md:text-lg
-                  lg:h-8 lg:p-4 lg:text-lg"
+                  md:h-4 md:p-4 md:text-sm
+                  lg:h-8 lg:p-4 lg:text-sm"
         key={priceObject.id}
         onClick={handleCheckout}
       >
@@ -79,7 +79,7 @@ const ChildrenCauseDonate = ({ prices }) => {
   };
 
   return (
-    <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-2 mt-4">
+    <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 lg:grid-rows-1 mt-4">
       {prices && constructor()}
     </div>
   );

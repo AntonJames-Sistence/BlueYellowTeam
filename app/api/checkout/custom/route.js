@@ -26,8 +26,8 @@ export async function POST(request) {
             quantity: 1,
         }],
         mode: 'payment',
-        success_url: 'http://localhost:3000', // change for thanks message
-        cancel_url: 'http://localhost:3000/donate', // return to donate page
+        success_url: 'https://blue-yellow-foundation.vercel.app/', // change for thanks message
+        cancel_url: 'https://blue-yellow-foundation.vercel.app/', // return to donate page
     });
   
     return NextResponse.json(session.url);
