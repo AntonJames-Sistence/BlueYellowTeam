@@ -27,7 +27,7 @@ export default function PostLayout({ post }) {
           <Button
             text="continue reading"
             url={`/blog/${post.id}`}
-            css="hover:text-blue-600 font-semibold transition-colors duration-200"
+            css="hover:text-blue-600 font-semibold transition-colors ease-in-out duration-300"
           />
         </div>
         <div className="mt-2 text-sm">{`${month} ${date.getDate()}, ${date.getFullYear()}`}</div>
