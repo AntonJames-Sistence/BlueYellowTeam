@@ -13,7 +13,7 @@ export default function ImageTextContainer({
         <Link
           href={link}
           className="project-card
-    flex-1 flex-basis-52 relative rounded-lg bg-white shadow-md hover:shadow-xl"
+    flex-1 flex-basis-52 relative rounded-lg bg-white shadow-md hover:shadow-xl hover:scale-[105%] ease-in-out duration-300"
         >
           <img
             className="border-b border-solid border-black rounded-t-md"
