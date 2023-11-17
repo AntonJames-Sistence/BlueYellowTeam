@@ -87,7 +87,14 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="w-screen bg-darkTeal h-60 md:h-64 lg:h-72 xl:h-96"></div>
+      <div className="relative">
+        <div className="w-screen h-56 md:h-96 bg-cover bg-no-repeat"
+            style={{ backgroundImage: `url(./people3.jpg)` }}
+        ></div>
+        <div className="absolute top-0 -right-7 md:right-0 w-1/2 md:w-2/5 h-full">
+          <div className="h-full bg-blue-500 bg-opacity-60 w-full transform -skew-x-12 origin-bottom-left"></div>
+        </div>
+      </div>
 
       {/* PROJECTS SECTION */}
       <div id="projects" className="pt-20 w-11/12 max-w-[1400px]">
