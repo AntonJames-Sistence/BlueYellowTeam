@@ -20,7 +20,7 @@ const Donate = () => {
   };
 
   return (
-    <section className="h-fit mx-8 mt-6 grid grid-cols-1 lg:grid-cols-3 gap-8">
+    <section className="h-fit mx-8 mt-12 grid grid-cols-1 lg:grid-cols-3 gap-8">
       <div className="flex flex-col justify-between">
         <div>
           <h4 className="font-bold text-2xl my-2 md:text-3xl text-center">Children</h4>
