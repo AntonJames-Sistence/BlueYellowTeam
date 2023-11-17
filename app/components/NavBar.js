@@ -50,7 +50,9 @@ export default function NavBar() {
 
           <Link
             href="/donate"
-            className="text-gray-800 mr-3 px-4 py-2 rounded-full text-sm md:text-base font-bold transition-colors duration-200 bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300"
+            className={`text-gray-800 mr-3 px-4 py-2 rounded-full text-sm md:text-base font-bold transition-colors duration-200 bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 ${
+              path === "/donate" ? "mt-1 ring-purple-500" : "ring-yellow-300"
+            }`}
           >
             Donate Now
           </Link>
