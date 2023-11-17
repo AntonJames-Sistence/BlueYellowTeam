@@ -53,8 +53,8 @@ const CustomDonateField = ({ cause }) => {
                         className='flex 
                             h-8 
                             p-1.5 
-                            bg-gradient-to-b 
-                            from-blue-400 to-yellow-400  
+                            bg-yellow-400
+                            hover:bg-blue-400
                             text-black
                             hover:text-white 
                             hover:scale-110

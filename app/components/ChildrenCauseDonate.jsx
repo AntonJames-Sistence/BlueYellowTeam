@@ -66,7 +66,7 @@ const ChildrenCauseDonate = ({ prices }) => {
                   place-self-center
                   m-2
                   md:h-4 md:p-4 md:text-sm
-                  lg:h-8 lg:p-4 lg:text-sm"
+                  lg:h-8"
         key={priceObject.id}
         onClick={handleCheckout}
       >
