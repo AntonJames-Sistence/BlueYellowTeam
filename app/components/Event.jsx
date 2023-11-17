@@ -2,7 +2,7 @@
 import "./event.css";
 import { useEffect, useState } from "react";
 
-const Event = ({ event }) => {
+const Event = ({ event, pastEvent }) => {
   const { id, url } = event;
   // Extract the background image URL
 
@@ -46,8 +46,11 @@ const Event = ({ event }) => {
     <swiper-slide className="">
       <div
         id="card"
-        className="mx-2 bg-white max-w-sm m-auto rounded-lg shadow-lg"
+        className="bg-white max-w-sm m-auto rounded-lg shadow-lg relative"
       >
+        {pastEvent && (
+          <div className="absolute w-full h-full bg-black opacity-10 rounded-md"></div>
+        )}
         <img src={event.image} className="rounded-t-md" alt="" />
 
         <div className="text-center p-2">
@@ -55,13 +58,19 @@ const Event = ({ event }) => {
             {event.name.slice(0, 45)}
             {event.name.length > 45 && "..."}
           </h2>
-          <div className="text-md mt-2 text-left h-32 flex flex-col justify-between">
-            <div className="text-14 leading-2 tracking-wide text-gray-700">
-              {formatDate(event.date)}
+          {pastEvent ? (
+            <div className="mt-2 h-32 font-bold text-left text-lg">
+              This event is over
             </div>
-            <div className="text-14 leading-2 tracking-wide text-gray-700">{`${event.venue} • ${event.address}`}</div>
-            <div className="text-14 leading-2 tracking-wide text-gray-700">{`Starts at $${event.cost}`}</div>
-          </div>
+          ) : (
+            <div className="text-md mt-2 text-left h-32 flex flex-col justify-between">
+              <div className="text-14 leading-2 tracking-wide text-gray-700">
+                {formatDate(event.date)}
+              </div>
+              <div className="text-14 leading-2 tracking-wide text-gray-700">{`${event.venue} • ${event.address}`}</div>
+              <div className="text-14 leading-2 tracking-wide text-gray-700">{`Starts at $${event.cost}`}</div>
+            </div>
+          )}
         </div>
         <a href={event.url} target="_blank">
           <div className="bg-black hover:bg-blue-600 text-white text-right font-bold pr-4 py-2 transition-colors duration-200 text-14 leading-2 tracking-wide rounded-b-md">

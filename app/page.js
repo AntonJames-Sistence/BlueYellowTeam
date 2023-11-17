@@ -7,6 +7,7 @@ import { allProjects } from "../data/projects";
 import Banner from "./components/Banner";
 import Youtube from "./components/youtube";
 import { whyDonate } from "../data/whyDonate";
+import HomeEvents from "./components/HomeEvents";
 
 export default function Home() {
   return (
@@ -25,7 +26,7 @@ export default function Home() {
         </div>
         <div
           id="who-help-cont"
-          className="flex flex-wrap p-2.5 gap-5 md:flex-row flex-col"
+          className="flex flex-wrap py-2.5 gap-5 md:flex-row flex-col"
         >
           {whoWeHelp.map((item, index) => (
             <ImageTextContainer
@@ -43,11 +44,11 @@ export default function Home() {
         <div className="text-center md:text-left text-5xl font-bold text-black-500 pb-3">
           Events
         </div>
-        <div className="w-full md:w-1/2 text-xl text-center md:text-left">
+        <div className="w-full md:w-1/2 text-xl text-center md:text-left pb-12 sm:pb-7">
           Your donations and support provide essential supplies and services to
           the Ukrainian people.
         </div>
-        <PastUpcomingEvents />
+        <HomeEvents />
       </div>
 
       <div
@@ -71,11 +72,16 @@ export default function Home() {
 
         <div className="grid grid-cols-2 grid-rows-2 justify-center md:flex md:justify-between mt-10">
           {whyDonate.map((message, index) => (
-            <div className="pb-5" key={index}>
-              <div className="text-4xl font-bold text-black-500">
-                {message.amount}
+            <div
+              className="pb-5 text-left flex flex-col items-center"
+              key={index}
+            >
+              <div>
+                <div className="text-4xl md:text-3xl lg:text-4xl font-bold text-black-500 w-fit">
+                  {message.amount}
+                </div>
+                <div className="w-40 md:w-full mt-1">{message.text}</div>
               </div>
-              <div className="max-w-xs md:max-w-none">{message.text}</div>
             </div>
           ))}
         </div>
@@ -94,7 +100,7 @@ export default function Home() {
         </div>
         <div
           id="who-help-cont"
-          className="flex flex-wrap p-2.5 gap-5 md:flex-row flex-col"
+          className="flex flex-wrap py-2.5 gap-5 md:flex-row flex-col"
         >
           {allProjects.map((item, index) => {
             return (
