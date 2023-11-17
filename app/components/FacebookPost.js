@@ -1,9 +1,9 @@
-'use client';
-import { useState } from 'react';
+"use client";
+import { useState } from "react";
 
 export default function FacebookPost({ post }) {
   const [hideExtra, setHideExtra] = useState(true);
-  const tooBig = post.description.length > 250;
+  const tooBig = post.description.length > 300;
 
   return (
     <div className="FaceBookLogs-post p-4 mb-3.5 min-content h-min rounded-md shadow-[0px_7px_7px_0px_lightgrey] bg-[#fff]">
@@ -31,15 +31,15 @@ export default function FacebookPost({ post }) {
       </div>
       <div className="FaceBookLogs-post-caption break-words mb-2 font-sans">
         {tooBig && hideExtra
-          ? post.description.slice(0, 250)
+          ? post.description.slice(0, 300)
           : post.description}
         {tooBig && hideExtra && (
           <div
             className="cursor-pointer w-fit"
             onClick={() => setHideExtra(false)}
           >
-            {' '}
-            ...show more{' '}
+            {" "}
+            ...show more{" "}
           </div>
         )}
         {tooBig && !hideExtra && (
@@ -47,8 +47,8 @@ export default function FacebookPost({ post }) {
             className="cursor-pointer w-fit"
             onClick={() => setHideExtra(true)}
           >
-            {' '}
-            ...show less{' '}
+            {" "}
+            ...show less{" "}
           </div>
         )}
       </div>
@@ -70,21 +70,21 @@ const getDate = (inputDate) => {
   const timeDif = curDate.getTime() - date.getTime();
 
   const months = Math.floor(timeDif / 1000 / 60 / 60 / 24 / 30);
-  if (months > 0) return `${months} ${months > 1 ? 'months' : 'month'} ago`;
+  if (months > 0) return `${months} ${months > 1 ? "months" : "month"} ago`;
 
   const weeks = Math.floor(timeDif / 1000 / 60 / 60 / 24 / 7);
-  if (weeks > 0) return `${weeks} ${weeks > 1 ? 'weeks' : 'week'} ago`;
+  if (weeks > 0) return `${weeks} ${weeks > 1 ? "weeks" : "week"} ago`;
 
   const days = Math.floor(timeDif / 1000 / 60 / 60 / 24);
-  if (days > 0) return `${days} ${days > 1 ? 'days' : 'day'} ago`;
+  if (days > 0) return `${days} ${days > 1 ? "days" : "day"} ago`;
 
   const hourDif = Math.floor(timeDif / 1000 / 60 / 60);
-  if (hourDif > 0) return `${hourDif} ${hourDif > 1 ? 'hours' : 'hour'} ago`;
+  if (hourDif > 0) return `${hourDif} ${hourDif > 1 ? "hours" : "hour"} ago`;
 
   const minuteDif = Math.floor(timeDif / 1000 / 60);
 
   if (minuteDif > 0)
-    return `${minuteDif} ${minuteDif > 1 ? 'minutes' : 'minute'} ago`;
+    return `${minuteDif} ${minuteDif > 1 ? "minutes" : "minute"} ago`;
 
-  return 'now';
+  return "now";
 };

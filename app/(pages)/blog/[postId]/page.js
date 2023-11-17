@@ -18,13 +18,13 @@ export default async function SinglePost({ params: { postId } }) {
   const firstHalf = post.subSections.slice(0, half);
   const secondHalf = post.subSections.slice(half);
   return (
-    <div className="md:mb-40 w-full max-w-3xl m-auto pt-36 ">
+    <div className="md:mb-40z w-full max-w-3xl m-auto pt-36 ">
       <a href="/blog">
         <button className="text-white rounded-3xl text-sm py-2 px-6 bg-[#4b5563] mb-4">
           « ALL BLOGS
         </button>
       </a>
-      <div className="w-full max-w-3xl m-auto h-fit shadow-lg shadow-sky-900 bg-[#fff]">
+      <div className="w-full max-w-3xl m-auto h-fit shadow-md shadow-sky-900 max-[550px]:shadow-md bg-[#fff]">
         <div className="w-full pl-2 border-b-2 border-black mb-4 pt-2 text-3xl font-bold">
           {post.title}
         </div>

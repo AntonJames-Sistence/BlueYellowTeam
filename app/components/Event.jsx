@@ -49,9 +49,11 @@ const Event = ({ event, pastEvent }) => {
         className="bg-white max-w-sm m-auto rounded-lg shadow-lg relative"
       >
         {pastEvent && (
-          <div className="absolute w-full h-full bg-black opacity-10 rounded-md"></div>
+          <div className="absolute w-full h-[91.5%] bg-black opacity-60 rounded-t-md"></div>
         )}
-        <img src={event.image} className="rounded-t-md" alt="" />
+        <div>
+          <img src={event.image} className="rounded-t-md" alt="" />
+        </div>
 
         <div className="text-center p-2">
           <h2 className="text-left text-xl font-bold h-20">
