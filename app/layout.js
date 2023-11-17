@@ -10,7 +10,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
   title: "Blue & Yellow Foundation",
-  description: "Blue & Yellow Foundation",
+  description: "Blue & Yellow Foundation website for donations",
 };
 
 export default async function RootLayout({ children }) {
@@ -18,10 +18,10 @@ export default async function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
-        <script
+        <Script
           src="https://kit.fontawesome.com/5de844313b.js"
-          crossOrigin="anonymous"
-        ></script>
+          
+        ></Script>
         <link rel="icon" href="/favicon.ico" sizes="any" />
       </head>
       <body className={inter.className}>

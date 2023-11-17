@@ -117,7 +117,7 @@ const Banner = () => {
                           px-4
                           text-xs
                           md:text-sm
-                          "><i class="fa-brands fa-apple-pay fa-2xl md:mr-6"></i>
+                          "><i className="fa-brands fa-apple-pay fa-2xl md:mr-6"></i>
                           <div className="inline">Donate with ApplePay</div>
                   </button>
                 </Link>
