@@ -1,12 +1,12 @@
-'use client';
-import { usePathname } from 'next/navigation';
+"use client";
+import { usePathname } from "next/navigation";
 
 const pathnameToTitle = {
-  '/donate': 'Donate Now',
-  '/projects': 'Our Projects',
-  '/social-media': 'Our Media',
-  '/events': 'Our events',
-  '/': '',
+  "/donate": "Donate Now",
+  "/projects": "Our Projects",
+  "/social-media": "Our Media",
+  "/events": "Our events",
+  "/blog": "Our Blog",
 };
 
 export default function PageHeader() {

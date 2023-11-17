@@ -18,7 +18,7 @@ export default async function SinglePost({ params: { postId } }) {
   const firstHalf = post.subSections.slice(0, half);
   const secondHalf = post.subSections.slice(half);
   return (
-    <div className="md:mb-40 w-full max-w-3xl m-auto pt-60 ">
+    <div className="md:mb-40 w-full max-w-3xl m-auto pt-36 ">
       <a href="/blog">
         <button className="text-white rounded-3xl text-sm py-2 px-6 bg-[#4b5563] mb-4">
           « ALL BLOGS
@@ -33,8 +33,9 @@ export default async function SinglePost({ params: { postId } }) {
             <Image
               className="object-cover object-top"
               src={post.image}
-              alt=""
+              alt="Image for blog post"
               fill={true}
+              sizes="(max-width: 768px) 100vw, 768px"
             />
             <div className="absolute flex flex-col items-end px-4 py-1 bg-sky-500 text-white bottom-0 right-0 transform translate-y-1/2 translate-x-[15%]">
               <div>Blue & Yellow Foundation</div>

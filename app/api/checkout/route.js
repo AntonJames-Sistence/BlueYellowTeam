@@ -13,11 +13,6 @@ export async function POST(request) {
         quantity: 1,
       },
     ],
-    // custom_fields: [
-    //     {
-
-    //     }
-    // ]
     mode: 'payment',
     success_url: 'https://blue-yellow-foundation.vercel.app', // change for thanks message
     cancel_url: 'https://blue-yellow-foundation.vercel.app/donate', // return to donate page

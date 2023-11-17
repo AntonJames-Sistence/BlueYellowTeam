@@ -1,6 +1,6 @@
-'use client';
-import React, { useState, useEffect, useRef } from 'react';
-import FacebookPost from './FacebookPost';
+"use client";
+import React, { useState, useEffect, useRef } from "react";
+import FacebookPost from "./FacebookPost";
 
 export default function Facebook() {
   let [facebookData, setFacebookData] = useState(null);
@@ -15,7 +15,7 @@ export default function Facebook() {
 
   useEffect(() => {
     const loadFaceBookData = async () => {
-      const res = await fetch('/api/facebook');
+      const res = await fetch("/api/facebook", { next: { revalidate: 60 } });
 
       if (res.ok) {
         const data = await res.json();
@@ -65,13 +65,13 @@ export default function Facebook() {
         setFacebookColumns(tempFacebookColumns);
       }
     };
-    window.addEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
 
-    return () => window.removeEventListener('resize', handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   return (
-    <div className="max-w-7xl w-full m-auto">
+    <div className="w-11/12 max-w-[1400px] m-auto">
       <div className="text-center lg:text-left text-5xl font-bold text-black-500 pb-3 mb-4 w-full">
         Updates From Facebook
       </div>
@@ -81,7 +81,7 @@ export default function Facebook() {
             return (
               <div
                 key={index}
-                className="flex flex-col w-full sm:w-[80%] md:w-[40%] lg:w-[32%]"
+                className="flex flex-col w-full md:w-[45%] lg:w-[32%]"
               >
                 {postList.map((post) => {
                   return <FacebookPost key={post.id} post={post} />;

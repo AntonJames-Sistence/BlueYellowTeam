@@ -1,8 +1,8 @@
-'use client';
-import { useEffect, useState, useRef } from 'react';
-import Event from './Event';
-import { register } from 'swiper/element/bundle';
-import swiperParams from '../../data/swiperParams';
+"use client";
+import { useEffect, useState, useRef } from "react";
+import Event from "./Event";
+import { register } from "swiper/element/bundle";
+import swiperParams from "../../data/swiperParams";
 
 const PastUpcomingEvents = () => {
   register();
@@ -12,13 +12,11 @@ const PastUpcomingEvents = () => {
 
   useEffect(() => {
     const getData = async () => {
-      const request = await fetch('/api/events', {
-        cache: 'no-store',
-      });
+      const request = await fetch("/api/events", { next: { revalidate: 60 } });
       const data = await request.json();
       if (data) {
         const eventData = Object.values(data);
-        setRealEventData(eventData);
+        setRealEventData(eventData.sort((a, b) => b.date - a.data));
       }
     };
     getData();
@@ -46,22 +44,24 @@ const PastUpcomingEvents = () => {
   return (
     <>
       {realEventData ? (
-        <div className="w-full max-w-7xl m-auto pt-5 pb-5">
+        <div className="w-11/12 max-w-[1400px] m-auto pb-5">
           <div className="text-3xl font-bold my-6 ml-8">Upcoming</div>
           <div className="w-full  relative">
-            <div
-              className="absolute -left-8 top-1/2 cursor-pointer"
-              onClick={() => upcommingSwiperRef.current.swiper.slidePrev()}
-            >
-              <i className="fa-solid fa-angle-left text-3xl"></i>
+            <div className="flex gap-3 absolute right-0 -top-12">
+              <div
+                className="cursor-pointer rounded-full w-10 h-10 flex justify-center items-center border-2 border-gray-600"
+                onClick={() => upcommingSwiperRef.current.swiper.slidePrev()}
+              >
+                <i className="fa-solid fa-angle-left text-2xl"></i>
+              </div>
+              <div
+                className="cursor-pointer rounded-full w-10 h-10 flex justify-center items-center border-2 border-gray-600"
+                onClick={() => upcommingSwiperRef.current.swiper.slideNext()}
+              >
+                <i className="fa-solid fa-angle-right text-2xl"></i>
+              </div>
             </div>
-            <div
-              className="absolute -right-8 top-1/2 cursor-pointer"
-              onClick={() => upcommingSwiperRef.current.swiper.slideNext()}
-            >
-              <i className="fa-solid fa-angle-right text-3xl"></i>
-            </div>
-            <swiper-container ref={upcommingSwiperRef} init={'false'}>
+            <swiper-container ref={upcommingSwiperRef} init={"false"}>
               {upcomingEvents.map((event, index) => (
                 <Event event={event} key={index} />
               ))}
@@ -70,19 +70,21 @@ const PastUpcomingEvents = () => {
 
           <div className="text-3xl font-bold my-6 ml-8">Past</div>
           <div className="w-full  relative">
-            <div
-              className="absolute -left-8 top-1/2 cursor-pointer"
-              onClick={() => pastSwiperRef.current.swiper.slidePrev()}
-            >
-              <i className="fa-solid fa-angle-left text-3xl"></i>
+            <div className="flex gap-3 absolute right-0 -top-12">
+              <div
+                className="cursor-pointer rounded-full w-10 h-10 flex justify-center items-center border-2 border-gray-600"
+                onClick={() => pastSwiperRef.current.swiper.slidePrev()}
+              >
+                <i className="fa-solid fa-angle-left text-2xl"></i>
+              </div>
+              <div
+                className="cursor-pointer rounded-full w-10 h-10 flex justify-center items-center border-2 border-gray-600"
+                onClick={() => pastSwiperRef.current.swiper.slideNext()}
+              >
+                <i className="fa-solid fa-angle-right text-2xl"></i>
+              </div>
             </div>
-            <div
-              className="absolute -right-8 top-1/2 cursor-pointer"
-              onClick={() => pastSwiperRef.current.swiper.slideNext()}
-            >
-              <i className="fa-solid fa-angle-right text-3xl"></i>
-            </div>
-            <swiper-container ref={pastSwiperRef} init={'false'}>
+            <swiper-container ref={pastSwiperRef} init={"false"}>
               {pastEvents.map((event, index) => (
                 <Event event={event} key={index} />
               ))}

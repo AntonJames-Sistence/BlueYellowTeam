@@ -13,16 +13,18 @@ export default function ImageTextContainer({
         <Link
           href={link}
           className="project-card
-    flex-1 flex-basis-52 relative border border-solid border-black rounded-lg bg-white"
+    flex-1 flex-basis-52 relative rounded-lg bg-white shadow-lg"
         >
           <img
             className="border-b border-solid border-black rounded-t-md"
             src={img}
             alt=""
           />
-          <div className="p-10 pt-5">
-            <div className="text-3xl mt-0 mb-2 text-gray-700">{title}</div>
-            <div className="text-14 leading-2 tracking-wide text-gray-700">
+          <div className="p-10 md:p-5 lg:p-10 pt-5">
+            <div className="text-3xl md:text-2xl lg:text-3xl mt-0 mb-2 text-gray-700">
+              {title}
+            </div>
+            <div className="text-base md:text-sm lg:text-base leading-2 tracking-wide text-gray-700">
               {para}
             </div>
           </div>

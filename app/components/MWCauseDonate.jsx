@@ -1,25 +1,11 @@
 import React from 'react';
 import axios from 'axios';
+import { customFilter } from './ChildrenCauseDonate';
 
-// custom filter for cause prices
-export const customFilter = (keyword, array) => {
-  let result = [];
-
-  for (let i = 0; i < array.length; i++) {
-    let ele = array[i];
-
-    if ( ele.nickname && ele.nickname.toLowerCase().includes(keyword.toLowerCase())) {
-      result.push(ele);
-    }
-  }
-
-  return result;
-};
-
-const ChildrenCauseDonate = ({ prices }) => {
+const MWCauseDonate = ({ prices }) => {
   // constructor for buttons
   const constructor = () => {
-    let filtered = customFilter('children', prices);
+    let filtered = customFilter('medical', prices);
     let buttonsArray = [];
 
     for (let i = 0; i < filtered.length; i++) {
@@ -52,7 +38,7 @@ const ChildrenCauseDonate = ({ prices }) => {
 
     return (
       <button
-      className="flex h-4 w-5/6 p-3 
+        className="flex h-4 w-5/6 p-3 
                   bg-gradient-to-b 
                   from-blue-400 to-yellow-400  
                   text-black text-sm
@@ -66,7 +52,7 @@ const ChildrenCauseDonate = ({ prices }) => {
                   place-self-center
                   m-2
                   md:h-4 md:p-4 md:text-sm
-                  lg:h-8"
+                  lg:h-8 lg:p-4 lg:text-sm"
         key={priceObject.id}
         onClick={handleCheckout}
       >
@@ -97,4 +83,4 @@ const ChildrenCauseDonate = ({ prices }) => {
   );
 };
 
-export default ChildrenCauseDonate;
+export default MWCauseDonate;

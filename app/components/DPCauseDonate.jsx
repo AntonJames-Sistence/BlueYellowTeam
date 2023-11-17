@@ -38,21 +38,21 @@ const DPCauseDonate = ({ prices }) => {
 
     return (
       <button
-        className="flex h-4 p-3 
-                  bg-gradient-to-b 
-                  from-blue-400 to-yellow-400  
-                  text-black text-l
-                  hover:text-white 
-                  hover:scale-125
-                  font-bold
-                  rounded-lg
-                  items-center
-                  justify-center
-                  ease-in-out duration-300
-                  place-self-center
-                  m-2
-                  md:h-4 md:p-4 md:text-lg
-                  lg:h-8 lg:p-4 lg:text-lg"
+      className="flex h-4 w-5/6 p-3 
+                bg-gradient-to-b 
+                from-blue-400 to-yellow-400  
+                text-black text-sm
+                hover:text-white 
+                hover:scale-125
+                font-bold
+                rounded-lg
+                items-center
+                justify-center
+                ease-in-out duration-300
+                place-self-center
+                m-2
+                md:h-4 md:p-4 md:text-sm
+                lg:h-8 lg:p-4 lg:text-sm"
         key={priceObject.id}
         onClick={handleCheckout}
       >
@@ -64,10 +64,22 @@ const DPCauseDonate = ({ prices }) => {
     );
   };
 
+  const renderPlaceholder = () => {
+    return (
+      <div className="flex items-center justify-center w-full h-[80px] md:h-[48px]">
+        <p className="text-gray-400">Loading...</p>
+      </div>
+    );
+  };
+
   return (
-    <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-2 mt-4">
-      {prices && constructor()}
-    </div>
+    <>
+      <hr className="border-t border-gray-400 my-2"></hr>
+      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 lg:grid-rows-1">
+        {prices && prices.length > 0 ? constructor() : renderPlaceholder()}
+      </div>
+      <hr className="border-t border-gray-400 my-2"></hr>
+    </>
   );
 };
 
