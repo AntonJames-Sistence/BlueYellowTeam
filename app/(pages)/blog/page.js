@@ -11,7 +11,7 @@ export default async function Blog() {
   if (!allBlogs) return notFound();
 
   return (
-    <div className="pt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 auto-rows-auto w-full max-w-[1400px]">
+    <div className="pt-10 px-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 auto-rows-auto w-full max-w-[1400px]">
       {allBlogs.map((post) => (
         <PostLayout key={post.id} post={post} />
       ))}
