@@ -4,9 +4,9 @@ import Link from "next/link";
 const Banner = () => {
   return (
     <>
-      <div className="relative h-[400px] w-11/12 max-w-[1400px] mt-32">
+      <div className="relative h-[400px] w-11/12 max-w-[1400px] mt-28">
         <video
-          className="absolute top-0 left-0 w-full h-full object-cover z-0 rounded-2xl"
+          className="absolute top-0 left-0 w-full h-full object-cover z-0 rounded-2xl shadow-custom"
           src="/flag_bg.mp4"
           autoPlay
           loop
@@ -34,8 +34,8 @@ const Banner = () => {
       <div className="flex flex-row w-11/12 justify-between max-w-[1400px] mt-4">
                 <Link href="./donate" className='w-[85px] md:w-1/5 flex flex-row'>
                   <button className="
-                          h-full
-                          md:h-12
+                          h-[120%]
+                          lg:h-16
                           w-full
                           bg-yellow-400
                           hover:bg-blue-400
@@ -44,26 +44,31 @@ const Banner = () => {
                           hover:scale-110
                           font-bold
                           rounded-2xl
+                          shadow-custom
                           items-center
                           justify-center
                           ease-in-out duration-300
                           px-4
                           text-xs
                           md:text-sm
-                          "><i className="fa-brands fa-cc-stripe fa-xl md:mr-6"></i>
+                          "><i className="fa-brands fa-cc-stripe fa-xl md:mr-2 ml:mr-6"></i>
                           <div className="inline">Donate with Stripe</div>
                   </button>
                 </Link>
-                <Link href="https://www.paypal.com/donate/?hosted_button_id=6S6S2484WWCKN" target="_blank" rel="noopener noreferrer" className='w-[85px] md:w-1/5'>
+                <Link href="https://www.paypal.com/donate/?hosted_button_id=6S6S2484WWCKN" 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className='w-[85px] md:w-1/5'>
                   <button className="
-                          h-full
-                          md:h-12
+                          h-[120%]
+                          lg:h-16
                           w-full
                           bg-yellow-400
                           hover:bg-blue-400
                           text-black
                           hover:text-white
                           hover:scale-110
+                          shadow-custom
                           font-bold
                           rounded-2xl
                           items-center
@@ -72,21 +77,22 @@ const Banner = () => {
                           px-4
                           text-xs
                           md:text-sm
-                          "><i className="fa-brands fa-paypal fa-xl md:mr-6"></i>
+                          "><i className="fa-brands fa-paypal fa-xl md:mr-2 ml:mr-6"></i>
                           <div className="inline">Donate with PayPal</div>
                   </button>
                 </Link>
                 <Link href="./donate" className='w-[85px] md:w-1/5'>
                   <button className="
-                          h-full
+                          h-[120%]
+                          lg:h-16
                           w-full
-                          md:h-12
                           md:w-full
                           bg-yellow-400
                           hover:bg-blue-400
                           text-black
                           hover:text-white
                           hover:scale-110
+                          shadow-custom
                           font-bold
                           rounded-2xl
                           items-center
@@ -95,20 +101,21 @@ const Banner = () => {
                           px-4
                           text-xs
                           md:text-sm
-                          "><i className="fa-brands fa-google-pay fa-2xl md:mr-6"></i>
+                          "><i className="fa-brands fa-google-pay fa-2xl md:mr-2 ml:mr-6"></i>
                           <div className="md:inline">Donate with GooglePay</div>
                   </button>
                 </Link>
                 <Link href="./donate" className='w-[85px] md:w-1/5'>
                   <button className="
-                          h-full
-                          md:h-12
+                          h-[120%]
+                          lg:h-16
                           w-full
                           bg-yellow-400
                           hover:bg-blue-400
                           text-black
                           hover:text-white
                           hover:scale-110
+                          shadow-custom
                           font-bold
                           rounded-2xl
                           items-center
@@ -117,7 +124,7 @@ const Banner = () => {
                           px-4
                           text-xs
                           md:text-sm
-                          "><i className="fa-brands fa-apple-pay fa-2xl md:mr-6"></i>
+                          "><i className="fa-brands fa-apple-pay fa-2xl md:mr-2 ml:mr-6"></i>
                           <div className="inline">Donate with ApplePay</div>
                   </button>
                 </Link>

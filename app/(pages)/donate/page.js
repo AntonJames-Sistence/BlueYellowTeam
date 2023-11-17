@@ -1,8 +1,8 @@
-import Donate from '../../components/Donate';
+import Donate from "../../components/Donate";
 
 export default function DonatePage() {
   return (
-    <div className="w-full flex flex-col items-center min-h-[100vh]">
+    <div className="w-full flex flex-col items-center min-h-[100vh] px-5">
       <Donate />
     </div>
   );
