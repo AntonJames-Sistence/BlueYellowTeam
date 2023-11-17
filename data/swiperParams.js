@@ -1,6 +1,7 @@
 const swiperParams = {
   slidesPerView: 4,
   centeredSlides: false,
+  spaceBetween: 10,
   breakpoints: {
     100: {},
     320: {
