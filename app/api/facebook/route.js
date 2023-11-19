@@ -72,7 +72,7 @@ export async function PUT() {
     firebase["facebook"] = cleanData;
     update(ref(DB), firebase);
 
-    return NextResponse.json(cleanData);
+    return NextResponse.json("Succesfully updated data");
   } catch (error) {
     return NextResponse.error("Couldn't retrieve Facebook data, PUT route");
   }
