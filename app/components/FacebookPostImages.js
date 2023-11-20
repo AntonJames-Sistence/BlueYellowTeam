@@ -39,4 +39,3 @@ export default function FacebookPostImages({ images }) {
     </>
   );
 }
-// h-40 min-[1024px]:h-28 min-[1155px]:h-32
