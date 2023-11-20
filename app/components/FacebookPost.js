@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import FacebookPostImages from "./FacebookPostImages";
 
 export default function FacebookPost({ post }) {
   const [hideExtra, setHideExtra] = useState(true);
@@ -20,7 +21,10 @@ export default function FacebookPost({ post }) {
         </a>
         <div className="FaceBookLogs-post-header-content h-10">
           <div className="FaceBookLogs-post-header-content-1 font-bold text-sm">
-            <a href={post.url} target="_blank">
+            <a
+              href="https://www.facebook.com/BlueYellowFoundation/"
+              target="_blank"
+            >
               {post.name}
             </a>
           </div>
@@ -35,30 +39,66 @@ export default function FacebookPost({ post }) {
           : post.description}
         {tooBig && hideExtra && (
           <div
-            className="cursor-pointer w-fit"
+            className="cursor-pointer w-fit font-serif inline text-[#5c5c5c]"
             onClick={() => setHideExtra(false)}
           >
             {" "}
-            ...show more{" "}
+            ...<span className="hover:underline">See more</span>
           </div>
         )}
         {tooBig && !hideExtra && (
           <div
-            className="cursor-pointer w-fit"
+            className="cursor-pointer w-fit font-serif inline text-[#5c5c5c]"
             onClick={() => setHideExtra(true)}
           >
             {" "}
-            ...show less{" "}
+            ...<span className="hover:underline">See less</span>
           </div>
         )}
       </div>
-      <a href={post.url} className="relative" target="_blank">
-        <div className="absolute w-full h-full bg-black/0 duration-300 hover:bg-black/50"></div>
-        <img src={post.images[0]} alt="" />
+      <a href={post.url} className="relative h-full" target="_blank">
+        <div className="absolute z-[2] w-full h-full bg-black/0 duration-300 hover:bg-black/50"></div>
+        <FacebookPostImages images={post.images} />
       </a>
-      <div className="flex items-center mt-1 gap-0.5">
-        <img src="/facebookLikes.png" className="h-auto rounded w-1/6" />
-        <div className="text-sm">{post.likes}</div>
+      <div className="flex justify-between mt-2">
+        <div className="flex justify-between text-sm gap-4">
+          <div className="flex items-center gap-0">
+            <img src="/facebookLikes.png" className="h-5 rounded w-auto" />
+            <div>{post.likes}</div>
+          </div>
+          <div className="flex items-center gap-0.5">
+            <i className="fa-regular fa-comment"></i>
+            <div>{post.comments}</div>
+          </div>
+          <div className="flex items-center gap-0.5">
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 16 16"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g clip-path="url(#clip0_1969_47911)">
+                <path
+                  d="M12.8409 6.58819L9.47282 3.13265C9.17819 2.83078 8.71394 3.07612 8.71394 3.54622V5.40051C5.52663 5.44126 3 6.15312 3 9.51614C3 10.8738 3.78567 12.2191 4.65347 12.9217C4.92444 13.1412 5.31013 12.8657 5.21013 12.5101C4.31019 9.30611 5.85697 8.601 8.71394 8.5785V10.4338C8.71394 10.9044 9.17909 11.1486 9.47326 10.8466L12.8414 7.39106C13.053 7.19578 13.053 6.80572 12.8409 6.58819Z"
+                  stroke="#141B38"
+                  stroke-linecap="round"
+                ></path>
+              </g>
+              <defs>
+                <clipPath id="clip0_1969_47911">
+                  <rect width="16" height="16" rx="2" fill="white"></rect>
+                </clipPath>
+              </defs>
+            </svg>
+            <div>{post.shares}</div>
+          </div>
+        </div>
+        <div className="flex items-center">
+          <a className="flex items-center" href={post.url} target="_blank">
+            <i className="fa-brands fa-facebook hover:cursor-pointer"></i>
+          </a>
+        </div>
       </div>
     </div>
   );
