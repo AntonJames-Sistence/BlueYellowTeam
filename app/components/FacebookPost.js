@@ -39,20 +39,26 @@ export default function FacebookPost({ post }) {
           : post.description}
         {tooBig && hideExtra && (
           <div
-            className="cursor-pointer w-fit font-serif inline text-[#5c5c5c]"
+            className="cursor-pointer w-fit inline"
             onClick={() => setHideExtra(false)}
           >
             {" "}
-            ...<span className="hover:underline">See more</span>
+            ...
+            <span className="hover:underline font-bold text-black">
+              See more
+            </span>
           </div>
         )}
         {tooBig && !hideExtra && (
           <div
-            className="cursor-pointer w-fit font-serif inline text-[#5c5c5c]"
+            className="cursor-pointer w-fit inline "
             onClick={() => setHideExtra(true)}
           >
             {" "}
-            ...<span className="hover:underline">See less</span>
+            ...
+            <span className="hover:underline font-bold text-black">
+              See less
+            </span>
           </div>
         )}
       </div>
