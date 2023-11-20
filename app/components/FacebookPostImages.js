@@ -19,8 +19,9 @@ export default function FacebookPostImages({ images }) {
         alt=""
       />
       <div className="flex items-stretch relative">
-        {images.slice(1, 4).map((img) => (
+        {images.slice(1, 4).map((img, index) => (
           <img
+            key={index}
             className={`aspect-square ${imagesWidth} grow flex border-y-2 border-x-[1px] border-white`}
             src={img}
             alt=""
