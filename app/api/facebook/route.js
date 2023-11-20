@@ -21,7 +21,7 @@ export async function GET() {
 
 export async function PUT() {
   const accessToken = process.env.FACEBOOK_ACCESS_TOKEN;
-  const url = `https://graph.facebook.com/v18.0/ 101182722724503?fields=posts%7Blikes.summary(true)%2Cattachments%7Bmedia%2Cdescription%2Curl%2Csubattachments%7D%2Ccreated_time%2Cmessage%7D%2Cname%2Cphotos.limit(1)%7Bimages%7D&access_token=${accessToken}`;
+  const url = `https://graph.facebook.com/v18.0/ 101182722724503?fields=posts%7Blikes.summary(true)%2Cattachments%7Bmedia%2Cdescription%2Curl%2Csubattachments%7D%2Ccreated_time%2Cmessage%2Ccomments.summary(true)%2Cshares%2Cpermalink_url%7D%2Cname%2Cphotos.limit(1)%7Bimages%7D&access_token=${accessToken}`;
 
   try {
     const res = await fetch(url);
@@ -42,7 +42,9 @@ export async function PUT() {
 
       newPost.id = post.id;
       newPost.likes = post.likes.summary.total_count;
-      newPost.url = post.attachments.data[0].url;
+      newPost.comments = post.comments.summary.total_count;
+      newPost.shares = post.shares?.count || 0;
+      newPost.url = post.permalink_url;
       newPost.createdAt = post["created_time"];
 
       newPost.name = fbData.name;
@@ -72,7 +74,7 @@ export async function PUT() {
     firebase["facebook"] = cleanData;
     update(ref(DB), firebase);
 
-    return NextResponse.json(cleanData);
+    return NextResponse.json("Successfully updated data");
   } catch (error) {
     return NextResponse.error("Couldn't retrieve Facebook data, PUT route");
   }
