@@ -5,6 +5,6 @@ export default function useBlogSub(blog) {
 
   return Object.values(blog.subSections).map((section) => ({
     ...section,
-    psudeoId: blog.id ?? uuidv4(),
+    pseudoId: section.id ?? uuidv4(),
   }));
 }

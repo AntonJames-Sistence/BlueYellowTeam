@@ -1,29 +1,43 @@
 import React, { useState } from "react";
 
-export default function SubSectionForm({ section, index, handleDeleteCard }) {
-  const [title, setTitle] = useState(section.title ?? "");
-  const [text, setText] = useState(section.text ?? "");
+export default function SubSectionForm({
+  section,
+  index,
+  handleDeleteCard,
+  handleEditCard,
+}) {
   return (
     <div className="border-2 border-black my-5 rounded-md">
       <div className="flex justify-between p-4 border-b-2">
         <div>{index + 1}</div>
         <div
           className="hover:cursor-pointer"
-          onClick={() => handleDeleteCard(section.pseudoId)}
+          onClick={() => handleDeleteCard(section.pseudoId, section.id)}
         >
           delete
         </div>
       </div>
-      <div className="flex justify-between gap-10 p-4">
+      <div className="flex flex-col justify-between gap-2 p-4">
+        <div className="font-semibold">Title</div>
         <input
           type="text"
-          className="border-b-2 pb-2 w-full"
+          className="border-2 p-2 rounded-md "
           placeholder="Enter Title:"
+          value={section.title}
+          onChange={(e) =>
+            handleEditCard(section.pseudoId, "title", e.target.value)
+          }
         />
-        <input
+        <div className="font-semibold">Text</div>
+        <textarea
           type="text"
-          className="border-b-2 pb-2 w-full"
-          placeholder="Enter Description"
+          className="border-2 p-2 rounded-md "
+          placeholder="Enter Text"
+          value={section.text}
+          onChange={(e) =>
+            handleEditCard(section.pseudoId, "text", e.target.value)
+          }
+          rows={4}
         />
       </div>
     </div>
