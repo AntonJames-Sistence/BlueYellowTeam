@@ -51,12 +51,13 @@ export async function GET(request, { params: { postId } }) {
 export async function POST(request, { params: { postId } }) {
   try {
     // isAdmin()
-    const subSection = await request.json();
+    const { subSections } = await request.json();
 
-    const errors = subSectionHasErrors(subSection);
-
-    if (errors) {
-      return NextResponse.json({ errors }, { status: 404 });
+    for (let subSection of subSections) {
+      const errors = subSectionHasErrors(subSection);
+      if (errors) {
+        return NextResponse.json(errors, { status: 404 });
+      }
     }
 
     const postRef = doc(storeDB, "posts", postId);
@@ -68,15 +69,18 @@ export async function POST(request, { params: { postId } }) {
       );
     }
 
-    const newSubSectionRef = doc(
-      collection(storeDB, "posts", postId, "subSection")
-    );
+    for (let subSection of subSections) {
+      const newSubSectionRef = doc(
+        collection(storeDB, "posts", postId, "subSection")
+      );
 
-    await setDoc(newSubSectionRef, {
-      ...subSection,
-      id: newSubSectionRef.id,
-    });
-
+      await setDoc(newSubSectionRef, {
+        title: subSection.title,
+        text: subSection.text,
+        id: newSubSectionRef.id,
+        createdAt: new Date(),
+      });
+    }
     const allSubSectionsSS = await getDocs(
       collection(storeDB, "posts", postId, "subSection")
     );
@@ -88,7 +92,43 @@ export async function POST(request, { params: { postId } }) {
 
     return NextResponse.json(allSubSections);
   } catch (error) {
-    return NextResponse.error("something went wrong");
+    return NextResponse.error("failed to create subSections");
+  }
+}
+
+export async function PUT(request, { params: { postId } }) {
+  try {
+    const { subSections } = await request.json();
+
+    for (let subSection of subSections) {
+      const errors = subSectionHasErrors(subSection);
+      if (errors) {
+        return NextResponse.json(errors, { status: 404 });
+      }
+    }
+
+    const postRef = doc(storeDB, "posts", postId);
+    const post = await getDoc(postRef);
+    if (!post.exists()) {
+      return NextResponse.json(
+        { errors: "Post doesn't exist" },
+        { status: 404 }
+      );
+    }
+
+    for (let subSection of subSections) {
+      await updateDoc(
+        doc(storeDB, "posts", postId, "subSection", subSection.id),
+        {
+          title: subSection.title,
+          text: subSection.text,
+        }
+      );
+    }
+
+    return NextResponse.json("Successfully updated subSections");
+  } catch (error) {
+    return NextResponse.error("Failed to update subSections");
   }
 }
 

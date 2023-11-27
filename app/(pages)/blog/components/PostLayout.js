@@ -1,37 +1,42 @@
 import Button from "./Button";
 import Image from "next/image";
+import BlogMenu from "./BlogMenu";
+import { getServerSession } from "next-auth";
 
-export default function PostLayout({ post }) {
+export default async function PostLayout({ post }) {
   const date = new Date(post.createdAt.seconds * 1000);
-
   const month = months[date.getMonth()];
+  const session = await getServerSession();
   return (
-    <div className=" flex-1 flex-basis-52 relative rounded-lg h-fit shadow-lg">
-      <div className="h-64 w-full relative rounded-t-lg">
-        <Image
-          className="w-full h-full object-cover object-top rounded-t-lg"
-          src={post.image}
-          fill={true}
-          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-          alt="Image blog post"
-        />
-      </div>
-      <div className="p-5 bg-[#fff] rounded-b-lg h-max flex flex-col justify-between">
-        <div className="text-3xl mt-0 mb-2 text-gray-700 lg:min-h-20 break-all">
-          {post.title.slice(0, 40)}
-          {post.title.length > 40 ? "..." : ""}
-        </div>
-        <div className="mb-2 leading-2 tracking-wide text-gray-700 min-h-32">
-          {post.description.slice(0, 250)}
-          {post.description.length > 250 ? "... " : " "}
-          <Button
-            text="continue reading"
-            url={`/blog/${post.id}`}
-            css="hover:text-blue-600 font-semibold transition-colors ease-in-out duration-300"
+    <div className="flex-basis-52 flex flex-col relative justify-between rounded-lg h-full shadow-lg">
+      {session && <BlogMenu blogId={post.id} />}
+      <div>
+        <div className="h-64 w-full relative rounded-t-lg">
+          <Image
+            className="w-full h-full object-cover object-top rounded-t-lg"
+            src={post.image}
+            fill={true}
+            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            alt="Image blog post"
           />
         </div>
-        <div className="mt-2 text-sm">{`${month} ${date.getDate()}, ${date.getFullYear()}`}</div>
+        <div className="p-5 rounded-b-lg flex flex-col justify-between">
+          <div className="text-3xl h-max mt-0 mb-2 text-gray-700 lg:min-h-20">
+            {post.title.slice(0, 40)}
+            {post.title.length > 40 ? "..." : ""}
+          </div>
+          <div className="mb-2 leading-2 h-max tracking-wide text-gray-700 h-min-[100px] ">
+            {post.description.slice(0, 250)}
+            {post.description.length > 250 ? "... " : " "}
+            <Button
+              text="continue reading"
+              url={`/blog/${post.id}`}
+              css="hover:text-blue-600 font-semibold transition-colors ease-in-out duration-300"
+            />
+          </div>
+        </div>
       </div>
+      <div className="mt-2 p-5 pt-0 text-sm">{`${month} ${date.getDate()}, ${date.getFullYear()}`}</div>
     </div>
   );
 }

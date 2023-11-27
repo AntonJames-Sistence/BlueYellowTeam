@@ -37,8 +37,8 @@ const postHasErrors = (post, type) => {
   if (!post.description) errors.description = "Blog post missing description";
   if (!post.image) errors.media = "Blog needs an image";
   if (type === "PUT" && !post.id) errors.id = "Blog needs an id to update";
-  if (type === "POST" && (!post.subSection || !post.subSection.length))
-    errors.subSection = "Blog needs at least one subSection";
+  if (type === "POST" && (!post.subSections || !post.subSections.length))
+    errors.subSections = "Blog needs at least one subSection";
 
   if (Object.values(errors).length) return errors;
   return false;
@@ -92,7 +92,7 @@ export async function POST(request, res) {
       id: id,
     });
 
-    for (let subSection of post.subSection) {
+    for (let subSection of post.subSections) {
       const errors = subSectionHasErrors(subSection);
       if (errors) {
         await deleteDoc(doc(storeDB, "posts", id));
@@ -100,7 +100,7 @@ export async function POST(request, res) {
       }
     }
 
-    for (let subSection of post.subSection) {
+    for (let subSection of post.subSections) {
       const subSectionRef = doc(collection(storeDB, "posts", id, "subSection"));
 
       await setDoc(subSectionRef, {
@@ -150,7 +150,7 @@ export async function PUT(request) {
     }
 
     await updateDoc(postRef, {
-      ...post,
+      description: post.description,
     });
 
     const newPost = await getDoc(postRef);
