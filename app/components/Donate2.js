@@ -6,27 +6,28 @@ import axios from 'axios';
 const Donate2 = () => {
     const questions = [
         {
-            questionText: 'What is your favorite color?',
+            questionText: 'Who do you want to contribute to',
             answerOptions: [
-                { answerText: 'Blue', nextQuestion: 1 },
-                { answerText: 'Red', nextQuestion: 1 },
-                { answerText: 'Green', nextQuestion: 1 },
+                { answerText: 'Children', nextQuestion: 1 },
+                { answerText: 'Displaced', nextQuestion: 1 },
+                { answerText: 'Medical Workers', nextQuestion: 1 },
             ],
         },
         {
-            questionText: 'What is your favorite animal?',
+            questionText: 'What payment method?',
             answerOptions: [
-                { answerText: 'Dog', nextQuestion: 2 },
-                { answerText: 'Cat', nextQuestion: 2 },
-                { answerText: 'Bird', nextQuestion: 2 },
+                { answerText: 'Card', nextQuestion: 2 },
+                { answerText: 'Apple Pay', nextQuestion: 2 },
+                { answerText: 'PayPal', nextQuestion: 2 },
             ],
         },
         {
-            questionText: 'Which season do you prefer?',
+            questionText: 'Ammount',
             answerOptions: [
-                { answerText: 'Summer', nextQuestion: 0 },
-                { answerText: 'Winter', nextQuestion: 0 },
-                { answerText: 'Spring', nextQuestion: 0 },
+                { answerText: '$20', nextQuestion: 0 },
+                { answerText: '$50', nextQuestion: 0 },
+                { answerText: '$100', nextQuestion: 0 },
+                { answerText: 'Custom', nextQuestion: 0 },
             ],
         },
     ];
@@ -43,35 +44,30 @@ const Donate2 = () => {
     };
 
     return (
-        <div className="mx-auto my-8 p-4 max-w-md opacity-100">
-            <h2
-                key={currentQuestion}
-                className="text-2xl mb-4 opacity-100 transition-opacity duration-500"
-            >
-                {questions[currentQuestion]?.questionText}
-            </h2>
-
-            <div className="answer-options space-y-2">
-                {questions[currentQuestion]?.answerOptions.map((option, index) => (
-                    <button
-                        key={index}
-                        className="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition-colors"
-                        onClick={() => handleAnswerClick(option.nextQuestion)}
-                    >
-                        {option.answerText}
-                    </button>
-                ))}
-            </div>
-
-            {/* Hide the previous question while transitioning to the new question */}
-            {currentQuestion > 0 && (
-                <h2
-                    key={currentQuestion - 1}
-                    className="text-2xl mb-4 opacity-0 transition-opacity duration-500 absolute opacity-0"
+        <div className="mx-auto my-8 p-4 max-w-md ">
+            {questions.map((question, index) => (
+                <div
+                    key={index}
+                    className={`fixed border border-black  ${
+                        index === currentQuestion
+                            ? 'opacity-100 transition-opacity duration-1000 ease-in-out'
+                            : 'opacity-0 pointer-events-none ease-in-out'
+                    }`}
                 >
-                    {questions[currentQuestion - 1].questionText}
-                </h2>
-            )}
+                    <h2 className="text-2xl mb-4">{question.questionText}</h2>
+                    <div className="answer-options space-y-2">
+                        {question.answerOptions.map((option, optionIndex) => (
+                            <button
+                                key={optionIndex}
+                                className="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition-colors"
+                                onClick={() => handleAnswerClick(option.nextQuestion)}
+                            >
+                                {option.answerText}
+                            </button>
+                        ))}
+                    </div>
+                </div>
+            ))}
         </div>
     );
 };
