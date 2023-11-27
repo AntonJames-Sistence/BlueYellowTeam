@@ -6,6 +6,8 @@ import axios from 'axios';
 const Donate2 = () => {
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const [cause, setCause] = useState('');
+    const [amount, setAmount] = useState(0);
+    const [method, setMethod] = useState('');
 
     const childrenCause = (
         <div className='flex flex-col'>
@@ -40,41 +42,53 @@ const Donate2 = () => {
 
     const questions = [
         {
-            questionText: 'Who do you want to contribute to',
+            questionText: 'Who do you want to contribute to?',
             answerOptions: [
-                { answerText: childrenCause, nextQuestion: 1 },
-                { answerText: MWCause, nextQuestion: 1 },
-                { answerText: DPCause, nextQuestion: 1 },
+                { answerText: childrenCause, nextQuestion: 1, answer: 'Children' },
+                { answerText: MWCause, nextQuestion: 1, answer: 'Medical Workers' },
+                { answerText: DPCause, nextQuestion: 1, answer: 'Displaced People' },
             ],
         },
         {
-            questionText: 'Ammount',
+            questionText: 'Amount',
             answerOptions: [
-                { answerText: '$20', nextQuestion: 2 },
-                { answerText: '$50', nextQuestion: 2 },
-                { answerText: '$100', nextQuestion: 2 },
-                { answerText: 'Custom', nextQuestion: 2 },
+                { answerText: '$20', nextQuestion: 2, answer: 20 },
+                { answerText: '$50', nextQuestion: 2, answer: 50 },
+                { answerText: '$100', nextQuestion: 2, answer: 100 },
+                { answerText: 'Custom', nextQuestion: 2, answer: 100 }, //change
             ],
         },
         {
-            questionText: 'What payment method?',
+            questionText: 'What payment method?', // for now it is looped, change later
             answerOptions: [
-                { answerText: 'Card', nextQuestion: 0 },
-                { answerText: 'Apple Pay', nextQuestion: 0 },
-                { answerText: 'PayPal', nextQuestion: 0 },
+                { answerText: 'Card', nextQuestion: 0, answer: 'Stripe' },
+                { answerText: 'Apple Pay', nextQuestion: 0, answer: 'Mobile' },
+                { answerText: 'PayPal', nextQuestion: 0, answer: 'PayPal' },
             ],
         },
     ];
 
-    const handleAnswerClick = (nextQuestion, option) => {
-        if (nextQuestion !== null) {
+    const handleAnswerClick = (nextQuestion, answer) => {
+        if (currentQuestion === 0) {
+            setCause(answer);
             setCurrentQuestion(nextQuestion);
-            console.log(option.answerText)
+        } else if (currentQuestion === 1) {
+            setAmount(answer);
+            setCurrentQuestion(nextQuestion);
+        } else if (currentQuestion === 2) {
+            setMethod(answer);
+            setCurrentQuestion(nextQuestion);
         } else {
             // Handle end of questions, can trigger an action or display a completion message
             console.log('End of questions');
         }
     };
+
+    // useEffect(() => {
+    //     console.log('Cause:', cause);
+    //     console.log('Amount:', amount);
+    //     console.log('Method:', method);
+    // }, [cause, amount, method]);
 
     return (
         <div className="mx-auto my-8 p-4 w-full ">
@@ -93,7 +107,7 @@ const Donate2 = () => {
                             <button
                                 key={optionIndex}
                                 className="bg-blue-500 text-white py-2 m-4 rounded-xl hover:bg-blue-600 transition-colors w-1/3 "
-                                onClick={() => handleAnswerClick(option.nextQuestion, option)}
+                                onClick={() => handleAnswerClick(option.nextQuestion, option.answer)}
                             >
                                 {option.answerText}
                             </button>
