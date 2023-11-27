@@ -56,35 +56,51 @@ const Donate2 = () => {
                 { answerText: '$20', nextQuestion: 2, answer: 20 },
                 { answerText: '$50', nextQuestion: 2, answer: 50 },
                 { answerText: '$100', nextQuestion: 2, answer: 100 },
-                { answerText: 'Custom', nextQuestion: 2, answer: 100 }, //change
+                { answerText: 'Custom', nextQuestion: 2, answer: null }, //change
             ],
         },
         {
             questionText: 'What payment method?', // for now it is looped, change later
             answerOptions: [
-                { answerText: 'Bank Card', nextQuestion: 0, answer: 'Stripe' },
-                { answerText: 'ApplePay / GooglePay', nextQuestion: 0, answer: 'Mobile' },
-                { answerText: 'PayPal', nextQuestion: 0, answer: 'PayPal' },
+                { answerText: 'Bank Card', nextQuestion: 3, answer: 'Stripe' },
+                { answerText: 'ApplePay / GooglePay', nextQuestion: 3, answer: 'Mobile' },
+                { answerText: 'PayPal', nextQuestion: 3, answer: 'PayPal' },
             ],
         },
     ];
+
+    const handleStripeCheckout = async () => {
+        if(amount !== null && cause) {
+            const { data } = await axios.post(
+                '/api/checkout/custom',
+                {
+                    amount: amount,
+                    name: `Donate to ${cause}`,
+                },
+                {
+                    headers: {
+                    'Content-Type': 'application/json',
+                    },
+                }
+                );
+            window.location.assign(data);
+        } else {
+            console.log('Something went wrong')
+        }
+    };
 
     const handleAnswerClick = (nextQuestion, answer) => {
         if (currentQuestion === 0) {
             setCause(answer);
             setCurrentQuestion(nextQuestion);
         } else if (currentQuestion === 1) {
-            // ammount has been set by utilizing useState directly from customer
+            setAmount(answer);
             setCurrentQuestion(nextQuestion);
-        } else if (currentQuestion === 2) {
+        } else if (currentQuestion === 2) { // last question
             setMethod(answer);
-            setCurrentQuestion(nextQuestion);
-        } else {
-            // Handle end of questions, can trigger an action or display a completion message
-            console.log('End of questions');
+            handleStripeCheckout();
         }
     };
-
     useEffect(() => {
         console.log('Cause:', cause);
         console.log('Amount:', amount);
@@ -117,7 +133,7 @@ const Donate2 = () => {
                         />
                         <button
                             className="bg-blue-500 text-white my-4 rounded-xl hover:bg-blue-600 transition-colors w-1/2 min-h-[40px]"
-                            onClick={() => handleAnswerClick(option.nextQuestion, 'Custom')}
+                            onClick={() => handleAnswerClick(option.nextQuestion, amount)}
                         >
                             {option.answerText}
                         </button>
