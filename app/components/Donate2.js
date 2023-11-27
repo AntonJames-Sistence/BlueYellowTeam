@@ -51,20 +51,20 @@ const Donate2 = () => {
             ],
         },
         {
-            questionText: 'Amount',
+            questionText: 'What payment method?', // for now it is looped, change later
             answerOptions: [
-                { answerText: '$20', nextQuestion: 2, answer: 20 },
-                { answerText: '$50', nextQuestion: 2, answer: 50 },
-                { answerText: '$100', nextQuestion: 2, answer: 100 },
-                { answerText: 'Custom', nextQuestion: 2, answer: null }, //change
+                { answerText: 'Bank Card', nextQuestion: 2, answer: 'Stripe' },
+                { answerText: 'ApplePay / GooglePay', nextQuestion: 2, answer: 'Mobile' },
+                { answerText: 'PayPal', nextQuestion: 2, answer: 'PayPal' },
             ],
         },
         {
-            questionText: 'What payment method?', // for now it is looped, change later
+            questionText: 'Amount',
             answerOptions: [
-                { answerText: 'Bank Card', nextQuestion: 3, answer: 'Stripe' },
-                { answerText: 'ApplePay / GooglePay', nextQuestion: 3, answer: 'Mobile' },
-                { answerText: 'PayPal', nextQuestion: 3, answer: 'PayPal' },
+                { answerText: '$20', nextQuestion: 0, answer: 20 },
+                { answerText: '$50', nextQuestion: 0, answer: 50 },
+                { answerText: '$100', nextQuestion: 0, answer: 100 },
+                { answerText: 'Custom', nextQuestion: 0, answer: null }, //change
             ],
         },
     ];
@@ -94,18 +94,19 @@ const Donate2 = () => {
             setCause(answer);
             setCurrentQuestion(nextQuestion);
         } else if (currentQuestion === 1) {
-            setAmount(answer);
-            setCurrentQuestion(nextQuestion);
-        } else if (currentQuestion === 2) { // last question
             setMethod(answer);
-            handleStripeCheckout();
+            if (answer === 'PayPal') {
+                window.location.href = 'https://www.paypal.com/donate/?hosted_button_id=6S6S2484WWCKN';
+            } else {
+                setCurrentQuestion(nextQuestion);
+            }
+        } else if (currentQuestion === 2) { // last question
+            setAmount(answer);
+            if(method === 'Stripe') {
+                handleStripeCheckout();
+            }
         }
     };
-    useEffect(() => {
-        console.log('Cause:', cause);
-        console.log('Amount:', amount);
-        console.log('Method:', method);
-    }, [cause, amount, method]);
 
     return (
         <div className="p-4 w-full">
