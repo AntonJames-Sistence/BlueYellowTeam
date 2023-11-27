@@ -9,6 +9,13 @@ const Donate2 = () => {
     const [cause, setCause] = useState('');
     const [amount, setAmount] = useState(null);
     const [method, setMethod] = useState('');
+    const [loading, setLoading] = useState(false);
+
+    useEffect(() => {
+        if (method === 'Stripe' && amount !== null) {
+            handleStripeCheckout();
+        }
+    }, [amount, method]);
 
     const childrenCause = (
         <div className='flex flex-col'>
@@ -70,7 +77,8 @@ const Donate2 = () => {
     ];
 
     const handleStripeCheckout = async () => {
-        if(amount !== null && cause) {
+        if (amount !== null && cause) {
+            setLoading(true);
             const { data } = await axios.post(
                 '/api/checkout/custom',
                 {
@@ -79,13 +87,13 @@ const Donate2 = () => {
                 },
                 {
                     headers: {
-                    'Content-Type': 'application/json',
+                        'Content-Type': 'application/json',
                     },
                 }
-                );
+            );
             window.location.assign(data);
         } else {
-            console.log('Something went wrong')
+            console.log('Amount or Cause is incorrect');
         }
     };
 
@@ -96,21 +104,25 @@ const Donate2 = () => {
         } else if (currentQuestion === 1) {
             setMethod(answer);
             if (answer === 'PayPal') {
+                setLoading(true);
                 window.location.href = 'https://www.paypal.com/donate/?hosted_button_id=6S6S2484WWCKN';
             } else {
                 setCurrentQuestion(nextQuestion);
             }
         } else if (currentQuestion === 2) { // last question
             setAmount(answer);
-            if(method === 'Stripe') {
-                handleStripeCheckout();
-            }
+            setCurrentQuestion(nextQuestion);
         }
     };
 
     return (
         <div className="p-4 w-full">
-            {questions.map((question, index) => (
+            {loading ? (
+                <div className="flex items-center justify-center h-[80vh]">
+                    <div className="spinner"></div>
+                </div>
+            ) : 
+            (questions.map((question, index) => (
             <div
                 key={index}
                 className={`w-full my-8 ${
@@ -152,7 +164,7 @@ const Donate2 = () => {
                 ))}
                 </div>
             </div>
-            ))}
+            )))}
         </div>
     );
 };
