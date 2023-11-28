@@ -78,24 +78,20 @@ const Donate2 = () => {
     ];
 
     const handleStripeCheckout = async () => {
-        if (amount !== null && cause) {
-            setLoading(true);
-            const { data } = await axios.post(
-                '/api/checkout/custom',
-                {
-                    amount: amount,
-                    name: `Donate to ${cause}`,
+        setLoading(true);
+        const { data } = await axios.post(
+            '/api/checkout/custom',
+            {
+                amount: amount,
+                name: `Donate to ${cause}`,
+            },
+            {
+                headers: {
+                    'Content-Type': 'application/json',
                 },
-                {
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                }
-            );
-            window.location.assign(data);
-        } else {
-            console.log('Amount or Cause is incorrect');
-        }
+            }
+        );
+        window.location.assign(data);
     };
 
     const handleAnswerClick = (nextQuestion, answer) => {
@@ -111,7 +107,7 @@ const Donate2 = () => {
                 setCurrentQuestion(nextQuestion);
             }
         } else if (currentQuestion === 2) { // last question
-            setAmount(trackAmount);
+            setAmount(answer);
             setCurrentQuestion(nextQuestion);
         }
     };
@@ -124,43 +120,43 @@ const Donate2 = () => {
                 </div>
             ) : 
             (questions.map((question, index) => (
-            <div
-                key={index}
-                className={`w-full my-8 ${
-                index === currentQuestion
-                    ? 'slide-in-right-enter slide-in-right-enter-active'
-                    : 'slide-in-right-exit slide-in-right-exit-active'
-                } transition-opacity duration-700 ease-in-out`}
-            >
+                <div
+                    key={index}
+                    className={`w-full my-8 ${
+                    index === currentQuestion
+                        ? 'slide-in-right-enter slide-in-right-enter-active'
+                        : 'slide-in-right-exit slide-in-right-exit-active'
+                    } transition-opacity duration-700 ease-in-out`}
+                >
                 <h2 className="text-2xl mb-4 font-bold text-center">{question.questionText}</h2>
                 <div className="answer-options flex flex-row justify-center">
                 {question.answerOptions.map((option, optionIndex) => (
                     <React.Fragment key={optionIndex}>
-                    {option.answerText === 'Custom' ? (
-                        <div className='flex flex-row w-1/4'>
-                        <input
-                            type="number"
-                            value={trackAmount === null ? '' : trackAmount}
-                            onChange={(e) => setTrackAmount(e.target.value)}
-                            className="bg-white border border-gray-300 rounded-xl px-3 w-1/2 self-center h-[40px]"
-                            placeholder="Amount"
-                        />
-                        <button
-                            className="bg-blue-500 text-white my-4 rounded-xl hover:bg-blue-600 transition-colors w-1/2 min-h-[40px]"
-                            onClick={() => handleAnswerClick(option.nextQuestion, amount)}
-                        >
+                        {option.answerText === 'Custom' ? (
+                            <div className='flex flex-row w-1/4 '>
+                            <input
+                                type="number"
+                                value={trackAmount === null ? '' : trackAmount}
+                                onChange={(e) => setTrackAmount(e.target.value)}
+                                className="bg-white border border-gray-300 rounded-l-xl px-3 w-1/2 self-center h-[40px]"
+                                placeholder="Enter Amount"
+                            />
+                            <button
+                                className="bg-blue-500 text-white my-4 rounded-r-xl hover:bg-blue-600 w-1/2 min-h-[40px]"
+                                onClick={() => handleAnswerClick(option.nextQuestion, trackAmount)}
+                            >
+                                {option.answerText}
+                            </button>
+                            </div>
+                        ) : (
+                            <button
+                            key={optionIndex}
+                            className="bg-blue-500 text-white m-4 rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 w-1/4 shadow-custom min-h-[40px]"
+                            onClick={() => handleAnswerClick(option.nextQuestion, option.answer)}
+                            >
                             {option.answerText}
-                        </button>
-                        </div>
-                    ) : (
-                        <button
-                        key={optionIndex}
-                        className="bg-blue-500 text-white m-4 rounded-xl hover:bg-blue-600 transition-colors w-1/4 min-h-[40px]"
-                        onClick={() => handleAnswerClick(option.nextQuestion, option.answer)}
-                        >
-                        {option.answerText}
-                        </button>
-                    )}
+                            </button>
+                        )}
                     </React.Fragment>
                 ))}
                 </div>
