@@ -6,10 +6,14 @@ import "./main.css";
 
 const Donate2 = () => {
     const [currentQuestion, setCurrentQuestion] = useState(0);
+
     const [cause, setCause] = useState('');
     const [trackAmount, setTrackAmount] = useState(null);
     const [amount, setAmount] = useState(null);
     const [method, setMethod] = useState('');
+    const [subscription, setSubscription] = useState(false);
+    const [interval, setInterval] = useState('');
+
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
@@ -84,6 +88,8 @@ const Donate2 = () => {
             {
                 amount: amount,
                 name: `Donate to ${cause}`,
+                subscription: subscription,
+                interval: interval,
             },
             {
                 headers: {
