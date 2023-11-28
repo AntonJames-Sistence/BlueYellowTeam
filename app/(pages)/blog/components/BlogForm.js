@@ -57,9 +57,8 @@ export default function BlogForm({ blog }) {
       return;
     }
 
-    const newBlog = { title, description, image: "/bakhmut.png" };
+    const newBlog = { title, description, image: "/bakhmut.png", subSections };
     if (blog) {
-      newBlog.subSections = subSections;
       newBlog.id = blog.id;
     }
 
@@ -104,6 +103,7 @@ export default function BlogForm({ blog }) {
       });
 
       const newidk = await res.json();
+      console.log(newidk);
 
       if (res.ok) {
         router.push("/blog");
