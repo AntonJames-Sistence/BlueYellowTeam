@@ -7,6 +7,7 @@ import "./main.css";
 const Donate2 = () => {
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const [cause, setCause] = useState('');
+    const [trackAmount, setTrackAmount] = useState(null);
     const [amount, setAmount] = useState(null);
     const [method, setMethod] = useState('');
     const [loading, setLoading] = useState(false);
@@ -110,7 +111,7 @@ const Donate2 = () => {
                 setCurrentQuestion(nextQuestion);
             }
         } else if (currentQuestion === 2) { // last question
-            setAmount(answer);
+            setAmount(trackAmount);
             setCurrentQuestion(nextQuestion);
         }
     };
@@ -129,7 +130,7 @@ const Donate2 = () => {
                 index === currentQuestion
                     ? 'slide-in-right-enter slide-in-right-enter-active'
                     : 'slide-in-right-exit slide-in-right-exit-active'
-                } transition-opacity duration-500 ease-in-out`}
+                } transition-opacity duration-700 ease-in-out`}
             >
                 <h2 className="text-2xl mb-4 font-bold text-center">{question.questionText}</h2>
                 <div className="answer-options flex flex-row justify-center">
@@ -139,8 +140,8 @@ const Donate2 = () => {
                         <div className='flex flex-row w-1/4'>
                         <input
                             type="number"
-                            value={amount === null ? '' : amount}
-                            onChange={(e) => setAmount(e.target.value)}
+                            value={trackAmount === null ? '' : trackAmount}
+                            onChange={(e) => setTrackAmount(e.target.value)}
                             className="bg-white border border-gray-300 rounded-xl px-3 w-1/2 self-center h-[40px]"
                             placeholder="Amount"
                         />
