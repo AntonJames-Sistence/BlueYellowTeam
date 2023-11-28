@@ -88,11 +88,14 @@ export default function Home() {
       </div>
 
       <div className="relative">
-        <div className="w-screen h-56 md:h-96 bg-cover bg-no-repeat"
-            style={{ backgroundImage: `url(./people3.jpg)` }}
+        <div
+          className="w-screen h-56 md:h-96 bg-cover bg-no-repeat"
+          style={{ backgroundImage: `url(./people3.jpg)` }}
         ></div>
-        <div className="absolute top-0 -right-7 md:right-0 w-1/2 md:w-2/5 h-full">
-          <div className="h-full bg-blue-500 bg-opacity-60 w-full transform -skew-x-12 origin-bottom-left"></div>
+        <div className="absolute top-0 -right-7 md:right-0 w-1/2 md:w-1/3 h-full">
+          <div className="h-full bg-blue-500 bg-opacity-60 w-full transform  origin-bottom-left">
+            <div className="triangle h-full aspect-[1/2] absolute -translate-x-full"></div>
+          </div>
         </div>
       </div>
 

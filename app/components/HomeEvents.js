@@ -23,8 +23,9 @@ export default function HomeEvents() {
 
   const today = new Date();
 
-  const pastEvents = realEventData;
-  pastEvents?.sort((a, b) => new Date(b.date) - new Date(a.date));
+  const upcommingEvents = realEventData
+    ?.filter((event) => new Date(event.date) >= today)
+    .sort((a, b) => new Date(b.date) - new Date(a.date));
 
   useEffect(() => {
     // const swiper = new Swiper(upcommingSwiperRef.current, swiperParams);
@@ -33,6 +34,14 @@ export default function HomeEvents() {
       pastSwiperRef.current.initialize();
     }
   }, [realEventData]);
+
+  if (!upcommingEvents || !upcommingEvents.length) {
+    return (
+      <div className="w-full max-w-[1400px] m-auto pb-5 text-2xl text-center h-80">
+        No Upcomming events
+      </div>
+    );
+  }
 
   return (
     <>
@@ -54,12 +63,8 @@ export default function HomeEvents() {
               </div>
             </div>
             <swiper-container ref={pastSwiperRef} init={"false"}>
-              {pastEvents.map((event, index) => (
-                <Event
-                  event={event}
-                  key={index}
-                  pastEvent={new Date(event.date) < today}
-                />
+              {upcommingEvents.map((event, index) => (
+                <Event event={event} key={index} />
               ))}
             </swiper-container>
           </div>
