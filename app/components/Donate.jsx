@@ -65,7 +65,7 @@ const Donate = () => {
                             ></div>
                             <hr className="border-t border-gray-400 my-2 mx-4"></hr>
                         </div>
-                        <div className='px-4 pb-4'>
+                        <div className='px-4 pb-4 text-sm'>
                             {cause.description}
                         </div>
                     </div>
@@ -107,7 +107,7 @@ const Donate = () => {
                     value={trackAmount === null ? '' : trackAmount}
                     onChange={(e) => setTrackAmount(e.target.value)}
                     className="bg-white border border-gray-300 rounded-l-xl px-3 w-1/2 self-center h-[40px]"
-                    placeholder="Enter Amount"
+                    placeholder="Amount"
                 />
                 <button
                     className="bg-blue-500 text-white my-4 rounded-r-xl hover:bg-blue-600 w-1/2"
@@ -195,7 +195,7 @@ const Donate = () => {
 
     const renderQuestion = () => {
         return (
-            <div className={`question-container ${animateSlide ? 'slide-exit' : 'slide-enter'}`}>
+            <div className={`question-container flex flex-col justify-center w-3/4 ${animateSlide ? 'slide-exit' : 'slide-enter'}`}>
                 {currentQuestion === 1 && (
                     <div>
                         <h2 className="text-center text-2xl font-bold mb-4">
@@ -288,16 +288,16 @@ const Donate = () => {
                     <div className="spinner"></div>
                 </div>
             ) : (
-                <div className='relative w-full'>
-                    <div className='w-full'>
+                <div className='relative w-full min-h-[500px] flex justify-center'>
+                    
                         {renderQuestion()}
-                    </div>
+                    
                     <div className="absolute -bottom-10 left-0 right-0 flex justify-center">
                         <div className="flex items-center">
                             {renderNavigationCircles()}
                         </div>
                     </div>
-                    <div className="absolute -bottom-2 left-0 right-0 flex justify-between px-4">
+                    <div className="absolute top-60 left-0 right-0 flex justify-between px-4">
                         {renderNavigationArrows()}
                     </div>
                 </div>
