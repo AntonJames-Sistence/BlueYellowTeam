@@ -44,6 +44,7 @@ const Donate = () => {
         },
     ]
 
+    // choice 1
     const causeChoice = (
         <div className='flex flex-row justify-center w-full'>
             {causes.map((cause) => (
@@ -71,6 +72,7 @@ const Donate = () => {
         </div>
     )
 
+    // choice 2
     const paymentChoice = (
         <div className='w-full flex flex-row justify-center'>
             <button className="bg-blue-500 text-white m-4 p-2 rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 w-1/4 shadow-custom"
@@ -85,16 +87,17 @@ const Donate = () => {
         </div>
     )
 
+    // choice 3
     const amountChoice = (
         <div className='w-full flex flex-row justify-center'>
             <button className="bg-blue-500 text-white m-4 p-2 rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 w-1/4 shadow-custom"
-                    onClick={() => handleAnswerClick(1, 20)}>$20
+                    onClick={() => handleAnswerClick(4, 20)}>$20
             </button>
             <button className="bg-blue-500 text-white m-4 p-2 rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 w-1/4 shadow-custom"
-                    onClick={() => handleAnswerClick(1, 50)}>$50
+                    onClick={() => handleAnswerClick(4, 50)}>$50
             </button>
             <button className="bg-blue-500 text-white m-4 p-2 rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 w-1/4 shadow-custom"
-                    onClick={() => handleAnswerClick(1, 100)}>$100
+                    onClick={() => handleAnswerClick(4, 100)}>$100
             </button>
             <div className='flex flex-row w-1/4 '>
                 <input
@@ -106,7 +109,28 @@ const Donate = () => {
                 />
                 <button
                     className="bg-blue-500 text-white my-4 rounded-r-xl hover:bg-blue-600 w-1/2"
-                    onClick={() => handleAnswerClick(1, trackAmount)}>Custom
+                    onClick={() => handleAnswerClick(4, trackAmount)}>Custom
+                </button>
+            </div>
+        </div>
+    )
+
+    const subscriptionChoice = (
+        <div className='fle flex-col justify-center'>
+            <div className='flex flex-row justify-center mb-8'>
+                <button className="bg-blue-500 text-white m-4 p-2 rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 w-1/4 shadow-custom self-center"
+                        onClick={() => handleAnswerClick(1, 20)}>One time Donation
+                </button>
+            </div>
+            <div className='w-full flex flex-row justify-center'>
+                <button className="bg-blue-500 text-white m-4 p-2 rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 w-1/4 shadow-custom"
+                        onClick={() => handleAnswerClick(1, 50)}>Daily Subscription
+                </button>
+                <button className="bg-blue-500 text-white m-4 p-2 rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 w-1/4 shadow-custom"
+                        onClick={() => handleAnswerClick(1, 100)}>Monthly Subscription
+                </button>
+                <button className="bg-blue-500 text-white m-4 p-2 rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 w-1/4 shadow-custom"
+                        onClick={() => handleAnswerClick(1, 100)}>Yearly Subscription
                 </button>
             </div>
         </div>
@@ -188,6 +212,14 @@ const Donate = () => {
                             Please select amount
                         </h2>
                         {amountChoice}
+                    </div>
+                )}
+                {currentQuestion === 4 && (
+                    <div>
+                        <h2 className="text-center text-2xl font-bold my-4">
+                            Would you like to make it a subscription?
+                        </h2>
+                        {subscriptionChoice}
                     </div>
                 )}
             </div>
