@@ -91,11 +91,11 @@
 
 /* ======= Donate2 page ======== */
 .slide-enter {
-  animation: slideEnter 0.3s forwards;
+  animation: slideEnter 0.5s forwards;
 }
 
 .slide-exit {
-  animation: slideExit 0.3s forwards;
+  animation: slideExit 0.5s forwards;
 }
 
 @keyframes slideEnter {

@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { CSSTransition } from 'react-transition-group';
 import axios from 'axios';
 import "./main.css";
 
@@ -28,17 +27,20 @@ const Donate = () => {
         {
             id: 1,
             text: 'Children',
-            image: './causes-children.jpeg'
+            image: './causes-children.jpeg',
+            description: 'We empower children in crisis by offering vital support for their education and well-being. This includes providing clothing, educational materials, and collaborating with families, refugee centers, and NGOs to ensure every child receives the care and resources they need.'
         },
         {
             id: 2,
             text: 'Medical Workers',
-            image: './causes-medical-2.jpeg'
+            image: './causes-medical-2.jpeg',
+            description: 'We partner with hospitals and healthcare experts across the United States to gather and deliver vital medical supplies to the front lines, where these resources play a pivotal role in saving lives.',
         },
         {
             id: 3,
             text: 'Displaced People',
-            image: './causes-displaced.jpeg'
+            image: './causes-displaced.jpeg',
+            description: 'We are committed to assisting individuals who have lost their homes due to conflict, supporting their journey towards recovery. Our services encompass offering temporary shelter, providing food, and covering essential medical expenses for refugees and those displaced by crises.',
         },
     ]
 
@@ -50,14 +52,18 @@ const Donate = () => {
                     className="bg-blue-500 text-white m-4 rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 w-1/4 shadow-custom"
                     onClick={() => handleAnswerClick(2, cause.text)} // pass next question id and user answer
                 >
-                    <div className=''>
+                    <div className='flex flex-col justify-between h-full'>
                         <div className='flex flex-col'>
-                        <h4 className="font-bold mt-2">{cause.text}</h4>
-                        <hr className="border-t border-gray-400 my-2 mx-20"></hr>
-                        <div
-                            className="flex h-32 w-2/3 self-center bg-cover rounded-lg bg-no-repeat mb-4"
-                            style={{ backgroundImage: `url(${cause.image})` }}
-                        ></div>
+                            <h4 className="font-bold mt-4 text-xl">{cause.text}</h4>
+                            <hr className="border-t border-gray-400 my-2 mx-4"></hr>
+                            <div
+                                className="h-32 w-2/3 self-center bg-cover rounded-lg bg-no-repeat"
+                                style={{ backgroundImage: `url(${cause.image})` }}
+                            ></div>
+                            <hr className="border-t border-gray-400 my-2 mx-4"></hr>
+                        </div>
+                        <div className='px-4 pb-4'>
+                            {cause.description}
                         </div>
                     </div>
                 </button>
