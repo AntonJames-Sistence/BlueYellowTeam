@@ -226,8 +226,11 @@ const Donate = () => {
     };
 
     return (
-        <>
-            {renderQuestion()}
+        <>{loading ? (
+            <div className="flex items-center justify-center h-[80vh]">
+                <div className="spinner"></div>
+            </div>
+            ) : (renderQuestion())}
         </>
     );
 };
