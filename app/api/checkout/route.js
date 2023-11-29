@@ -17,7 +17,7 @@ export async function POST(request) {
         images: ['https://blueyellowfoundation.org/wp-content/uploads/2023/03/2023-03-19-09.32.51-1024x683.jpg'], // change image ./causes-children.jpeg
     });
 
-    if (subscription === true) {
+    if (typeof interval === 'string') {
         // subscription option
         const recurring = await stripe.prices.create({
             product: product.id,

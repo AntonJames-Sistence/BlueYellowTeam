@@ -13,15 +13,15 @@ const Donate = () => {
     const [amount, setAmount] = useState(null);
     const [method, setMethod] = useState('');
     const [subscription, setSubscription] = useState(false);
-    const [interval, setInterval] = useState('');
+    const [interval, setInterval] = useState(null);
 
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
-        if (method === 'Card' && amount !== null) {
+        if (interval !== null && amount !== null) {
             handleStripeCheckout();
         }
-    }, [amount, method]);
+    }, [interval]);
 
     const causes = [
         {
@@ -53,7 +53,7 @@ const Donate = () => {
                     className="bg-blue-500 text-white m-4 rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 w-1/4 shadow-custom"
                     onClick={() => handleAnswerClick(2, cause.text)} // pass next question id and user answer
                 >
-                    <div className='flex flex-col justify-between h-full'>
+                    <div className='flex flex-col h-full'>
                         <div className='flex flex-col'>
                             <h4 className="font-bold mt-4 text-xl">{cause.text}</h4>
                             <hr className="border-t border-gray-400 my-2 mx-4"></hr>
@@ -101,7 +101,7 @@ const Donate = () => {
             </button>
             <div className='flex flex-row w-1/4 '>
                 <input
-                    type="number"
+                    type="number" min="1"
                     value={trackAmount === null ? '' : trackAmount}
                     onChange={(e) => setTrackAmount(e.target.value)}
                     className="bg-white border border-gray-300 rounded-l-xl px-3 w-1/2 self-center h-[40px]"
@@ -119,18 +119,18 @@ const Donate = () => {
         <div className='fle flex-col justify-center'>
             <div className='flex flex-row justify-center mb-8'>
                 <button className="bg-blue-500 text-white m-4 p-2 rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 w-1/4 shadow-custom self-center"
-                        onClick={() => handleAnswerClick(1, 20)}>One time Donation
+                        onClick={() => handleAnswerClick(1, false)}>One time Donation
                 </button>
             </div>
             <div className='w-full flex flex-row justify-center'>
                 <button className="bg-blue-500 text-white m-4 p-2 rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 w-1/4 shadow-custom"
-                        onClick={() => handleAnswerClick(1, 50)}>Daily Subscription
+                        onClick={() => handleAnswerClick(1, 'day')}>Daily Subscription
                 </button>
                 <button className="bg-blue-500 text-white m-4 p-2 rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 w-1/4 shadow-custom"
-                        onClick={() => handleAnswerClick(1, 100)}>Monthly Subscription
+                        onClick={() => handleAnswerClick(1, 'month')}>Monthly Subscription
                 </button>
                 <button className="bg-blue-500 text-white m-4 p-2 rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 w-1/4 shadow-custom"
-                        onClick={() => handleAnswerClick(1, 100)}>Yearly Subscription
+                        onClick={() => handleAnswerClick(1, 'year')}>Yearly Subscription
                 </button>
             </div>
         </div>
@@ -157,11 +157,11 @@ const Donate = () => {
 
     const handleAnswerClick = (nextQuestion, answer) => {
         switch (currentQuestion) {
-            case 1:
+            case 1: // cause
                 setCause(answer);
                 setCurrentQuestion(nextQuestion);
                 break;
-            case 2:
+            case 2: // payment method
                 setMethod(answer);
                 if (answer === 'PayPal') {
                     setLoading(true);
@@ -170,8 +170,13 @@ const Donate = () => {
                     setCurrentQuestion(nextQuestion);
                 }
                 break;
-            case 3: // last question
+            case 3: // amount
                 setAmount(answer);
+                setCurrentQuestion(nextQuestion);
+                break;
+            case 4: // subscription & last question
+                setSubscription(true);
+                setInterval(answer);
                 setCurrentQuestion(nextQuestion);
                 break;
             default:
