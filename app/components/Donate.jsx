@@ -7,6 +7,7 @@ import "./main.css";
 
 const Donate = () => {
     const [currentQuestion, setCurrentQuestion] = useState(1);
+    const [animateSlide, setAnimateSlide] = useState(false);
 
     const [cause, setCause] = useState('');
     const [trackAmount, setTrackAmount] = useState(null);
@@ -18,7 +19,6 @@ const Donate = () => {
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
-        console.log(method, amount)
         if (method === 'Card' && amount !== null) {
             handleStripeCheckout();
         }
@@ -106,27 +106,6 @@ const Donate = () => {
         </div>
     )
 
-    const choices = [
-        {
-            id: 1,
-            choiceHeader: 'What cause do you want to donate?',
-            dedicatedBlock: causeChoice,
-            nextChoiceId: 2,
-        },
-        {
-            id: 2,
-            choiceHeader: 'What payment method?',
-            dedicatedBlock: paymentChoice,
-            nextChoiceId: 3,
-        },
-        {
-            id: 3,
-            choiceHeader: 'Please select amount',
-            dedicatedBlock: amountChoice,
-            nextChoiceId: 1,
-        },
-    ]
-
     const handleStripeCheckout = async () => {
         setLoading(true);
         const { data } = await axios.post(
@@ -168,69 +147,58 @@ const Donate = () => {
             default:
                 break;
         }
+
+        // Trigger the slide animation when moving to the next question
+        setAnimateSlide(true);
+
+        // Reset the animation state after a delay to prepare for the next slide
+        setTimeout(() => {
+            setAnimateSlide(false);
+        }, 500); // Adjust the delay to match your transition duration
     };
 
     const renderQuestion = () => {
-        switch (currentQuestion) {
-            case 1:
-                return (
-                    <CSSTransition
-                        in={currentQuestion === 1}
-                        timeout={500}
-                        classNames="slide-in-right"
-                        unmountOnExit
-                    >
-                        <div>
-                            <h2 className="text-center text-xl font-bold mt-4 mb-8">
-                                What cause do you want to donate?
-                            </h2>
-                            {causeChoice}
-                        </div>
-                    </CSSTransition>
-                );
-            case 2:
-                return (
-                    <CSSTransition
-                        in={currentQuestion === 2}
-                        timeout={500}
-                        classNames="slide-in-right"
-                        unmountOnExit
-                    >
-                        <div>
-                            <h2 className="text-center text-xl font-bold mt-4 mb-8">
-                                What payment method?
-                            </h2>
-                            {paymentChoice}
-                        </div>
-                    </CSSTransition>
-                );
-            case 3:
-                return (
-                    <CSSTransition
-                        in={currentQuestion === 3}
-                        timeout={500}
-                        classNames="slide-in-right"
-                        unmountOnExit
-                    >
-                        <div>
-                            <h2 className="text-center text-xl font-bold mt-4 mb-8">
-                                Please select amount
-                            </h2>
-                            {amountChoice}
-                        </div>
-                    </CSSTransition>
-                );
-            default:
-                return null;
-        }
+        return (
+            <div className={`question-container ${animateSlide ? 'slide-exit' : 'slide-enter'}`}>
+                {currentQuestion === 1 && (
+                    <div>
+                        <h2 className="text-center text-2xl font-bold my-4">
+                            What cause do you want to donate?
+                        </h2>
+                        {causeChoice}
+                    </div>
+                )}
+                {currentQuestion === 2 && (
+                    <div>
+                        <h2 className="text-center text-2xl font-bold my-4">
+                            What payment method?
+                        </h2>
+                        {paymentChoice}
+                    </div>
+                )}
+                {currentQuestion === 3 && (
+                    <div>
+                        <h2 className="text-center text-2xl font-bold my-4">
+                            Please select amount
+                        </h2>
+                        {amountChoice}
+                    </div>
+                )}
+            </div>
+        );
     };
 
     return (
-        <>{loading ? (
-            <div className="flex items-center justify-center h-[80vh]">
-                <div className="spinner"></div>
-            </div>
-            ) : (renderQuestion())}
+        <>
+            {loading ? (
+                <div className="flex items-center justify-center h-[80vh]">
+                    <div className="spinner"></div>
+                </div>
+            ) : (
+                <div className='w-full mt-10'>
+                    {renderQuestion()}
+                </div>
+            )}
         </>
     );
 };
