@@ -3,6 +3,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import "./main.css";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCircleChevronRight, faCircleChevronLeft } from '@fortawesome/free-solid-svg-icons'
 
 const Donate = () => {
     const [currentQuestion, setCurrentQuestion] = useState(1);
@@ -12,7 +14,7 @@ const Donate = () => {
     const [trackAmount, setTrackAmount] = useState(null);
     const [amount, setAmount] = useState(null);
     const [method, setMethod] = useState('');
-    const [subscription, setSubscription] = useState(false);
+    // const [subscription, setSubscription] = useState(false);
     const [interval, setInterval] = useState(null);
 
     const [loading, setLoading] = useState(false);
@@ -143,7 +145,6 @@ const Donate = () => {
             {
                 amount: amount,
                 name: `Donate to ${cause}`,
-                subscription: subscription,
                 interval: interval,
             },
             {
@@ -175,7 +176,7 @@ const Donate = () => {
                 setCurrentQuestion(nextQuestion);
                 break;
             case 4: // subscription & last question
-                setSubscription(true);
+                // setSubscription(true);
                 setInterval(answer);
                 setCurrentQuestion(nextQuestion);
                 break;
@@ -197,7 +198,7 @@ const Donate = () => {
             <div className={`question-container ${animateSlide ? 'slide-exit' : 'slide-enter'}`}>
                 {currentQuestion === 1 && (
                     <div>
-                        <h2 className="text-center text-2xl font-bold my-4">
+                        <h2 className="text-center text-2xl font-bold mb-4">
                             What cause do you want to donate?
                         </h2>
                         {causeChoice}
@@ -205,7 +206,7 @@ const Donate = () => {
                 )}
                 {currentQuestion === 2 && (
                     <div>
-                        <h2 className="text-center text-2xl font-bold my-4">
+                        <h2 className="text-center text-2xl font-bold mb-4">
                             What payment method?
                         </h2>
                         {paymentChoice}
@@ -213,7 +214,7 @@ const Donate = () => {
                 )}
                 {currentQuestion === 3 && (
                     <div>
-                        <h2 className="text-center text-2xl font-bold my-4">
+                        <h2 className="text-center text-2xl font-bold mb-4">
                             Please select amount
                         </h2>
                         {amountChoice}
@@ -221,12 +222,61 @@ const Donate = () => {
                 )}
                 {currentQuestion === 4 && (
                     <div>
-                        <h2 className="text-center text-2xl font-bold my-4">
+                        <h2 className="text-center text-2xl font-bold mb-4">
                             Would you like to make it a subscription?
                         </h2>
                         {subscriptionChoice}
                     </div>
                 )}
+            </div>
+        );
+    };
+
+    const handleCircleClick = (questionNumber) => {
+        setAnimateSlide(true);
+        setTimeout(() => {
+            setCurrentQuestion(questionNumber);
+            setAnimateSlide(false);
+        }, 500);
+    };
+
+    const renderNavigationCircles = () => {
+        return (
+            <div className="flex justify-center mt-4">
+                {[1, 2, 3, 4].map((questionNumber) => (
+                    <div
+                        key={questionNumber}
+                        className={`h-4 w-4 rounded-full mx-2 cursor-pointer ${
+                            currentQuestion === questionNumber ? 'bg-blue-500' : 'bg-gray-300'
+                        }`}
+                        onClick={() => handleCircleClick(questionNumber)}
+                    ></div>
+                ))}
+            </div>
+        );
+    };
+
+    const renderNavigationArrows = () => {
+        return (
+            <div className="flex justify-between mt-4">
+                <button
+                    disabled={currentQuestion === 1}
+                    onClick={() => handleCircleClick(currentQuestion - 1)}
+                    className={`absolute left-0 text-gray-300 text-2xl ${
+                        currentQuestion === 1 ? 'cursor-not-allowed' : 'hover:text-blue-500'
+                    }`}
+                >
+                    <FontAwesomeIcon icon={faCircleChevronLeft} size="xl" />
+                </button>
+                <button
+                    disabled={currentQuestion === 4}
+                    onClick={() => handleCircleClick(currentQuestion + 1)}
+                    className={`absolute right-0 text-gray-300 text-2xl ${
+                        currentQuestion === 4 ? 'cursor-not-allowed' : 'hover:text-blue-500'
+                    }`}
+                >
+                    <FontAwesomeIcon icon={faCircleChevronRight} size="xl" />
+                </button>
             </div>
         );
     };
@@ -238,8 +288,18 @@ const Donate = () => {
                     <div className="spinner"></div>
                 </div>
             ) : (
-                <div className='w-full mt-10'>
-                    {renderQuestion()}
+                <div className='relative w-full'>
+                    <div className='w-full'>
+                        {renderQuestion()}
+                    </div>
+                    <div className="absolute -bottom-10 left-0 right-0 flex justify-center">
+                        <div className="flex items-center">
+                            {renderNavigationCircles()}
+                        </div>
+                    </div>
+                    <div className="absolute -bottom-2 left-0 right-0 flex justify-between px-4">
+                        {renderNavigationArrows()}
+                    </div>
                 </div>
             )}
         </>

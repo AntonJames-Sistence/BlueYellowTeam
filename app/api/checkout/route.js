@@ -7,7 +7,6 @@ export async function POST(request) {
     let amount = data.amount;
     let name = data.name;
     let description = data.description;
-    let subscription = data.subscription;
     let interval = data.interval;
 
     // create product id
