@@ -13,17 +13,17 @@ const Donate = () => {
     const [cause, setCause] = useState('');
     const [trackAmount, setTrackAmount] = useState(null);
     const [amount, setAmount] = useState(null);
-    const [method, setMethod] = useState('');
+    // const [method, setMethod] = useState('');
     // const [subscription, setSubscription] = useState(false);
     const [interval, setInterval] = useState(null);
 
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
-        if (interval !== null && amount !== null) {
+        if (interval !== null && amount !== null && cause !== '') {
             handleStripeCheckout();
         }
-    }, [interval]);
+    }, [interval, cause, amount]);
 
     const causes = [
         {
@@ -263,7 +263,7 @@ const Donate = () => {
                     disabled={currentQuestion === 1}
                     onClick={() => handleCircleClick(currentQuestion - 1)}
                     className={`absolute left-0 text-gray-300 text-2xl ${
-                        currentQuestion === 1 ? 'cursor-not-allowed' : 'hover:text-blue-500'
+                        currentQuestion === 1 ? 'cursor-not-allowed invisible' : 'hover:text-blue-500'
                     }`}
                 >
                     <FontAwesomeIcon icon={faCircleChevronLeft} size="xl" />
@@ -272,7 +272,7 @@ const Donate = () => {
                     disabled={currentQuestion === 4}
                     onClick={() => handleCircleClick(currentQuestion + 1)}
                     className={`absolute right-0 text-gray-300 text-2xl ${
-                        currentQuestion === 4 ? 'cursor-not-allowed' : 'hover:text-blue-500'
+                        currentQuestion === 4 ? 'cursor-not-allowed invisible' : 'hover:text-blue-500'
                     }`}
                 >
                     <FontAwesomeIcon icon={faCircleChevronRight} size="xl" />
