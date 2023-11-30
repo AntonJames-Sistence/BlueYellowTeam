@@ -163,7 +163,7 @@ const Donate = () => {
                 setCurrentQuestion(nextQuestion);
                 break;
             case 2: // payment method
-                setMethod(answer);
+                // setMethod(answer);
                 if (answer === 'PayPal') {
                     setLoading(true);
                     window.location.href = 'https://www.paypal.com/donate/?hosted_button_id=6S6S2484WWCKN';
