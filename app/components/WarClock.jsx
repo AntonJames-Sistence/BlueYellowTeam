@@ -7,29 +7,26 @@ const WarClock = () => {
     return currentTime - targetTime;
   }
 
-  const [elapsedTime, setElapsedTime] = useState(
-    calculateTimeDifference(new Date("2022-02-24T05:00:00Z"))
-  );
+  const [targetTime] = useState(new Date("2022-02-24T05:00:00Z"));
+  const [elapsedTime, setElapsedTime] = useState(calculateTimeDifference(targetTime));
 
   useEffect(() => {
-    const targetTime = new Date("2022-02-24T05:00:00Z");
-
     function updateTime() {
       setElapsedTime(calculateTimeDifference(targetTime));
     }
+
     const intervalId = setInterval(updateTime, 60000);
 
     return () => {
       clearInterval(intervalId);
     };
-  }, []);
+  }, [targetTime]);
 
   function formatElapsedTime(elapsedTime) {
     const totalSeconds = Math.floor(elapsedTime / 1000);
     const days = Math.floor(totalSeconds / 86400);
     const hours = Math.floor((totalSeconds % 86400) / 3600);
     const minutes = Math.floor((totalSeconds % 3600) / 60);
-    // const seconds = totalSeconds % 60;
 
     return (
       <div className="flex flex-col h-full w-full max-w-[175px] sm:max-w-none">
