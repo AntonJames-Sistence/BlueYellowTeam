@@ -10,6 +10,7 @@ import {
   deleteDoc,
 } from "firebase/firestore";
 import { storeDB } from "../../../../data/firebase";
+import isAdmin from "../../lib/isAdmin";
 
 export const subSectionHasErrors = (subSection) => {
   const errors = {};
@@ -50,7 +51,7 @@ export async function GET(request, { params: { postId } }) {
 
 export async function POST(request, { params: { postId } }) {
   try {
-    // isAdmin()
+    await isAdmin();
     const { subSections } = await request.json();
 
     for (let subSection of subSections) {
@@ -98,6 +99,7 @@ export async function POST(request, { params: { postId } }) {
 
 export async function PUT(request, { params: { postId } }) {
   try {
+    await isAdmin();
     const { subSections } = await request.json();
 
     for (let subSection of subSections) {
@@ -134,7 +136,7 @@ export async function PUT(request, { params: { postId } }) {
 
 export async function DELETE(request, { params: { postId } }) {
   try {
-    //isAdmin()
+    await isAdmin();
     const { id } = await request.json();
     await deleteDoc(doc(storeDB, "posts", postId, "subSection", id));
     return NextResponse.json("SubSection successfully deleted");
