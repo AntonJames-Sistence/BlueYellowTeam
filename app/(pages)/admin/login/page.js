@@ -12,9 +12,14 @@ export default function AdminLogin() {
   };
 
   useEffect(() => {
-    if (session?.data?.user) {
-      toast.success("Logged In!");
+    async function loaduser() {
+      if (session?.data?.user) {
+        toast.success("Logged In!");
+        await fetch("/api/login");
+      }
     }
+
+    loaduser();
   }, []);
 
   return (

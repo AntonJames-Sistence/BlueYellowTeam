@@ -5,6 +5,8 @@ import getAllPost from "./hooks/getAllPost";
 import Button from "./components/Button";
 import { notFound } from "next/navigation";
 import toast, { Toaster } from "react-hot-toast";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+const auth = getAuth();
 
 export default async function Blog() {
   const allBlogs = await getAllPost();

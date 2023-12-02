@@ -8,7 +8,7 @@ import { useRouter } from "next/navigation";
 export default function BlogForm({ blog }) {
   const [title, setTitle] = useState(blog ? blog.title : "");
   const [description, setDescription] = useState(blog ? blog.description : "");
-  const [image, setImage] = useState("");
+  const [image, setImage] = useState(blog ? blog.image : "");
   const [subSections, setSubSections] = useState(useBlogSub(blog));
   const [errors, setErrors] = useState({});
   const router = useRouter();
@@ -166,6 +166,7 @@ export default function BlogForm({ blog }) {
           type="text"
           placeholder="Google drive link ex: https://drive.google.com/file/d/12_glIBhssLLh3Bs856k_r3mEK37EO_24/view?usp=sharing"
           onChange={(e) => setImage(e.target.value)}
+          value={image}
         />
       </div>
       <div className="mt-2">

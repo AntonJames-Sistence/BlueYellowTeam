@@ -9,7 +9,7 @@ import {
   updateDoc,
   deleteDoc,
 } from "firebase/firestore";
-import { storeDB } from "../../../data/firebase";
+import { storeDB, auth } from "../../../data/firebase";
 import { subSectionHasErrors } from "./[postId]/route";
 import isAdmin from "../lib/isAdmin";
 
@@ -131,6 +131,8 @@ export async function POST(request, res) {
 export async function PUT(request) {
   try {
     await isAdmin();
+    console.log("current", auth.currentUser);
+
     const post = await request.json();
 
     const errors = postHasErrors(post, "PUT");
