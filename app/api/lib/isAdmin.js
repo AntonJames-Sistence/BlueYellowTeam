@@ -11,8 +11,6 @@ export default async function isAdmin() {
 
   // signInWithEmailAndPassword(
   //   auth,
-  //   "james.hernandez1225@gmail.com",
-  //   "blue&yellowadmin"
   // )
   //   .then((userCredential) => {
   //     // Signed in
