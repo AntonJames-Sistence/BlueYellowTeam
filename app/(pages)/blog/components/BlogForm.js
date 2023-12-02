@@ -49,15 +49,19 @@ export default function BlogForm({ blog }) {
       if (!section.title || !section.text) return true;
       return false;
     });
-    if (filteredSubSections.length)
+    if (filteredSubSections.length || !subSections.length)
       errors.subSections =
         "Blogs need atleast one sub section and each sub section needs a title and text";
+
+    if (!image.startsWith("https://drive.google.com/file/d/"))
+      errors.image =
+        "Google drive link most start with https://drive.google.com/file/d/";
     if (Object.keys(errors).length) {
       setErrors(errors);
       return;
     }
 
-    const newBlog = { title, description, image: "/bakhmut.png", subSections };
+    const newBlog = { title, description, image, subSections };
     if (blog) {
       newBlog.id = blog.id;
     }
@@ -103,7 +107,6 @@ export default function BlogForm({ blog }) {
       });
 
       const newidk = await res.json();
-      console.log(newidk);
 
       if (res.ok) {
         router.push("/blog");
@@ -150,13 +153,19 @@ export default function BlogForm({ blog }) {
         />
       </div>
       <div className="flex flex-col mt-2">
-        <label htmlFor="image" className="font-semibold">
-          Upload Image
+        <label
+          htmlFor="image"
+          className={`font-semibold ${errors.image ? "text-red-500" : ""}`}
+        >
+          {errors.image
+            ? "Image Link must start with https://drive.google.com/file/d/"
+            : "Image link"}
         </label>
         <input
-          className="border-2 p-2 rounded-md w-fit"
-          type="file"
-          accept="image/*"
+          className="border-2 p-2 rounded-md w-full"
+          type="text"
+          placeholder="Google drive link ex: https://drive.google.com/file/d/12_glIBhssLLh3Bs856k_r3mEK37EO_24/view?usp=sharing"
+          onChange={(e) => setImage(e.target.value)}
         />
       </div>
       <div className="mt-2">

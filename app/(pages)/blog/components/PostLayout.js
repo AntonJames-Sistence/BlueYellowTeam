@@ -12,13 +12,18 @@ export default async function PostLayout({ post }) {
       {session && <BlogMenu blogId={post.id} />}
       <div>
         <div className="h-64 w-full relative rounded-t-lg">
-          <Image
+          <img
+            src={post.image}
+            alt="Blog image"
+            className="w-full h-full object-cover object-top rounded-t-lg"
+          />
+          {/* <Image
             className="w-full h-full object-cover object-top rounded-t-lg"
             src={post.image}
             fill={true}
             sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
             alt="Image blog post"
-          />
+          /> */}
         </div>
         <div className="p-5 rounded-b-lg flex flex-col justify-between">
           <div className="text-3xl h-max mt-0 mb-2 text-gray-700 lg:min-h-20">
