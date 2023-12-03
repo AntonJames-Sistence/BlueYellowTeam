@@ -148,10 +148,14 @@ export async function PUT(request) {
         { status: 404 }
       );
     }
-
-    await updateDoc(postRef, {
+    const update = {
       description: post.description,
-    });
+    };
+
+    if (post?.image.startsWith("https://drive.google.com/file/d/")) {
+      update.image = createGoogleDriveLink(post.image);
+    }
+    await updateDoc(postRef, update);
 
     const newPost = await getDoc(postRef);
 
