@@ -1,9 +1,29 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import NewBlogSubSec from "./SubSectionForm";
 import useBlogSub from "../hooks/useBlogSub";
 import { v4 as uuidv4 } from "uuid";
 import { useRouter } from "next/navigation";
+import { getAuth, signInWithCustomToken } from "firebase/auth";
+import { useSession } from "next-auth/react";
+import { FIREBASE_APP, storeDB } from "../../../../data/firebase";
+import createBlog from "./createBlog";
+
+const auth = getAuth(FIREBASE_APP);
+
+async function syncFirebaseAuth(session) {
+  console.log("form");
+  console.log("session", session);
+  if (session && session.firebaseToken) {
+    try {
+      await signInWithCustomToken(auth, session.firebaseToken);
+    } catch (error) {
+      console.error("Error signing in with custom token:", error);
+    }
+  } else {
+    auth.signOut();
+  }
+}
 
 export default function BlogForm({ blog }) {
   const [title, setTitle] = useState(blog ? blog.title : "");
@@ -12,6 +32,7 @@ export default function BlogForm({ blog }) {
   const [subSections, setSubSections] = useState(useBlogSub(blog));
   const [errors, setErrors] = useState({});
   const router = useRouter();
+  const session = useSession();
 
   const handleAddCard = () => {
     setSubSections((state) => {
@@ -40,6 +61,11 @@ export default function BlogForm({ blog }) {
       });
     });
   };
+
+  useEffect(() => {
+    console.log("effct");
+    syncFirebaseAuth(session);
+  }, [session]);
 
   const handleSubmit = async () => {
     const errors = {};
@@ -100,15 +126,20 @@ export default function BlogForm({ blog }) {
 
       return;
     } else {
-      const res = await fetch("/api/blog", {
-        method: "POST",
-        headers: { "Content-type": "application/json" },
-        body: JSON.stringify(newBlog),
-      });
+      // const res = await fetch("/api/blog", {
+      //   method: "POST",
+      //   headers: { "Content-type": "application/json" },
+      //   body: JSON.stringify(newBlog),
+      // });
 
-      const newidk = await res.json();
+      // const newidk = await res.json();
 
-      if (res.ok) {
+      // if (res.ok) {
+      //   router.push("/blog");
+      // }
+      const val = createBlog(newBlog);
+
+      if (val === "yes") {
         router.push("/blog");
       }
     }

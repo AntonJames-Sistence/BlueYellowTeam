@@ -3,6 +3,24 @@ import React from "react";
 import { signIn, useSession, signOut } from "next-auth/react";
 import { useEffect } from "react";
 import toast, { Toaster } from "react-hot-toast";
+import { getAuth, signInWithCustomToken } from "firebase/auth";
+import { FIREBASE_APP } from "../../../../data/firebase";
+
+const auth = getAuth(FIREBASE_APP);
+
+async function syncFirebaseAuth(session) {
+  console.log("effct2");
+  console.log("session", session);
+  if (session && session.firebaseToken) {
+    try {
+      await signInWithCustomToken(auth, session.firebaseToken);
+    } catch (error) {
+      console.error("Error signing in with custom token:", error);
+    }
+  } else {
+    auth.signOut();
+  }
+}
 
 export default function AdminLogin() {
   const session = useSession();
@@ -16,6 +34,11 @@ export default function AdminLogin() {
       toast.success("Logged In!");
     }
   }, []);
+
+  useEffect(() => {
+    console.log("effct");
+    syncFirebaseAuth(session);
+  }, [session]);
 
   return (
     <div className="pt-20">
