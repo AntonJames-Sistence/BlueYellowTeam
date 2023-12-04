@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import "./main.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCircleChevronRight, faCircleChevronLeft, faCreditCard, } from '@fortawesome/free-solid-svg-icons'
+import { faCircleChevronRight, faCircleChevronLeft, faCreditCard, faDollarSign} from '@fortawesome/free-solid-svg-icons'
 import { faCcApplePay, faCcPaypal, faGooglePay} from '@fortawesome/free-brands-svg-icons'
 
 const Donate = () => {
@@ -97,21 +97,24 @@ const Donate = () => {
     // choice 3
     const amountChoice = (
         <div className='w-full flex flex-row justify-center'>
-            <button className="bg-blue-500 text-white m-4 p-2 rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 w-1/4 shadow-custom"
-                    onClick={() => handleAnswerClick(4, 20)}>$20
+            <button className="bg-blue-500 text-white m-4 p-3 rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 w-1/4 shadow-custom"
+                    onClick={() => handleAnswerClick(4, 20)}>
+                        <FontAwesomeIcon icon={faDollarSign} className='mr-2 fa-xl' />20
             </button>
             <button className="bg-blue-500 text-white m-4 p-2 rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 w-1/4 shadow-custom"
-                    onClick={() => handleAnswerClick(4, 50)}>$50
+                    onClick={() => handleAnswerClick(4, 50)}>
+                        <FontAwesomeIcon icon={faDollarSign} className='mr-2 fa-xl' />50
             </button>
             <button className="bg-blue-500 text-white m-4 p-2 rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 w-1/4 shadow-custom"
-                    onClick={() => handleAnswerClick(4, 100)}>$100
+                    onClick={() => handleAnswerClick(4, 100)}>
+                        <FontAwesomeIcon icon={faDollarSign} className='mr-2 fa-xl' />100
             </button>
             <div className='flex flex-row w-1/4 '>
                 <input
                     type="number" min="1"
                     value={trackAmount === null ? '' : trackAmount}
                     onChange={(e) => setTrackAmount(e.target.value)}
-                    className="bg-white border border-gray-300 rounded-l-xl px-3 w-1/2 self-center h-[40px]"
+                    className="bg-white border border-gray-300 rounded-l-xl px-3 w-1/2 self-center h-[48px]"
                     placeholder="Amount"
                 />
                 <button
