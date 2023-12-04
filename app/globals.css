@@ -26,3 +26,13 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+
+.triangle {
+  background: linear-gradient(
+    to bottom right,
+    transparent 0%,
+    transparent 50%,
+    rgb(59 130 246 / var(--tw-bg-opacity)) 50%,
+    rgb(59 130 246 / var(--tw-bg-opacity)) 100%
+  );
+}

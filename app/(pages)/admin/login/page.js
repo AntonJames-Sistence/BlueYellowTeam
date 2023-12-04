@@ -18,13 +18,23 @@ export default function AdminLogin() {
   }, []);
 
   return (
-    <div>
+    <div className="pt-20">
       <Toaster position="top-right" reverseOrder={false} />
-      <h2>AdminLogin</h2>
+      <h2 className="text-2xl">AdminLogin</h2>
       {session?.data?.user ? (
-        <div onClick={handleLogOut}>logout</div>
+        <div
+          className="cursor-pointer hover:text-blue-600 w-fit"
+          onClick={handleLogOut}
+        >
+          logout
+        </div>
       ) : (
-        <div onClick={() => signIn("google")}>login</div>
+        <div
+          className="cursor-pointer hover:text-blue-600 w-fit"
+          onClick={() => signIn("google")}
+        >
+          login
+        </div>
       )}
     </div>
   );

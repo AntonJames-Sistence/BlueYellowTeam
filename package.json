@@ -9,6 +9,12 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.5.0",
+    "@fortawesome/free-brands-svg-icons": "^6.5.0",
+    "@fortawesome/free-regular-svg-icons": "^6.5.0",
+    "@fortawesome/free-solid-svg-icons": "^6.5.0",
+    "@fortawesome/react-fontawesome": "^0.2.0",
+    "aws-sdk": "^2.1501.0",
     "axios": "^1.6.0",
     "babel-plugin-macros": "^3.1.0",
     "firebase": "^10.5.0",
@@ -18,8 +24,10 @@
     "react-dom": "^18",
     "react-hot-toast": "^2.4.1",
     "react-social-icons": "^6.4.0",
+    "sharp": "^0.32.6",
     "stripe": "^14.2.0",
-    "swiper": "^11.0.3"
+    "swiper": "^11.0.3",
+    "uuid": "^9.0.1"
   },
   "devDependencies": {
     "@types/node": "20.8.8",

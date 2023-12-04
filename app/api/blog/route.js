@@ -10,14 +10,14 @@ import {
   deleteDoc,
 } from "firebase/firestore";
 import { storeDB } from "../../../data/firebase";
-import { getServerSession } from "next-auth";
 import { subSectionHasErrors } from "./[postId]/route";
+import isAdmin from "../lib/isAdmin";
 
-const isAdmin = async () => {
-  const session = await getServerSession();
-  if (!session || !session.user) {
-    throw new Error("You are not an admin");
-  }
+const createGoogleDriveLink = (link) => {
+  link = link.split("https://drive.google.com/file/d/");
+  const viewPosition = link[1].indexOf("/view");
+  const linkId = link[1].slice(0, viewPosition);
+  return `https://drive.google.com/uc?export=view&id=${linkId}`;
 };
 
 const createId = (title) => {
@@ -37,8 +37,8 @@ const postHasErrors = (post, type) => {
   if (!post.description) errors.description = "Blog post missing description";
   if (!post.image) errors.media = "Blog needs an image";
   if (type === "PUT" && !post.id) errors.id = "Blog needs an id to update";
-  if (type === "POST" && (!post.subSection || !post.subSection.length))
-    errors.subSection = "Blog needs at least one subSection";
+  if (type === "POST" && (!post.subSections || !post.subSections.length))
+    errors.subSections = "Blog needs at least one subSection";
 
   if (Object.values(errors).length) return errors;
   return false;
@@ -67,7 +67,7 @@ export async function GET() {
 
 export async function POST(request, res) {
   try {
-    // await isAdmin();
+    await isAdmin();
     const post = await request.json();
 
     const errors = postHasErrors(post, "POST");
@@ -87,12 +87,12 @@ export async function POST(request, res) {
     await setDoc(doc(storeDB, "posts", id), {
       title: post.title,
       description: post.description,
-      image: post.image,
+      image: createGoogleDriveLink(post.image),
       createdAt: new Date(),
       id: id,
     });
 
-    for (let subSection of post.subSection) {
+    for (let subSection of post.subSections) {
       const errors = subSectionHasErrors(subSection);
       if (errors) {
         await deleteDoc(doc(storeDB, "posts", id));
@@ -100,7 +100,7 @@ export async function POST(request, res) {
       }
     }
 
-    for (let subSection of post.subSection) {
+    for (let subSection of post.subSections) {
       const subSectionRef = doc(collection(storeDB, "posts", id, "subSection"));
 
       await setDoc(subSectionRef, {
@@ -130,7 +130,7 @@ export async function POST(request, res) {
 
 export async function PUT(request) {
   try {
-    // await isAdmin();
+    await isAdmin();
     const post = await request.json();
 
     const errors = postHasErrors(post, "PUT");
@@ -148,10 +148,14 @@ export async function PUT(request) {
         { status: 404 }
       );
     }
+    const update = {
+      description: post.description,
+    };
 
-    await updateDoc(postRef, {
-      ...post,
-    });
+    if (post?.image.startsWith("https://drive.google.com/file/d/")) {
+      update.image = createGoogleDriveLink(post.image);
+    }
+    await updateDoc(postRef, update);
 
     const newPost = await getDoc(postRef);
 
@@ -163,8 +167,21 @@ export async function PUT(request) {
 
 export async function DELETE(request) {
   try {
-    // await isAdmin();
+    await isAdmin();
     const { id } = await request.json();
+
+    const allDocs = await getDocs(
+      collection(storeDB, "posts", id, "subSection")
+    );
+
+    const docIds = [];
+    allDocs.forEach((sub) => {
+      docIds.push(sub.data().id);
+    });
+    for (let docId of docIds) {
+      await deleteDoc(doc(storeDB, "posts", id, "subSection", docId));
+    }
+
     await deleteDoc(doc(storeDB, "posts", id));
     return NextResponse.json("successfully deleted");
   } catch (error) {
