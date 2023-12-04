@@ -4,7 +4,9 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import "./main.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCircleChevronRight, faCircleChevronLeft } from '@fortawesome/free-solid-svg-icons'
+import { faCircleChevronRight, faCircleChevronLeft, faCreditCard, faDollarSign, faHandHoldingDollar, faCalendarDay, faCalendarWeek} from '@fortawesome/free-solid-svg-icons'
+import { faCcApplePay, faCcPaypal, faGooglePay} from '@fortawesome/free-brands-svg-icons'
+import { faCalendar } from '@fortawesome/free-regular-svg-icons'
 
 const Donate = () => {
     const [currentQuestion, setCurrentQuestion] = useState(1);
@@ -13,17 +15,17 @@ const Donate = () => {
     const [cause, setCause] = useState('');
     const [trackAmount, setTrackAmount] = useState(null);
     const [amount, setAmount] = useState(null);
-    const [method, setMethod] = useState('');
+    // const [method, setMethod] = useState('');
     // const [subscription, setSubscription] = useState(false);
     const [interval, setInterval] = useState(null);
 
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
-        if (interval !== null && amount !== null) {
+        if (interval !== null && amount !== null && cause !== '') {
             handleStripeCheckout();
         }
-    }, [interval]);
+    }, [interval, cause, amount]);
 
     const causes = [
         {
@@ -77,14 +79,18 @@ const Donate = () => {
     // choice 2
     const paymentChoice = (
         <div className='w-full flex flex-row justify-center'>
-            <button className="bg-blue-500 text-white m-4 p-2 rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 w-1/4 shadow-custom"
-                    onClick={() => handleAnswerClick(3, 'Card')}>Card
+            <button className="bg-blue-500 text-white m-4 p-3 rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 w-1/4 shadow-custom"
+                    onClick={() => handleAnswerClick(3, 'Card')}>
+                        <FontAwesomeIcon icon={faCreditCard} className='mr-2 fa-xl' />Card
             </button>
-            <button className="bg-blue-500 text-white m-4 p-2 rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 w-1/4 shadow-custom"
-                    onClick={() => handleAnswerClick(3, 'AppleGoogle')}>ApplePay / GooglePay
+            <button className="bg-blue-500 text-white m-4 p-3 rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 w-1/4 shadow-custom"
+                    onClick={() => handleAnswerClick(3, 'AppleGoogle')}>
+                        <FontAwesomeIcon icon={faCcApplePay} className='mr-2 fa-xl' />ApplePay / GooglePay
+                        <FontAwesomeIcon icon={faGooglePay} className='ml-2 fa-2xl' />
             </button>
-            <button className="bg-blue-500 text-white m-4 p-2 rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 w-1/4 shadow-custom"
-                    onClick={() => handleAnswerClick(3, 'PayPal')}>PayPal
+            <button className="bg-blue-500 text-white m-4 p-3 rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 w-1/4 shadow-custom"
+                    onClick={() => handleAnswerClick(3, 'PayPal')}>
+                        <FontAwesomeIcon icon={faCcPaypal} className='mr-2 fa-xl' />PayPal
             </button>
         </div>
     )
@@ -92,21 +98,24 @@ const Donate = () => {
     // choice 3
     const amountChoice = (
         <div className='w-full flex flex-row justify-center'>
-            <button className="bg-blue-500 text-white m-4 p-2 rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 w-1/4 shadow-custom"
-                    onClick={() => handleAnswerClick(4, 20)}>$20
+            <button className="bg-blue-500 text-white m-4 p-3 rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 w-1/4 shadow-custom"
+                    onClick={() => handleAnswerClick(4, 20)}>
+                        <FontAwesomeIcon icon={faDollarSign} className='mr-2 fa-xl' />20
             </button>
             <button className="bg-blue-500 text-white m-4 p-2 rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 w-1/4 shadow-custom"
-                    onClick={() => handleAnswerClick(4, 50)}>$50
+                    onClick={() => handleAnswerClick(4, 50)}>
+                        <FontAwesomeIcon icon={faDollarSign} className='mr-2 fa-xl' />50
             </button>
             <button className="bg-blue-500 text-white m-4 p-2 rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 w-1/4 shadow-custom"
-                    onClick={() => handleAnswerClick(4, 100)}>$100
+                    onClick={() => handleAnswerClick(4, 100)}>
+                        <FontAwesomeIcon icon={faDollarSign} className='mr-2 fa-xl' />100
             </button>
             <div className='flex flex-row w-1/4 '>
                 <input
                     type="number" min="1"
                     value={trackAmount === null ? '' : trackAmount}
                     onChange={(e) => setTrackAmount(e.target.value)}
-                    className="bg-white border border-gray-300 rounded-l-xl px-3 w-1/2 self-center h-[40px]"
+                    className="bg-white border border-gray-300 rounded-l-xl px-3 w-1/2 self-center h-[48px]"
                     placeholder="Amount"
                 />
                 <button
@@ -120,19 +129,23 @@ const Donate = () => {
     const subscriptionChoice = (
         <div className='fle flex-col justify-center'>
             <div className='flex flex-row justify-center mb-8'>
-                <button className="bg-blue-500 text-white m-4 p-2 rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 w-1/4 shadow-custom self-center"
-                        onClick={() => handleAnswerClick(1, false)}>One time Donation
+                <button className="bg-blue-500 text-white m-4 p-3 rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 w-1/4 shadow-custom self-center"
+                        onClick={() => handleAnswerClick(1, false)}>
+                            <FontAwesomeIcon icon={faHandHoldingDollar} className='mr-2 fa-xl' />One time Donation
                 </button>
             </div>
             <div className='w-full flex flex-row justify-center'>
-                <button className="bg-blue-500 text-white m-4 p-2 rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 w-1/4 shadow-custom"
-                        onClick={() => handleAnswerClick(1, 'day')}>Daily Subscription
+                <button className="bg-blue-500 text-white m-4 p-3 rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 w-1/4 shadow-custom"
+                        onClick={() => handleAnswerClick(1, 'day')}>
+                            <FontAwesomeIcon icon={faCalendarDay} className='mr-2 fa-xl' />Daily Subscription
                 </button>
-                <button className="bg-blue-500 text-white m-4 p-2 rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 w-1/4 shadow-custom"
-                        onClick={() => handleAnswerClick(1, 'month')}>Monthly Subscription
+                <button className="bg-blue-500 text-white m-4 p-3 rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 w-1/4 shadow-custom"
+                        onClick={() => handleAnswerClick(1, 'month')}>
+                            <FontAwesomeIcon icon={faCalendarWeek} className='mr-2 fa-xl' />Monthly Subscription
                 </button>
-                <button className="bg-blue-500 text-white m-4 p-2 rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 w-1/4 shadow-custom"
-                        onClick={() => handleAnswerClick(1, 'year')}>Yearly Subscription
+                <button className="bg-blue-500 text-white m-4 p-3 rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 w-1/4 shadow-custom"
+                        onClick={() => handleAnswerClick(1, 'year')}>
+                            <FontAwesomeIcon icon={faCalendar} className='mr-2 fa-xl' />Yearly Subscription
                 </button>
             </div>
         </div>
@@ -163,7 +176,7 @@ const Donate = () => {
                 setCurrentQuestion(nextQuestion);
                 break;
             case 2: // payment method
-                setMethod(answer);
+                // setMethod(answer);
                 if (answer === 'PayPal') {
                     setLoading(true);
                     window.location.href = 'https://www.paypal.com/donate/?hosted_button_id=6S6S2484WWCKN';
@@ -263,7 +276,7 @@ const Donate = () => {
                     disabled={currentQuestion === 1}
                     onClick={() => handleCircleClick(currentQuestion - 1)}
                     className={`absolute left-0 text-gray-300 text-2xl ${
-                        currentQuestion === 1 ? 'cursor-not-allowed' : 'hover:text-blue-500'
+                        currentQuestion === 1 ? 'cursor-not-allowed invisible' : 'hover:text-blue-500'
                     }`}
                 >
                     <FontAwesomeIcon icon={faCircleChevronLeft} size="xl" />
@@ -272,7 +285,7 @@ const Donate = () => {
                     disabled={currentQuestion === 4}
                     onClick={() => handleCircleClick(currentQuestion + 1)}
                     className={`absolute right-0 text-gray-300 text-2xl ${
-                        currentQuestion === 4 ? 'cursor-not-allowed' : 'hover:text-blue-500'
+                        currentQuestion === 4 ? 'cursor-not-allowed invisible' : 'hover:text-blue-500'
                     }`}
                 >
                     <FontAwesomeIcon icon={faCircleChevronRight} size="xl" />
