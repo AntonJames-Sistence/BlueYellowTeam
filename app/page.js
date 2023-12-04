@@ -8,6 +8,8 @@ import Banner from "./components/Banner";
 import Youtube from "./components/youtube";
 import { whyDonate } from "../data/whyDonate";
 import HomeEvents from "./components/HomeEvents";
+import UpdateEventsBtn from "./components/UpdateEventsBtn";
+import UpdateFacebookBtn from "./components/UpdateFacebookBtn";
 
 export default function Home() {
   return (
@@ -48,6 +50,7 @@ export default function Home() {
           Your donations and support provide essential supplies and services to
           the Ukrainian people.
         </div>
+        <UpdateEventsBtn />
         <HomeEvents />
       </div>
 
@@ -126,6 +129,7 @@ export default function Home() {
         </div>
       </div>
       <hr className="pt-20 max-w-7xl" />
+      <UpdateFacebookBtn />
       <Facebook />
     </main>
   );

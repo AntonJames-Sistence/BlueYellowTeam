@@ -1,18 +1,33 @@
-'use client';
-import { useRef } from 'react';
+"use client";
+import { useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
 
 export default function FooterForm() {
-  const emailRef = useRef(null);
-  const handleSubmit = (e) => {
+  const [email, setEmail] = useState("");
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    const res = await fetch("api/emails", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(email),
+    });
+
+    if (res.ok) {
+      toast.success("Email saved!");
+      setEmail("");
+    } else {
+      toast.error("There was an error, we couldn't save your email");
+    }
   };
   return (
     <form className="w-full h-full" onSubmit={handleSubmit}>
+      <Toaster position="top-right" reverseOrder={false} />
       <h6 className="font-semibold text-2xl pb-2">Join our Newsletter</h6>
       <div className="h-full flex flex-col items-start space-y-2 ">
         <input
           type="email"
-          ref={emailRef}
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
           placeholder="Email Address"
           className="w-full sm:w-[75%] text-black rounded-full min-h-[40px] pl-3 bg-white shadow-md border-2 border-gray-200 focus:border-blue-500 outline-none"
           required
