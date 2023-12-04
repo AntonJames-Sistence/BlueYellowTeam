@@ -4,7 +4,7 @@ import Link from "next/link";
 const Banner = () => {
   return (
     <>
-      <div className="relative h-[400px] w-11/12 max-w-[1400px] mt-28">
+      <div className="relative max-[600px]:aspect-[5/4] min-[600px]:h-[400px] w-11/12 max-w-[1400px] mt-28">
         <video
           className="absolute top-0 left-0 w-full h-full object-cover z-0 rounded-2xl shadow-custom"
           src="/flag_bg.mp4"
@@ -31,7 +31,6 @@ const Banner = () => {
           ></div>
         </div>
       </div>
-     
     </>
   );
 };
