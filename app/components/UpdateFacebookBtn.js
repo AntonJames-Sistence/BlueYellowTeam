@@ -4,6 +4,7 @@ import { useSession } from "next-auth/react";
 import toast, { Toaster } from "react-hot-toast";
 
 export default function UpdateFacebookBtn() {
+  const session = useSession();
   const handleClick = async () => {
     const res = await fetch("api/facebook", {
       method: "PUT",
@@ -15,6 +16,7 @@ export default function UpdateFacebookBtn() {
       toast.error("Failed to update facebook post");
     }
   };
+  if (!session?.data) return;
   return (
     <div
       className="bg-yellow-400 font-semibold px-3 py-1 w-fit rounded-md cursor-pointer hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 transition-colors duration-200 mb-4"
