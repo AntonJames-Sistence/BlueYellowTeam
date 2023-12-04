@@ -53,7 +53,6 @@ export default function Home() {
         <UpdateEventsBtn />
         <HomeEvents />
       </div>
-
       <div
         id="whyDonate"
         className="pt-20 w-11/12 max-w-[1400px] mb-20 text-center md:text-left"
@@ -89,19 +88,17 @@ export default function Home() {
           ))}
         </div>
       </div>
-
       <div className="relative">
         <div
           className="w-screen h-56 md:h-96 bg-cover bg-no-repeat"
           style={{ backgroundImage: `url(./people3.jpg)` }}
         ></div>
-        <div className="absolute top-0 -right-7 md:right-0 w-1/2 md:w-1/3 h-full">
+        <div className="absolute top-0 right-0 w-1/3 md:w-1/3 h-full">
           <div className="h-full bg-blue-500 bg-opacity-60 w-full transform  origin-bottom-left">
             <div className="triangle h-full aspect-[1/2] absolute -translate-x-full"></div>
           </div>
         </div>
       </div>
-
       {/* PROJECTS SECTION */}
       <div id="projects" className="pt-20 w-11/12 max-w-[1400px]">
         <div className="text-center md:text-left text-5xl font-bold text-black-500 pb-3">

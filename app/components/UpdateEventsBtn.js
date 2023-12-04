@@ -20,7 +20,7 @@ export default function UpdateEventsBtn() {
   if (!session?.data) return;
   return (
     <div
-      className="bg-yellow-400 font-semibold px-3 py-1 w-fit rounded-md cursor-pointer hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 transition-colors duration-200 mb-4"
+      className="bg-yellow-400 font-semibold px-3 py-1 w-fit rounded-md cursor-pointer hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 transition-colors duration-200 mb-4 m-auto"
       onClick={handleClick}
     >
       <Toaster position="top-right" reverseOrder={false} />
