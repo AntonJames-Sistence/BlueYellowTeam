@@ -4,7 +4,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import "./main.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCircleChevronRight, faCircleChevronLeft } from '@fortawesome/free-solid-svg-icons'
+import { faCircleChevronRight, faCircleChevronLeft, faCreditCard, } from '@fortawesome/free-solid-svg-icons'
+import { faCcApplePay, faCcPaypal, faGooglePay} from '@fortawesome/free-brands-svg-icons'
 
 const Donate = () => {
     const [currentQuestion, setCurrentQuestion] = useState(1);
@@ -77,14 +78,18 @@ const Donate = () => {
     // choice 2
     const paymentChoice = (
         <div className='w-full flex flex-row justify-center'>
-            <button className="bg-blue-500 text-white m-4 p-2 rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 w-1/4 shadow-custom"
-                    onClick={() => handleAnswerClick(3, 'Card')}>Card
+            <button className="bg-blue-500 text-white m-4 p-3 rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 w-1/4 shadow-custom"
+                    onClick={() => handleAnswerClick(3, 'Card')}>
+                        <FontAwesomeIcon icon={faCreditCard} className='mr-2 fa-xl' />Card
             </button>
-            <button className="bg-blue-500 text-white m-4 p-2 rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 w-1/4 shadow-custom"
-                    onClick={() => handleAnswerClick(3, 'AppleGoogle')}>ApplePay / GooglePay
+            <button className="bg-blue-500 text-white m-4 p-3 rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 w-1/4 shadow-custom"
+                    onClick={() => handleAnswerClick(3, 'AppleGoogle')}>
+                        <FontAwesomeIcon icon={faCcApplePay} className='mr-2 fa-xl' />ApplePay / GooglePay
+                        <FontAwesomeIcon icon={faGooglePay} className='ml-2 fa-2xl' />
             </button>
-            <button className="bg-blue-500 text-white m-4 p-2 rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 w-1/4 shadow-custom"
-                    onClick={() => handleAnswerClick(3, 'PayPal')}>PayPal
+            <button className="bg-blue-500 text-white m-4 p-3 rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 w-1/4 shadow-custom"
+                    onClick={() => handleAnswerClick(3, 'PayPal')}>
+                        <FontAwesomeIcon icon={faCcPaypal} className='mr-2 fa-xl' />PayPal
             </button>
         </div>
     )
