@@ -28,6 +28,10 @@ export const authOptions = {
       }
       return true;
     },
+    async session({ session, token, user }) {
+      // console.log(token);
+      return session;
+    },
   },
   session: {
     strategy: "jwt",

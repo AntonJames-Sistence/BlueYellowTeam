@@ -2,6 +2,7 @@
 import { getApps, getApp, initializeApp } from "firebase/app";
 import { getDatabase, ref } from "firebase/database";
 import { getFirestore } from "firebase/firestore";
+import { getAuth } from "firebase/auth";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -22,3 +23,10 @@ export const FIREBASE_APP =
 
 export const DB = getDatabase(FIREBASE_APP);
 export const storeDB = getFirestore(FIREBASE_APP);
+
+export default function useFireBaseClient() {
+  console.log(process.env.FIREBASE_API_KEY, process.env.FIREBASE_AUTH_DOMAIN);
+  const auth = getAuth(FIREBASE_APP);
+
+  return { app: FIREBASE_APP, auth };
+}

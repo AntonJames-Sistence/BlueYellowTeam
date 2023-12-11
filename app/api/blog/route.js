@@ -84,13 +84,17 @@ export async function POST(request, res) {
       );
     }
 
-    await setDoc(doc(storeDB, "posts", id), {
-      title: post.title,
-      description: post.description,
-      image: createGoogleDriveLink(post.image),
-      createdAt: new Date(),
-      id: id,
-    });
+    await setDoc(
+      doc(storeDB, "posts", id),
+      {
+        title: post.title,
+        description: post.description,
+        image: createGoogleDriveLink(post.image),
+        createdAt: new Date(),
+        id: id,
+      },
+      { headers: { Authorization: `Bearer ${session.accessToken}` } }
+    );
 
     for (let subSection of post.subSections) {
       const errors = subSectionHasErrors(subSection);

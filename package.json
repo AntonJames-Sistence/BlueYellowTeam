@@ -26,6 +26,7 @@
     "react-dom": "^18",
     "react-hot-toast": "^2.4.1",
     "react-social-icons": "^6.4.0",
+    "server-only": "^0.0.1",
     "sharp": "^0.32.6",
     "stripe": "^14.2.0",
     "swiper": "^11.0.3",
