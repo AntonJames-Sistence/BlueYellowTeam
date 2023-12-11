@@ -10,6 +10,7 @@ import { whyDonate } from "../data/whyDonate";
 import HomeEvents from "./components/HomeEvents";
 import UpdateEventsBtn from "./components/UpdateEventsBtn";
 import UpdateFacebookBtn from "./components/UpdateFacebookBtn";
+import Button from "./components/Button";
 
 export default function Home() {
   return (
@@ -18,7 +19,7 @@ export default function Home() {
       <Banner />
       <Youtube />
       {/* DONATE SECTION */}
-      <div id="who-we-help" className="pt-20 w-11/12 max-w-[1400px]">
+      <div id="who-we-help" className="pt-28 w-11/12 max-w-[1400px]">
         <div className="text-center md:text-left text-5xl font-bold text-black-500 pb-3">
           Who do we help?
         </div>
@@ -42,7 +43,7 @@ export default function Home() {
         </div>
       </div>
       {/*  EVENTS SECTION */}
-      <div id="events" className="pt-20 w-11/12 max-w-[1400px]">
+      <div id="events" className="pt-28 w-11/12 max-w-[1400px]">
         <div className="text-center md:text-left text-5xl font-bold text-black-500 pb-3">
           Events
         </div>
@@ -55,7 +56,7 @@ export default function Home() {
       </div>
       <div
         id="whyDonate"
-        className="pt-20 w-11/12 max-w-[1400px] mb-20 text-center md:text-left"
+        className="pt-28 w-11/12 max-w-[1400px] mb-20 text-center md:text-left"
       >
         <div className="text-center md:text-left text-5xl font-bold text-black-500 pb-3">
           Why you should donate
@@ -72,17 +73,17 @@ export default function Home() {
           Donate Now
         </Link>
 
-        <div className="grid grid-cols-2 grid-rows-2 justify-center md:flex md:justify-between mt-10">
+        <div className="grid grid-cols-2 grid-rows-2 justify-center md:flex md:justify-between mt-20">
           {whyDonate.map((message, index) => (
             <div
-              className="pb-5 text-left flex flex-col items-center"
+              className="pb-5 text-left flex flex-col w-full md:w-1/4 max-[768px]:items-center"
               key={index}
             >
-              <div>
-                <div className="text-4xl md:text-3xl lg:text-4xl font-bold text-black-500 w-fit">
+              <div className="w-min">
+                <div className="text-4xl md:text-5xl lg:text-5xl font-extrabold text-black-500 w-fit">
                   {message.amount}
                 </div>
-                <div className="w-40 md:w-full mt-1">{message.text}</div>
+                <div className="w-40 md:w-full mt-2">{message.text}</div>
               </div>
             </div>
           ))}
@@ -100,7 +101,7 @@ export default function Home() {
         </div>
       </div>
       {/* PROJECTS SECTION */}
-      <div id="projects" className="pt-20 w-11/12 max-w-[1400px]">
+      <div id="projects" className="pt-28 w-11/12 max-w-[1400px]">
         <div className="text-center md:text-left text-5xl font-bold text-black-500 pb-3">
           Projects
         </div>
@@ -124,8 +125,15 @@ export default function Home() {
             );
           })}
         </div>
+        <div className="w-full flex justify-center mt-5">
+          <Button
+            css="py-1 px-3 border-[1px] border-black rounded-2xl font-extrabold cursor-pointer"
+            text="VIEW ALL PROJECTS"
+            url="/projects"
+          />
+        </div>
       </div>
-      <hr className="pt-20 max-w-7xl" />
+      <hr className="pt-28 max-w-7xl" />
       <UpdateFacebookBtn />
       <Facebook />
     </main>
