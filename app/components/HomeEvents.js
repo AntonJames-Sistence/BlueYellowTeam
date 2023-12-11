@@ -37,8 +37,8 @@ export default function HomeEvents() {
 
   if (!upcommingEvents || !upcommingEvents.length) {
     return (
-      <div className="w-full max-w-[1400px] m-auto pb-5 text-2xl text-center h-80">
-        No Upcomming events
+      <div className="w-full max-w-[1400px] m-auto pb-5 text-xl h-80 flex justify-center items-center">
+        No upcoming events.
       </div>
     );
   }
