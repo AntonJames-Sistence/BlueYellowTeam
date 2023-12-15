@@ -8,7 +8,9 @@ const WarClock = () => {
   }
 
   const [targetTime] = useState(new Date("2022-02-24T05:00:00Z"));
-  const [elapsedTime, setElapsedTime] = useState(calculateTimeDifference(targetTime));
+  const [elapsedTime, setElapsedTime] = useState(
+    calculateTimeDifference(targetTime)
+  );
 
   useEffect(() => {
     function updateTime() {
@@ -30,7 +32,7 @@ const WarClock = () => {
 
     return (
       <div className="flex flex-col h-full w-full max-w-[175px] sm:max-w-none">
-        <div className="w-full flex flex-row justify-between items-center font-bold lg:text-lg">
+        <div className="w-full flex flex-row justify-between items-center lg:text-lg font-bold">
           <div className="mr-2">
             {days}
             <span className="text-sm lg:text-lg">d</span>
