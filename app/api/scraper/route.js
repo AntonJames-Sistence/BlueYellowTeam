@@ -1,23 +1,30 @@
-import { NextResponse } from 'next/server';
 import puppeteer from 'puppeteer';
+import { NextResponse } from 'next/server';
 
-export async function GET(req, res) {
+export async function GET() {
   const url = 'https://news.ycombinator.com/';
 
   try {
-    const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch({
+      headless: false, // Set to true for production
+      defaultViewport: null,
+    });
     const page = await browser.newPage();
 
-    await page.goto(url);
-    const pageTitle = await page.title();
+    await page.goto(url, {
+      waitUntil: 'domcontentloaded',
+    });
+
+    const titles = await page.evaluate(() => {
+      const titleElements = document.querySelectorAll('span.titleline');
+      const titles = Array.from(titleElements, (element) => element.textContent.trim());
+      return titles;
+    });
 
     await browser.close();
 
-    // res.status(200).json({ title: pageTitle });
+    return NextResponse.json(titles);
   } catch (error) {
-    console.error('Error in scraping:', error);
-    // res.status(500).json({ error: 'Failed to scrape data' });
+    return NextResponse.error(error);
   }
-  return NextResponse.json(pageTitle);
 }
-
