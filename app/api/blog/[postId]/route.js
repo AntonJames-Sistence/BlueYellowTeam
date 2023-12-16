@@ -10,17 +10,7 @@ import {
   deleteDoc,
 } from "firebase/firestore";
 import { storeDB } from "../../../../data/firebase";
-import isAdmin from "../../lib/isAdmin";
-
-export const subSectionHasErrors = (subSection) => {
-  const errors = {};
-
-  if (!subSection.title) errors.title = "SubSection missing title";
-  if (!subSection.text) errors.subSection = "SubSection missing text";
-
-  if (Object.values(errors).length) return errors;
-  return false;
-};
+import { isAdmin, subSectionHasErrors } from "../../lib";
 
 export async function GET(request, { params: { postId } }) {
   try {
