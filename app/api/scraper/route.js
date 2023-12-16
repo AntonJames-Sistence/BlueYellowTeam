@@ -6,7 +6,7 @@ export async function GET() {
 
   try {
     const browser = await puppeteer.launch({
-      headless: false, // Set to true for production
+      headless: true,
       defaultViewport: null,
     });
     const page = await browser.newPage();
