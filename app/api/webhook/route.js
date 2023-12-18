@@ -1,52 +1,41 @@
-import { buffer } from 'micro';
-import Stripe from 'stripe';
-import { NextResponse, NextRequest } from 'next/server';
+// import { buffer } from 'micro';
+import { NextRequest, NextResponse } from 'next/server';
 
-// Initialize the Stripe instance with your secret key
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
-  apiVersion: '2020-08-27', // Specify the Stripe API version you're using
-  // Add other configurations if needed
-});
+// const stripe = require('stripe')('sk_test_51MnVdXIjOeJEAQC7S6qG9mjlSJvJ2j3Gsy1227hfwWzwrKniyi329U3CwnSEQCjDWEUeS0bVNpCD0aaZPUdZ7QBB00W8vNskqK');
+const stripe = process.env.STRIPE_WEBHOOK_SECRET;
 
-// Your Stripe webhook secret for verifying webhook events
-const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET;
 
-export const config = {
-  api: {
-    bodyParser: false,
-  },
-};
-
-export default async (NextRequest, NextResponse) => {
+export async function POST(NextRequest, NextResponse) {
   if (NextRequest.method === 'POST') {
-    const buf = await buffer(NextRequest);
-    const sig = NextRequest.headers['stripe-signature'];
+    // const buf = await buffer(req);
+    // const sig = req.headers['stripe-signature'];
 
-    let event;
+    // let event;
 
-    try {
-      event = stripe.webhooks.constructEvent(buf.toString(), sig, endpointSecret);
-    } catch (err) {
-      NextResponse.status(400).send(`Webhook Error: ${err.message}`);
-      return;
-    }
+    // try {
+    //   event = stripe.webhooks.constructEvent(buf.toString(), sig, 'your_webhook_secret_key');
+    // } catch (err) {
+    //   console.log(`Webhook Error: ${err.message}`);
+    //   return res.status(400).send(`Webhook Error: ${err.message}`);
+    // }
 
-    // Handle the event
-    switch (event.type) {
-      case 'checkout.session.completed':
-        const checkoutSessionCompleted = event.data.object;
-        // Then define and call a function to handle the event checkout.session.completed
-        // For example: handleCheckoutCompleted(checkoutSessionCompleted);
-        break;
-      // Handle other event types as needed
-      default:
-        console.log(`Unhandled event type ${event.type}`);
-    }
+    // // Handle the event
+    // switch (event.type) {
+    //   case 'payment_intent.succeeded':
+    //     const paymentIntent = event.data.object;
+    //     // Handle successful payment intent
+    //     console.log('PaymentIntent was successful');
+    //     break;
+    //   // Add more cases to handle other event types if needed
+    //   default:
+    //     console.log(`Unhandled event type: ${event.type}`);
+    // }
 
-    // Return a 200 response to acknowledge receipt of the event
-    NextResponse.send('Received');
+    NextResponse.json('hi from backend');
   } else {
-    NextResponse.setHeader('Allow', 'POST');
+    // res.setHeader('Allow', 'POST');
     NextResponse.status(405).end('Method Not Allowed');
   }
 };
+
+export default webhookHandler;
