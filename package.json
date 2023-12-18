@@ -15,7 +15,7 @@
     "@fortawesome/free-solid-svg-icons": "^6.5.0",
     "@fortawesome/react-fontawesome": "^0.2.0",
     "aws-sdk": "^2.1501.0",
-    "axios": "^1.6.0",
+    "axios": "^1.6.2",
     "babel-plugin-macros": "^3.1.0",
     "firebase": "^10.5.0",
     "next": "^14.0.1",
