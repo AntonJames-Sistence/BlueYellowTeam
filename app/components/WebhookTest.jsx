@@ -1,3 +1,4 @@
+'use client'
 import React from 'react';
 
 const WebhookTest = () => {
@@ -24,7 +25,7 @@ const WebhookTest = () => {
 
     return (
         <div>
-            <button onClick={handlePost}>Send post request to webhook</button>
+            <button onClick={handlePost} className='text-white border border-solid-black bg-gradient-to-r from-sky-500 to-indigo-500'>Send post request to webhook</button>
         </div>
     );
 };
