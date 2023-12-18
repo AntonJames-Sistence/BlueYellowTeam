@@ -1,4 +1,3 @@
-import { buffer } from 'micro';
 import Stripe from 'stripe';
 import { NextResponse } from 'next/server';
 
@@ -12,19 +11,18 @@ export const config = {
 }
 
 export async function POST(request) {
-  const requestBuffer = await buffer(request);
-
-  const sig = request.headers['stripe-signature'];
+  // super important, need to get raw body.stripe
+  const sig = request.headers.get('stripe-signature') 
   console.log(sig)
   let event;
 
   try {
-    event = stripe.webhooks.constructEvent(requestBuffer.toString(), sig, endpointSecret);
+    event = stripe.webhooks.constructEvent(request.body, sig, endpointSecret);
     // Sending a response back to the frontend
     // return NextResponse.json({ message: 'hi from backend' });
   } catch (error) {
     return NextResponse.json({
-      message: `Webhook Error: ${error.message}`
+      message: `Stripe error: ${error.message}`
     }, {
       status: 400,
     });
