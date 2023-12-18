@@ -1,4 +1,5 @@
 import Stripe from 'stripe';
+import { buffer } from "node:stream/consumers";
 import { NextResponse } from 'next/server';
 
 const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET;
@@ -11,21 +12,25 @@ export const config = {
 }
 
 export async function POST(request) {
+  const rawBody = await buffer(request.body);
   // super important, need to get raw body.stripe
   const sig = request.headers.get('stripe-signature') 
   console.log(sig)
   let event;
 
   try {
-    event = stripe.webhooks.constructEvent(request.body, sig, endpointSecret);
+    event = stripe.webhooks.constructEvent(rawBody, sig, endpointSecret);
     // Sending a response back to the frontend
     // return NextResponse.json({ message: 'hi from backend' });
   } catch (error) {
-    return NextResponse.json({
-      message: `Stripe error: ${error.message}`
-    }, {
-      status: 400,
-    });
+    return NextResponse.json(
+      {
+        message: "Webhook signature verification failed",
+      },
+      {
+        status: 400,
+      }
+    );
   }
 
   // Handle the event
