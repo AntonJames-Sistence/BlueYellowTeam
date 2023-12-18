@@ -14,8 +14,7 @@ export const config = {
 export async function POST(request) {
   const rawBody = await buffer(request.body);
   // super important, need to get raw body.stripe
-  const sig = request.headers.get('stripe-signature') 
-  console.log(sig)
+  const sig = request.headers.get('stripe-signature');
   let event;
 
   try {
@@ -37,17 +36,8 @@ export async function POST(request) {
   switch (event.type) {
     case 'payment_intent.succeeded':
       const paymentIntentSucceeded = event.data.object;
-      // let customerEmail = paymentIntentSucceeded.receipt_email;
-      
-      break;
-
-    case 'checkout.session.completed':
-      const checkoutSessionCompleted = event.data.object;
-      let customerEmail = checkoutSessionCompleted.receipt_email;
-
-      return NextResponse.json({ message: customerEmail });
-      // sendThankYouEmail(customerEmail);
-
+      let customerEmail = paymentIntentSucceeded.receipt_email;
+      sendThankYouEmail(customerEmail);
       break;
 
     default:
