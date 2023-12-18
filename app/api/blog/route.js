@@ -10,39 +10,13 @@ import {
   deleteDoc,
 } from "firebase/firestore";
 import { storeDB } from "../../../data/firebase";
-import { subSectionHasErrors } from "./[postId]/route";
-import isAdmin from "../lib/isAdmin";
-
-const createGoogleDriveLink = (link) => {
-  link = link.split("https://drive.google.com/file/d/");
-  const viewPosition = link[1].indexOf("/view");
-  const linkId = link[1].slice(0, viewPosition);
-  return `https://drive.google.com/uc?export=view&id=${linkId}`;
-};
-
-const createId = (title) => {
-  const invalid = new Set(["!", ",", "?", "."]);
-  const filteredString = title
-    .split("")
-    .filter((char) => !invalid.has(char))
-    .join("");
-  const id = filteredString.replace(/ /g, "-");
-  return id;
-};
-
-const postHasErrors = (post, type) => {
-  const errors = {};
-
-  if (!post.title) errors.title = "Blog post missing title";
-  if (!post.description) errors.description = "Blog post missing description";
-  if (!post.image) errors.media = "Blog needs an image";
-  if (type === "PUT" && !post.id) errors.id = "Blog needs an id to update";
-  if (type === "POST" && (!post.subSections || !post.subSections.length))
-    errors.subSections = "Blog needs at least one subSection";
-
-  if (Object.values(errors).length) return errors;
-  return false;
-};
+import {
+  isAdmin,
+  createGoogleDriveLink,
+  createId,
+  postHasErrors,
+  subSectionHasErrors,
+} from "../lib";
 
 const postExist = async (id) => {
   const postSnap = await getDoc(doc(storeDB, "posts", id));
@@ -72,7 +46,14 @@ export async function POST(request, res) {
 
     const errors = postHasErrors(post, "POST");
     if (errors) {
-      return NextResponse.json({ errors }, { status: 404 });
+      return NextResponse.json({ errors }, { status: 400 });
+    }
+
+    for (let subSection of post.subSections) {
+      const errors = subSectionHasErrors(subSection);
+      if (errors) {
+        return NextResponse.json(errors, { status: 400 });
+      }
     }
 
     const id = createId(post.title);
@@ -91,14 +72,6 @@ export async function POST(request, res) {
       createdAt: new Date(),
       id: id,
     });
-
-    for (let subSection of post.subSections) {
-      const errors = subSectionHasErrors(subSection);
-      if (errors) {
-        await deleteDoc(doc(storeDB, "posts", id));
-        return NextResponse.json(errors, { status: 404 });
-      }
-    }
 
     for (let subSection of post.subSections) {
       const subSectionRef = doc(collection(storeDB, "posts", id, "subSection"));
@@ -135,7 +108,7 @@ export async function PUT(request) {
 
     const errors = postHasErrors(post, "PUT");
     if (errors) {
-      return NextResponse.json({ errors }, { status: 404 });
+      return NextResponse.json({ errors }, { status: 400 });
     }
 
     const postRef = doc(storeDB, "posts", post.id);

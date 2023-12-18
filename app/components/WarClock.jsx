@@ -8,7 +8,9 @@ const WarClock = () => {
   }
 
   const [targetTime] = useState(new Date("2022-02-24T05:00:00Z"));
-  const [elapsedTime, setElapsedTime] = useState(calculateTimeDifference(targetTime));
+  const [elapsedTime, setElapsedTime] = useState(
+    calculateTimeDifference(targetTime)
+  );
 
   useEffect(() => {
     function updateTime() {
