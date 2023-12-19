@@ -36,10 +36,12 @@ export async function POST(request) {
   switch (event.type) {
     case 'payment_intent.succeeded':
       const paymentIntentSucceeded = event.data.object;
-      let customerEmail = paymentIntentSucceeded.receipt_email;
-      sendThankYouEmail(customerEmail);
-      break;
+      const customerEmail = paymentIntentSucceeded.receipt_email;
+      if (customerEmail){
+        // sendThankYouEmail(customerEmail); change this to fetch api/email
+      }
 
+      break;
     default:
       console.log(`Unhandled event type ${event.type}`);
   }
@@ -48,3 +50,4 @@ export async function POST(request) {
     status: 200,
   });
 };
+

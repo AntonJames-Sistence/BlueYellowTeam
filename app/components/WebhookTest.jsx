@@ -3,23 +3,46 @@ import React from 'react';
 
 const WebhookTest = () => {
     const handlePost = async () => {
+        const customerEmail = 'anton.james.ja@gmail.com'; // Replace with the actual customer email
+
         try {
-            const response = await fetch('api/webhook', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
+            const response = await fetch('/api/email', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ customerEmail }),
             });
 
-            if (!response.ok) {
-                throw new Error('Network response was not ok.');
+            if (response.ok) {
+            console.log('Email sent successfully!');
+            // Handle success, if needed
+            } else {
+            console.error('Error sending email:', await response.text());
+            // Handle error
             }
-
-            const responseData = await response.json();
-            console.log('Response from webhook:', responseData.message);
         } catch (error) {
-            console.error('Error sending POST request:', error);
+            console.error('Error sending email:', error);
+            // Handle error
         }
+        
+        // try {
+        //     const response = await fetch('api/webhook', {
+        //         method: 'POST',
+        //         headers: {
+        //             'Content-Type': 'application/json'
+        //         },
+        //     });
+
+        //     if (!response.ok) {
+        //         throw new Error('Network response was not ok.');
+        //     }
+
+        //     const responseData = await response.json();
+        //     console.log('Response from webhook:', responseData.message);
+        // } catch (error) {
+        //     console.error('Error sending POST request:', error);
+        // }
     };
 
     return (
