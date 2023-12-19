@@ -2,11 +2,10 @@ import Stripe from 'stripe';
 import { NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
 
-const endpointSecret = process.env.LOCAL_STRIPE_WEBHOOK_SECRET;
+const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET;
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 const handleEmailSend = async (customerEmail) => {
-  console.log('step 2 completed')
   const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
@@ -45,12 +44,11 @@ Instagram: https://www.instagram.com/blueyellowfoundation/`;
   };
 
   const info = await transporter.sendMail(mailOptions);
-  return info.messageId;
+  return 'Email sent';
 };
 
 export async function POST(req) {
   // super important, need to get raw body for stripe
-  
   let event
   const text = await req.text();
   const stripeSignature = req.headers.get("Stripe-Signature");
@@ -64,7 +62,7 @@ export async function POST(req) {
   } catch (error) {
     return NextResponse.json(
       {
-        message: "Webhook signature verification failed",
+        message: "Webhook verification failed",
       },
       {
         status: 400,
@@ -76,20 +74,11 @@ export async function POST(req) {
   switch (event.type) {
     case 'payment_intent.succeeded':
       const paymentIntentSucceeded = event.data.object;
-      // const customerEmail = paymentIntentSucceeded.receipt_email;
-      const customerEmail = 'anton.james.ja@gmail.com';
-      if (paymentIntentSucceeded){
-          try {
-            console.log('step 1 completed')
-            // const response = await fetch('/api/email', {
-            //   method: 'POST',
-            //   headers: {
-            //       'Content-Type': 'application/json',
-            //     },
-            //   body: JSON.stringify({ email: customerEmail }),
-            // });
-            const data = handleEmailSend(customerEmail);
+      const customerEmail = paymentIntentSucceeded.receipt_email;
 
+      if (customerEmail){
+          try {
+            const data = await handleEmailSend(customerEmail);
 
             return NextResponse.json(
               {
