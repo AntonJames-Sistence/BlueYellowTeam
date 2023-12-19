@@ -5,12 +5,6 @@ import { NextResponse } from 'next/server';
 const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET;
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
-export const config = {
-  api: {
-    bodyParser: false,
-  },
-}
-
 export async function POST(request) {
   const rawBody = await buffer(request.body);
   // super important, need to get raw body.stripe
