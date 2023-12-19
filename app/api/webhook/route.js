@@ -38,7 +38,24 @@ export async function POST(request) {
       const paymentIntentSucceeded = event.data.object;
       const customerEmail = paymentIntentSucceeded.receipt_email;
       if (customerEmail){
-        // sendThankYouEmail(customerEmail); change this to fetch api/email
+          try {
+              const response = await fetch('/api/email', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                  },
+                body: JSON.stringify({ email: customerEmail }),
+              });
+  
+              if (response.ok) {
+              // Handle success, if needed
+              } else {
+              // Handle error
+              }
+          } catch (error) {
+              // Handle error
+          }
+      
       }
 
       break;
