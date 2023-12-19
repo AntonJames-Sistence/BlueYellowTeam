@@ -42,16 +42,24 @@ export async function POST(req) {
                   },
                 body: JSON.stringify({ email: customerEmail }),
               });
-  
-              if (response.ok) {
-              // Handle success, if needed
-              } else {
-              // Handle error
-              }
+              return NextResponse.json(
+                {
+                  message: response,
+                },
+                {
+                  status: 200,
+                }
+              );
           } catch (error) {
-              // Handle error
+            return NextResponse.json(
+              {
+                message: error,
+              },
+              {
+                status: 400,
+              }
+            );
           }
-      
       }
 
       break;
