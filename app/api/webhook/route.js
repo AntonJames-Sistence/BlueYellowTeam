@@ -1,20 +1,22 @@
 import Stripe from 'stripe';
-import { buffer } from "node:stream/consumers";
 import { NextResponse } from 'next/server';
 
 const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET;
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
-export async function POST(request) {
-  const rawBody = await buffer(request.body);
-  // super important, need to get raw body.stripe
-  const sig = request.headers.get('stripe-signature');
-  let event;
-
+export async function POST(req) {
+  // super important, need to get raw body for stripe
+  
+  let event
+  const text = await req.text();
+  const stripeSignature = req.headers.get("Stripe-Signature");
+  
   try {
-    event = stripe.webhooks.constructEvent(rawBody, sig, endpointSecret);
-    // Sending a response back to the frontend
-    // return NextResponse.json({ message: 'hi from backend' });
+    event = stripe.webhooks.constructEvent(
+        text,
+        stripeSignature,
+        endpointSecret
+      );
   } catch (error) {
     return NextResponse.json(
       {
