@@ -1,8 +1,10 @@
 import nodemailer from 'nodemailer';
 import { NextResponse } from 'next/server';
+// import data from '@/data.json';
 
 export async function POST(req) {
-    const { customerEmail } = req.body;
+    let data = await req.json();
+    const email = data.email;
 
     try {
         const transporter = nodemailer.createTransport({
@@ -19,8 +21,8 @@ export async function POST(req) {
 
         const mailOptions = {
         from: 'blue.yellow.foundation.d@gmail.com',
-        to: customerEmail,
-        subject: 'Thank You for Your Purchase!',
+        to: email,
+        subject: 'Thank You for Your Donation!',
         text: 'Thank you for your purchase. We appreciate your business!',
         };
 

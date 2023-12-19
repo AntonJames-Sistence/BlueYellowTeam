@@ -11,7 +11,7 @@ const WebhookTest = () => {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ customerEmail }),
+            body: JSON.stringify({ email: customerEmail }),
             });
 
             if (response.ok) {
