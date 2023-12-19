@@ -2,8 +2,10 @@ import nodemailer from 'nodemailer';
 import { NextResponse } from 'next/server';
 
 export async function POST(req) {
+    console.log('step 2 completed')
     let data = await req.json();
-    const email = data.email;
+    let email = data.email;
+    // console.log(email)
 
     try {
         const transporter = nodemailer.createTransport({
@@ -38,10 +40,10 @@ Instagram: https://www.instagram.com/blueyellowfoundation/`;
 
 
         const mailOptions = {
-        from: 'blue.yellow.foundation.d@gmail.com',
-        to: email,
-        subject: 'Thank You for Your Donation!',
-        text: text,
+            from: 'blue.yellow.foundation.d@gmail.com',
+            to: email,
+            subject: 'Thank You for Your Donation!',
+            text: text,
         };
 
         const info = await transporter.sendMail(mailOptions);
