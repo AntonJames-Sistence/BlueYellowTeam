@@ -43,8 +43,12 @@ Instagram: https://www.instagram.com/blueyellowfoundation/`;
     text: text,
   };
 
-  const info = await transporter.sendMail(mailOptions);
-  return 'Email sent';
+  try {
+    const info = await transporter.sendMail(mailOptions);
+    return 'Email sent';
+  } catch (error) {
+    return error;
+  }
 };
 
 export async function POST(req) {
