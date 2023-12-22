@@ -29,8 +29,6 @@ const Donate = () => {
   const [trackAmount, setTrackAmount] = useState(null);
   const [trackerError, setTrackerError] = useState(false);
   const [amount, setAmount] = useState(null);
-  // const [method, setMethod] = useState('');
-  // const [subscription, setSubscription] = useState(false);
   const [interval, setInterval] = useState(null);
 
   const [loading, setLoading] = useState(false);
@@ -204,7 +202,6 @@ const Donate = () => {
         setCurrentQuestion(nextQuestion);
         break;
       case 2: // payment method
-        // setMethod(answer);
         if (answer === "PayPal") {
           setLoading(true);
           window.location.href =
@@ -218,7 +215,6 @@ const Donate = () => {
         setCurrentQuestion(nextQuestion);
         break;
       case 4: // subscription & last question
-        // setSubscription(true);
         setInterval(answer);
         setCurrentQuestion(nextQuestion);
         break;
@@ -303,9 +299,6 @@ const Donate = () => {
             className={`h-4 w-4 rounded-full mx-2 ${
               currentQuestion === questionNumber ? "bg-blue-500" : "bg-gray-300"
             }`}
-            // onClick={() =>
-            //   handleSlider(currentQuestion >= questionNumber, questionNumber)
-            // }
           ></div>
         ))}
       </div>
@@ -326,17 +319,6 @@ const Donate = () => {
         >
           <FontAwesomeIcon icon={faCircleChevronLeft} size="xl" />
         </button>
-        {/* <button
-          disabled={currentQuestion === 4}
-          onClick={() => handleSlider(true,currentQuestion + 1)}
-          className={`absolute right-0 text-gray-300 text-2xl ${
-            currentQuestion === 4
-              ? "cursor-not-allowed invisible"
-              : "hover:text-blue-500"
-          }`}
-        >
-          <FontAwesomeIcon icon={faCircleChevronRight} size="xl" />
-        </button> */}
       </div>
     );
   };
