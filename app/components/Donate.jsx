@@ -45,20 +45,20 @@ const Donate = () => {
       {causes.map((cause) => (
         <button
           key={cause.id}
-          className="bg-blue-500 text-white rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 w-full md:w-1/4 shadow-custom"
+          className="bg-blue-500 text-white rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 self-center w-[90%] md:w-full lg:w-1/2 shadow-custom"
           onClick={() => handleSlider(false, 2, cause.text)} // pass next question id and user answer
         >
           <div className="flex flex-col h-full">
             <div className="flex flex-col">
-              <h4 className="font-bold mt-4 text-xl">{cause.text}</h4>
+              <h4 className="font-semibold mt-2 md:mt-4 text-xl">{cause.text}</h4>
               <hr className="border-t border-gray-400 my-2 mx-4"></hr>
               <div
-                className="h-32 w-2/3 self-center bg-cover rounded-lg bg-no-repeat"
+                className="h-32 w-4/5 md:w-[95%] lg:w-2/3 self-center bg-cover rounded-lg bg-no-repeat"
                 style={{ backgroundImage: `url(${cause.image})` }}
               ></div>
               <hr className="border-t border-gray-400 my-2 mx-4"></hr>
             </div>
-            <div className="px-4 pb-4 text-sm">{cause.description}</div>
+            <div className="px-4 pb-2 md:pb-4 text-sm md:text-xs lg:text-base font-medium">{cause.description}</div>
           </div>
         </button>
       ))}
@@ -247,12 +247,12 @@ const Donate = () => {
   const renderQuestion = () => {
     return (
       <div
-        className={`question-container max-[768px]:pt-28 flex flex-col justify-center w-3/4 md:w-full lg:w-3/4 ${animateSlide}`}
+        className={`question-container flex flex-col justify-center w-full lg:w-4/5 ${animateSlide}`}
       >
         {currentQuestion === 1 && (
           <div>
-            <h2 className="text-center text-2xl font-bold mb-4">
-              What cause do you want to donate?
+            <h2 className="text-center text-2xl lg:text-3xl font-bold mb-4 lg:mb-8">
+              For what cause do you want to donate?
             </h2>
             {causeChoice}
           </div>
@@ -260,7 +260,7 @@ const Donate = () => {
         {currentQuestion === 2 && (
           <div>
             <h2 className="text-center text-2xl font-bold mb-4">
-              What payment method?
+              Select payment method
             </h2>
             {paymentChoice}
           </div>
@@ -268,7 +268,7 @@ const Donate = () => {
         {currentQuestion === 3 && (
           <div>
             <h2 className="text-center text-2xl font-bold mb-4">
-              Please select amount
+              Select amount
             </h2>
             {amountChoice}
               <div className={`text-red-500 text-center h-0 ${
@@ -330,7 +330,7 @@ const Donate = () => {
           <div className="spinner"></div>
         </div>
       ) : (
-        <div className="relative w-full min-h-[500px] flex justify-center">
+        <div className="relative w-full lg:w-[90%] min-h-[500px] flex justify-center">
           {renderQuestion()}
 
           <div className="absolute -bottom-10 left-0 right-0 flex justify-center">
