@@ -96,29 +96,29 @@ const Donate = () => {
 
   // choice 3
   const amountChoice = (
-    <div className="w-full flex flex-col md:flex-row justify-center">
+    <div className="w-full flex flex-col md:grid md:grid-cols-2 md:gap-4 justify-center justify-items-center">
       <button
-        className="bg-blue-500 text-white m-4 p-3 rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 w-2/3 self-center lg:w-full md:w-1/4 shadow-custom"
+        className="bg-blue-500 text-white m-3 p-3 rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 w-2/3 self-center lg:w-2/3 md:w-2/4 justify-self-end shadow-custom"
         onClick={() => handleSlider(false, 4, 20)}
       >
         <FontAwesomeIcon icon={faDollarSign} className="mr-2 fa-xl" />
         20
       </button>
       <button
-        className="bg-blue-500 text-white m-4 p-3 rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 w-2/3 self-center lg:w-full md:w-1/4 shadow-custom"
+        className="bg-blue-500 text-white m-3 p-3 rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 w-2/3 self-center lg:w-2/3 md:w-2/4 justify-self-start shadow-custom"
         onClick={() => handleSlider(false, 4, 50)}
       >
         <FontAwesomeIcon icon={faDollarSign} className="mr-2 fa-xl" />
         50
       </button>
       <button
-        className="bg-blue-500 text-white m-4 p-3 rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 w-2/3 self-center lg:w-full md:w-1/4 shadow-custom"
+        className="bg-blue-500 text-white m-3 p-3 rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 w-2/3 self-center lg:w-2/3 md:w-2/4 justify-self-end shadow-custom"
         onClick={() => handleSlider(false, 4, 100)}
       >
         <FontAwesomeIcon icon={faDollarSign} className="mr-2 fa-xl" />
         100
       </button>
-      <div className="flex flex-row w-full mx-4 md:m-0 md:w-1/4">
+      <div className="flex self-center flex-row justify-self-start md:ml-3 lg:m-3 w-2/3 md:w-2/4 lg:w-2/3">
         <input
           type="number"
           min="1"
@@ -128,7 +128,7 @@ const Donate = () => {
           placeholder="Amount"
         />
         <button
-          className="bg-blue-500 text-white my-4 py-3 md:py-2 rounded-r-xl hover:bg-blue-600 w-1/2"
+          className="bg-blue-500 text-white my-4 py-3 md:py-2 rounded-r-xl hover:bg-blue-600 w-1/2 h-[48px]"
           onClick={() =>
             trackAmount > 0
               ? [handleSlider(false, 4, trackAmount), setTrackerError(false)]
