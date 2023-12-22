@@ -123,7 +123,7 @@ const Donate = () => {
           min="1"
           value={trackAmount === null ? "" : trackAmount}
           onChange={(e) => setTrackAmount(e.target.value)}
-          className="bg-white border border-gray-300 rounded-l-xl px-3 w-1/2 self-center h-[48px]"
+          className={`bg-white border ${trackerError ? 'border-red-500' : 'border-gray-300'} rounded-l-xl px-3 w-1/2 self-center h-[48px]`}
           placeholder="Amount"
         />
         <button
@@ -270,12 +270,12 @@ const Donate = () => {
             <h2 className="text-center text-2xl font-bold mb-4">
               Please select amount
             </h2>
-            {trackerError && (
-              <div className="text-red-500 text-center ">
-                Custom amount has be a number greater than 0
-              </div>
-            )}
             {amountChoice}
+              <div className={`text-red-500 text-center h-0 ${
+                trackerError ? 'visible' : 'hidden'}`}
+                >
+                Custom amount has to be greater than 0
+              </div>
           </div>
         )}
         {currentQuestion === 4 && (
