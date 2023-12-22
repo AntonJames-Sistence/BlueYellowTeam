@@ -69,22 +69,23 @@ const Donate = () => {
   const paymentChoice = (
     <div className="w-full flex flex-col md:flex-row justify-center">
       <button
-        className="bg-blue-500 text-white m-4 p-3 rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 w-full md:w-1/4 shadow-custom"
+        className="bg-blue-500 text-white m-4 p-3 rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 w-2/3 self-center lg:w-full md:w-1/4 shadow-custom"
         onClick={() => handleSlider(false, 3, "Card")}
       >
         <FontAwesomeIcon icon={faCreditCard} className="mr-2 fa-xl" />
         Card
       </button>
       <button
-        className="bg-blue-500 text-white m-4 p-3 rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 w-full md:w-1/4 shadow-custom"
+        className="bg-blue-500 text-white m-4 p-3 rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 w-2/3 self-center lg:w-full md:w-1/4 shadow-custom"
         onClick={() => handleSlider(false, 3, "AppleGoogle")}
       >
         <FontAwesomeIcon icon={faCcApplePay} className="mr-2 fa-xl" />
-        ApplePay / GooglePay
-        <FontAwesomeIcon icon={faGooglePay} className="ml-2 fa-2xl" />
+        ApplePay / 
+        {/* <FontAwesomeIcon icon={faGooglePay} className="ml-2 fa-2xl" /> */}
+        &nbsp;GooglePay
       </button>
       <button
-        className="bg-blue-500 text-white m-4 p-3 rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 w-full md:w-1/4 shadow-custom"
+        className="bg-blue-500 text-white m-4 p-3 rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 w-2/3 self-center lg:w-full md:w-1/4 shadow-custom"
         onClick={() => handleSlider(false, 3, "PayPal")}
       >
         <FontAwesomeIcon icon={faCcPaypal} className="mr-2 fa-xl" />
@@ -97,21 +98,21 @@ const Donate = () => {
   const amountChoice = (
     <div className="w-full flex flex-col md:flex-row justify-center">
       <button
-        className="bg-blue-500 text-white m-4 p-3 rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 w-full md:w-1/4 shadow-custom"
+        className="bg-blue-500 text-white m-4 p-3 rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 w-2/3 self-center lg:w-full md:w-1/4 shadow-custom"
         onClick={() => handleSlider(false, 4, 20)}
       >
         <FontAwesomeIcon icon={faDollarSign} className="mr-2 fa-xl" />
         20
       </button>
       <button
-        className="bg-blue-500 text-white m-4 p-2 rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300  w-full md:w-1/4 shadow-custom"
+        className="bg-blue-500 text-white m-4 p-3 rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 w-2/3 self-center lg:w-full md:w-1/4 shadow-custom"
         onClick={() => handleSlider(false, 4, 50)}
       >
         <FontAwesomeIcon icon={faDollarSign} className="mr-2 fa-xl" />
         50
       </button>
       <button
-        className="bg-blue-500 text-white m-4 p-2 rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300  w-full md:w-1/4 shadow-custom"
+        className="bg-blue-500 text-white m-4 p-3 rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 w-2/3 self-center lg:w-full md:w-1/4 shadow-custom"
         onClick={() => handleSlider(false, 4, 100)}
       >
         <FontAwesomeIcon icon={faDollarSign} className="mr-2 fa-xl" />
@@ -259,7 +260,7 @@ const Donate = () => {
         )}
         {currentQuestion === 2 && (
           <div>
-            <h2 className="text-center text-2xl font-bold mb-4">
+            <h2 className="text-center text-[28px] lg:text-3xl font-bold mb-10 lg:mb-8">
               Select payment method
             </h2>
             {paymentChoice}
@@ -267,7 +268,7 @@ const Donate = () => {
         )}
         {currentQuestion === 3 && (
           <div>
-            <h2 className="text-center text-2xl font-bold mb-4">
+            <h2 className="text-center text-[28px] lg:text-3xl font-bold mb-10 lg:mb-8">
               Select amount
             </h2>
             {amountChoice}
@@ -280,7 +281,7 @@ const Donate = () => {
         )}
         {currentQuestion === 4 && (
           <div>
-            <h2 className="text-center text-2xl font-bold mb-4">
+            <h2 className="text-center text-2xl lg:text-3xl font-bold mb-4 lg:mb-8">
               Would you like to make it a subscription?
             </h2>
             {subscriptionChoice}
@@ -311,7 +312,7 @@ const Donate = () => {
         <button
           disabled={currentQuestion === 1}
           onClick={() => handleSlider(true, currentQuestion - 1)}
-          className={`absolute left-0 text-gray-300 text-2xl ${
+          className={`absolute top-8 lg:top-7 text-gray-300 text-2xl ${
             currentQuestion === 1
               ? "cursor-not-allowed invisible"
               : "hover:text-blue-500"
