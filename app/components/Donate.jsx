@@ -45,7 +45,7 @@ const Donate = () => {
       {causes.map((cause) => (
         <button
           key={cause.id}
-          className="bg-blue-500 text-white rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 self-center w-[90%] md:w-full lg:w-1/2 shadow-custom"
+          className="bg-blue-500 text-white rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 self-center md:self-auto w-[90%] md:w-full lg:w-1/2 shadow-custom"
           onClick={() => handleSlider(false, 2, cause.text)} // pass next question id and user answer
         >
           <div className="flex flex-col h-full">
@@ -145,7 +145,7 @@ const Donate = () => {
     <div className="fle flex-col justify-center">
       <div className="w-full flex flex-row justify-center md:mb-8 ">
         <button
-          className="bg-blue-500 text-white my-4 py-3 md:m-4 md:p-3 rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 w-full md:w-1/4 shadow-custom self-center"
+          className="bg-blue-500 text-white my-4 py-3 md:m-4 md:p-3 rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 w-3/5 md:w-1/4 shadow-custom self-center"
           onClick={() => handleSlider(false, 1, false)}
         >
           <FontAwesomeIcon icon={faHandHoldingDollar} className="mr-2 fa-xl" />
@@ -154,21 +154,21 @@ const Donate = () => {
       </div>
       <div className="w-full flex flex-col md:flex-row justify-center">
         <button
-          className="bg-blue-500 text-white my-4 py-3 md:m-4 md:p-3 rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 w-full md:w-1/4 shadow-custom"
+          className="bg-blue-500 text-white my-4 py-3 md:m-4 md:p-3 rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 w-3/5 md:w-1/4 shadow-custom self-center"
           onClick={() => handleSlider(false, 1, "day")}
         >
           <FontAwesomeIcon icon={faCalendarDay} className="mr-2 fa-xl" />
           Daily Subscription
         </button>
         <button
-          className="bg-blue-500 text-white my-4 py-3 md:m-4 md:p-3  rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 w-full md:w-1/4  shadow-custom"
+          className="bg-blue-500 text-white my-4 py-3 md:m-4 md:p-3  rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 w-3/5 md:w-1/4  shadow-custom self-center"
           onClick={() => handleSlider(false, 1, "month")}
         >
           <FontAwesomeIcon icon={faCalendarWeek} className="mr-2 fa-xl" />
           Monthly Subscription
         </button>
         <button
-          className="bg-blue-500 text-white my-4 py-3 md:m-4 md:p-3 rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 w-full md:w-1/4  shadow-custom"
+          className="bg-blue-500 text-white my-4 py-3 md:m-4 md:p-3 rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 w-3/5 md:w-1/4  shadow-custom self-center"
           onClick={() => handleSlider(false, 1, "year")}
         >
           <FontAwesomeIcon icon={faCalendar} className="mr-2 fa-xl" />
@@ -281,7 +281,7 @@ const Donate = () => {
         )}
         {currentQuestion === 4 && (
           <div>
-            <h2 className="text-center text-2xl lg:text-3xl font-bold mb-4 lg:mb-8">
+            <h2 className="text-center text-[28px] lg:text-3xl font-bold mb-10 lg:mb-8">
               Would you like to make it a subscription?
             </h2>
             {subscriptionChoice}
@@ -331,7 +331,7 @@ const Donate = () => {
           <div className="spinner"></div>
         </div>
       ) : (
-        <div className="relative w-full lg:w-[90%] min-h-[500px] flex justify-center">
+        <div className="relative w-full lg:w-full min-h-[500px] flex justify-center">
           {renderQuestion()}
 
           <div className="absolute -bottom-10 left-0 right-0 flex justify-center">
