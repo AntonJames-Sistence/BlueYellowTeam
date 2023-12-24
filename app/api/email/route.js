@@ -46,13 +46,11 @@ Instagram: https://www.instagram.com/blueyellowfoundation/`;
 
         const info = await transporter.sendMail(mailOptions);
 
-        console.log('Email sent:', info.messageId);
         return NextResponse.json(
                 { message: 'Email sent successfully' }, 
                 { status: 200 }
             );
     } catch (error) {
-        console.error('Error sending email:', error.message);
         return NextResponse.json(
             { message: 'Error sending email' }, 
             { status: 500 }

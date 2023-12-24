@@ -29,8 +29,6 @@ const Donate = () => {
   const [trackAmount, setTrackAmount] = useState(null);
   const [trackerError, setTrackerError] = useState(false);
   const [amount, setAmount] = useState(null);
-  // const [method, setMethod] = useState('');
-  // const [subscription, setSubscription] = useState(false);
   const [interval, setInterval] = useState(null);
 
   const [loading, setLoading] = useState(false);
@@ -47,20 +45,20 @@ const Donate = () => {
       {causes.map((cause) => (
         <button
           key={cause.id}
-          className="bg-blue-500 text-white rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 w-full md:w-1/4 shadow-custom"
+          className="bg-blue-500 text-white rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 self-center md:self-auto w-[90%] md:w-full lg:w-1/2 shadow-custom"
           onClick={() => handleSlider(false, 2, cause.text)} // pass next question id and user answer
         >
           <div className="flex flex-col h-full">
             <div className="flex flex-col">
-              <h4 className="font-bold mt-4 text-xl">{cause.text}</h4>
+              <h4 className="font-semibold mt-2 md:mt-4 text-xl">{cause.text}</h4>
               <hr className="border-t border-gray-400 my-2 mx-4"></hr>
               <div
-                className="h-32 w-2/3 self-center bg-cover rounded-lg bg-no-repeat"
+                className="h-32 w-4/5 md:w-[95%] lg:w-2/3 self-center bg-cover rounded-lg bg-no-repeat"
                 style={{ backgroundImage: `url(${cause.image})` }}
               ></div>
               <hr className="border-t border-gray-400 my-2 mx-4"></hr>
             </div>
-            <div className="px-4 pb-4 text-sm">{cause.description}</div>
+            <div className="px-4 pb-2 md:pb-4 text-sm md:text-xs lg:text-base font-medium">{cause.description}</div>
           </div>
         </button>
       ))}
@@ -71,22 +69,23 @@ const Donate = () => {
   const paymentChoice = (
     <div className="w-full flex flex-col md:flex-row justify-center">
       <button
-        className="bg-blue-500 text-white m-4 p-3 rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 w-full md:w-1/4 shadow-custom"
+        className="bg-blue-500 text-white m-4 p-3 rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 w-2/3 self-center lg:w-full md:w-1/4 shadow-custom"
         onClick={() => handleSlider(false, 3, "Card")}
       >
         <FontAwesomeIcon icon={faCreditCard} className="mr-2 fa-xl" />
         Card
       </button>
       <button
-        className="bg-blue-500 text-white m-4 p-3 rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 w-full md:w-1/4 shadow-custom"
+        className="bg-blue-500 text-white m-4 p-3 rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 w-2/3 self-center lg:w-full md:w-1/4 shadow-custom"
         onClick={() => handleSlider(false, 3, "AppleGoogle")}
       >
         <FontAwesomeIcon icon={faCcApplePay} className="mr-2 fa-xl" />
-        ApplePay / GooglePay
-        <FontAwesomeIcon icon={faGooglePay} className="ml-2 fa-2xl" />
+        ApplePay / 
+        {/* <FontAwesomeIcon icon={faGooglePay} className="ml-2 fa-2xl" /> */}
+        &nbsp;GooglePay
       </button>
       <button
-        className="bg-blue-500 text-white m-4 p-3 rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 w-full md:w-1/4 shadow-custom"
+        className="bg-blue-500 text-white m-4 p-3 rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 w-2/3 self-center lg:w-full md:w-1/4 shadow-custom"
         onClick={() => handleSlider(false, 3, "PayPal")}
       >
         <FontAwesomeIcon icon={faCcPaypal} className="mr-2 fa-xl" />
@@ -97,39 +96,39 @@ const Donate = () => {
 
   // choice 3
   const amountChoice = (
-    <div className="w-full flex flex-col md:flex-row justify-center">
+    <div className="w-full flex flex-col md:grid md:grid-cols-2 md:gap-4 justify-center justify-items-center">
       <button
-        className="bg-blue-500 text-white m-4 p-3 rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 w-full md:w-1/4 shadow-custom"
+        className="bg-blue-500 text-white m-3 p-3 rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 w-2/3 self-center lg:w-2/3 md:w-2/4 justify-self-end shadow-custom"
         onClick={() => handleSlider(false, 4, 20)}
       >
         <FontAwesomeIcon icon={faDollarSign} className="mr-2 fa-xl" />
         20
       </button>
       <button
-        className="bg-blue-500 text-white m-4 p-2 rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300  w-full md:w-1/4 shadow-custom"
+        className="bg-blue-500 text-white m-3 p-3 rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 w-2/3 self-center lg:w-2/3 md:w-2/4 justify-self-start shadow-custom"
         onClick={() => handleSlider(false, 4, 50)}
       >
         <FontAwesomeIcon icon={faDollarSign} className="mr-2 fa-xl" />
         50
       </button>
       <button
-        className="bg-blue-500 text-white m-4 p-2 rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300  w-full md:w-1/4 shadow-custom"
+        className="bg-blue-500 text-white m-3 p-3 rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 w-2/3 self-center lg:w-2/3 md:w-2/4 justify-self-end shadow-custom"
         onClick={() => handleSlider(false, 4, 100)}
       >
         <FontAwesomeIcon icon={faDollarSign} className="mr-2 fa-xl" />
         100
       </button>
-      <div className="flex flex-row w-full mx-4 md:m-0 md:w-1/4">
+      <div className="flex self-center flex-row justify-self-start md:ml-3 lg:m-3 w-2/3 md:w-2/4 lg:w-2/3">
         <input
           type="number"
           min="1"
           value={trackAmount === null ? "" : trackAmount}
           onChange={(e) => setTrackAmount(e.target.value)}
-          className="bg-white border border-gray-300 rounded-l-xl px-3 w-1/2 self-center h-[48px]"
+          className={`bg-white border ${trackerError ? 'border-red-500' : 'border-gray-300'} rounded-l-xl px-3 w-1/2 self-center h-[48px]`}
           placeholder="Amount"
         />
         <button
-          className="bg-blue-500 text-white my-4 py-3 md:py-2 rounded-r-xl hover:bg-blue-600 w-1/2"
+          className="bg-blue-500 text-white my-4 py-3 md:py-2 rounded-r-xl hover:bg-blue-600 w-1/2 h-[48px]"
           onClick={() =>
             trackAmount > 0
               ? [handleSlider(false, 4, trackAmount), setTrackerError(false)]
@@ -146,7 +145,7 @@ const Donate = () => {
     <div className="fle flex-col justify-center">
       <div className="w-full flex flex-row justify-center md:mb-8 ">
         <button
-          className="bg-blue-500 text-white my-4 py-3 md:m-4 md:p-3 rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 w-full md:w-1/4 shadow-custom self-center"
+          className="bg-blue-500 text-white my-4 py-3 md:m-4 md:p-3 rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 w-3/5 md:w-1/4 shadow-custom self-center"
           onClick={() => handleSlider(false, 1, false)}
         >
           <FontAwesomeIcon icon={faHandHoldingDollar} className="mr-2 fa-xl" />
@@ -155,21 +154,21 @@ const Donate = () => {
       </div>
       <div className="w-full flex flex-col md:flex-row justify-center">
         <button
-          className="bg-blue-500 text-white my-4 py-3 md:m-4 md:p-3 rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 w-full md:w-1/4 shadow-custom"
+          className="bg-blue-500 text-white my-4 py-3 md:m-4 md:p-3 rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 w-3/5 md:w-1/4 shadow-custom self-center"
           onClick={() => handleSlider(false, 1, "day")}
         >
           <FontAwesomeIcon icon={faCalendarDay} className="mr-2 fa-xl" />
           Daily Subscription
         </button>
         <button
-          className="bg-blue-500 text-white my-4 py-3 md:m-4 md:p-3  rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 w-full md:w-1/4  shadow-custom"
+          className="bg-blue-500 text-white my-4 py-3 md:m-4 md:p-3  rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 w-3/5 md:w-1/4  shadow-custom self-center"
           onClick={() => handleSlider(false, 1, "month")}
         >
           <FontAwesomeIcon icon={faCalendarWeek} className="mr-2 fa-xl" />
           Monthly Subscription
         </button>
         <button
-          className="bg-blue-500 text-white my-4 py-3 md:m-4 md:p-3 rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 w-full md:w-1/4  shadow-custom"
+          className="bg-blue-500 text-white my-4 py-3 md:m-4 md:p-3 rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 w-3/5 md:w-1/4  shadow-custom self-center"
           onClick={() => handleSlider(false, 1, "year")}
         >
           <FontAwesomeIcon icon={faCalendar} className="mr-2 fa-xl" />
@@ -204,7 +203,6 @@ const Donate = () => {
         setCurrentQuestion(nextQuestion);
         break;
       case 2: // payment method
-        // setMethod(answer);
         if (answer === "PayPal") {
           setLoading(true);
           window.location.href =
@@ -218,7 +216,6 @@ const Donate = () => {
         setCurrentQuestion(nextQuestion);
         break;
       case 4: // subscription & last question
-        // setSubscription(true);
         setInterval(answer);
         setCurrentQuestion(nextQuestion);
         break;
@@ -251,40 +248,40 @@ const Donate = () => {
   const renderQuestion = () => {
     return (
       <div
-        className={`question-container max-[768px]:pt-28 flex flex-col justify-center w-3/4 md:w-full lg:w-3/4 ${animateSlide}`}
+        className={`question-container flex flex-col justify-center w-full lg:w-4/5 ${animateSlide}`}
       >
         {currentQuestion === 1 && (
           <div>
-            <h2 className="text-center text-2xl font-bold mb-4">
-              What cause do you want to donate?
+            <h2 className="text-center text-2xl lg:text-3xl font-bold mb-4 lg:mb-8">
+              For what cause do you want to donate?
             </h2>
             {causeChoice}
           </div>
         )}
         {currentQuestion === 2 && (
           <div>
-            <h2 className="text-center text-2xl font-bold mb-4">
-              What payment method?
+            <h2 className="text-center text-[28px] lg:text-3xl font-bold mb-10 lg:mb-8">
+              Select payment method
             </h2>
             {paymentChoice}
           </div>
         )}
         {currentQuestion === 3 && (
           <div>
-            <h2 className="text-center text-2xl font-bold mb-4">
-              Please select amount
+            <h2 className="text-center text-[28px] lg:text-3xl font-bold mb-10 lg:mb-8">
+              Select amount
             </h2>
-            {trackerError && (
-              <div className="text-red-500 text-center ">
-                Custom amount has be a number greater than 0
-              </div>
-            )}
             {amountChoice}
+              <div className={`text-red-500 text-center h-0 ${
+                trackerError ? 'visible' : 'hidden'}`}
+                >
+                Custom amount has to be greater than 0
+              </div>
           </div>
         )}
         {currentQuestion === 4 && (
           <div>
-            <h2 className="text-center text-2xl font-bold mb-4">
+            <h2 className="text-center text-[28px] lg:text-3xl font-bold mb-10 lg:mb-8">
               Would you like to make it a subscription?
             </h2>
             {subscriptionChoice}
@@ -303,9 +300,6 @@ const Donate = () => {
             className={`h-4 w-4 rounded-full mx-2 ${
               currentQuestion === questionNumber ? "bg-blue-500" : "bg-gray-300"
             }`}
-            // onClick={() =>
-            //   handleSlider(currentQuestion >= questionNumber, questionNumber)
-            // }
           ></div>
         ))}
       </div>
@@ -318,7 +312,7 @@ const Donate = () => {
         <button
           disabled={currentQuestion === 1}
           onClick={() => handleSlider(true, currentQuestion - 1)}
-          className={`absolute left-0 text-gray-300 text-2xl ${
+          className={`absolute top-8 lg:top-7 text-gray-300 text-2xl ${
             currentQuestion === 1
               ? "cursor-not-allowed invisible"
               : "hover:text-blue-500"
@@ -326,17 +320,6 @@ const Donate = () => {
         >
           <FontAwesomeIcon icon={faCircleChevronLeft} size="xl" />
         </button>
-        {/* <button
-          disabled={currentQuestion === 4}
-          onClick={() => handleSlider(true,currentQuestion + 1)}
-          className={`absolute right-0 text-gray-300 text-2xl ${
-            currentQuestion === 4
-              ? "cursor-not-allowed invisible"
-              : "hover:text-blue-500"
-          }`}
-        >
-          <FontAwesomeIcon icon={faCircleChevronRight} size="xl" />
-        </button> */}
       </div>
     );
   };
@@ -348,7 +331,7 @@ const Donate = () => {
           <div className="spinner"></div>
         </div>
       ) : (
-        <div className="relative w-full min-h-[500px] flex justify-center">
+        <div className="relative w-full lg:w-full min-h-[500px] flex justify-center">
           {renderQuestion()}
 
           <div className="absolute -bottom-10 left-0 right-0 flex justify-center">

@@ -99,30 +99,3 @@ const PastUpcomingEvents = () => {
 };
 
 export default PastUpcomingEvents;
-
-// export default async function Page() {
-//   const request = await fetch('/api/events');
-//   const data = await request.json();
-//   // console.log(data);
-//   return <>
-//   </>;
-// }
-
-{
-  /* <div className="events-type">Upcoming Events</div>
-          <hr className="horizontal-line"></hr>
-          <div className="upcoming-events">
-            {upcomingEvents.map((event, index) => (
-              <Event event={event} key={index} />
-            ))}
-          </div>
-
-          <div className="events-type">Past Events</div>
-          <hr className="horizontal-line"></hr>
-          <div className="past-events">
-            {pastEvents.map((event) => (
-              <Event event={event} key={event.id} />
-            ))}
-          </div>
-          <hr className="horizontal-line"></hr> */
-}
