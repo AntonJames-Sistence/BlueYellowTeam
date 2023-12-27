@@ -1,9 +1,36 @@
 "use client";
-import Link from "next/link";
+import { useEffect, useState } from 'react';
+import CustomModal from './Modal';
 
 const Banner = () => {
+  const [showModal, setShowModal] = useState(false);
+
+  useEffect(() => {
+    // Check if the current URL matches the desired pattern
+    const isLocalhostURL = window.location.href.includes('thankyounote');
+
+
+    // Set the showModal state to true if the URL matches the pattern
+    if (isLocalhostURL) {
+      setShowModal(true);
+    }
+  }, []);
+
+  const closeModal = () => {
+    // Define your logic to close the modal here
+    setShowModal(false);
+    // Additional logic for closing the modal if needed
+  };
+
   return (
     <>
+      {showModal && (
+        <CustomModal
+          isOpen={showModal}
+          onRequestClose={closeModal} // Use the defined close logic here
+          contentLabel="Thank You Modal"
+        />
+      )}
       <div className="relative max-[600px]:aspect-[5/4] min-[600px]:h-[400px] w-11/12 max-w-[1400px] mt-28">
         <video
           className="absolute top-0 left-0 w-full h-full object-cover z-0 rounded-2xl"

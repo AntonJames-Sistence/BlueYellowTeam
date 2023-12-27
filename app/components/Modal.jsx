@@ -1,24 +1,18 @@
-import React, { useEffect } from 'react';
-import Modal from 'react-modal';
+import React from 'react';
 
 const CustomModal = ({ isOpen, onRequestClose, contentLabel }) => {
-  useEffect(() => {
-    Modal.setAppElement('body');
-  }, []);
+  if (!isOpen) {
+    return null;
+  }
 
   return (
-    <Modal
-      isOpen={isOpen}
-      onRequestClose={onRequestClose}
-      contentLabel={contentLabel}
-      // Add necessary styling and content for your modal here
-    >
-      <div>
-        {/* Modal content */}
-        <h2>Thank You for Your Donation!</h2>
-        {/* Add any other content or components for the modal */}
+    <div className="modal-overlay">
+      <div className="modal">
+        <h2>{contentLabel}</h2>
+        <p>This is a custom modal window content.</p>
+        <button onClick={onRequestClose}>Close Modal</button>
       </div>
-    </Modal>
+    </div>
   );
 };
 
