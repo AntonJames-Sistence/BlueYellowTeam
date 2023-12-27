@@ -20,13 +20,13 @@ export async function POST(req) {
 
 const text = `Dear Donor,
 
-I hope this message finds you well. I am writing to express our deepest gratitude for your generous donation to the Blue & Yellow Foundation. Your support means the world to us and plays a pivotal role in our mission to help Ukrainians.
+I trust this message finds you in good health. I am writing to express our deepest gratitude for your generous donation to the Blue & Yellow Foundation. Your support means the world to us and plays a pivotal role in our mission to aid Ukrainians.
 
-Your contribution will directly impact lives, allowing us to [mention specific actions or projects]. It's through the kindness and generosity of individuals like you that we are able to make a significant difference.
+Your contribution will directly impact lives, enabling us to extend our assistance to those in need. It is through the kindness and generosity of individuals like you that we are able to make a significant difference.
 
-We are committed to transparency and accountability, and we will ensure that every penny of your donation is utilized effectively to create a meaningful and lasting impact.
+We uphold our commitment to transparency and accountability. Rest assured, every penny of your donation will be utilized effectively to create a meaningful and lasting impact.
 
-Once again, thank you for your unwavering support and belief in our cause. If you have any questions or would like further information about our projects and initiatives, please don't hesitate to reach out. Your ongoing support is invaluable to us.
+Once again, thank you for your unwavering support and belief in our cause. Should you have any inquiries or seek further information about our projects and initiatives, please feel free to reach out. Your ongoing support is invaluable to us.
 
 Warm regards,
 Anton James
