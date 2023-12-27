@@ -11,6 +11,9 @@ import HomeEvents from "./components/HomeEvents";
 import UpdateEventsBtn from "./components/UpdateEventsBtn";
 import UpdateFacebookBtn from "./components/UpdateFacebookBtn";
 import Button from "./components/Button";
+// import React from 'react';
+import CustomModal from './Modal';
+import useThankYouModal from './useThankYouModal';
 
 export default function Home() {
   return (
