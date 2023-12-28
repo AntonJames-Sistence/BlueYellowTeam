@@ -40,7 +40,7 @@ export default function NavBar() {
                 key={index}
                 href={navlink.href}
                 className={` hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 ${
-                  path === navlink.href ? "text-blue-600" : "text-gray-800"
+                  path === navlink.href ? "text-blue-600 mt-1" : "text-gray-800"
                 }`}
               >
                 {navlink.title}
@@ -51,7 +51,7 @@ export default function NavBar() {
           <Link
             href="/donate"
             className={`text-gray-800 mr-3 px-4 py-2 rounded-full text-sm md:text-base font-bold transition-colors duration-200 bg-yellow-400 hover:bg-yellow-500 focus:ring-2 focus:ring-blue-500 ${
-              path === "/donate" ? "mt-2 ring-purple-500" : "ring-yellow-300"
+              path === "/donate" ? "mt-1 ring-purple-500" : "ring-yellow-300"
             }`}
           >
             Donate Now
