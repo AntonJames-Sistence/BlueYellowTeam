@@ -46,13 +46,13 @@ const Event = ({ event, pastEvent }) => {
     <swiper-slide className="">
       <div
         id="card"
-        className="bg-white max-w-sm m-auto rounded-lg relative "
+        className="bg-white max-w-sm m-auto rounded-lg relative border shadow-md"
       >
         {pastEvent && (
           <div className="absolute w-full h-[91.5%] bg-black opacity-60 rounded-t-md"></div>
         )}
         <div>
-          <img src={event.image} className="rounded-t-md" alt="" />
+          <img src={event.image} className="rounded-t-lg" alt="" />
         </div>
 
         <div className="text-center p-2">
@@ -60,6 +60,7 @@ const Event = ({ event, pastEvent }) => {
             {event.name.slice(0, 45)}
             {event.name.length > 45 && "..."}
           </h2>
+          <hr/>
           {pastEvent ? (
             <div className="mt-2 h-32 font-bold text-left text-lg">
               This event is over
@@ -75,7 +76,7 @@ const Event = ({ event, pastEvent }) => {
           )}
         </div>
         <a href={event.url} target="_blank">
-          <div className="bg-black hover:bg-blue-600 text-white text-right font-bold pr-4 py-2 transition-colors duration-200 text-14 leading-2 tracking-wide rounded-b-md">
+          <div className="bg-black hover:bg-blue-600 text-white text-right font-bold pr-4 py-2 transition-colors ease-in-out duration-300 text-14 leading-2 tracking-wide rounded-b-lg">
             LEARN MORE
           </div>
         </a>

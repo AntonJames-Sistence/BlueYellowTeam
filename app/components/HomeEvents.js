@@ -3,6 +3,8 @@ import { useEffect, useState, useRef } from "react";
 import Event from "./Event";
 import { register } from "swiper/element/bundle";
 import swiperParams from "../../data/swiperParams";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleChevronRight, faCircleChevronLeft, } from "@fortawesome/free-solid-svg-icons";
 
 export default function HomeEvents() {
   register();
@@ -49,18 +51,18 @@ export default function HomeEvents() {
         <div className="w-full max-w-[1400px] m-auto pb-5">
           <div className="w-full relative">
             <div className="flex gap-3 absolute right-0 -top-12">
-              <div
-                className="cursor-pointer rounded-full w-10 h-10 flex justify-center items-center border-2 border-gray-600"
+              <button
+                className="text-gray-300 text-2xl hover:text-blue-500 ease-in-out duration-300"
                 onClick={() => pastSwiperRef.current.swiper.slidePrev()}
               >
-                <i className="fa-solid fa-angle-left text-2xl"></i>
-              </div>
-              <div
-                className="cursor-pointer rounded-full w-10 h-10 flex justify-center items-center border-2 border-gray-600"
+                <FontAwesomeIcon icon={faCircleChevronLeft} size="xl" />
+              </button>
+              <button
+                className="text-gray-300 text-2xl hover:text-blue-500 ease-in-out duration-300"
                 onClick={() => pastSwiperRef.current.swiper.slideNext()}
               >
-                <i className="fa-solid fa-angle-right text-2xl"></i>
-              </div>
+                <FontAwesomeIcon icon={faCircleChevronRight} size="xl" />
+              </button>
             </div>
             <swiper-container ref={pastSwiperRef} init={"false"}>
               {upcommingEvents.map((event, index) => (
