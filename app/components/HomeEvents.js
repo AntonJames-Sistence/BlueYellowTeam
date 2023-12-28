@@ -78,7 +78,7 @@ export default function HomeEvents() {
           </div>
         </div>
       ) : (
-        <div className="flex items-center justify-center h-[80vh]">
+        <div className="flex items-center justify-center h-[60vh]">
           <div className="spinner"></div>
         </div>
       )}

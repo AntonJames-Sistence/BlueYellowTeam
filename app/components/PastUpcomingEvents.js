@@ -95,7 +95,7 @@ const PastUpcomingEvents = () => {
           </div>
         </div>
       ) : (
-        <div className="flex items-center justify-center h-[80vh]">
+        <div className="flex items-center justify-center h-[100vh]">
           <div className="spinner"></div>
         </div>
       )}
