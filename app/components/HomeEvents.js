@@ -18,6 +18,12 @@ export default function HomeEvents() {
       if (data) {
         const eventData = Object.values(data);
         setRealEventData(eventData);
+      } else {
+        return (
+          <div className="w-full max-w-[1400px] m-auto pb-5 text-xl h-80 flex justify-center items-center">
+            No upcoming events.
+          </div>
+        );
       }
     };
     getData();
@@ -37,13 +43,13 @@ export default function HomeEvents() {
     }
   }, [realEventData]);
 
-  if (!upcommingEvents || !upcommingEvents.length) {
-    return (
-      <div className="w-full max-w-[1400px] m-auto pb-5 text-xl h-80 flex justify-center items-center">
-        No upcoming events.
-      </div>
-    );
-  }
+  // if (!upcommingEvents || !upcommingEvents.length) {
+  //     return (
+  //       <div className="w-full max-w-[1400px] m-auto pb-5 text-xl h-80 flex justify-center items-center">
+  //         No upcoming events.
+  //       </div>
+  //     );
+  // }
 
   return (
     <>
@@ -72,7 +78,9 @@ export default function HomeEvents() {
           </div>
         </div>
       ) : (
-        <div>Loading...</div>
+        <div className="flex items-center justify-center h-[80vh]">
+          <div className="spinner"></div>
+        </div>
       )}
     </>
   );
