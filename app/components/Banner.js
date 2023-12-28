@@ -21,12 +21,9 @@ const Banner = () => {
 
   return (
     <>
-      {showModal && (
-        <ThankYouModal
-          isOpen={showModal}
-          onRequestClose={closeModal}
-        />
-      )}
+      <div className={`fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-80 z-40 transition-opacity duration-500 ease-in-out ${showModal ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
+        <ThankYouModal isOpen={showModal} onRequestClose={closeModal} />
+      </div>
 
       <div className="relative max-[600px]:aspect-[5/4] min-[600px]:h-[400px] w-11/12 max-w-[1400px] mt-28">
         <video
