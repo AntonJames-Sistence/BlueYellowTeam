@@ -24,8 +24,7 @@ const Banner = () => {
       {showModal && (
         <ThankYouModal
           isOpen={showModal}
-          onRequestClose={closeModal} // Use the defined close logic here
-          contentLabel="Thank You Modal"
+          onRequestClose={closeModal}
         />
       )}
 
