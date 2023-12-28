@@ -1,6 +1,5 @@
-"use client";
+// "use client";
 import "./main.css";
-import { useEffect, useState } from "react";
 
 const Event = ({ event, pastEvent }) => {
   const { id, url } = event;
@@ -43,7 +42,7 @@ const Event = ({ event, pastEvent }) => {
   }
 
   return (
-    <swiper-slide className="">
+    <swiper-slide>
       <div
         id="card"
         className="bg-white max-w-sm m-auto rounded-lg relative border shadow-md hover:shadow-2xl"
@@ -86,24 +85,3 @@ const Event = ({ event, pastEvent }) => {
 };
 
 export default Event;
-
-{
-  /* <a
-  className="h-100 m-auto"
-  href={url}
-  target="_blank"
-  rel="noopener noreferrer"
->
-  <div className="h-100 bg-sky-700">
-    <div className="event-bg" style={backgroundStyle}></div>
-    <img src={event.image}></img>
-    <div className="event-details">
-      <div className="event-title">{event.name}</div>
-      <div className="event-date">{formatDate(event.date)}</div>
-      <div className="venue">{`${event.venue} • ${event.address}`}</div>
-      <div className="cost">{`Starts at $${event.cost}`}</div>
-    </div>
-    <div className="bg-black text-white text-right">LEARN MORE</div>
-  </div>
-</a>; */
-}
