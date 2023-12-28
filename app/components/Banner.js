@@ -21,7 +21,7 @@ const Banner = () => {
 
   return (
     <>
-      <div className={`fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-80 z-40 transition-opacity duration-500 ease-in-out ${showModal ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
+      <div className={`fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-80 z-40 transition-opacity duration-500 ease-in-out ${showModal ? 'opacity-100 visible' : 'opacity-0 invisible transition-modal'}`}>
         <ThankYouModal isOpen={showModal} onRequestClose={closeModal} />
       </div>
 
