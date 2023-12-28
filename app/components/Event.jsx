@@ -1,4 +1,3 @@
-// "use client";
 import "./main.css";
 
 const Event = ({ event, pastEvent }) => {
@@ -45,13 +44,13 @@ const Event = ({ event, pastEvent }) => {
     <swiper-slide>
       <div
         id="card"
-        className="bg-white max-w-sm m-auto rounded-lg relative border shadow-md hover:shadow-2xl"
+        className="bg-white max-w-sm m-auto rounded-lg relative border shadow-md mr-2"
       >
-        {pastEvent && (
-          <div className="absolute w-full h-[91.5%] bg-black opacity-60 rounded-t-md"></div>
-        )}
+        {/* {pastEvent && (
+          <div className="absolute w-full h-[91.5%] bg-black opacity-60 rounded-t-lg"></div>
+        )} */}
         <div>
-          <img src={event.image} className="rounded-t-lg" alt="" />
+          <img src={event.image} className="rounded-t-lg" alt={`${event.name} image`} />
         </div>
 
         <div className="text-center p-2">

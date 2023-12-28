@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState, useRef } from "react";
 import Event from "./Event";
+import "./main.css";
 import { register } from "swiper/element/bundle";
 import swiperParams from "../../data/swiperParams";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -46,8 +47,8 @@ const PastUpcomingEvents = () => {
   return (
     <>
       {realEventData ? (
-        <div className="w-11/12 max-w-[1400px] m-auto pb-5">
-          <div className="text-3xl font-bold my-6 ml-8">Upcoming</div>
+        <div className="w-11/12 max-w-[1400px] m-auto mt-10">
+          <div className="text-3xl font-bold my-4">Upcoming</div>
           <div className="w-full  relative">
             <div className="flex gap-3 absolute right-0 -top-12">
               <button
@@ -70,7 +71,7 @@ const PastUpcomingEvents = () => {
             </swiper-container>
           </div>
 
-          <div className="text-3xl font-bold my-6 ml-8">Past</div>
+          <div className="text-3xl font-bold my-4">Past</div>
           <div className="w-full  relative">
             <div className="flex gap-3 absolute right-0 -top-12">
               <button
@@ -94,7 +95,9 @@ const PastUpcomingEvents = () => {
           </div>
         </div>
       ) : (
-        <div>Loading...</div>
+        <div className="flex items-center justify-center h-[80vh]">
+          <div className="spinner"></div>
+        </div>
       )}
     </>
   );
