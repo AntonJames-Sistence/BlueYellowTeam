@@ -4,6 +4,7 @@ import Link from "next/link";
 import { navLinks } from "../../data/navbar";
 import { usePathname } from "next/navigation";
 import WarClock from "./WarClock";
+import Image from "next/image";
 
 export default function NavBar() {
   const [isMobile, setIsMobile] = useState(false);
@@ -24,10 +25,12 @@ export default function NavBar() {
     <nav className="fixed top-0 left-0 w-full z-30 bg-white shadow-md">
       <div className="w-11/12 mx-auto px-4 flex justify-between items-center h-16">
         <Link href="/" className="flex items-center">
-          <img
-            className="h-8 w-auto sm:h-10"
+          <Image
+            // className="h-8 w-auto sm:h-10"
             src="/blue-yellow-logo.png"
-            alt="BlueYellowFoundation logo"
+            alt="Blue&YellowFoundation logo"
+            width={100} 
+            height={50}
           />
         </Link>
         <div className="max-[500px]:hidden">
