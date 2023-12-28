@@ -46,7 +46,7 @@ const Event = ({ event, pastEvent }) => {
     <swiper-slide className="">
       <div
         id="card"
-        className="bg-white max-w-sm m-auto rounded-lg relative border shadow-md"
+        className="bg-white max-w-sm m-auto rounded-lg relative border shadow-md hover:shadow-2xl"
       >
         {pastEvent && (
           <div className="absolute w-full h-[91.5%] bg-black opacity-60 rounded-t-md"></div>
