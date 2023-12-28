@@ -126,9 +126,7 @@ export default function Footer() {
                 </svg>
               </div>
               <p className="text-md">
-                &copy; Blue and Yellow is a 501(c)3 registered non-profit
-                organization. Please reach out to ola@blueyellowfoundation.org
-                to receive your donation receipt for tax deduction purposes.
+                &copy; Blue and Yellow is a 501(c)3 registered non-profit organization. <br/> Please reach out to ola@blueyellowfoundation.org to receive your donation receipt for tax deduction purposes.
               </p>
             </div>
           </div>

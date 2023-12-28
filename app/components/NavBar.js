@@ -4,6 +4,7 @@ import Link from "next/link";
 import { navLinks } from "../../data/navbar";
 import { usePathname } from "next/navigation";
 import WarClock from "./WarClock";
+import Image from "next/image";
 
 export default function NavBar() {
   const [isMobile, setIsMobile] = useState(false);
@@ -24,10 +25,12 @@ export default function NavBar() {
     <nav className="fixed top-0 left-0 w-full z-30 bg-white shadow-md">
       <div className="w-11/12 mx-auto px-4 flex justify-between items-center h-16">
         <Link href="/" className="flex items-center">
-          <img
-            className="h-8 w-auto sm:h-10"
+          <Image
+            // className="h-8 w-auto sm:h-10"
             src="/blue-yellow-logo.png"
-            alt="BlueYellowFoundation logo"
+            alt="Blue&YellowFoundation logo"
+            width={100} 
+            height={50}
           />
         </Link>
         <div className="max-[500px]:hidden">
@@ -40,7 +43,7 @@ export default function NavBar() {
                 key={index}
                 href={navlink.href}
                 className={` hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 ${
-                  path === navlink.href ? "text-blue-600" : "text-gray-800"
+                  path === navlink.href ? "text-blue-600 mt-1" : "text-gray-800"
                 }`}
               >
                 {navlink.title}
@@ -50,7 +53,7 @@ export default function NavBar() {
 
           <Link
             href="/donate"
-            className={`text-gray-800 mr-3 px-4 py-2 rounded-full text-sm md:text-base font-bold transition-colors duration-200 bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 ${
+            className={`text-gray-800 mr-3 px-4 py-2 rounded-full text-sm md:text-base font-bold transition-colors duration-200 bg-yellow-400 hover:bg-yellow-500 focus:ring-2 focus:ring-blue-500 ${
               path === "/donate" ? "mt-1 ring-purple-500" : "ring-yellow-300"
             }`}
           >

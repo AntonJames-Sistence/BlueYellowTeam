@@ -312,7 +312,7 @@ const Donate = () => {
         <button
           disabled={currentQuestion === 1}
           onClick={() => handleSlider(true, currentQuestion - 1)}
-          className={`absolute top-8 lg:top-7 text-gray-300 text-2xl ${
+          className={`absolute top-8 lg:top-7 text-gray-300 text-2xl ease-in-out duration-300 ${
             currentQuestion === 1
               ? "cursor-not-allowed invisible"
               : "hover:text-blue-500"

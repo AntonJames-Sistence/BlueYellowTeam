@@ -167,3 +167,7 @@
     transform: rotate(360deg);
   }
 }
+
+.transition-modal {
+  transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+}

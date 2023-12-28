@@ -32,8 +32,8 @@ export async function POST(request) {
                 quantity: 1,
             }],
             mode: 'subscription',
-            success_url: 'https://blue-yellow-foundation.vercel.app/', // change for thanks message
-            cancel_url: 'https://blue-yellow-foundation.vercel.app/', // return to donate page
+            success_url: 'https://blue-yellow-foundation.vercel.app/?thankyounote', // show thank you note
+            cancel_url: 'https://blue-yellow-foundation.vercel.app/donate', // return to donate page
         });
 
         return NextResponse.json(recurringSession.url);
