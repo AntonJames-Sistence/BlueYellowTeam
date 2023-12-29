@@ -11,23 +11,20 @@ export default function HomeEvents() {
   const pastSwiperRef = useRef(null);
   const [realEventData, setRealEventData] = useState(null);
 
-  useEffect(() => {
-    const getData = async () => {
-      const request = await fetch("/api/events", { next: { revalidate: 60 } });
-      const data = await request.json();
-      if (data) {
-        const eventData = Object.values(data);
-        setRealEventData(eventData);
-      } else {
-        return (
-          <div className="w-full max-w-[1400px] m-auto pb-5 text-xl h-80 flex justify-center items-center">
-            No upcoming events.
-          </div>
-        );
-      }
-    };
-    getData();
-  }, []);
+  const getData = async () => {
+    const request = await fetch("/api/events", { next: { revalidate: 60 } });
+    const data = await request.json();
+    if (data) {
+      const eventData = Object.values(data);
+      setRealEventData(eventData);
+    } else {
+      return (
+        <div className="w-full max-w-[1400px] m-auto pb-5 text-xl h-80 flex justify-center items-center">
+          No upcoming events.
+        </div>
+      );
+    }
+  };
 
   const today = new Date();
 
@@ -36,12 +33,13 @@ export default function HomeEvents() {
     .sort((a, b) => new Date(b.date) - new Date(a.date));
 
   useEffect(() => {
+    getData();
     // const swiper = new Swiper(upcommingSwiperRef.current, swiperParams);
     if (pastSwiperRef.current) {
       Object.assign(pastSwiperRef.current, swiperParams);
       pastSwiperRef.current.initialize();
     }
-  }, [realEventData]);
+  }, [upcommingEvents]);
 
   // if (!upcommingEvents || !upcommingEvents.length) {
   //     return (

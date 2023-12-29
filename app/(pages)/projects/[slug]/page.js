@@ -26,7 +26,7 @@ export default function ProjectIndexPage({ params: { slug } }) {
             />
             <div className="mt-4 md:ml-4 md:mt-0 flex flex-col justify-between">
               <div className="text-base md:text-xl">{project.para}</div>
-              <div className="text-sm lg:text-xl mt-2 font-bold">{project.date}01.30.2023</div>
+              <div className="text-sm lg:text-xl mt-2 font-bold">{project.date}</div>
             </div>
             </div>
           

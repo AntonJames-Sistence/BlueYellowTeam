@@ -30,6 +30,7 @@ export default function NavBar() {
             alt="Blue&YellowFoundation logo"
             width={100} 
             height={40}
+            className="h-auto"
           />
         </Link>
         <div className="max-[500px]:hidden">

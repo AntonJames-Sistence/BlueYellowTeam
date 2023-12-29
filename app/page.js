@@ -91,8 +91,7 @@ export default function Home() {
       </div>
       <div className="relative">
         <div
-          className="w-screen h-56 md:h-96 bg-cover bg-no-repeat"
-          style={{ backgroundImage: `url(./people3.jpg)` }}
+          className="w-screen h-56 md:h-96 bg-cover bg-no-repeat bg-[url('/people3.jpg')]"
         ></div>
         <div className="absolute top-0 right-0 w-1/3 md:w-1/3 h-full">
           <div className="h-full bg-blue-500 bg-opacity-60 w-full transform  origin-bottom-left">
