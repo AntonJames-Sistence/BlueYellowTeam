@@ -1,6 +1,5 @@
 import { allProjects } from "../../../../data/projects";
 import PageHeader from "../../components/PageHeader";
-import "./style.css";
 import Button from "../../../components/Button";
 import Image from "next/image";
 
