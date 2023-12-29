@@ -20,8 +20,8 @@ export default function ProjectIndexPage({ params: { slug } }) {
             <Image 
               src={`${project.img}`} 
               width={1000}
-              height={0}
-              className="object-cover rounded-xl md:w-1/2"
+              height={600}
+              className="object-cover rounded-xl md:w-1/2 h-auto"
               alt="project image"
             />
             <div className="mt-4 md:ml-4 md:mt-0 flex flex-col justify-between">
