@@ -2,8 +2,8 @@ import Stripe from 'stripe';
 import { buffer } from "node:stream/consumers";
 import { NextResponse } from 'next/server';
 
-const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET;
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET_LIVE;
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY_LIVE);
 
 export async function POST(request) {
   const rawBody = await buffer(request.body);
