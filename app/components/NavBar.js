@@ -26,11 +26,11 @@ export default function NavBar() {
       <div className="w-11/12 mx-auto px-4 flex justify-between items-center h-16">
         <Link href="/" className="flex items-center">
           <Image
-            // className="h-8 w-auto sm:h-10"
             src="/blue-yellow-logo.png"
             alt="Blue&YellowFoundation logo"
             width={100} 
-            height={50}
+            height={60}
+            className="w-full h-auto"
           />
         </Link>
         <div className="max-[500px]:hidden">
@@ -61,7 +61,7 @@ export default function NavBar() {
           </Link>
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden text-gray-800 hover:text-blue-600 focus:outline-none focus:text-blue-600"
+            className="lg:hidden text-black hover:text-blue-600 focus:outline-none focus:text-blue-600"
           >
             <span className="sr-only">Open main menu</span>
             {isOpen ? (
