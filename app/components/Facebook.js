@@ -95,7 +95,7 @@ export default function Facebook() {
       </div>
       <div className="flex justify-center">
         <button
-          className="text-gray-800 px-4 py-2 rounded-full text-sm md:text-base font-bold transition-colors duration-200 bg-yellow-400 hover:bg-yellow-500"
+          className="text-black px-4 py-2 rounded-full text-sm md:text-base font-bold transition-colors duration-200 bg-yellow-400 hover:bg-yellow-500"
           onClick={() => setNumOfPost((state) => state + 3)}
         >
           ... Load more

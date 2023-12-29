@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 export default function ImageTextContainer({
@@ -5,26 +6,34 @@ export default function ImageTextContainer({
   title,
   para,
   link,
-  onClick,
-}) {
+  onClick,}) {
+  // console.log(img)
   return (
     <>
       {!onClick ? (
         <Link
           href={link}
-          className="project-card
-    flex-1 flex-basis-52 relative rounded-lg bg-white shadow-md hover:shadow-xl hover:scale-[105%] ease-in-out duration-300"
+          className="
+            project-card
+            flex-1 flex-basis-52 
+            relative rounded-lg 
+            bg-white shadow-md 
+            hover:shadow-xl hover:scale-[105%] 
+            ease-in-out duration-300"
         >
-          <img
-            className="border-b border-solid border-black rounded-t-md"
-            src={img}
-            alt=""
+          <Image
+            className="rounded-t-lg object-cover"
+            src={`${img}`}
+            width={600}
+            height={0}
+            alt={`${img} image`}
           />
-          <div className="p-10 md:p-5 lg:p-10 pt-5">
-            <div className="text-3xl md:text-2xl lg:text-3xl mt-0 mb-2 text-gray-700">
+          <div className="p-4">
+            <div className="text-xl md:text-xl lg:text-3xl mt-0 mb-2 text-black font-semibold">
               {title}
             </div>
-            <div className="text-base md:text-sm lg:text-base leading-2 tracking-wide text-gray-700">
+              <hr/>
+            <div className="mt-2 text-base md:text-sm lg:text-lg text-gray-700">
               {para}
             </div>
           </div>
@@ -36,7 +45,7 @@ export default function ImageTextContainer({
   flex-1 flex-basis-52 relative border border-solid border-black rounded-lg bg-white cursor-pointer"
         >
           <img
-            className="border-b border-solid border-black rounded-t-md"
+            className="border-b border-solid border-black rounded-t-lg"
             src={img}
             alt=""
           />

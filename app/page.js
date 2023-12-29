@@ -127,7 +127,7 @@ export default function Home() {
         </div>
         <div className="w-full flex justify-center mt-5">
           <Button
-            css="text-gray-800 px-4 py-2 rounded-full text-sm md:text-base font-bold transition-colors duration-200 bg-yellow-400 hover:bg-yellow-500"
+            css="text-black px-4 py-2 rounded-full text-sm md:text-base font-bold transition-colors duration-200 bg-yellow-400 hover:bg-yellow-500"
             text="View All Projects"
             url="/projects"
           />
