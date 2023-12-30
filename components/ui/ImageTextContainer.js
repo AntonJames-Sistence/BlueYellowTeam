@@ -7,7 +7,7 @@ export default function ImageTextContainer({
   para,
   link,
   onClick,}) {
-  // console.log(img)
+  
   return (
     <>
       {!onClick ? (

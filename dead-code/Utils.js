@@ -26,7 +26,7 @@ async function sendThankYouEmail(customerEmail) {
     // Send the email
     const info = await transporter.sendMail(mailOptions);
 
-    console.log('Email sent: ', info.messageId);
+    
     return info.messageId;
   } catch (error) {
     console.error('Error sending email:', error.message);
