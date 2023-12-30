@@ -5,7 +5,7 @@ import Image from "next/image";
 
 export default function ProjectIndexPage({ params: { slug } }) {
   const project = allProjects.find((project) => project.slug === slug);
-  console.log(project.img)
+  
   return (
     <div className="flex justify-center w-full mt-6">
       <div className="mx-4 lg:mx-0">

@@ -13,8 +13,7 @@ export async function POST(request) {
 
   try {
     event = stripe.webhooks.constructEvent(rawBody, sig, endpointSecret);
-    // Sending a response back to the frontend
-    // return NextResponse.json({ message: 'hi from backend' });
+    
   } catch (error) {
     return NextResponse.json(
       {

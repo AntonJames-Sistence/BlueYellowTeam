@@ -43,7 +43,7 @@ export async function POST(request) {
     const projectsRef = ref(DB, "projects/");
 
     const errors = isntValidProject(requestData);
-    console.log(errors);
+    
 
     if (errors) {
       return NextResponse.json(errors);
