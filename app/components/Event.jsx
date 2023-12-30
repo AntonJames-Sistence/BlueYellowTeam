@@ -1,6 +1,4 @@
-"use client";
 import "./main.css";
-import { useEffect, useState } from "react";
 
 const Event = ({ event, pastEvent }) => {
   const { id, url } = event;
@@ -43,16 +41,16 @@ const Event = ({ event, pastEvent }) => {
   }
 
   return (
-    <swiper-slide className="">
+    <swiper-slide>
       <div
         id="card"
-        className="bg-white max-w-sm m-auto rounded-lg relative "
+        className="bg-white max-w-sm m-auto rounded-lg relative border shadow-md mr-2"
       >
-        {pastEvent && (
-          <div className="absolute w-full h-[91.5%] bg-black opacity-60 rounded-t-md"></div>
-        )}
+        {/* {pastEvent && (
+          <div className="absolute w-full h-[91.5%] bg-black opacity-60 rounded-t-lg"></div>
+        )} */}
         <div>
-          <img src={event.image} className="rounded-t-md" alt="" />
+          <img src={event.image} className="rounded-t-lg" alt={`${event.name} image`} />
         </div>
 
         <div className="text-center p-2">
@@ -60,6 +58,7 @@ const Event = ({ event, pastEvent }) => {
             {event.name.slice(0, 45)}
             {event.name.length > 45 && "..."}
           </h2>
+          <hr/>
           {pastEvent ? (
             <div className="mt-2 h-32 font-bold text-left text-lg">
               This event is over
@@ -75,7 +74,7 @@ const Event = ({ event, pastEvent }) => {
           )}
         </div>
         <a href={event.url} target="_blank">
-          <div className="bg-black hover:bg-blue-600 text-white text-right font-bold pr-4 py-2 transition-colors duration-200 text-14 leading-2 tracking-wide rounded-b-md">
+          <div className="bg-black hover:bg-blue-600 text-white text-right font-bold pr-4 py-2 transition-colors ease-in-out duration-300 text-14 leading-2 tracking-wide rounded-b-lg">
             LEARN MORE
           </div>
         </a>
@@ -85,24 +84,3 @@ const Event = ({ event, pastEvent }) => {
 };
 
 export default Event;
-
-{
-  /* <a
-  className="h-100 m-auto"
-  href={url}
-  target="_blank"
-  rel="noopener noreferrer"
->
-  <div className="h-100 bg-sky-700">
-    <div className="event-bg" style={backgroundStyle}></div>
-    <img src={event.image}></img>
-    <div className="event-details">
-      <div className="event-title">{event.name}</div>
-      <div className="event-date">{formatDate(event.date)}</div>
-      <div className="venue">{`${event.venue} • ${event.address}`}</div>
-      <div className="cost">{`Starts at $${event.cost}`}</div>
-    </div>
-    <div className="bg-black text-white text-right">LEARN MORE</div>
-  </div>
-</a>; */
-}

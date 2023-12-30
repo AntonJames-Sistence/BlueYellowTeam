@@ -1,8 +1,11 @@
 "use client";
 import { useEffect, useState, useRef } from "react";
 import Event from "./Event";
+import "./main.css";
 import { register } from "swiper/element/bundle";
 import swiperParams from "../../data/swiperParams";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleChevronRight, faCircleChevronLeft, } from "@fortawesome/free-solid-svg-icons";
 
 const PastUpcomingEvents = () => {
   register();
@@ -44,22 +47,22 @@ const PastUpcomingEvents = () => {
   return (
     <>
       {realEventData ? (
-        <div className="w-11/12 max-w-[1400px] m-auto pb-5">
-          <div className="text-3xl font-bold my-6 ml-8">Upcoming</div>
+        <div className="w-11/12 max-w-[1400px] m-auto pt-4">
+          <div className="text-3xl font-bold mb-4 text-gray-700">Upcoming</div>
           <div className="w-full  relative">
             <div className="flex gap-3 absolute right-0 -top-12">
-              <div
-                className="cursor-pointer rounded-full w-10 h-10 flex justify-center items-center border-2 border-gray-600"
+              <button
+                className="text-gray-300 text-2xl hover:text-blue-500 ease-in-out duration-300"
                 onClick={() => upcommingSwiperRef.current.swiper.slidePrev()}
               >
-                <i className="fa-solid fa-angle-left text-2xl"></i>
-              </div>
-              <div
-                className="cursor-pointer rounded-full w-10 h-10 flex justify-center items-center border-2 border-gray-600"
+                <FontAwesomeIcon icon={faCircleChevronLeft} size="xl" />
+              </button>
+              <button
+                className="text-gray-300 text-2xl hover:text-blue-500 ease-in-out duration-300"
                 onClick={() => upcommingSwiperRef.current.swiper.slideNext()}
               >
-                <i className="fa-solid fa-angle-right text-2xl"></i>
-              </div>
+                <FontAwesomeIcon icon={faCircleChevronRight} size="xl" />
+              </button>
             </div>
             <swiper-container ref={upcommingSwiperRef} init={"false"}>
               {upcomingEvents.map((event, index) => (
@@ -68,21 +71,21 @@ const PastUpcomingEvents = () => {
             </swiper-container>
           </div>
 
-          <div className="text-3xl font-bold my-6 ml-8">Past</div>
+          <div className="text-3xl font-bold my-4 text-gray-700">Past</div>
           <div className="w-full  relative">
             <div className="flex gap-3 absolute right-0 -top-12">
-              <div
-                className="cursor-pointer rounded-full w-10 h-10 flex justify-center items-center border-2 border-gray-600"
+              <button
+                className="text-gray-300 text-2xl hover:text-blue-500 ease-in-out duration-300"
                 onClick={() => pastSwiperRef.current.swiper.slidePrev()}
               >
-                <i className="fa-solid fa-angle-left text-2xl"></i>
-              </div>
-              <div
-                className="cursor-pointer rounded-full w-10 h-10 flex justify-center items-center border-2 border-gray-600"
+                <FontAwesomeIcon icon={faCircleChevronLeft} size="xl" />
+              </button>
+              <button
+                className="text-gray-300 text-2xl hover:text-blue-500 ease-in-out duration-300"
                 onClick={() => pastSwiperRef.current.swiper.slideNext()}
               >
-                <i className="fa-solid fa-angle-right text-2xl"></i>
-              </div>
+                <FontAwesomeIcon icon={faCircleChevronRight} size="xl" />
+              </button>
             </div>
             <swiper-container ref={pastSwiperRef} init={"false"}>
               {pastEvents.map((event, index) => (
@@ -92,37 +95,12 @@ const PastUpcomingEvents = () => {
           </div>
         </div>
       ) : (
-        <div>Loading...</div>
+        <div className="flex items-center justify-center h-[100vh]">
+          <div className="spinner"></div>
+        </div>
       )}
     </>
   );
 };
 
 export default PastUpcomingEvents;
-
-// export default async function Page() {
-//   const request = await fetch('/api/events');
-//   const data = await request.json();
-//   // console.log(data);
-//   return <>
-//   </>;
-// }
-
-{
-  /* <div className="events-type">Upcoming Events</div>
-          <hr className="horizontal-line"></hr>
-          <div className="upcoming-events">
-            {upcomingEvents.map((event, index) => (
-              <Event event={event} key={index} />
-            ))}
-          </div>
-
-          <div className="events-type">Past Events</div>
-          <hr className="horizontal-line"></hr>
-          <div className="past-events">
-            {pastEvents.map((event) => (
-              <Event event={event} key={event.id} />
-            ))}
-          </div>
-          <hr className="horizontal-line"></hr> */
-}

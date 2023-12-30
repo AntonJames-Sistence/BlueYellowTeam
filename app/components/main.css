@@ -100,23 +100,53 @@
 
 @keyframes slideEnter {
   from {
-      opacity: 0;
-      transform: translateX(100%);
+    opacity: 0;
+    transform: translateX(100%);
   }
   to {
-      opacity: 1;
-      transform: translateX(0);
+    opacity: 1;
+    transform: translateX(0);
   }
 }
 
 @keyframes slideExit {
   from {
-      opacity: 1;
-      transform: translateX(0);
+    opacity: 1;
+    transform: translateX(0);
   }
   to {
-      opacity: 0;
-      transform: translateX(-100%);
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+}
+
+.slide-enter-reverse {
+  animation: slideEnterReverse 0.5s forwards;
+}
+
+.slide-exit-reverse {
+  animation: slideExitReverse 0.5s forwards;
+}
+
+@keyframes slideEnterReverse {
+  from {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideExitReverse {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(100%);
   }
 }
 
@@ -130,6 +160,14 @@
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.transition-modal {
+  transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
 }

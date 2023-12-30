@@ -91,8 +91,7 @@ export default function Home() {
       </div>
       <div className="relative">
         <div
-          className="w-screen h-56 md:h-96 bg-cover bg-no-repeat"
-          style={{ backgroundImage: `url(./people3.jpg)` }}
+          className="w-screen h-56 md:h-96 bg-cover bg-no-repeat bg-[url('/people3.jpg')]"
         ></div>
         <div className="absolute top-0 right-0 w-1/3 md:w-1/3 h-full">
           <div className="h-full bg-blue-500 bg-opacity-60 w-full transform  origin-bottom-left">
@@ -127,8 +126,8 @@ export default function Home() {
         </div>
         <div className="w-full flex justify-center mt-5">
           <Button
-            css="py-1 px-3 border-[1px] border-black rounded-2xl font-extrabold cursor-pointer"
-            text="VIEW ALL PROJECTS"
+            css="text-black px-4 py-2 rounded-full text-sm md:text-base font-bold transition-colors duration-200 bg-yellow-400 hover:bg-yellow-500"
+            text="View All Projects"
             url="/projects"
           />
         </div>
