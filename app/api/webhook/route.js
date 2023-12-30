@@ -1,63 +1,59 @@
-import Stripe from 'stripe';
-import { buffer } from "node:stream/consumers";
+import nodemailer from 'nodemailer';
 import { NextResponse } from 'next/server';
 
-const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET_LIVE;
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY_LIVE);
+export async function POST(req) {
+    let data = await req.json();
+    const email = data.email;
 
-export async function POST(request) {
-  const rawBody = await buffer(request.body);
-  // super important, need to get raw body.stripe
-  const sig = request.headers.get('stripe-signature');
-  let event;
+    try {
+        const transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+              type: 'OAuth2',
+              user: process.env.MAIL_USERNAME,
+              pass: process.env.MAIL_PASSWORD,
+              clientId: process.env.OAUTH_CLIENTID,
+              clientSecret: process.env.OAUTH_CLIENT_SECRET,
+              refreshToken: process.env.OAUTH_REFRESH_TOKEN
+            }
+        });
 
-  try {
-    event = stripe.webhooks.constructEvent(rawBody, sig, endpointSecret);
-    // Sending a response back to the frontend
-    // return NextResponse.json({ message: 'hi from backend' });
-  } catch (error) {
-    return NextResponse.json(
-      {
-        message: "Webhook signature verification failed",
-      },
-      {
-        status: 400,
-      }
-    );
-  }
+const text = `Dear Donor,
 
-  // Handle the event
-  switch (event.type) {
-    case 'payment_intent.succeeded':
-      const paymentIntentSucceeded = event.data.object;
-      const customerEmail = paymentIntentSucceeded.receipt_email;
-      if (customerEmail){
-          try {
-              const response = await fetch('/api/email', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                  },
-                body: JSON.stringify({ email: customerEmail }),
-              });
-  
-              if (response.ok) {
-              // Handle success, if needed
-              } else {
-              // Handle error
-              }
-          } catch (error) {
-              // Handle error
-          }
-      
-      }
+I trust this message finds you in good health. I am writing to express our deepest gratitude for your generous donation to the Blue & Yellow Foundation. Your support means the world to us and plays a pivotal role in our mission to aid Ukrainians.
 
-      break;
-    default:
-      console.log(`Unhandled event type ${event.type}`);
-  }
+Your contribution will directly impact lives, enabling us to extend our assistance to those in need. It is through the kindness and generosity of individuals like you that we are able to make a significant difference.
 
-  return NextResponse.json({
-    status: 200,
-  });
-};
+We uphold our commitment to transparency and accountability. Rest assured, every penny of your donation will be utilized effectively to create a meaningful and lasting impact.
+
+Once again, thank you for your unwavering support and belief in our cause. Should you have any inquiries or seek further information about our projects and initiatives, please feel free to reach out. Your ongoing support is invaluable to us.
+
+Warm regards,
+Anton James
+Blue & Yellow Foundation
+
+Website: https://blueyellowfoundation.org/
+Facebook: https://www.facebook.com/BlueYellowFoundation
+Instagram: https://www.instagram.com/blueyellowfoundation/`;
+
+
+        const mailOptions = {
+        from: 'blue.yellow.foundation.d@gmail.com',
+        to: email,
+        subject: 'Thank You for Your Donation!',
+        text: text,
+        };
+
+        const info = await transporter.sendMail(mailOptions);
+
+        return NextResponse.json(
+                { message: 'Email sent successfully' }, 
+                { status: 200 }
+            );
+    } catch (error) {
+        return NextResponse.json(
+            { message: 'Error sending email' }, 
+            { status: 500 }
+        );
+    }
+}
