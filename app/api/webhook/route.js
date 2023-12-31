@@ -39,18 +39,18 @@ export async function POST(request) {
                   },
                 body: JSON.stringify({ email: customerEmail }),
               });
-  
-              if (response.ok) {
-              // Handle success, if needed
-              } else {
-              // Handle error
-              }
-          } catch (error) {
-              // Handle error
-          }
-      
-      }
 
+              return NextResponse.json(
+                { message: 'Email sent successfully' }, 
+                { status: 200 }
+              );
+          } catch (error) {
+              return NextResponse.json(
+                { message: 'Error sending email' }, 
+                { status: 500 }
+              );
+          }
+      }
       break;
     default:
       console.log(`Unhandled event type ${event.type}`);
