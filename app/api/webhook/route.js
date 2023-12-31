@@ -32,31 +32,39 @@ export async function POST(request) {
       const customerEmail = paymentIntentSucceeded.receipt_email;
       if (customerEmail){
           try {
-              const response = await fetch('/api/email', {
+              const response = await fetch('https://blue-yellow-foundation.vercel.app/api/email', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                   },
                 body: JSON.stringify({ email: customerEmail }),
               });
-  
-              if (response.ok) {
-              // Handle success, if needed
+
+              if (response.ok){
+                return NextResponse.json(
+                  { message: 'Email sent' }, 
+                  { status: 200 }
+                );
               } else {
-              // Handle error
+                return NextResponse.json(
+                  { message: 'Error sending email' }, 
+                  { status: 500 }
+                );
               }
           } catch (error) {
-              // Handle error
+              return NextResponse.json(
+                { message: 'Error sending email' }, 
+                { status: 500 }
+              );
           }
-      
       }
-
       break;
     default:
       console.log(`Unhandled event type ${event.type}`);
   }
 
-  return NextResponse.json({
-    status: 200,
-  });
+  return NextResponse.json(
+    { message: 'The webhook appears to be working correctly, but we are experiencing issues with emailing' }, 
+    { status: 200 }
+  );
 };
