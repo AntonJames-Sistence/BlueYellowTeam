@@ -34,7 +34,7 @@ Instagram: https://www.instagram.com/blueyellowfoundation/`;
 
 
         const mailOptions = {
-            from: 'blue.yellow.foundation.d@gmail.com',
+            from: 'blueyellow.foundation@hotmail.com',
             to: email,
             subject: 'Thank You for Your Donation!',
             text: text,
