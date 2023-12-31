@@ -32,7 +32,7 @@ export async function POST(request) {
       const customerEmail = paymentIntentSucceeded.receipt_email;
       if (customerEmail){
           try {
-              const response = await fetch('/api/email', {
+              const response = await fetch('https://blue-yellow-foundation.vercel.app/api/email', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
