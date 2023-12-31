@@ -40,10 +40,17 @@ export async function POST(request) {
                 body: JSON.stringify({ email: customerEmail }),
               });
 
-              return NextResponse.json(
-                { message: 'Email sent successfully' }, 
-                { status: 200 }
-              );
+              if (response.ok){
+                return NextResponse.json(
+                  { message: 'Email sent' }, 
+                  { status: 200 }
+                );
+              } else {
+                return NextResponse.json(
+                  { message: 'Error sending email' }, 
+                  { status: 500 }
+                );
+              }
           } catch (error) {
               return NextResponse.json(
                 { message: 'Error sending email' }, 
@@ -56,7 +63,8 @@ export async function POST(request) {
       console.log(`Unhandled event type ${event.type}`);
   }
 
-  return NextResponse.json({
-    status: 200,
-  });
+  return NextResponse.json(
+    { message: 'The webhook appears to be working correctly, but we are experiencing issues with emailing' }, 
+    { status: 200 }
+  );
 };
