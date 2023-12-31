@@ -7,14 +7,10 @@ export async function POST(req) {
 
     try {
         const transporter = nodemailer.createTransport({
-            service: 'gmail',
+            service: 'hotmail',
             auth: {
-              type: 'OAuth2',
-              user: process.env.MAIL_USERNAME,
-              pass: process.env.MAIL_PASSWORD,
-              clientId: process.env.OAUTH_CLIENTID,
-              clientSecret: process.env.OAUTH_CLIENT_SECRET,
-              refreshToken: process.env.OAUTH_REFRESH_TOKEN
+              user: process.env.EMAIL_USERNAME,
+              pass: process.env.EMAIL_PASSWORD,
             }
         });
 
@@ -38,18 +34,17 @@ Instagram: https://www.instagram.com/blueyellowfoundation/`;
 
 
         const mailOptions = {
-        from: 'blue.yellow.foundation.d@gmail.com',
-        to: email,
-        subject: 'Thank You for Your Donation!',
-        text: text,
+            from: 'blue.yellow.foundation.d@gmail.com',
+            to: email,
+            subject: 'Thank You for Your Donation!',
+            text: text,
         };
-
-        const info = await transporter.sendMail(mailOptions);
+        transporter.sendMail(mailOptions);
 
         return NextResponse.json(
-                { message: 'Email sent successfully' }, 
-                { status: 200 }
-            );
+            { message: 'Email sent successfully' }, 
+            { status: 200 }
+        );
     } catch (error) {
         return NextResponse.json(
             { message: 'Error sending email' }, 
