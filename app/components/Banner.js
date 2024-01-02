@@ -47,7 +47,7 @@ const Banner = () => {
           <div
             className="w-full md:w-3/4 h-1/2 md:h-full lg:h-full bg-cover bg-no-repeat rounded-2xl hidden md:block"
             style={{
-              backgroundImage: `url(/intro_banner.png)`,
+              backgroundImage: `url(/girl.png)`,
             }}
           ></div>
         </div>
