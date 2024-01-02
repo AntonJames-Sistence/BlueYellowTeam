@@ -45,7 +45,7 @@ const Donate = () => {
       {causes.map((cause) => (
         <button
           key={cause.id}
-          className="bg-blue-500 text-white rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 self-center md:self-auto w-[90%] md:w-full lg:w-1/2 shadow-custom"
+          className="bg-blue-500 text-white rounded-xl lg:hover:bg-blue-600 lg:hover:scale-110 ease-in-out duration-300 self-center md:self-auto w-[90%] md:w-full lg:w-1/2 shadow-custom"
           onClick={() => handleSlider(false, 2, cause.text)} // pass next question id and user answer
         >
           <div className="flex flex-col h-full">
@@ -331,7 +331,7 @@ const Donate = () => {
           <div className="spinner"></div>
         </div>
       ) : (
-        <div className="relative w-full lg:w-full min-h-[500px] flex justify-center last:mb-4 lg:last:mb-0">
+        <div className="relative w-full lg:w-full min-h-[500px] flex justify-center last:mb-4 md:last:mb-8 lg:last:mb-0">
           {renderQuestion()}
 
           <div className="absolute -bottom-10 left-0 right-0 flex justify-center">
