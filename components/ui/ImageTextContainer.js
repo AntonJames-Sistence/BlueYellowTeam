@@ -29,7 +29,7 @@ export default function ImageTextContainer({
             alt={`${img} image`}
           />
           <div className="p-4">
-            <div className="text-xl md:text-xl lg:text-3xl mt-0 mb-2 text-black font-semibold">
+            <div className="text-2xl lg:text-3xl mt-0 mb-2 text-black font-semibold">
               {title}
             </div>
               <hr/>
