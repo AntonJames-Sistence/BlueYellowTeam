@@ -54,7 +54,7 @@ export default function NavBar() {
           <Link
             href="/donate"
             className={`text-gray-800 mr-3 px-4 py-2 rounded-full text-sm md:text-base font-bold transition-colors duration-200 bg-yellow-400 hover:bg-yellow-500 focus:ring-2 focus:ring-blue-500 ${
-              path === "/donate" ? "mt-1 ring-purple-500" : "ring-yellow-300"
+              path === "/donate" ? "ring-purple-500" : "ring-yellow-300"
             }`}
           >
             Donate Now
@@ -101,7 +101,7 @@ export default function NavBar() {
         </div>
       </div>
       {isOpen && (
-        <div className="lg:hidden">
+        <div className="lg:hidden transition-modal">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
             {navLinks.map((navlink, index) => (
               <Link
