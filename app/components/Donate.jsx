@@ -331,7 +331,7 @@ const Donate = () => {
           <div className="spinner"></div>
         </div>
       ) : (
-        <div className="relative w-full lg:w-full min-h-[500px] flex justify-center">
+        <div className="relative w-full lg:w-full min-h-[500px] flex justify-center last:mb-4 md:last:mb-0">
           {renderQuestion()}
 
           <div className="absolute -bottom-10 left-0 right-0 flex justify-center">
