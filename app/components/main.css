@@ -171,3 +171,13 @@
 .transition-modal {
   transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
 }
+
+.transition-dropdown {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease; /* Define transition properties */
+}
+.transition-dropdown.visible {
+  opacity: 1;
+  visibility: visible;
+}
