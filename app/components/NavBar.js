@@ -162,7 +162,7 @@ const itemVariants = {
   },
   closed: {
     opacity: 0,
-    y: -15,
+    y: -25,
     transition: {
       when: "afterChildren",
     },
