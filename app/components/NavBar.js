@@ -1,15 +1,7 @@
 "use client";
 
-import {
-  FiEdit,
-  FiChevronDown,
-  FiTrash,
-  FiShare,
-  FiPlusSquare,
-} from "react-icons/fi";
-import { IconType } from "react-icons";
 import { motion } from "framer-motion";
-import React, { Dispatch, SetStateAction, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { navLinks } from "../../data/navbar";
 import { usePathname } from "next/navigation";
@@ -18,19 +10,8 @@ import Image from "next/image";
 import logo from "../../public/blue-yellow-logo.png"
 
 export default function NavBar() {
-  // const [isMobile, setIsMobile] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const path = usePathname();
-
-  // useEffect(() => {
-  //   function handleResize() {
-  //     setIsMobile(window.innerWidth < 1250);
-  //   }
-
-  //   window.addEventListener("resize", handleResize);
-  //   handleResize();
-  //   return () => window.removeEventListener("resize", handleResize);
-  // }, []);
 
   return (
     <nav className="fixed top-0 left-0 w-full z-30 bg-white shadow-md">
@@ -113,37 +94,20 @@ export default function NavBar() {
         </div>
       </div>
 
-      {/* {isOpen && (
-        <div className="lg:hidden">
-          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+      <motion.div animate={isOpen ? "open" : "closed"} className="relative">
+        <motion.ul
+            initial={wrapperVariants.closed}
+            variants={wrapperVariants}
+            style={{ originY: "top", translateX: "-50%" }}
+            className="flex flex-col rounded-b-lg bg-white shadow-xl absolute w-2/5 right-[-15%] md:right-[-3%] md:w-1/5 overflow-hidden"
+          >
             {navLinks.map((navlink, index) => (
-              <Link
+              <Option
                 key={index}
                 href={navlink.href}
-                onClick={() => setIsOpen(false)}
-                className="text-gray-800 hover:text-blue-600 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200"
-              >
-                {navlink.title}
-              </Link>
-            ))}
-          </div>
-        </div>
-      )} */}
-
-      <motion.div animate={isOpen ? "open" : "closed"} className="relative">
-      <motion.ul
-          initial={wrapperVariants.closed}
-          variants={wrapperVariants}
-          style={{ originY: "top", translateX: "-50%" }}
-          className="flex flex-col gap-2 p-2 rounded-lg bg-white shadow-xl absolute top-[120%] left-[50%] w-48 overflow-hidden"
-        >
-          {navLinks.map((navlink, index) => (
-            <Option
-              key={index}
-              href={navlink.href}
-              title={navlink.title}  
-            />
-            ))}
+                title={navlink.title}  
+              />
+              ))}
         </motion.ul>
       </motion.div>
     </nav>
@@ -152,7 +116,8 @@ export default function NavBar() {
 const Option = ({ title, href }) => {
   return (
     <motion.li
-      className="flex items-center gap-2 w-full p-2 text-xs font-medium whitespace-nowrap rounded-md hover:bg-indigo-100 text-slate-700 hover:text-indigo-500 transition-colors cursor-pointer"
+      variants={itemVariants}
+      className="flex justify-left w-full text-xs font-medium whitespace-nowrap rounded-md hover:bg-indigo-100 text-slate-700 hover:text-indigo-500 transition-colors cursor-pointer"
     >
       <Link
         href={href}
