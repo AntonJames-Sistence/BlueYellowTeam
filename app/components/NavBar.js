@@ -99,13 +99,14 @@ export default function NavBar() {
             initial={wrapperVariants.closed}
             variants={wrapperVariants}
             style={{ originY: "top", translateX: "-50%" }}
-            className="flex flex-col rounded-b-lg bg-white shadow-xl absolute w-2/5 right-[-15%] md:right-[-3%] md:w-1/5 overflow-hidden"
+            className="flex flex-col rounded-b-lg bg-white shadow-xl absolute w-2/5 right-[-15%] md:right-[-10%] md:w-[25%] overflow-hidden"
           >
             {navLinks.map((navlink, index) => (
               <Option
                 key={index}
                 href={navlink.href}
                 title={navlink.title}  
+                icon={navlink.icon}
               />
               ))}
         </motion.ul>
@@ -113,17 +114,21 @@ export default function NavBar() {
     </nav>
   );
 }
-const Option = ({ title, href }) => {
+
+const Option = ({ title, href, icon }) => {
   return (
     <motion.li
       variants={itemVariants}
-      className="flex justify-left w-full text-xs font-medium whitespace-nowrap rounded-md hover:bg-indigo-100 text-slate-700 hover:text-indigo-500 transition-colors cursor-pointer"
+      className="flex justify-left w-full text-xs font-medium whitespace-nowrap last:rounded-b-lg hover:bg-indigo-100 text-slate-700 hover:text-indigo-500 transition-colors cursor-pointer"
     >
       <Link
         href={href}
         onClick={() => setIsOpen(false)}
-        className="text-gray-800 hover:text-blue-600 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200"
+        className="flex flex-row text-gray-800 hover:text-blue-600 px-3 py-2 md:text-lg font-medium transition-colors duration-200"
       >
+        <span className="self-center mr-4">
+          {icon}
+        </span>
         {title}
       </Link>
     </motion.li>
@@ -135,21 +140,16 @@ const wrapperVariants = {
     scaleY: 1,
     transition: {
       when: "beforeChildren",
-      staggerChildren: 0.1,
+      staggerChildren: 0.05,
     },
   },
   closed: {
     scaleY: 0,
     transition: {
       when: "afterChildren",
-      staggerChildren: 0.1,
+      staggerChildren: 0.05,
     },
   },
-};
-
-const iconVariants = {
-  open: { rotate: 180 },
-  closed: { rotate: 0 },
 };
 
 const itemVariants = {
@@ -167,9 +167,4 @@ const itemVariants = {
       when: "afterChildren",
     },
   },
-};
-
-const actionIconVariants = {
-  open: { scale: 1, y: 0 },
-  closed: { scale: 0, y: -7 },
 };
