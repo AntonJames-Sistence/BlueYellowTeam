@@ -1,32 +1,24 @@
 "use client";
+
+import { motion } from "framer-motion";
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { navLinks } from "../../data/navbar";
 import { usePathname } from "next/navigation";
 import WarClock from "./WarClock";
 import Image from "next/image";
+import logo from "../../public/blue-yellow-logo.png"
 
 export default function NavBar() {
-  const [isMobile, setIsMobile] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const path = usePathname();
-
-  useEffect(() => {
-    function handleResize() {
-      setIsMobile(window.innerWidth < 1250);
-    }
-
-    window.addEventListener("resize", handleResize);
-    handleResize();
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
 
   return (
     <nav className="fixed top-0 left-0 w-full z-30 bg-white shadow-md">
       <div className="w-11/12 mx-auto px-4 flex justify-between items-center h-16">
         <Link href="/" className="flex items-center">
           <Image
-            src="/blue-yellow-logo.png"
+            src={logo}
             alt="Blue&YellowFoundation logo"
             width={100} 
             height={60}
@@ -54,11 +46,12 @@ export default function NavBar() {
           <Link
             href="/donate"
             className={`text-gray-800 mr-3 px-4 py-2 rounded-full text-sm md:text-base font-bold transition-colors duration-200 bg-yellow-400 hover:bg-yellow-500 focus:ring-2 focus:ring-blue-500 ${
-              path === "/donate" ? "mt-1 ring-purple-500" : "ring-yellow-300"
+              path === "/donate" ? "ring-purple-500" : "ring-yellow-300"
             }`}
           >
             Donate Now
           </Link>
+
           <button
             onClick={() => setIsOpen(!isOpen)}
             className="lg:hidden text-black hover:text-blue-600 focus:outline-none focus:text-blue-600"
@@ -100,22 +93,78 @@ export default function NavBar() {
           </button>
         </div>
       </div>
-      {isOpen && (
-        <div className="md:hidden">
-          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+
+      <motion.div animate={isOpen ? "open" : "closed"} className="relative">
+        <motion.ul
+            initial={wrapperVariants.closed}
+            variants={wrapperVariants}
+            style={{ originY: "top", translateX: "-50%" }}
+            className="flex flex-col rounded-b-lg bg-white shadow-xl absolute w-2/5 right-[-15%] md:right-[-10%] md:w-[25%] overflow-hidden"
+          >
             {navLinks.map((navlink, index) => (
-              <Link
+              <Option
                 key={index}
                 href={navlink.href}
-                onClick={() => setIsOpen(false)}
-                className="text-gray-800 hover:text-blue-600 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200"
-              >
-                {navlink.title}
-              </Link>
-            ))}
-          </div>
-        </div>
-      )}
+                title={navlink.title}  
+                icon={navlink.icon}
+              />
+              ))}
+        </motion.ul>
+      </motion.div>
     </nav>
   );
 }
+
+const Option = ({ title, href, icon }) => {
+  return (
+    <motion.li
+      variants={itemVariants}
+      className="flex justify-left w-full text-xs font-medium whitespace-nowrap last:rounded-b-lg hover:bg-indigo-100 text-slate-700 hover:text-indigo-500 transition-colors cursor-pointer"
+    >
+      <Link
+        href={href}
+        onClick={() => setIsOpen(false)}
+        className="flex flex-row text-gray-800 hover:text-blue-600 px-3 py-2 md:text-lg font-medium transition-colors duration-200"
+      >
+        <span className="self-center mr-4">
+          {icon}
+        </span>
+        {title}
+      </Link>
+    </motion.li>
+  );
+};
+
+const wrapperVariants = {
+  open: {
+    scaleY: 1,
+    transition: {
+      when: "beforeChildren",
+      staggerChildren: 0.05,
+    },
+  },
+  closed: {
+    scaleY: 0,
+    transition: {
+      when: "afterChildren",
+      staggerChildren: 0.05,
+    },
+  },
+};
+
+const itemVariants = {
+  open: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      when: "beforeChildren",
+    },
+  },
+  closed: {
+    opacity: 0,
+    y: -25,
+    transition: {
+      when: "afterChildren",
+    },
+  },
+};

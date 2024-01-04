@@ -5,8 +5,8 @@ import { socialLinks } from "../data/social";
 export default function Footer() {
   return (
     <footer className="w-full mt-10 bg-darkTeal text-white min-h-[300px] flex flex-col items-center justify-between pt-5 pb-10">
-      <div className="pt-5 flex flex-col items-center justify-evenly">
-        <h1 className="text-3xl text-white font-bold p-5">
+      <div className="lg:pt-5 flex flex-col items-center justify-evenly">
+        <h1 className="text-2xl lg:text-3xl text-white font-bold lg:p-5">
           FOLLOW US ON SOCIAL MEDIA
         </h1>
         <div className="flex">

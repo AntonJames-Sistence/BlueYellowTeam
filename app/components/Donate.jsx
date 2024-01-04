@@ -45,7 +45,7 @@ const Donate = () => {
       {causes.map((cause) => (
         <button
           key={cause.id}
-          className="bg-blue-500 text-white rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 self-center md:self-auto w-[90%] md:w-full lg:w-1/2 shadow-custom"
+          className="bg-blue-500 text-white rounded-xl lg:hover:bg-blue-600 lg:hover:scale-110 ease-in-out duration-300 self-center md:self-auto w-[90%] md:w-full lg:w-1/2 shadow-custom"
           onClick={() => handleSlider(false, 2, cause.text)} // pass next question id and user answer
         >
           <div className="flex flex-col h-full">
@@ -58,7 +58,7 @@ const Donate = () => {
               ></div>
               <hr className="border-t border-gray-400 my-2 mx-4"></hr>
             </div>
-            <div className="px-4 pb-2 md:pb-4 text-sm md:text-xs lg:text-base font-medium">{cause.description}</div>
+            <div className="px-4 pb-2 md:pb-4 text-sm lg:text-base font-medium">{cause.description}</div>
           </div>
         </button>
       ))}
@@ -252,7 +252,7 @@ const Donate = () => {
       >
         {currentQuestion === 1 && (
           <div>
-            <h2 className="text-center text-2xl lg:text-3xl font-bold mb-4 lg:mb-8">
+            <h2 className="text-center text-2xl md:text-3xl font-bold mb-4 lg:mb-8">
               For what cause do you want to donate?
             </h2>
             {causeChoice}
@@ -293,7 +293,7 @@ const Donate = () => {
 
   const renderNavigationCircles = () => {
     return (
-      <div className="flex justify-center mt-4">
+      <div className="flex justify-center">
         {[1, 2, 3, 4].map((questionNumber) => (
           <div
             key={questionNumber}
@@ -331,7 +331,7 @@ const Donate = () => {
           <div className="spinner"></div>
         </div>
       ) : (
-        <div className="relative w-full lg:w-full min-h-[500px] flex justify-center">
+        <div className="relative w-full lg:w-full min-h-[500px] flex justify-center last:mb-4 md:last:mb-8 lg:last:mb-0">
           {renderQuestion()}
 
           <div className="absolute -bottom-10 left-0 right-0 flex justify-center">

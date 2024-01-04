@@ -21,7 +21,7 @@ const Banner = () => {
 
   return (
     <>
-      <div className={`fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-80 z-40 transition-opacity duration-500 ease-in-out ${showModal ? 'opacity-100 visible' : 'opacity-0 invisible transition-modal'}`}>
+      <div className={`fixed -top-32  lg:top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-80 z-40 transition-opacity duration-500 ease-in-out ${showModal ? 'opacity-100 visible' : 'opacity-0 invisible transition-modal'}`}>
         <ThankYouModal isOpen={showModal} onRequestClose={closeModal} />
       </div>
 
@@ -47,7 +47,7 @@ const Banner = () => {
           <div
             className="w-full md:w-3/4 h-1/2 md:h-full lg:h-full bg-cover bg-no-repeat rounded-2xl hidden md:block"
             style={{
-              backgroundImage: `url(/intro_banner.png)`,
+              backgroundImage: `url(/girl.png)`,
             }}
           ></div>
         </div>
