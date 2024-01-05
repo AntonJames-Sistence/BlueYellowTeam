@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./main.css";
+import { FaCcPaypal, FaCcApplePay, FaGooglePay, FaCreditCard } from "react-icons/fa";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCircleChevronRight,
@@ -69,27 +70,25 @@ const Donate = () => {
   const paymentChoice = (
     <div className="w-full flex flex-col md:flex-row justify-center">
       <button
-        className="bg-blue-500 text-white m-4 p-3 rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 w-2/3 self-center lg:w-full md:w-1/4 shadow-custom"
+        className="flex flex-row justify-center bg-blue-500 text-white m-4 p-3 rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 w-2/3 self-center lg:w-full md:w-1/4 shadow-custom"
         onClick={() => handleSlider(false, 3, "Card")}
       >
-        <FontAwesomeIcon icon={faCreditCard} className="mr-2 fa-xl" />
-        Card
+        <FaCreditCard className="mr-2 fa-xl" />
+        <p>Card</p>
       </button>
       <button
-        className="bg-blue-500 text-white m-4 p-3 rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 w-2/3 self-center lg:w-full md:w-1/4 shadow-custom"
+        className="flex flex-row justify-center bg-blue-500 text-white m-4 p-3 rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 w-2/3 self-center lg:w-full md:w-1/4 shadow-custom"
         onClick={() => handleSlider(false, 3, "AppleGoogle")}
       >
-        <FontAwesomeIcon icon={faCcApplePay} className="mr-2 fa-xl" />
-        ApplePay / 
-        {/* <FontAwesomeIcon icon={faGooglePay} className="ml-2 fa-2xl" /> */}
-        &nbsp;GooglePay
+        <FaCcApplePay className="mr-2 fa-xl" />
+        <p>ApplePay / GooglePay</p>
       </button>
       <button
-        className="bg-blue-500 text-white m-4 p-3 rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 w-2/3 self-center lg:w-full md:w-1/4 shadow-custom"
+        className="flex flex-row justify-center bg-blue-500 text-white m-4 p-3 rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 w-2/3 self-center lg:w-full md:w-1/4 shadow-custom"
         onClick={() => handleSlider(false, 3, "PayPal")}
       >
-        <FontAwesomeIcon icon={faCcPaypal} className="mr-2 fa-xl" />
-        PayPal
+        <FaCcPaypal className="mr-2 fa-xl" />
+        <p>PayPal</p>
       </button>
     </div>
   );
