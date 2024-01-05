@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./main.css";
 import { FaCcPaypal, FaCcApplePay, FaGooglePay, FaCreditCard } from "react-icons/fa";
+import { FaHandHoldingDollar } from "react-icons/fa6";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCircleChevronRight,
@@ -97,25 +98,25 @@ const Donate = () => {
   const amountChoice = (
     <div className="w-full flex flex-col md:grid md:grid-cols-2 md:gap-4 justify-center justify-items-center">
       <button
-        className="bg-blue-500 text-white m-3 p-3 rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 w-2/3 self-center lg:w-2/3 md:w-2/4 justify-self-end shadow-custom"
+        className="flex flex-row justify-center bg-blue-500 text-white m-3 p-3 rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 w-2/3 self-center lg:w-2/3 md:w-2/4 justify-self-end shadow-custom"
         onClick={() => handleSlider(false, 4, 20)}
       >
-        <FontAwesomeIcon icon={faDollarSign} className="mr-2 fa-xl" />
-        20
+        <FaHandHoldingDollar className="mr-2 fa-xl" />
+        <p>20</p>
       </button>
       <button
-        className="bg-blue-500 text-white m-3 p-3 rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 w-2/3 self-center lg:w-2/3 md:w-2/4 justify-self-start shadow-custom"
+        className="flex flex-row justify-center bg-blue-500 text-white m-3 p-3 rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 w-2/3 self-center lg:w-2/3 md:w-2/4 justify-self-start shadow-custom"
         onClick={() => handleSlider(false, 4, 50)}
       >
-        <FontAwesomeIcon icon={faDollarSign} className="mr-2 fa-xl" />
-        50
+        <FaHandHoldingDollar className="mr-2 fa-xl" />
+        <p>50</p>
       </button>
       <button
-        className="bg-blue-500 text-white m-3 p-3 rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 w-2/3 self-center lg:w-2/3 md:w-2/4 justify-self-end shadow-custom"
+        className="flex flex-row justify-center bg-blue-500 text-white m-3 p-3 rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 w-2/3 self-center lg:w-2/3 md:w-2/4 justify-self-end shadow-custom"
         onClick={() => handleSlider(false, 4, 100)}
       >
-        <FontAwesomeIcon icon={faDollarSign} className="mr-2 fa-xl" />
-        100
+        <FaHandHoldingDollar className="mr-2 fa-xl" />
+        <p>100</p>
       </button>
       <div className="flex self-center flex-row justify-self-start md:ml-3 lg:m-3 w-2/3 md:w-2/4 lg:w-2/3">
         <input
@@ -333,7 +334,7 @@ const Donate = () => {
         <div className="relative w-full lg:w-full min-h-[500px] flex justify-center last:mb-4 md:last:mb-8 lg:last:mb-0">
           {renderQuestion()}
 
-          <div className="absolute -bottom-10 left-0 right-0 flex justify-center">
+          <div className="absolute -bottom-10 lg:-bottom-12 left-0 right-0 flex justify-center">
             <div className="flex items-center">{renderNavigationCircles()}</div>
           </div>
           <div className="absolute top-60 left-0 right-0 flex justify-between px-4">
