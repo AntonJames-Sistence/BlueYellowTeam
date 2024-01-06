@@ -3,24 +3,16 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./main.css";
-import { FaCcPaypal, FaCcApplePay, FaGooglePay, FaCreditCard } from "react-icons/fa";
-import { FaHandHoldingDollar } from "react-icons/fa6";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faCircleChevronRight,
-  faCircleChevronLeft,
-  faCreditCard,
-  faDollarSign,
-  faHandHoldingDollar,
-  faCalendarDay,
-  faCalendarWeek,
-} from "@fortawesome/free-solid-svg-icons";
-import {
-  faCcApplePay,
-  faCcPaypal,
-  faGooglePay,
-} from "@fortawesome/free-brands-svg-icons";
-import { faCalendar } from "@fortawesome/free-regular-svg-icons";
+import { 
+  FaCcPaypal, 
+  FaCcApplePay, 
+  FaGooglePay, 
+  FaCreditCard, 
+  FaDonate, 
+  FaCalendarDay, 
+  FaCalendarWeek, 
+  FaArrowAltCircleLeft } from "react-icons/fa";
+import { FaHandHoldingDollar, FaCalendarDays } from "react-icons/fa6";
 import { causes } from "../../data/donateCauses";
 
 const Donate = () => {
@@ -60,7 +52,7 @@ const Donate = () => {
               ></div>
               <hr className="border-t border-gray-400 my-2 mx-4"></hr>
             </div>
-            <div className="px-4 pb-2 md:pb-4 text-sm lg:text-base font-medium">{cause.description}</div>
+            <div className="px-8 pb-2 md:pb-4 text-sm text-justify lg:text-[15px] font-medium">{cause.description}</div>
           </div>
         </button>
       ))}
@@ -145,34 +137,34 @@ const Donate = () => {
     <div className="fle flex-col justify-center">
       <div className="w-full flex flex-row justify-center md:mb-8 ">
         <button
-          className="bg-blue-500 text-white my-4 py-3 md:m-4 md:p-3 rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 w-3/5 md:w-1/4 shadow-custom self-center"
+          className="flex flex-row justify-center bg-blue-500 text-white my-4 py-3 md:m-4 md:p-3 rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 w-3/5 md:w-1/4 shadow-custom self-center"
           onClick={() => handleSlider(false, 1, false)}
         >
-          <FontAwesomeIcon icon={faHandHoldingDollar} className="mr-2 fa-xl" />
-          One time Donation
+          <FaDonate className="mr-2 fa-xl" />
+          <p>One time Donation</p>
         </button>
       </div>
       <div className="w-full flex flex-col md:flex-row justify-center">
         <button
-          className="bg-blue-500 text-white my-4 py-3 md:m-4 md:p-3 rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 w-3/5 md:w-1/4 shadow-custom self-center"
+          className="flex flex-row justify-center bg-blue-500 text-white my-4 py-3 md:m-4 md:p-3 rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 w-3/5 md:w-1/4 shadow-custom self-center"
           onClick={() => handleSlider(false, 1, "day")}
         >
-          <FontAwesomeIcon icon={faCalendarDay} className="mr-2 fa-xl" />
-          Daily Subscription
+          <FaCalendarDay className="mr-2 fa-xl" />
+          <p>Daily Subscription</p>
         </button>
         <button
-          className="bg-blue-500 text-white my-4 py-3 md:m-4 md:p-3  rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 w-3/5 md:w-1/4  shadow-custom self-center"
+          className="flex flex-row justify-center bg-blue-500 text-white my-4 py-3 md:m-4 md:p-3 rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 w-3/5 md:w-1/4 shadow-custom self-center"
           onClick={() => handleSlider(false, 1, "month")}
         >
-          <FontAwesomeIcon icon={faCalendarWeek} className="mr-2 fa-xl" />
-          Monthly Subscription
+          <FaCalendarWeek className="mr-2 fa-xl" />
+          <p>Monthly Subscription</p>
         </button>
         <button
-          className="bg-blue-500 text-white my-4 py-3 md:m-4 md:p-3 rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 w-3/5 md:w-1/4  shadow-custom self-center"
+          className="flex flex-row justify-center bg-blue-500 text-white my-4 py-3 md:m-4 md:p-3 rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 w-3/5 md:w-1/4  shadow-custom self-center"
           onClick={() => handleSlider(false, 1, "year")}
         >
-          <FontAwesomeIcon icon={faCalendar} className="mr-2 fa-xl" />
-          Yearly Subscription
+          <FaCalendarDays className="mr-2 fa-xl" />
+          <p>Yearly Subscription</p>
         </button>
       </div>
     </div>
@@ -318,7 +310,7 @@ const Donate = () => {
               : "hover:text-blue-500"
           }`}
         >
-          <FontAwesomeIcon icon={faCircleChevronLeft} size="xl" />
+          <FaArrowAltCircleLeft className="fa-xl" />
         </button>
       </div>
     );
