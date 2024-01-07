@@ -72,10 +72,10 @@ export default function Facebook() {
   }, []);
 
   return (
-    <div className="w-11/12 max-w-[1400px] m-auto">
-      <div className="text-center lg:text-left text-5xl font-bold text-black-500 pb-3 mb-4 w-full">
+    <div className="w-full max-w-[1400px] m-auto">
+      {/* <div className="text-center lg:text-left text-5xl font-bold text-black-500 pb-3 mb-4 w-full">
         Updates From Facebook
-      </div>
+      </div> */}
       <div className="flex flex-wrap justify-evenly lg:justify-between w-full">
         {facebookColumns ? (
           facebookColumns.map((postList, index) => {
