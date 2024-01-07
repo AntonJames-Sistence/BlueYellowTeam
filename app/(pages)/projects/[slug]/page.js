@@ -18,7 +18,7 @@ export default function ProjectIndexPage({ params: { slug } }) {
           <div className="text-3xl text-center md:text-left lg:text-5xl text-bold my-4">{project.title}</div>
           <div className="text-gray-700 flex flex-col md:flex-row">
             <Image 
-              src={`${project.img.src}`} 
+              src={`${project.img}`} 
               width={1000}
               height={600}
               className="object-cover rounded-xl md:w-1/2 h-auto"

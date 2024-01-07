@@ -6,7 +6,8 @@ export default function ImageTextContainer({
   title,
   para,
   link,
-  onClick,}) { 
+  onClick,}){
+  
   return (
     <>
       {!onClick ? (
@@ -22,9 +23,9 @@ export default function ImageTextContainer({
         >
           <Image
             className="rounded-t-lg object-cover"
-            src={`${img.src}`}
+            src={`${img}`}
             width={600}
-            height={0}
+            height={100}
             alt={`${img} image`}
           />
           <div className="p-4">
