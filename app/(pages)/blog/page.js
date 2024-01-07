@@ -13,9 +13,9 @@ export default async function Blog() {
   if (!allBlogs) return notFound();
 
   return (
-    <div className="pt-10 px-5 w-full max-w-[1400px] ">
+    <div className="pt-8 px-5 w-full max-w-[1400px] ">
       <Toaster position="top-right" reverseOrder={false} />
-      <div className="mb-2 flex justify-end w-full">
+      <div className="flex justify-end w-full">
         {session && (
           <Button
             text="Create new blog"
@@ -24,7 +24,7 @@ export default async function Blog() {
           />
         )}
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 grid-rows-2">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {allBlogs.map((post) => (
           <PostLayout key={post.id} post={post} />
         ))}

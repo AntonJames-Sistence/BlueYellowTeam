@@ -3,8 +3,7 @@ import { useEffect, useState, useRef } from "react";
 import Event from "./Event";
 import { register } from "swiper/element/bundle";
 import swiperParams from "../../data/swiperParams";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCircleChevronRight, faCircleChevronLeft, } from "@fortawesome/free-solid-svg-icons";
+import { FaArrowAltCircleLeft, FaArrowAltCircleRight } from "react-icons/fa";
 
 export default function HomeEvents() {
   register();
@@ -59,13 +58,13 @@ export default function HomeEvents() {
                 className="text-gray-300 text-2xl hover:text-blue-500 ease-in-out duration-300"
                 onClick={() => pastSwiperRef.current.swiper.slidePrev()}
               >
-                <FontAwesomeIcon icon={faCircleChevronLeft} size="xl" />
+                <FaArrowAltCircleLeft className="text-4xl" />
               </button>
               <button
                 className="text-gray-300 text-2xl hover:text-blue-500 ease-in-out duration-300"
                 onClick={() => pastSwiperRef.current.swiper.slideNext()}
               >
-                <FontAwesomeIcon icon={faCircleChevronRight} size="xl" />
+                <FaArrowAltCircleRight className="text-4xl" />
               </button>
             </div>
             <swiper-container ref={pastSwiperRef} init={"false"}>

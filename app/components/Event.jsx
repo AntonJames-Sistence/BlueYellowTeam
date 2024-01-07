@@ -1,4 +1,5 @@
 import "./main.css";
+import Image from "next/image";
 
 const Event = ({ event, pastEvent }) => {
   const { id, url } = event;
@@ -50,7 +51,13 @@ const Event = ({ event, pastEvent }) => {
           <div className="absolute w-full h-[91.5%] bg-black opacity-60 rounded-t-lg"></div>
         )} */}
         <div>
-          <img src={event.image} className="rounded-t-lg" alt={`${event.name} image`} />
+          <Image
+            className="rounded-t-lg"
+            width={600}
+            height={100}
+            src={event.image}
+            alt={`${event.name} image`}
+          />
         </div>
 
         <div className="text-center p-2">

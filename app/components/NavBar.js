@@ -20,9 +20,8 @@ export default function NavBar() {
           <Image
             src={logo}
             alt="Blue&YellowFoundation logo"
-            width={100} 
-            height={60}
             className="w-full h-auto"
+            priority={true}
           />
         </Link>
         <div className="max-[500px]:hidden">
@@ -124,7 +123,7 @@ const Option = ({ title, href, icon }) => {
       <Link
         href={href}
         onClick={() => setIsOpen(false)}
-        className="flex flex-row text-gray-800 hover:text-blue-600 px-3 py-2 md:text-lg font-medium transition-colors duration-200"
+        className="flex flex-row text-gray-800 hover:text-blue-600 px-3 py-2 text-base md:text-[17px] font-normal md:font-semibold transition-colors duration-200"
       >
         <span className="self-center mr-4">
           {icon}

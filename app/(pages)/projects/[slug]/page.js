@@ -10,7 +10,7 @@ export default function ProjectIndexPage({ params: { slug } }) {
     <div className="flex justify-center w-full mt-6">
       <div className="mx-4 lg:mx-0">
         <Button
-            css="text-black px-4 py-2 rounded-full text-sm md:text-base font-bold transition-colors duration-200 bg-yellow-400 hover:bg-yellow-500"
+            css="text-black px-4 py-1 rounded-full text-xs md:text-sm font-bold transition-colors duration-200 bg-yellow-400 hover:bg-yellow-500"
             text="« All Projects"
             url="/projects"
         />

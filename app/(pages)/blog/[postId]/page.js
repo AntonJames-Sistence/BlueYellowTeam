@@ -30,18 +30,13 @@ export default async function SinglePost({ params: { postId } }) {
         </div>
         <div className="w-full px-8 m-auto">
           <div className="relative w-full h-64">
-            <img
-              src={post.image}
-              alt="Blog image"
-              className="w-full h-full object-cover object-top rounded-t-lg"
-            />
-            {/* <Image
+            <Image
               className="object-cover object-top"
               src={post.image}
               alt="Image for blog post"
               fill={true}
               sizes="(max-width: 768px) 100vw, 768px"
-            /> */}
+            />
             <div className="absolute flex flex-col items-end px-4 py-1 bg-sky-500 text-white bottom-0 right-0 transform translate-y-1/2 translate-x-[15%]">
               <div>Blue & Yellow Foundation</div>
               <div className="text-sm">{`${month} ${date.getDate()}, ${date.getFullYear()}`}</div>
