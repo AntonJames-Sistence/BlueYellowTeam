@@ -54,13 +54,13 @@ const PastUpcomingEvents = () => {
                 className="text-gray-300 text-2xl hover:text-blue-500 ease-in-out duration-300"
                 onClick={() => upcommingSwiperRef.current.swiper.slidePrev()}
               >
-                <FaArrowAltCircleLeft className="fa-xl" />
+                <FaArrowAltCircleLeft className="text-4xl" />
               </button>
               <button
                 className="text-gray-300 text-2xl hover:text-blue-500 ease-in-out duration-300"
                 onClick={() => upcommingSwiperRef.current.swiper.slideNext()}
               >
-                <FaArrowAltCircleRight className="fa-xl" />
+                <FaArrowAltCircleRight className="text-4xl" />
               </button>
             </div>
             <swiper-container ref={upcommingSwiperRef} init={"false"}>
@@ -77,13 +77,13 @@ const PastUpcomingEvents = () => {
                 className="text-gray-300 text-2xl hover:text-blue-500 ease-in-out duration-300"
                 onClick={() => pastSwiperRef.current.swiper.slidePrev()}
               >
-                <FaArrowAltCircleLeft className="fa-xl" />
+                <FaArrowAltCircleLeft className="text-4xl" />
               </button>
               <button
                 className="text-gray-300 text-2xl hover:text-blue-500 ease-in-out duration-300"
                 onClick={() => pastSwiperRef.current.swiper.slideNext()}
               >
-                <FaArrowAltCircleRight className="fa-xl" />
+                <FaArrowAltCircleRight className="text-4xl" />
               </button>
             </div>
             <swiper-container ref={pastSwiperRef} init={"false"}>

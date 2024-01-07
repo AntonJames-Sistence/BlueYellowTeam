@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect, useRef } from "react";
 import FacebookPost from "./FacebookPost";
+import "./main.css";
 
 export default function Facebook() {
   let [facebookData, setFacebookData] = useState(null);
@@ -90,7 +91,9 @@ export default function Facebook() {
             );
           })
         ) : (
-          <div>..loading</div>
+          <div className="flex items-center justify-center w-full h-[80vh]">
+            <div className="spinner"></div>
+          </div>
         )}
       </div>
       <div className="flex justify-center">

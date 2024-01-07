@@ -1,6 +1,9 @@
 "use client";
 import { useState } from "react";
 import FacebookPostImages from "./FacebookPostImages";
+import Image from "next/image";
+import likesImg from "../../public/facebookLikes.png"
+import { FaFacebook, FaRegComment } from "react-icons/fa";
 
 export default function FacebookPost({ post }) {
   const [hideExtra, setHideExtra] = useState(true);
@@ -13,10 +16,18 @@ export default function FacebookPost({ post }) {
           href="https://www.facebook.com/BlueYellowFoundation/"
           target="_blank"
         >
-          <img
+          {/* <img
             className="FaceBookLogs-post-header-img w-10 h-10 rounded-full"
             src={post.pfp}
             alt=""
+          /> */}
+          <Image
+            className="FaceBookLogs-post-header-img w-10 h-10 rounded-full"
+            src={post.pfp}
+            width={600}
+            height={100}
+            alt={"facebook group image"}
+            priority={true}
           />
         </a>
         <div className="FaceBookLogs-post-header-content h-10">
@@ -69,11 +80,20 @@ export default function FacebookPost({ post }) {
       <div className="flex justify-between mt-2">
         <div className="flex justify-between text-sm gap-4">
           <div className="flex items-center gap-0">
-            <img src="/facebookLikes.png" className="h-5 rounded w-auto" />
+            {/* <img src="/facebookLikes.png" className="h-5 rounded w-auto" /> */}
+            <Image
+              className="h-5 rounded w-auto"
+              src={likesImg}
+              width={100}
+              height={10}
+              alt={"facebook likes counter image"}
+              priority={true}
+          />
             <div>{post.likes}</div>
           </div>
           <div className="flex items-center gap-0.5">
-            <i className="fa-regular fa-comment"></i>
+            {/* <i className="fa-regular fa-comment"></i> */}
+            <FaRegComment />
             <div>{post.comments}</div>
           </div>
           <div className="flex items-center gap-0.5">
@@ -102,7 +122,8 @@ export default function FacebookPost({ post }) {
         </div>
         <div className="flex items-center">
           <a className="flex items-center" href={post.url} target="_blank">
-            <i className="fa-brands fa-facebook hover:cursor-pointer"></i>
+            {/* <i className="fa-brands fa-facebook hover:cursor-pointer"></i> */}
+            <FaFacebook className="hover:cursor-pointer" />
           </a>
         </div>
       </div>

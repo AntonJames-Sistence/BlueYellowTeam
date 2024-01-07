@@ -5,8 +5,7 @@ import axios from "axios";
 import "./main.css";
 import { 
   FaCcPaypal, 
-  FaCcApplePay, 
-  FaGooglePay, 
+  FaCcApplePay,  
   FaCreditCard, 
   FaDonate, 
   FaCalendarDay, 
@@ -66,21 +65,21 @@ const Donate = () => {
         className="flex flex-row justify-center bg-blue-500 text-white m-4 p-3 rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 w-2/3 self-center lg:w-full md:w-1/4 shadow-custom"
         onClick={() => handleSlider(false, 3, "Card")}
       >
-        <FaCreditCard className="mr-2 fa-xl" />
+        <FaCreditCard className="mr-2 text-2xl" />
         <p>Card</p>
       </button>
       <button
         className="flex flex-row justify-center bg-blue-500 text-white m-4 p-3 rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 w-2/3 self-center lg:w-full md:w-1/4 shadow-custom"
         onClick={() => handleSlider(false, 3, "AppleGoogle")}
       >
-        <FaCcApplePay className="mr-2 fa-xl" />
+        <FaCcApplePay className="mr-2 text-2xl" />
         <p>ApplePay / GooglePay</p>
       </button>
       <button
         className="flex flex-row justify-center bg-blue-500 text-white m-4 p-3 rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 w-2/3 self-center lg:w-full md:w-1/4 shadow-custom"
         onClick={() => handleSlider(false, 3, "PayPal")}
       >
-        <FaCcPaypal className="mr-2 fa-xl" />
+        <FaCcPaypal className="mr-2 text-2xl" />
         <p>PayPal</p>
       </button>
     </div>
@@ -93,21 +92,21 @@ const Donate = () => {
         className="flex flex-row justify-center bg-blue-500 text-white m-3 p-3 rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 w-2/3 self-center lg:w-2/3 md:w-2/4 justify-self-end shadow-custom"
         onClick={() => handleSlider(false, 4, 20)}
       >
-        <FaHandHoldingDollar className="mr-2 fa-xl" />
+        <FaHandHoldingDollar className="mr-2 text-2xl" />
         <p>20</p>
       </button>
       <button
         className="flex flex-row justify-center bg-blue-500 text-white m-3 p-3 rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 w-2/3 self-center lg:w-2/3 md:w-2/4 justify-self-start shadow-custom"
         onClick={() => handleSlider(false, 4, 50)}
       >
-        <FaHandHoldingDollar className="mr-2 fa-xl" />
+        <FaHandHoldingDollar className="mr-2 text-2xl" />
         <p>50</p>
       </button>
       <button
         className="flex flex-row justify-center bg-blue-500 text-white m-3 p-3 rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 w-2/3 self-center lg:w-2/3 md:w-2/4 justify-self-end shadow-custom"
         onClick={() => handleSlider(false, 4, 100)}
       >
-        <FaHandHoldingDollar className="mr-2 fa-xl" />
+        <FaHandHoldingDollar className="mr-2 text-2xl" />
         <p>100</p>
       </button>
       <div className="flex self-center flex-row justify-self-start md:ml-3 lg:m-3 w-2/3 md:w-2/4 lg:w-2/3">
@@ -140,7 +139,7 @@ const Donate = () => {
           className="flex flex-row justify-center bg-blue-500 text-white my-4 py-3 md:m-4 md:p-3 rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 w-3/5 md:w-1/4 shadow-custom self-center"
           onClick={() => handleSlider(false, 1, false)}
         >
-          <FaDonate className="mr-2 fa-xl" />
+          <FaDonate className="mr-2 text-2xl" />
           <p>One time Donation</p>
         </button>
       </div>
@@ -149,21 +148,21 @@ const Donate = () => {
           className="flex flex-row justify-center bg-blue-500 text-white my-4 py-3 md:m-4 md:p-3 rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 w-3/5 md:w-1/4 shadow-custom self-center"
           onClick={() => handleSlider(false, 1, "day")}
         >
-          <FaCalendarDay className="mr-2 fa-xl" />
+          <FaCalendarDay className="mr-2 text-2xl" />
           <p>Daily Subscription</p>
         </button>
         <button
           className="flex flex-row justify-center bg-blue-500 text-white my-4 py-3 md:m-4 md:p-3 rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 w-3/5 md:w-1/4 shadow-custom self-center"
           onClick={() => handleSlider(false, 1, "month")}
         >
-          <FaCalendarWeek className="mr-2 fa-xl" />
+          <FaCalendarWeek className="mr-2 text-2xl" />
           <p>Monthly Subscription</p>
         </button>
         <button
           className="flex flex-row justify-center bg-blue-500 text-white my-4 py-3 md:m-4 md:p-3 rounded-xl hover:bg-blue-600 hover:scale-110 ease-in-out duration-300 w-3/5 md:w-1/4  shadow-custom self-center"
           onClick={() => handleSlider(false, 1, "year")}
         >
-          <FaCalendarDays className="mr-2 fa-xl" />
+          <FaCalendarDays className="mr-2 text-2xl" />
           <p>Yearly Subscription</p>
         </button>
       </div>
@@ -310,7 +309,7 @@ const Donate = () => {
               : "hover:text-blue-500"
           }`}
         >
-          <FaArrowAltCircleLeft className="fa-xl" />
+          <FaArrowAltCircleLeft className="text-4xl" />
         </button>
       </div>
     );
