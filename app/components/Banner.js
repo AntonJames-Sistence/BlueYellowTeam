@@ -39,16 +39,14 @@ const Banner = () => {
             <div className="uppercase text-4xl md:text-3xl xl:text-4xl text-center md:text-left text-white font-bold text-shadow-lg -mt-8 md:pb-2 md:mt-4 lg:-mt-6">
               Resilience and bravery in times of war
             </div>
-            <div className="uppercase text-white md:-mb-6 text-center lg:text-left mt-4 text-2xl md:text-lg xl:text-xl">
-              100% of profit goes to support ukraine through trusted funds or
+            <div className="uppercase font-semibold text-white md:-mb-6 text-center md:text-left mt-4 text-2xl md:text-lg xl:text-xl">
+              100% of donations go to support ukraine through trusted funds or
               direct aid
             </div>
           </div>
           <div
-            className="w-full md:w-3/4 h-1/2 md:h-full lg:h-full bg-cover bg-no-repeat rounded-2xl hidden md:block"
-            style={{
-              backgroundImage: `url(/girl.png)`,
-            }}
+            className="w-full md:w-3/4 h-1/2 md:h-full lg:h-full bg-cover bg-no-repeat rounded-2xl hidden md:block bg-[url('/girl.png')]"
+            
           ></div>
         </div>
       </div>

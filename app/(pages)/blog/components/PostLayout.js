@@ -26,11 +26,12 @@ export default async function PostLayout({ post }) {
           /> */}
         </div>
         <div className="p-5 rounded-b-lg flex flex-col justify-between">
-          <div className="text-3xl h-max mt-0 mb-2 text-gray-700 lg:min-h-20">
+          <div className="text-2xl mt-0 mb-2 text-black font-semibold">
             {post.title.slice(0, 40)}
             {post.title.length > 40 ? "..." : ""}
           </div>
-          <div className="mb-2 leading-2 h-max tracking-wide text-gray-700 h-min-[100px] ">
+          <hr></hr>
+          <div className="my-2 leading-2 h-max tracking-wide text-gray-700 h-min-[100px] ">
             {post.description.slice(0, 250)}
             {post.description.length > 250 ? "... " : " "}
             <Button
