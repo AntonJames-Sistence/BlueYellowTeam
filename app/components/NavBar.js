@@ -21,6 +21,7 @@ export default function NavBar() {
             src={logo}
             alt="Blue&YellowFoundation logo"
             className="w-full h-auto"
+            priority={true} 
           />
         </Link>
         <div className="max-[500px]:hidden">

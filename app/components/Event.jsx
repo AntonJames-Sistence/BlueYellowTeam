@@ -52,12 +52,12 @@ const Event = ({ event, pastEvent }) => {
         )} */}
         <div>
           <Image
-            className=""
+            className="rounded-t-lg"
+            width={600}
+            height={100}
             src={event.image}
             alt={`${event.name} image`}
-            fill={true}
           />
-          {/* <img src={event.image} className="rounded-t-lg" alt={`${event.name} image`} /> */}
         </div>
 
         <div className="text-center p-2">
