@@ -23,10 +23,11 @@ export default function ImageTextContainer({
         >
           <Image
             className="rounded-t-lg object-cover"
-            src={`${img}`}
+            src={img}
             width={600}
             height={100}
             alt={`${img} image`}
+            priority={true}
           />
           <div className="p-4">
             <div className="text-2xl mt-0 mb-2 text-black font-semibold">
@@ -44,10 +45,13 @@ export default function ImageTextContainer({
           className="project-card
   flex-1 flex-basis-52 relative border border-solid border-black rounded-lg bg-white cursor-pointer"
         >
-          <img
-            className="border-b border-solid border-black rounded-t-lg"
+          <Image
+            className="rounded-t-lg object-cover"
             src={img}
-            alt=""
+            width={600}
+            height={100}
+            alt={`${img} image`}
+            priority={true}
           />
           <div className="p-10 pt-5">
             <div className="text-3xl mt-0 mb-2 text-gray-700">{`Donate to ${title}`}</div>
