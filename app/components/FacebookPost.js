@@ -16,19 +16,19 @@ export default function FacebookPost({ post }) {
           href="https://www.facebook.com/BlueYellowFoundation/"
           target="_blank"
         >
-          {/* <img
+          <img
             className="FaceBookLogs-post-header-img w-10 h-10 rounded-full"
             src={post.pfp}
-            alt=""
-          /> */}
-          <Image
+            alt="facebook group image"
+          />
+          {/* <Image
             className="FaceBookLogs-post-header-img w-10 h-10 rounded-full"
             src={post.pfp}
             width={600}
             height={100}
             alt={"facebook group image"}
             priority={true}
-          />
+          /> */}
         </a>
         <div className="FaceBookLogs-post-header-content h-10">
           <div className="FaceBookLogs-post-header-content-1 font-bold text-sm">

@@ -132,7 +132,7 @@ export default function Home() {
           />
         </div>
       </div>
-      <hr className="pt-28 max-w-7xl" />
+      <hr className="pt-16 max-w-7xl" />
       <UpdateFacebookBtn />
       <Facebook />
     </main>
