@@ -50,9 +50,9 @@ const Event = ({ event, pastEvent }) => {
         {/* {pastEvent && (
           <div className="absolute w-full h-[91.5%] bg-black opacity-60 rounded-t-lg"></div>
         )} */}
-        <div>
+        <div className="flex justify-center">
           <Image
-            className="rounded-t-lg"
+            className="rounded-lg w-11/12 mt-2 justify-self-center"
             width={600}
             height={100}
             src={event.image}
@@ -60,28 +60,29 @@ const Event = ({ event, pastEvent }) => {
           />
         </div>
 
-        <div className="text-center p-2">
+        <div className="text-center my-4 mx-4">
           <h2 className="text-left text-xl font-bold h-20">
             {event.name.slice(0, 45)}
             {event.name.length > 45 && "..."}
           </h2>
-          <hr/>
           {pastEvent ? (
             <div className="mt-2 h-32 font-bold text-left text-lg">
               This event is over
             </div>
           ) : (
-            <div className="text-md mt-2 text-left h-32 flex flex-col justify-between">
+            <div className="text-md mt-2 text-left h-32 flex flex-col justify-evenly">
               <div className="text-14 leading-2 tracking-wide text-gray-700">
                 {formatDate(event.date)}
               </div>
               <div className="text-14 leading-2 tracking-wide text-gray-700">{`${event.venue} • ${event.address}`}</div>
-              <div className="text-14 leading-2 tracking-wide text-gray-700">{`Starts at $${event.cost}`}</div>
+              <div className="text-14 leading-2 tracking-wide text-gray-700">
+                Starts at <p className="font-bold inline">{`${event.cost}`}</p>
+              </div>
             </div>
           )}
         </div>
-        <a href={event.url} target="_blank">
-          <div className="bg-black hover:bg-blue-600 text-white text-right font-bold pr-4 py-2 transition-colors ease-in-out duration-300 text-14 leading-2 tracking-wide rounded-b-lg">
+        <a href={event.url} target="_blank" className="flex justify-center">
+          <div className="bg-black hover:bg-blue-600 text-white text-right font-bold pr-4 py-2 transition-colors ease-in-out duration-300 text-14 leading-2 tracking-wide rounded-lg w-11/12 mb-2">
             LEARN MORE
           </div>
         </a>
