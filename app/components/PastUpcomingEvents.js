@@ -30,7 +30,7 @@ const PastUpcomingEvents = () => {
   );
   const pastEvents = realEventData?.filter(
     (event) => new Date(event.date) < today
-  );
+  ).reverse(); // reverse order so user can see most recent past events first
 
   useEffect(() => {
     // const swiper = new Swiper(upcommingSwiperRef.current, swiperParams);
