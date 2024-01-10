@@ -97,8 +97,8 @@ export default function NavBar() {
         <motion.ul
             initial={wrapperVariants.closed}
             variants={wrapperVariants}
-            style={{ originY: "top", translateX: "-50%" }}
-            className="flex flex-col rounded-b-lg bg-white shadow-xl absolute w-2/5 right-[-15%] md:right-[-10%] md:w-[25%] overflow-hidden"
+            style={{ originY: "top" }}
+            className="flex flex-col rounded-b-lg bg-white shadow-xl absolute w-full overflow-hidden"
           >
             {navLinks.map((navlink, index) => (
               <Option
@@ -125,7 +125,7 @@ const Option = ({ title, href, icon }) => {
         onClick={() => setIsOpen(false)}
         className="flex flex-row text-gray-800 hover:text-blue-600 px-3 py-2 text-base md:text-[17px] font-normal md:font-semibold transition-colors duration-200"
       >
-        <span className="self-center mr-4">
+        <span className="self-center mx-4">
           {icon}
         </span>
         {title}
