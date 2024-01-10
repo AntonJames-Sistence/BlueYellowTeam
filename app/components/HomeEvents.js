@@ -14,7 +14,7 @@ export default function HomeEvents() {
     const getData = async () => {
       const request = await fetch("/api/events");
       const data = await request.json();
-      if (data.ok) {
+      if (data) {
         const eventData = Object.values(data);
         setRealEventData(eventData);
       }
