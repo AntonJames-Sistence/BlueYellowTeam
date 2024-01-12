@@ -103,11 +103,11 @@ export async function PUT() {
         Authorization: `Bearer ${privateToken}`,
       },
     });
-
+    
     if (!eventRequest.ok) {
       throw new Error("Failed to fetch events from the API");
     }
-
+    
     let eventData = await eventRequest.json();
 
     eventData = eventData.events.map((event) => ({

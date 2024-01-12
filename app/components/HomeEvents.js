@@ -26,7 +26,7 @@ export default function HomeEvents() {
 
   const upcommingEvents = realEventData
     ?.filter((event) => new Date(event.date) >= today)
-    .sort((a, b) => new Date(b.date) - new Date(a.date));
+    .sort((a, b) => new Date(a.date) - new Date(b.date));
 
   useEffect(() => {
     // const swiper = new Swiper(upcommingSwiperRef.current, swiperParams);
