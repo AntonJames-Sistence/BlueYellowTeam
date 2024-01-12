@@ -3,16 +3,22 @@ const nextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: 'https',
-        hostname: 'img.evbuc.com',
-        port: '',
-        pathname: '/*',
+        protocol: "https",
+        hostname: "img.evbuc.com",
+        port: "",
+        pathname: "/*",
       },
       {
-        protocol: 'https',
-        hostname: 'scontent-lga3-2.xx.fbcdn.net',
-        port: '',
-        pathname: '/**',
+        protocol: "https",
+        hostname: "scontent-lga3-2.xx.fbcdn.net",
+        port: "",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "drive.google.com",
+        port: "",
+        pathname: "/*",
       },
       // Add other remote patterns if needed
     ],
