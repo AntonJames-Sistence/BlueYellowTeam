@@ -33,6 +33,7 @@ export async function POST(request) {
   try {
     // await isAdmin();
     const body = await request.json();
+
     if (projectHasErrors(body)) {
       return NextResponse.json(
         { error: "Project was missing components" },
@@ -52,7 +53,7 @@ export async function POST(request) {
 
     await setDoc(doc(storeDB, "projects", id), {
       title: body.title,
-      description: body.text,
+      description: body.description,
       image: body.image,
       createdAt: new Date(),
       id: id,

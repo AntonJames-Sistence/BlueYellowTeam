@@ -1,13 +1,17 @@
 import Image from "next/image";
 import Link from "next/link";
+import { getServerSession } from "next-auth";
+import ProjectMenu from "../../app/(pages)/projects/components/ProjectMenu";
 
-export default function ImageTextContainer({
+export default async function ImageTextContainer({
   img,
   title,
   para,
   link,
-  onClick,}){
-  
+  onClick,
+  projectId,
+}) {
+  const session = await getServerSession();
   return (
     <>
       {!onClick ? (
@@ -15,25 +19,27 @@ export default function ImageTextContainer({
           href={link}
           className="
             project-card
-            flex-1 flex-basis-52 
-            relative rounded-lg 
-            bg-white shadow-md 
-            hover:shadow-xl hover:scale-[105%] 
+            flex-1 flex-basis-52
+            relative rounded-lg
+            bg-white shadow-md
+            hover:shadow-xl hover:scale-[105%]
             ease-in-out duration-300"
         >
-          <Image
-            className="rounded-t-lg object-cover"
-            src={img}
-            width={600}
-            height={100}
-            alt={`${img} image`}
-            priority={true}
-          />
+          {projectId && session && <ProjectMenu projectId={projectId} />}
+          <div className="h-64 w-full relative rounded-t-lg">
+            <Image
+              className="w-full h-full object-cover object-top rounded-t-lg"
+              src={img}
+              fill={true}
+              sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              alt="Image blog post"
+            />
+          </div>
           <div className="p-4">
             <div className="text-2xl mt-0 mb-2 text-black font-semibold">
               {title}
             </div>
-              <hr/>
+            <hr />
             <div className="mt-2 text-base md:text-sm lg:text-base text-gray-700">
               {para}
             </div>

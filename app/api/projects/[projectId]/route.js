@@ -10,7 +10,7 @@ import {
   deleteDoc,
 } from "firebase/firestore";
 import { storeDB } from "../../../../data/firebase";
-import { isAdmin, projectHasErrors } from "../../lib";
+import { isAdmin, projectHasErrors, createGoogleDriveLink } from "../../lib";
 
 export async function GET(request, { params: { projectId } }) {
   try {
@@ -32,7 +32,7 @@ export async function GET(request, { params: { projectId } }) {
 
 export async function PUT(request, { params: { projectId } }) {
   try {
-    // await isAdmin();
+    await isAdmin();
     const body = await request.json();
 
     if (projectHasErrors(body)) {
@@ -42,7 +42,7 @@ export async function PUT(request, { params: { projectId } }) {
       );
     }
 
-    const postRef = doc(storeDB, "projects", body.id);
+    const postRef = doc(storeDB, "projects", projectId);
     const realPost = await getDoc(postRef);
 
     if (!realPost.exists()) {
@@ -57,7 +57,7 @@ export async function PUT(request, { params: { projectId } }) {
     };
 
     if (body?.image.startsWith("https://drive.google.com/file/d/")) {
-      update.image = createGoogleDriveLink(post.image);
+      update.image = createGoogleDriveLink(body.image);
     }
 
     await updateDoc(postRef, update);
