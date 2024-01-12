@@ -22,10 +22,8 @@ export default async function ProjectIndexPage({ params: { slug } }) {
             {project.title}
           </div>
           <div className="text-gray-700 flex flex-col md:flex-row">
-            <Image
+            <img
               src={`${project.image}`}
-              width={1000}
-              height={600}
               className="object-cover rounded-xl md:w-1/2 h-auto"
               alt="project image"
             />

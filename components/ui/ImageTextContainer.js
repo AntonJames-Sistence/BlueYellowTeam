@@ -27,7 +27,7 @@ export default async function ImageTextContainer({
         >
           {projectId && session && <ProjectMenu projectId={projectId} />}
           <div className="h-64 w-full relative rounded-t-lg">
-            <Image
+            <img
               className="w-full h-full object-cover object-top rounded-t-lg"
               src={img}
               fill={true}
@@ -51,11 +51,9 @@ export default async function ImageTextContainer({
           className="project-card
   flex-1 flex-basis-52 relative border border-solid border-black rounded-lg bg-white cursor-pointer"
         >
-          <Image
+          <img
             className="rounded-t-lg object-cover"
             src={img}
-            width={600}
-            height={100}
             alt={`${img} image`}
             priority={true}
           />
