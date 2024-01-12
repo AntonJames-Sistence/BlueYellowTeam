@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 
 export default function FacebookPostImages({ images }) {
   if (images.length === 2)
@@ -18,6 +19,14 @@ export default function FacebookPostImages({ images }) {
         src={images[0]}
         alt=""
       />
+      {/* <Image 
+        className="w-full h-auto object-cover object-top"
+        src={images[0]}
+        width={400}
+        height={100}
+        alt={"facebook post image"}
+        priority={true}
+      /> */}
       <div className="flex items-stretch relative">
         {images.slice(1, 4).map((img, index) => (
           <img

@@ -3,28 +3,24 @@ import { useEffect, useState, useRef } from "react";
 import Event from "./Event";
 import { register } from "swiper/element/bundle";
 import swiperParams from "../../data/swiperParams";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCircleChevronRight, faCircleChevronLeft, } from "@fortawesome/free-solid-svg-icons";
+import { FaArrowAltCircleLeft, FaArrowAltCircleRight } from "react-icons/fa";
 
 export default function HomeEvents() {
   register();
   const pastSwiperRef = useRef(null);
   const [realEventData, setRealEventData] = useState(null);
 
-  const getData = async () => {
-    const request = await fetch("/api/events", { next: { revalidate: 60 } });
-    const data = await request.json();
-    if (data) {
-      const eventData = Object.values(data);
-      setRealEventData(eventData);
-    } else {
-      return (
-        <div className="w-full max-w-[1400px] m-auto pb-5 text-xl h-80 flex justify-center items-center">
-          No upcoming events.
-        </div>
-      );
-    }
-  };
+  useEffect(() => {
+    const getData = async () => {
+      const request = await fetch("/api/events");
+      const data = await request.json();
+      if (data) {
+        const eventData = Object.values(data);
+        setRealEventData(eventData);
+      }
+    };
+    getData();
+  }, []);
 
   const today = new Date();
 
@@ -33,7 +29,6 @@ export default function HomeEvents() {
     .sort((a, b) => new Date(b.date) - new Date(a.date));
 
   useEffect(() => {
-    getData();
     // const swiper = new Swiper(upcommingSwiperRef.current, swiperParams);
     if (pastSwiperRef.current) {
       Object.assign(pastSwiperRef.current, swiperParams);
@@ -41,13 +36,13 @@ export default function HomeEvents() {
     }
   }, [upcommingEvents]);
 
-  // if (!upcommingEvents || !upcommingEvents.length) {
-  //     return (
-  //       <div className="w-full max-w-[1400px] m-auto pb-5 text-xl h-80 flex justify-center items-center">
-  //         No upcoming events.
-  //       </div>
-  //     );
-  // }
+  if (realEventData && (!upcommingEvents || !upcommingEvents.length)) {
+    return (
+      <div className="w-full max-w-[1400px] m-auto pb-5 text-xl h-80 flex justify-center items-center">
+        No upcoming events.
+      </div>
+    );
+  }
 
   return (
     <>
@@ -59,13 +54,13 @@ export default function HomeEvents() {
                 className="text-gray-300 text-2xl hover:text-blue-500 ease-in-out duration-300"
                 onClick={() => pastSwiperRef.current.swiper.slidePrev()}
               >
-                <FontAwesomeIcon icon={faCircleChevronLeft} size="xl" />
+                <FaArrowAltCircleLeft className="text-4xl" />
               </button>
               <button
                 className="text-gray-300 text-2xl hover:text-blue-500 ease-in-out duration-300"
                 onClick={() => pastSwiperRef.current.swiper.slideNext()}
               >
-                <FontAwesomeIcon icon={faCircleChevronRight} size="xl" />
+                <FaArrowAltCircleRight className="text-4xl" />
               </button>
             </div>
             <swiper-container ref={pastSwiperRef} init={"false"}>

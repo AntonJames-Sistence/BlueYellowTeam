@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect, useRef } from "react";
 import FacebookPost from "./FacebookPost";
+import "./main.css";
 
 export default function Facebook() {
   let [facebookData, setFacebookData] = useState(null);
@@ -90,12 +91,14 @@ export default function Facebook() {
             );
           })
         ) : (
-          <div>..loading</div>
+          <div className="flex items-center justify-center w-full h-[80vh]">
+            <div className="spinner"></div>
+          </div>
         )}
       </div>
       <div className="flex justify-center">
         <button
-          className="text-black px-4 py-2 rounded-full text-sm md:text-base font-bold transition-colors duration-200 bg-yellow-400 hover:bg-yellow-500"
+          className="text-black px-4 py-1 rounded-full text-sm font-bold transition-colors duration-200 bg-yellow-400 hover:bg-yellow-500"
           onClick={() => setNumOfPost((state) => state + 3)}
         >
           ... Load more

@@ -1,17 +1,20 @@
-import { allProjects } from "../../../data/projects";
 import ImageTextContainer from "../../../components/ui/ImageTextContainer";
+import getAllProjects from "./hooks/getAllProjects";
 
-export default function ProjectsPage() {
+export default async function ProjectsPage() {
+  const allProjects = await getAllProjects();
+
   return (
-    <div className="flex flex-wrap gap-5 md:flex-row flex-col pt-12 px-5 w-11/12 max-w-[1400px]">
+    <div className="grid gap-8 md:flex-row pt-8 px-5 w-full max-w-[1400px] grid-cols-1 lg:grid-cols-3 md:grid-cols-2 ">
       {allProjects.map((item, index) => {
         return (
           <ImageTextContainer
             key={index}
-            link={`/projects/${item.slug}`}
-            img={item.img}
+            link={`/projects/${item.id}`}
+            img={item.image}
             title={item.title}
-            para={item.para}
+            para={item.description}
+            projectId={item.id}
           />
         );
       })}

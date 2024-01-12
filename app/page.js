@@ -11,8 +11,12 @@ import HomeEvents from "./components/HomeEvents";
 import UpdateEventsBtn from "./components/UpdateEventsBtn";
 import UpdateFacebookBtn from "./components/UpdateFacebookBtn";
 import Button from "./components/Button";
+import getAllProjects from "./(pages)/projects/hooks/getAllProjects";
+import { getServerSession } from "next-auth";
 
-export default function Home() {
+export default async function Home() {
+  const session = await getServerSession();
+  const allProjects = await getAllProjects();
   return (
     <main className="flex w-full flex-col items-center justify-between">
       {/* Banner & YouTube sections */}
@@ -51,6 +55,7 @@ export default function Home() {
           Your donations and support provide essential supplies and services to
           the Ukrainian people.
         </div>
+
         <UpdateEventsBtn />
         <HomeEvents />
       </div>
@@ -90,9 +95,7 @@ export default function Home() {
         </div>
       </div>
       <div className="relative">
-        <div
-          className="w-screen h-56 md:h-96 bg-cover bg-no-repeat bg-[url('/people3.jpg')]"
-        ></div>
+        <div className="w-screen h-56 md:h-96 bg-cover bg-no-repeat bg-[url('/people3.jpg')]"></div>
         <div className="absolute top-0 right-0 w-1/3 md:w-1/3 h-full">
           <div className="h-full bg-blue-500 bg-opacity-60 w-full transform  origin-bottom-left">
             <div className="triangle h-full aspect-[1/2] absolute -translate-x-full"></div>
@@ -104,35 +107,44 @@ export default function Home() {
         <div className="text-center md:text-left text-5xl font-bold text-black-500 pb-3">
           Projects
         </div>
-        <div className="text-center md:text-left w-full md:w-1/2 text-xl pb-5">
-          Your donations and support provide essential supplies and services to
-          the Ukranian people.
+        <div className="flex justify-between items-center">
+          <div className="text-center md:text-left w-full md:w-1/2 text-xl pb-5">
+            Your donations and support provide essential supplies and services
+            to the Ukranian people.
+          </div>
+          <Link
+            href="/projects/new"
+            className="bg-yellow-400 rounded-2xl py-1 px-2 font-semibold"
+          >
+            Create A Project
+          </Link>
         </div>
         <div
           id="who-help-cont"
           className="flex flex-wrap py-2.5 gap-5 md:flex-row flex-col"
         >
-          {allProjects.map((item, index) => {
+          {allProjects.slice(0, 3).map((item, index) => {
             return (
               <ImageTextContainer
                 key={index}
-                link={`/projects/${item.slug}`}
-                img={item.img}
+                link={`/projects/${item.id}`}
+                img={item.image}
                 title={item.title}
-                para={item.para}
+                para={item.description}
+                projectId={item.id}
               />
             );
           })}
         </div>
         <div className="w-full flex justify-center mt-5">
           <Button
-            css="text-black px-4 py-2 rounded-full text-sm md:text-base font-bold transition-colors duration-200 bg-yellow-400 hover:bg-yellow-500"
+            css="text-black px-4 py-1 rounded-full text-sm font-bold transition-colors duration-200 bg-yellow-400 hover:bg-yellow-500"
             text="View All Projects"
             url="/projects"
           />
         </div>
       </div>
-      <hr className="pt-28 max-w-7xl" />
+      <hr className="pt-16 max-w-7xl" />
       <UpdateFacebookBtn />
       <Facebook />
     </main>

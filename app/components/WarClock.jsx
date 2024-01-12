@@ -1,4 +1,3 @@
-"use client";
 import React, { useEffect, useState } from "react";
 
 const WarClock = () => {
@@ -22,7 +21,7 @@ const WarClock = () => {
     return () => {
       clearInterval(intervalId);
     };
-  }, [targetTime]);
+  }, []);
 
   function formatElapsedTime(elapsedTime) {
     const totalSeconds = Math.floor(elapsedTime / 1000);

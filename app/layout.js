@@ -18,10 +18,6 @@ export default async function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
-        <Script
-          src="https://kit.fontawesome.com/5de844313b.js"
-//           crossOrigin="anonymous"
-        ></Script>
         <link rel="icon" href="/favicon.ico" sizes="any" />
       </head>
       <body className={inter.className}>

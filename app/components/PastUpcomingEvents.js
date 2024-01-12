@@ -4,8 +4,7 @@ import Event from "./Event";
 import "./main.css";
 import { register } from "swiper/element/bundle";
 import swiperParams from "../../data/swiperParams";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCircleChevronRight, faCircleChevronLeft, } from "@fortawesome/free-solid-svg-icons";
+import { FaArrowAltCircleLeft, FaArrowAltCircleRight } from "react-icons/fa";
 
 const PastUpcomingEvents = () => {
   register();
@@ -31,7 +30,7 @@ const PastUpcomingEvents = () => {
   );
   const pastEvents = realEventData?.filter(
     (event) => new Date(event.date) < today
-  );
+  ).reverse(); // reverse order so user can see most recent past events first
 
   useEffect(() => {
     // const swiper = new Swiper(upcommingSwiperRef.current, swiperParams);
@@ -47,7 +46,7 @@ const PastUpcomingEvents = () => {
   return (
     <>
       {realEventData ? (
-        <div className="w-11/12 max-w-[1400px] m-auto pt-4">
+        <div className="w-full max-w-[1400px] m-auto pt-2">
           <div className="text-3xl font-bold mb-4 text-gray-700">Upcoming</div>
           <div className="w-full  relative">
             <div className="flex gap-3 absolute right-0 -top-12">
@@ -55,13 +54,13 @@ const PastUpcomingEvents = () => {
                 className="text-gray-300 text-2xl hover:text-blue-500 ease-in-out duration-300"
                 onClick={() => upcommingSwiperRef.current.swiper.slidePrev()}
               >
-                <FontAwesomeIcon icon={faCircleChevronLeft} size="xl" />
+                <FaArrowAltCircleLeft className="text-4xl" />
               </button>
               <button
                 className="text-gray-300 text-2xl hover:text-blue-500 ease-in-out duration-300"
                 onClick={() => upcommingSwiperRef.current.swiper.slideNext()}
               >
-                <FontAwesomeIcon icon={faCircleChevronRight} size="xl" />
+                <FaArrowAltCircleRight className="text-4xl" />
               </button>
             </div>
             <swiper-container ref={upcommingSwiperRef} init={"false"}>
@@ -78,13 +77,13 @@ const PastUpcomingEvents = () => {
                 className="text-gray-300 text-2xl hover:text-blue-500 ease-in-out duration-300"
                 onClick={() => pastSwiperRef.current.swiper.slidePrev()}
               >
-                <FontAwesomeIcon icon={faCircleChevronLeft} size="xl" />
+                <FaArrowAltCircleLeft className="text-4xl" />
               </button>
               <button
                 className="text-gray-300 text-2xl hover:text-blue-500 ease-in-out duration-300"
                 onClick={() => pastSwiperRef.current.swiper.slideNext()}
               >
-                <FontAwesomeIcon icon={faCircleChevronRight} size="xl" />
+                <FaArrowAltCircleRight className="text-4xl" />
               </button>
             </div>
             <swiper-container ref={pastSwiperRef} init={"false"}>
