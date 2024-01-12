@@ -76,7 +76,7 @@ const Event = ({ event, pastEvent }) => {
               </div>
               <div className="text-14 leading-2 tracking-wide text-gray-700">{`${event.venue} • ${event.address}`}</div>
               <div className="text-14 leading-2 tracking-wide text-gray-700">
-                Starts at <p className="font-bold inline">{`${event.cost}`}</p>
+                Starts at <p className="font-bold inline">{`$${event.cost}`}</p>
               </div>
             </div>
           )}
