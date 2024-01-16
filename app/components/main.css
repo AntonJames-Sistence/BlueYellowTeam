@@ -195,21 +195,21 @@
   left: 0%;
   top: 0%;
   animation: rotate-one 1s linear infinite;
-  border-bottom: 3px solid black;
+  border-bottom: 3px solid blue;
 }
 
 .inner.two {
   right: 0%;
   top: 0%;
   animation: rotate-two 1s linear infinite;
-  border-right: 3px solid black;
+  border-right: 3px solid blue;
 }
 
 .inner.three {
   right: 0%;
   bottom: 10%;
   animation: rotate-three 1s linear infinite;
-  border-top: 3px solid black;
+  border-top: 3px solid blue;
 }
 
 @keyframes rotate-one {
@@ -242,7 +242,6 @@
 /* extra loading animation */
 
 #load {
-  position:absolute;
   width:600px;
   height:36px;
   left:50%;
@@ -270,7 +269,7 @@
   -o-transform:rotate(180deg);
   -moz-transform:rotate(180deg);
   -webkit-transform:rotate(180deg);
-  color:#35C4F0;
+  color:blue;
 }
 
 #load div:nth-child(2) {
