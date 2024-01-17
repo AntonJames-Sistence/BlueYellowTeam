@@ -7,13 +7,13 @@ export default async function PostLayout({ post }) {
   const date = new Date(post.createdAt.seconds * 1000);
   const month = months[date.getMonth()];
   const session = await getServerSession();
-  
+
   return (
     <div className="flex-basis-52 flex flex-col relative justify-between rounded-lg h-full shadow-lg">
       {session && <BlogMenu blogId={post.id} />}
       <div>
         <div className="h-64 w-full relative rounded-t-lg">
-          <Image
+          <img
             className="w-full h-full object-cover object-top rounded-t-lg"
             src={post.image}
             fill={true}

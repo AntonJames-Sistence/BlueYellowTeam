@@ -4,6 +4,7 @@ import { Menu, useMenu, MenuItem } from "../../../components/Menu";
 import { useRouter } from "next/navigation";
 import toast, { Toaster } from "react-hot-toast";
 import { FaEllipsisH } from "react-icons/fa";
+import clearCache from "../../../helpers/clearCache";
 
 export default function BlogMenu({ blogId }) {
   const { btnRef, hideMenu, toggleMenu, show, menuRef } = useMenu();
@@ -33,6 +34,7 @@ export default function BlogMenu({ blogId }) {
 
             if (res.ok) toast.success("Blog deleted!");
             else toast.error("something went wrong :(");
+            clearCache("/blog", "page");
           }}
         />
       </Menu>

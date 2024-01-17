@@ -49,7 +49,12 @@ export async function POST(request) {
         { status: 404 }
       );
     }
-    //   image: createGoogleDriveLink(body.image)
+
+    if (body.image.startsWith("https://drive.google.com/file/d")) {
+      body.image = createGoogleDriveLink(body.image);
+    }
+
+    console.log(body.image);
 
     await setDoc(doc(storeDB, "projects", id), {
       title: body.title,
