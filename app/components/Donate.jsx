@@ -319,7 +319,11 @@ const Donate = () => {
     <>
       {loading ? (
         <div className="flex items-center justify-center h-[80vh]">
-          <div className="spinner"></div>
+          <div class="loader">
+            <div class="inner one"></div>
+            <div class="inner two"></div>
+            <div class="inner three"></div>
+          </div>
         </div>
       ) : (
         <div className="relative w-full lg:w-full min-h-[500px] flex justify-center last:mb-4 md:last:mb-8 lg:last:mb-0">
