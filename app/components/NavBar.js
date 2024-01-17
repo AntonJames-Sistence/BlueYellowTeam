@@ -7,7 +7,7 @@ import { navLinks } from "../../data/navbar";
 import { usePathname } from "next/navigation";
 import WarClock from "./WarClock";
 import Image from "next/image";
-import logo from "../../public/blue-yellow-logo.png"
+import logo from "../../public/blue-yellow-logo.png";
 
 export default function NavBar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -15,7 +15,7 @@ export default function NavBar() {
 
   return (
     <nav className="fixed top-0 left-0 w-full z-30 bg-white shadow-md">
-      <div className="w-11/12 mx-auto px-4 flex justify-between items-center h-16">
+      <div className="w-11/12 mx-auto px-4 flex justify-between items-center py-1">
         <Link href="/" className="flex items-center">
           <Image
             src={logo}
@@ -95,19 +95,19 @@ export default function NavBar() {
 
       <motion.div animate={isOpen ? "open" : "closed"} className="relative">
         <motion.ul
-            initial={wrapperVariants.closed}
-            variants={wrapperVariants}
-            style={{ originY: "top" }}
-            className="flex flex-col rounded-b-lg bg-white shadow-xl absolute w-full overflow-hidden"
-          >
-            {navLinks.map((navlink, index) => (
-              <Option
-                key={index}
-                href={navlink.href}
-                title={navlink.title}  
-                icon={navlink.icon}
-              />
-              ))}
+          initial={wrapperVariants.closed}
+          variants={wrapperVariants}
+          style={{ originY: "top" }}
+          className="flex flex-col rounded-b-lg bg-white shadow-xl absolute w-full overflow-hidden"
+        >
+          {navLinks.map((navlink, index) => (
+            <Option
+              key={index}
+              href={navlink.href}
+              title={navlink.title}
+              icon={navlink.icon}
+            />
+          ))}
         </motion.ul>
       </motion.div>
     </nav>
@@ -125,9 +125,7 @@ const Option = ({ title, href, icon }) => {
         onClick={() => setIsOpen(false)}
         className="flex flex-row text-gray-800 hover:text-blue-600 px-3 py-2 text-base md:text-[17px] font-normal md:font-semibold transition-colors duration-200"
       >
-        <span className="self-center mx-4">
-          {icon}
-        </span>
+        <span className="self-center mx-4">{icon}</span>
         {title}
       </Link>
     </motion.li>

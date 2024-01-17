@@ -4,8 +4,9 @@ import { useMenu, Menu, MenuItem } from "../../../components/Menu";
 import { useRouter } from "next/navigation";
 import { FaEllipsisH } from "react-icons/fa";
 import toast from "react-hot-toast";
+import clearCache from "../../../helpers/clearCache";
 
-export default function ProjectMenu({ projectId }) {
+export default function ProjectMenu({ projectId, path }) {
   const { btnRef, hideMenu, toggleMenu, show, menuRef } = useMenu();
   const router = useRouter();
 
@@ -40,6 +41,7 @@ export default function ProjectMenu({ projectId }) {
 
             if (res.ok) toast.success("Project deleted!");
             else toast.error("something went wrong :(");
+            clearCache(path, "page");
           }}
         />
       </Menu>

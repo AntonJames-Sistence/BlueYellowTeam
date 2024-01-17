@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
+import clearCache from "../../../helpers/clearCache";
 
 export default function ProjectForm({ project }) {
   const [title, setTitle] = useState(project ? project.title : "");
@@ -40,6 +41,7 @@ export default function ProjectForm({ project }) {
       });
 
       if (res.ok) {
+        clearCache("/projects");
         router.push("/projects");
       }
     } else {
@@ -49,9 +51,8 @@ export default function ProjectForm({ project }) {
         body: JSON.stringify(newProject),
       });
 
-      const newidk = await res.json();
-
       if (res.ok) {
+        clearCache("/projects");
         router.push("/projects");
       }
     }
@@ -104,7 +105,7 @@ export default function ProjectForm({ project }) {
         <input
           className="border-2 p-2 rounded-md"
           type="text"
-          placeholder="Google drive link ex: https://drive.google.com/file/d/12_glIBhssLLh3Bs856k_r3mEK37EO_24/view?usp=sharing"
+          placeholder="Enter a image link:"
           value={image}
           onChange={(e) => setImage(e.target.value)}
         />
