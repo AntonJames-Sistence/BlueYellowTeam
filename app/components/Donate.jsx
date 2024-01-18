@@ -325,7 +325,7 @@ const Donate = () => {
             <span></span>
             <span></span>
           </div>
-          <div className="absolute font-semibold">Loading</div>
+          <div className="absolute">Loading</div>
         </div>
       ) : (
         <div className="relative w-full min-h-[40vh] lg:min-h-[70vh] flex justify-center last:mb-4 md:last:mb-8 lg:last:mb-0">

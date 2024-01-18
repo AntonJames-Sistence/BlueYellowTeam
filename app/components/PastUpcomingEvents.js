@@ -101,7 +101,7 @@ const PastUpcomingEvents = () => {
             <span></span>
             <span></span>
           </div>
-          <div className="absolute font-semibold">Loading</div>
+          <div className="absolute">Loading</div>
         </div>
       )}
     </>
