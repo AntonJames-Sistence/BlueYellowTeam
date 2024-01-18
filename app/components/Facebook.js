@@ -93,10 +93,12 @@ export default function Facebook() {
         ) : (
           <div className="flex items-center justify-center w-full h-[80vh]">
             <div class="loader">
-              <div class="inner one"></div>
-              <div class="inner two"></div>
-              <div class="inner three"></div>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
             </div>
+            <div className="absolute">Loading</div>
           </div>
         )}
       </div>

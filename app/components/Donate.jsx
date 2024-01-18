@@ -318,21 +318,23 @@ const Donate = () => {
   return (
     <>
       {loading ? (
-        <div className="flex items-center justify-center h-[80vh]">
+        <div className="flex items-center justify-center h-[50vh] lg:h-[70vh]">
           <div class="loader">
-            <div class="inner one"></div>
-            <div class="inner two"></div>
-            <div class="inner three"></div>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
           </div>
+          <div className="absolute">Loading</div>
         </div>
       ) : (
-        <div className="relative w-full lg:w-full min-h-[500px] flex justify-center last:mb-4 md:last:mb-8 lg:last:mb-0">
+        <div className="relative w-full min-h-[40vh] lg:min-h-[70vh] flex justify-center last:mb-4 md:last:mb-8 lg:last:mb-0">
           {renderQuestion()}
 
-          <div className="absolute -bottom-10 lg:-bottom-12 left-0 right-0 flex justify-center">
+          <div className="absolute -bottom-10  left-0 right-0 flex justify-center">
             <div className="flex items-center">{renderNavigationCircles()}</div>
           </div>
-          <div className="absolute top-60 left-0 right-0 flex justify-between px-4">
+          <div className="absolute top-[20vh] md:top-[18vh] lg:top-60 left-0 right-0 flex justify-between px-4">
             {renderNavigationArrows()}
           </div>
         </div>

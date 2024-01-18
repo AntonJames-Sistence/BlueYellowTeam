@@ -93,12 +93,12 @@ export default function NavBar() {
         </div>
       </div>
 
-      <motion.div animate={isOpen ? "open" : "closed"} className="relative">
+      <motion.div animate={isOpen ? "open" : "closed"} className="relative my-4">
         <motion.ul
           initial={wrapperVariants.closed}
           variants={wrapperVariants}
           style={{ originY: "top" }}
-          className="flex flex-col rounded-b-lg bg-white shadow-xl absolute w-full overflow-hidden"
+          className="flex flex-col bg-white shadow-xl absolute w-full overflow-hidden"
         >
           {navLinks.map((navlink, index) => (
             <Option
@@ -118,12 +118,25 @@ const Option = ({ title, href, icon }) => {
   return (
     <motion.li
       variants={itemVariants}
-      className="flex justify-left w-full text-xs font-medium whitespace-nowrap last:rounded-b-lg hover:bg-indigo-100 text-slate-700 hover:text-indigo-500 transition-colors cursor-pointer"
+      className="flex 
+        justify-left 
+        w-full 
+        text-2xl 
+        ml-2 md:ml-6 
+        font-medium 
+        whitespace-nowrap 
+        hover:bg-indigo-100 
+        text-slate-700 
+        hover:text-indigo-500 
+        transition-colors 
+        duration-200 
+        cursor-pointer 
+        last:mb-4"
     >
       <Link
         href={href}
         onClick={() => setIsOpen(false)}
-        className="flex flex-row text-gray-800 hover:text-blue-600 px-3 py-2 text-base md:text-[17px] font-normal md:font-semibold transition-colors duration-200"
+        className="flex flex-row px-3 py-2"
       >
         <span className="self-center mx-4">{icon}</span>
         {title}
