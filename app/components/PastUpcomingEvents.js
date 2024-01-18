@@ -96,10 +96,12 @@ const PastUpcomingEvents = () => {
       ) : (
         <div className="flex items-center justify-center h-[100vh]">
           <div class="loader">
-            <div class="inner one"></div>
-            <div class="inner two"></div>
-            <div class="inner three"></div>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
           </div>
+          <div className="absolute font-semibold">Loading</div>
         </div>
       )}
     </>
