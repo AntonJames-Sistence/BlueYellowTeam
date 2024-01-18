@@ -46,10 +46,10 @@ const PastUpcomingEvents = () => {
   return (
     <>
       {realEventData ? (
-        <div className="w-full max-w-[1400px] m-auto pt-2">
-          <div className="text-3xl font-bold mb-4 text-gray-700">Upcoming</div>
-          <div className="w-full  relative">
-            <div className="flex gap-3 absolute right-0 -top-12">
+        <div className="w-full max-w-[1400px] m-auto pt-8">
+          <div className="text-3xl font-bold mb-4 text-gray-700 text-center md:text-left">Upcoming</div>
+          <div className="w-full relative">
+            <div className="flex gap-3 absolute right-2 md:right-0 -top-12">
               <button
                 className="text-gray-300 text-2xl hover:text-blue-500 ease-in-out duration-300"
                 onClick={() => upcommingSwiperRef.current.swiper.slidePrev()}
@@ -70,9 +70,9 @@ const PastUpcomingEvents = () => {
             </swiper-container>
           </div>
 
-          <div className="text-3xl font-bold my-4 text-gray-700">Past</div>
+          <div className="text-3xl font-bold my-4 text-gray-700 text-center md:text-left">Past</div>
           <div className="w-full  relative">
-            <div className="flex gap-3 absolute right-0 -top-12">
+            <div className="flex gap-3 absolute right-2 md:right-0 -top-12">
               <button
                 className="text-gray-300 text-2xl hover:text-blue-500 ease-in-out duration-300"
                 onClick={() => pastSwiperRef.current.swiper.slidePrev()}
