@@ -29,7 +29,7 @@ const Banner = () => {
         <video
           className="absolute top-0 left-0 w-full h-full object-cover z-0 rounded-2xl"
           src="/flag_bg.mp4"
-          autoPlay
+          autoPlay={!window.matchMedia("(max-width: 640px)").matches}
           loop
           muted
           controls={false}
