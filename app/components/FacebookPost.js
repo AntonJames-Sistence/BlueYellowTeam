@@ -2,7 +2,7 @@
 import { useState } from "react";
 import FacebookPostImages from "./FacebookPostImages";
 import Image from "next/image";
-import likesImg from "../../public/facebookLikes.png"
+import likesImg from "../../public/facebookLikes.png";
 import { FaFacebook, FaRegComment } from "react-icons/fa";
 
 export default function FacebookPost({ post }) {
@@ -40,7 +40,7 @@ export default function FacebookPost({ post }) {
             </a>
           </div>
           <div className="FaceBookLogs-post-header-content-2 text-xs">
-            {getDate(post.createdAt)}
+            {getDate(post.createdat)}
           </div>
         </div>
       </div>
@@ -88,7 +88,7 @@ export default function FacebookPost({ post }) {
               height={10}
               alt={"facebook likes counter image"}
               priority={true}
-          />
+            />
             <div>{post.likes}</div>
           </div>
           <div className="flex items-center gap-0.5">

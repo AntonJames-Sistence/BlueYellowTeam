@@ -10,15 +10,14 @@ const firebaseConfig = {
   apiKey: process.env.FIREBASE_API_KEY,
   authDomain: process.env.FIREBASE_AUTH_DOMAIN,
   databaseURL: process.env.FIREBASE_DATABASE_URL,
-  projectId: "blueyellowfoundation-b5284",
+  projectId: "blueyellowfoundation-d3399",
   storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
   messagingSenderId: process.env.FIREBASE_MESSENGER_SEND,
   appId: process.env.FIREBASE_APP_ID,
-  measurementId: "G-LJFXZNLY9C",
+  measurementId: "G-GZZPP8NQ6W",
 };
 
 export const FIREBASE_APP =
   getApps().length === 0 ? initializeApp(firebaseConfig) : getApp();
 
-export const DB = getDatabase(FIREBASE_APP);
 export const storeDB = getFirestore(FIREBASE_APP);

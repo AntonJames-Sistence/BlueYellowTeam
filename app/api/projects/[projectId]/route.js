@@ -54,6 +54,7 @@ export async function PUT(request, { params: { projectId } }) {
 
     const update = {
       description: body.description,
+      image: body.image,
     };
 
     if (body?.image.startsWith("https://drive.google.com/file/d/")) {

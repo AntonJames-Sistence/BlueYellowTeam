@@ -21,7 +21,7 @@ export default function FooterForm() {
   };
   return (
     <form className="w-full h-full" onSubmit={handleSubmit}>
-      <Toaster position="top-right" reverseOrder={false} />
+      <Toaster position="top-center" reverseOrder={false} />
       <h6 className="font-semibold text-2xl pb-2">Join our Newsletter</h6>
       <div className="h-full flex flex-col items-start space-y-2 ">
         <input

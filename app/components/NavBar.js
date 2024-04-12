@@ -7,7 +7,7 @@ import { navLinks } from "../../data/navbar";
 import { usePathname } from "next/navigation";
 import WarClock from "./WarClock";
 import Image from "next/image";
-import logo from "../../public/blue-yellow-logo.png"
+import logo from "../../public/blue-yellow-logo.png";
 
 export default function NavBar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -15,7 +15,7 @@ export default function NavBar() {
 
   return (
     <nav className="fixed top-0 left-0 w-full z-30 bg-white shadow-md">
-      <div className="w-11/12 mx-auto px-4 flex justify-between items-center h-16">
+      <div className="w-11/12 mx-auto px-4 flex justify-between items-center py-1">
         <Link href="/" className="flex items-center">
           <Image
             src={logo}
@@ -33,7 +33,7 @@ export default function NavBar() {
               <Link
                 key={index}
                 href={navlink.href}
-                className={` hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 ${
+                className={` hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300 ${
                   path === navlink.href ? "text-blue-600 mt-1" : "text-gray-800"
                 }`}
               >
@@ -44,7 +44,7 @@ export default function NavBar() {
 
           <Link
             href="/donate"
-            className={`text-gray-800 mr-3 px-4 py-2 rounded-full text-sm md:text-base font-bold transition-colors duration-200 bg-yellow-400 hover:bg-yellow-500 focus:ring-2 focus:ring-blue-500 ${
+            className={`text-gray-800 ml-8 px-4 py-2 rounded-full text-sm md:text-base font-bold transition-colors duration-200 bg-yellow-400 hover:bg-yellow-500 focus:ring-2 focus:ring-blue-500 ${
               path === "/donate" ? "ring-purple-500" : "ring-yellow-300"
             }`}
           >
@@ -53,7 +53,7 @@ export default function NavBar() {
 
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden text-black hover:text-blue-600 focus:outline-none focus:text-blue-600"
+            className="lg:hidden text-black hover:text-blue-600 focus:outline-none focus:text-blue-600 ml-8"
           >
             <span className="sr-only">Open main menu</span>
             {isOpen ? (
@@ -93,21 +93,21 @@ export default function NavBar() {
         </div>
       </div>
 
-      <motion.div animate={isOpen ? "open" : "closed"} className="relative">
+      <motion.div animate={isOpen ? "open" : "closed"} className="relative my-4">
         <motion.ul
-            initial={wrapperVariants.closed}
-            variants={wrapperVariants}
-            style={{ originY: "top" }}
-            className="flex flex-col rounded-b-lg bg-white shadow-xl absolute w-full overflow-hidden"
-          >
-            {navLinks.map((navlink, index) => (
-              <Option
-                key={index}
-                href={navlink.href}
-                title={navlink.title}  
-                icon={navlink.icon}
-              />
-              ))}
+          initial={wrapperVariants.closed}
+          variants={wrapperVariants}
+          style={{ originY: "top" }}
+          className="flex flex-col bg-white shadow-xl absolute w-full overflow-hidden"
+        >
+          {navLinks.map((navlink, index) => (
+            <Option
+              key={index}
+              href={navlink.href}
+              title={navlink.title}
+              icon={navlink.icon}
+            />
+          ))}
         </motion.ul>
       </motion.div>
     </nav>
@@ -118,16 +118,27 @@ const Option = ({ title, href, icon }) => {
   return (
     <motion.li
       variants={itemVariants}
-      className="flex justify-left w-full text-xs font-medium whitespace-nowrap last:rounded-b-lg hover:bg-indigo-100 text-slate-700 hover:text-indigo-500 transition-colors cursor-pointer"
+      className="flex 
+        justify-left 
+        w-full 
+        text-2xl 
+        ml-2 md:ml-6 
+        font-medium 
+        whitespace-nowrap 
+        hover:bg-indigo-100 
+        text-slate-700 
+        hover:text-indigo-500 
+        transition-colors 
+        duration-200 
+        cursor-pointer 
+        last:mb-4"
     >
       <Link
         href={href}
         onClick={() => setIsOpen(false)}
-        className="flex flex-row text-gray-800 hover:text-blue-600 px-3 py-2 text-base md:text-[17px] font-normal md:font-semibold transition-colors duration-200"
+        className="flex flex-row px-3 py-2"
       >
-        <span className="self-center mx-4">
-          {icon}
-        </span>
+        <span className="self-center mx-4">{icon}</span>
         {title}
       </Link>
     </motion.li>

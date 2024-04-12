@@ -216,6 +216,11 @@ const Donate = () => {
   };
 
   const handleSlider = (reverse, questionNumber, answer) => {
+    // scroll to the top of the user's screen
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
     // Trigger the slide animation when moving to the next question
     // Reset the animation state after a delay to prepare for the next slide
     // Adjust the delay to match your transition duration
@@ -241,6 +246,9 @@ const Donate = () => {
       <div
         className={`question-container flex flex-col justify-center w-full lg:w-4/5 ${animateSlide}`}
       >
+        <div className="absolute h-screen mt-[76px] lg:-left-10 flex justify-center">
+          {renderNavigationArrows()}
+        </div>
         {currentQuestion === 1 && (
           <div>
             <h2 className="text-center text-2xl md:text-3xl font-bold mb-4 lg:mb-8">
@@ -299,38 +307,39 @@ const Donate = () => {
 
   const renderNavigationArrows = () => {
     return (
-      <div className="flex justify-between mt-4">
-        <button
-          disabled={currentQuestion === 1}
-          onClick={() => handleSlider(true, currentQuestion - 1)}
-          className={`absolute top-8 lg:top-7 text-gray-300 text-2xl ease-in-out duration-300 ${
-            currentQuestion === 1
-              ? "cursor-not-allowed invisible"
-              : "hover:text-blue-500"
-          }`}
-        >
-          <FaArrowAltCircleLeft className="text-4xl" />
-        </button>
-      </div>
+      <button
+        disabled={currentQuestion === 1}
+        onClick={() => handleSlider(true, currentQuestion - 1)}
+        className={`text-gray-300 text-2xl ml-2 ease-in-out duration-300 ${
+          currentQuestion === 1
+            ? "cursor-not-allowed invisible"
+            : "hover:text-blue-500 z-20"
+        }`}
+      >
+        <FaArrowAltCircleLeft className="text-4xl" />
+      </button>
     );
   };
 
   return (
     <>
       {loading ? (
-        <div className="flex items-center justify-center h-[80vh]">
-          <div className="spinner"></div>
+        <div className="flex items-center justify-center h-[50vh] lg:h-[70vh]">
+          <div className="loader">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
         </div>
       ) : (
-        <div className="relative w-full lg:w-full min-h-[500px] flex justify-center last:mb-4 md:last:mb-8 lg:last:mb-0">
+        <div className="relative w-full min-h-[40vh] lg:min-h-[70vh] flex justify-center last:mb-4 md:last:mb-8 lg:last:mb-0">
           {renderQuestion()}
 
-          <div className="absolute -bottom-10 lg:-bottom-12 left-0 right-0 flex justify-center">
+          <div className="absolute -bottom-10  left-0 right-0 flex justify-center">
             <div className="flex items-center">{renderNavigationCircles()}</div>
           </div>
-          <div className="absolute top-60 left-0 right-0 flex justify-between px-4">
-            {renderNavigationArrows()}
-          </div>
+          
         </div>
       )}
     </>

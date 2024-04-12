@@ -10,11 +10,9 @@ export default async function Blog() {
   const allBlogs = await getAllPost();
   const session = await getServerSession();
 
-  if (!allBlogs) return notFound();
-
   return (
     <div className="pt-8 px-5 w-full max-w-[1400px] ">
-      <Toaster position="top-right" reverseOrder={false} />
+      <Toaster position="top-center" reverseOrder={false} />
       <div className="flex justify-end w-full">
         {session && (
           <Button
@@ -24,11 +22,17 @@ export default async function Blog() {
           />
         )}
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {allBlogs.map((post) => (
-          <PostLayout key={post.id} post={post} />
-        ))}
-      </div>
+      {allBlogs ? (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {allBlogs.map((post) => (
+            <PostLayout key={post.id} post={post} />
+          ))}
+        </div>
+      ) : (
+        <div className="w-full text-3xl text-center h-96">
+          We haven{"'"}t posted any blogs yet but check back soon!
+        </div>
+      )}
     </div>
   );
 }

@@ -1,101 +1,23 @@
 import { NextResponse } from "next/server";
-import {
-  Database,
-  push,
-  set,
-  ref,
-  get,
-  remove,
-  update,
-  off,
-} from "firebase/database";
-import { DB } from "../../../data/firebase";
+import postgres from 'postgres';
 
-export async function GET() {
-  const url = `https://www.eventbriteapi.com/v3/organizers/60070710973/events/`;
-  const eventsRef = ref(DB, "events");
+const sql = postgres(process.env.POSTGRESQL_DB, { ssl: 'require' });
 
+export const GET = async () => {
   try {
-    const snapshot = await get(eventsRef);
-    const privateToken = process.env.VITE_PRIVATE_TOKEN;
+    const events = await sql`SELECT * FROM events;`;
 
-    if (snapshot.exists()) {
-      const events = snapshot.val();
-      return NextResponse.json(events);
-    }
-
-    const eventRequest = await fetch(url, {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${privateToken}`,
-      },
-    });
-
-    if (!eventRequest.ok) {
-      throw new Error("Failed to fetch events from the API");
-    }
-
-    let eventData = await eventRequest.json();
-    eventData = eventData.events.map((event) => ({
-      name: event.name.text,
-      date: event.start.local,
-      image: event.logo.url,
-      url: event.url,
-      id: event.id,
-    }));
-
-    for (let i = 0; i < eventData.length; i++) {
-      // Ticket fetch
-      const ticketUrl = `https://www.eventbriteapi.com/v3/events/${eventData[i].id}/ticket_classes`;
-
-      const ticketRes = await fetch(ticketUrl, {
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${privateToken}`,
-        },
-      });
-
-      const ticketData = await ticketRes.json();
-
-      let min = Infinity;
-      ticketData.ticket_classes.forEach((ticket) => {
-        if (ticket.cost?.value) {
-          min = Math.min(min, ticket.cost.value);
-        }
-      });
-      eventData[i].cost = Number((min / 100).toFixed(2));
-
-      // Venue fetch
-      const venueUrl = `https://www.eventbriteapi.com/v3/events/${eventData[i].id}/?expand=venue`;
-      const venueResponse = await fetch(venueUrl, {
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${privateToken}`,
-        },
-      });
-
-      const venueData = await venueResponse.json();
-
-      eventData[i].venue = venueData.venue.name;
-      eventData[i].address = venueData.venue.address.localized_area_display;
-    }
-
-    await set(eventsRef, Object.values(eventData));
-    return NextResponse.json(eventData);
+    return NextResponse.json(events);
   } catch (error) {
     return NextResponse.error(error);
-  } finally {
-    off(eventsRef);
   }
 }
 
-export async function PUT() {
+export const PUT = async () => {
   const url = `https://www.eventbriteapi.com/v3/organizers/60070710973/events/`;
 
   try {
-    const eventsRef = ref(DB, "events");
-
-    const privateToken = process.env.VITE_PRIVATE_TOKEN;
+    const privateToken = process.env.EVENTBRITE_TOKEN;
 
     const eventRequest = await fetch(url, {
       method: "GET",
@@ -103,11 +25,11 @@ export async function PUT() {
         Authorization: `Bearer ${privateToken}`,
       },
     });
-    
+
     if (!eventRequest.ok) {
-      throw new Error("Failed to fetch events from the API");
+      return NextResponse.error("Failed to fetch data from eventbrite");
     }
-    
+
     let eventData = await eventRequest.json();
 
     eventData = eventData.events.map((event) => ({
@@ -154,11 +76,30 @@ export async function PUT() {
       eventData[i].address = venueData.venue.address.localized_area_display;
     }
 
-    const updates = {};
-    updates["/events"] = eventData;
-    update(ref(DB), updates);
+    await sql`DROP TABLE IF EXISTS events;`;
+
+    await sql`CREATE TABLE IF NOT EXISTS events (
+      id SERIAL PRIMARY KEY,
+      name TEXT,
+      event_id TEXT,
+      date TIMESTAMP,
+      image TEXT,
+      url TEXT,
+      cost NUMERIC,
+      venue TEXT,
+      address TEXT
+    );`;
+
+    for (const event of eventData) {
+      // Insert events
+      await sql`
+        INSERT INTO events (name, event_id, date, image, url, cost, venue, address)
+        VALUES (${event.name}, ${event.id}, ${event.date}, ${event.image}, ${event.url}, ${event.cost}, ${event.venue}, ${event.address});
+      `;
+    }   
+
     return NextResponse.json("Successfully updated Events");
   } catch (error) {
-    return NextResponse.error(error);
+    return NextResponse.error("Couldn't retrieve Events");
   }
 }

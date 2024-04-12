@@ -10,6 +10,7 @@ export default async function ImageTextContainer({
   link,
   onClick,
   projectId,
+  path,
 }) {
   const session = await getServerSession();
   return (
@@ -25,12 +26,14 @@ export default async function ImageTextContainer({
             hover:shadow-xl hover:scale-[105%]
             ease-in-out duration-300"
         >
-          {projectId && session && <ProjectMenu projectId={projectId} />}
+          {projectId && session && (
+            <ProjectMenu projectId={projectId} path={path} />
+          )}
           <div className="h-64 w-full relative rounded-t-lg">
             <img
               className="w-full h-full object-cover object-top rounded-t-lg"
               src={img}
-              fill={true}
+              fill="true"
               sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
               alt="Image blog post"
             />

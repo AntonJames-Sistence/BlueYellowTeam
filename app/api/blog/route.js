@@ -65,10 +65,14 @@ export async function POST(request, res) {
       );
     }
 
+    if (post.image.startsWith("https://drive.google.com/file/d/")) {
+      post.image = createGoogleDriveLink(post.image);
+    }
+
     await setDoc(doc(storeDB, "posts", id), {
       title: post.title,
       description: post.description,
-      image: createGoogleDriveLink(post.image),
+      image: post.image,
       createdAt: new Date(),
       id: id,
     });

@@ -4,6 +4,7 @@ import NewBlogSubSec from "./SubSectionForm";
 import useBlogSub from "../hooks/useBlogSub";
 import { v4 as uuidv4 } from "uuid";
 import { useRouter } from "next/navigation";
+import clearCache from "../../../helpers/clearCache";
 
 export default function BlogForm({ blog }) {
   const [title, setTitle] = useState(blog ? blog.title : "");
@@ -53,9 +54,7 @@ export default function BlogForm({ blog }) {
       errors.subSections =
         "Blogs need atleast one sub section and each sub section needs a title and text";
 
-    if (!blog && !image.startsWith("https://drive.google.com/file/d/"))
-      errors.image =
-        "Google drive link most start with https://drive.google.com/file/d/";
+    if (!image) errors.image = "Blogs need an image";
     if (Object.keys(errors).length) {
       setErrors(errors);
       return;
@@ -94,6 +93,7 @@ export default function BlogForm({ blog }) {
 
       Promise.all([newBlogRes, newSectionsRes, editedSectionsRes]).then(
         (values) => {
+          clearCache("/blog", "page");
           router.push("/blog");
         }
       );
@@ -106,9 +106,8 @@ export default function BlogForm({ blog }) {
         body: JSON.stringify(newBlog),
       });
 
-      const newidk = await res.json();
-
       if (res.ok) {
+        clearCache("/blog", "page");
         router.push("/blog");
       }
     }
@@ -157,14 +156,12 @@ export default function BlogForm({ blog }) {
           htmlFor="image"
           className={`font-semibold ${errors.image ? "text-red-500" : ""}`}
         >
-          {errors.image
-            ? "Image Link must start with https://drive.google.com/file/d/"
-            : "Image link"}
+          {errors.image ?? "Image link"}
         </label>
         <input
           className="border-2 p-2 rounded-md w-full"
           type="text"
-          placeholder="Google drive link ex: https://drive.google.com/file/d/12_glIBhssLLh3Bs856k_r3mEK37EO_24/view?usp=sharing"
+          placeholder="Enter a image link:"
           onChange={(e) => setImage(e.target.value)}
           value={image}
         />

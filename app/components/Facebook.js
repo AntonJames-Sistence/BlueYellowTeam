@@ -1,79 +1,44 @@
 "use client";
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import FacebookPost from "./FacebookPost";
 import "./main.css";
 
-export default function Facebook() {
-  let [facebookData, setFacebookData] = useState(null);
+export default function Facebook({ facebookData }) {
   let [facebookColumns, setFacebookColumns] = useState(null);
   let [numOfPost, setNumOfPost] = useState(6);
-  const faceBookDataRef = useRef(facebookData);
   const numOfPostRef = useRef(numOfPost);
+
+  const splitDataIntoColumns = () => {
+    const shrunkFbList = facebookData.slice(0, numOfPostRef.current);
+    let tempFacebookColumns = [[], [], []];
+
+    if (window.innerWidth >= 1024) tempFacebookColumns = [[], [], []];
+    else if (window.innerWidth >= 768) tempFacebookColumns = [[], []];
+    else tempFacebookColumns = [[]];
+
+    //divides facebookData into three columns to make layout/css easier
+    for (let i = 0; i < shrunkFbList.length; i++) {
+      const index = i % tempFacebookColumns.length;
+      tempFacebookColumns[index].push(shrunkFbList[i]);
+    }
+    setFacebookColumns(tempFacebookColumns);
+  };
 
   useEffect(() => {
     numOfPostRef.current = numOfPost;
   }, [numOfPost]);
 
-  useEffect(() => {
-    const loadFaceBookData = async () => {
-      const res = await fetch("/api/facebook", { next: { revalidate: 60 } });
-
-      if (res.ok) {
-        const data = await res.json();
-        faceBookDataRef.current = data;
-        setFacebookData(data);
-      }
-    };
-    loadFaceBookData();
-  }, []);
+  useEffect(splitDataIntoColumns, [numOfPost, facebookData]);
 
   useEffect(() => {
-    if (facebookData) {
-      const shrunkFbList = facebookData.slice(0, numOfPost);
-      let tempFacebookColumns = [[], [], []];
+    window.addEventListener("resize", splitDataIntoColumns);
 
-      if (window.innerWidth >= 1024) tempFacebookColumns = [[], [], []];
-      else if (window.innerWidth >= 768) tempFacebookColumns = [[], []];
-      else tempFacebookColumns = [[]];
-
-      //divides facebookData into three columns to make layout/css easier
-      for (let i = 0; i < shrunkFbList.length; i++) {
-        const index = i % tempFacebookColumns.length;
-        tempFacebookColumns[index].push(shrunkFbList[i]);
-      }
-      setFacebookColumns(tempFacebookColumns);
-    }
-  }, [numOfPost, facebookData]);
-
-  useEffect(() => {
-    let handleResize = () => {
-      if (faceBookDataRef.current) {
-        const shrunkFbList = faceBookDataRef.current.slice(
-          0,
-          numOfPostRef.current
-        );
-        let tempFacebookColumns = [[], [], []];
-
-        if (window.innerWidth >= 1024) tempFacebookColumns = [[], [], []];
-        else if (window.innerWidth >= 768) tempFacebookColumns = [[], []];
-        else tempFacebookColumns = [[]];
-
-        //divides facebookData into three columns to make layout/css easier
-        for (let i = 0; i < shrunkFbList.length; i++) {
-          const index = i % tempFacebookColumns.length;
-          tempFacebookColumns[index].push(shrunkFbList[i]);
-        }
-        setFacebookColumns(tempFacebookColumns);
-      }
-    };
-    window.addEventListener("resize", handleResize);
-
-    return () => window.removeEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", splitDataIntoColumns);
   }, []);
 
   return (
     <div className="w-11/12 max-w-[1400px] m-auto">
-      <div className="text-center lg:text-left text-5xl font-bold text-black-500 pb-3 mb-4 w-full">
+      <div className="text-center lg:text-left text-4xl font-bold text-black-500 pb-3 mb-4 w-full">
         Updates From Facebook
       </div>
       <div className="flex flex-wrap justify-evenly lg:justify-between w-full">
@@ -92,16 +57,21 @@ export default function Facebook() {
           })
         ) : (
           <div className="flex items-center justify-center w-full h-[80vh]">
-            <div className="spinner"></div>
+            <div className="loader">
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
           </div>
         )}
       </div>
       <div className="flex justify-center">
         <button
-          className="text-black px-4 py-1 rounded-full text-sm font-bold transition-colors duration-200 bg-yellow-400 hover:bg-yellow-500"
+          className="text-black px-6 py-2 rounded-full text-sm font-bold transition-colors duration-200 bg-yellow-400 hover:bg-yellow-500"
           onClick={() => setNumOfPost((state) => state + 3)}
         >
-          ... Load more
+          Load More Posts
         </button>
       </div>
     </div>

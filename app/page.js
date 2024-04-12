@@ -12,11 +12,16 @@ import UpdateEventsBtn from "./components/UpdateEventsBtn";
 import UpdateFacebookBtn from "./components/UpdateFacebookBtn";
 import Button from "./components/Button";
 import getAllProjects from "./(pages)/projects/hooks/getAllProjects";
+import getAllFacebookPost from "./(pages)/projects/hooks/getAllFacebookPosts";
 import { getServerSession } from "next-auth";
 
 export default async function Home() {
-  const session = await getServerSession();
-  const allProjects = await getAllProjects();
+  const [session, allProjects, allFacebookPost] = await Promise.all([
+    getServerSession(),
+    getAllProjects(),
+    getAllFacebookPost(),
+  ]);
+
   return (
     <main className="flex w-full flex-col items-center justify-between">
       {/* Banner & YouTube sections */}
@@ -51,7 +56,7 @@ export default async function Home() {
         <div className="text-center md:text-left text-5xl font-bold text-black-500 pb-3">
           Events
         </div>
-        <div className="w-full md:w-1/2 text-xl text-center md:text-left pb-12 sm:pb-7">
+        <div className="w-full md:w-1/2 text-xl text-center md:text-left pb-14 sm:pb-7">
           Your donations and support provide essential supplies and services to
           the Ukrainian people.
         </div>
@@ -107,38 +112,42 @@ export default async function Home() {
         <div className="text-center md:text-left text-5xl font-bold text-black-500 pb-3">
           Projects
         </div>
-        <div className="flex justify-between items-center">
+        <div className="flex flex-col lg:flex-row justify-between items-center">
           <div className="text-center md:text-left w-full md:w-1/2 text-xl pb-5">
             Your donations and support provide essential supplies and services
             to the Ukranian people.
           </div>
-          <Link
-            href="/projects/new"
-            className="bg-yellow-400 rounded-2xl py-1 px-2 font-semibold"
-          >
-            Create A Project
-          </Link>
+          {session && (
+            <Link
+              href="/projects/new"
+              className="bg-blue-500 text-white text-center font-semibold px-4 py-2 w-fit rounded-md cursor-pointer hover:bg-blue-600 hover:scale-110 transition-in-out duration-300 mb-4"
+            >
+              Create a Project
+            </Link>
+          )}
         </div>
         <div
           id="who-help-cont"
-          className="flex flex-wrap py-2.5 gap-5 md:flex-row flex-col"
+          className="grid w-full py-2.5 gap-5 md:grid-cols-3 grid-cols-1"
         >
-          {allProjects.slice(0, 3).map((item, index) => {
-            return (
-              <ImageTextContainer
-                key={index}
-                link={`/projects/${item.id}`}
-                img={item.image}
-                title={item.title}
-                para={item.description}
-                projectId={item.id}
-              />
-            );
-          })}
+          {allProjects &&
+            allProjects.slice(0, 3).map((item, index) => {
+              return (
+                <ImageTextContainer
+                  key={index}
+                  link={`/projects/${item.id}`}
+                  img={item.image}
+                  title={item.title}
+                  para={item.description}
+                  projectId={item.id}
+                  path="/"
+                />
+              );
+            })}
         </div>
         <div className="w-full flex justify-center mt-5">
           <Button
-            css="text-black px-4 py-1 rounded-full text-sm font-bold transition-colors duration-200 bg-yellow-400 hover:bg-yellow-500"
+            css="text-black px-6 py-2 rounded-full text-sm font-bold transition-colors duration-200 bg-yellow-400 hover:bg-yellow-500"
             text="View All Projects"
             url="/projects"
           />
@@ -146,7 +155,7 @@ export default async function Home() {
       </div>
       <hr className="pt-16 max-w-7xl" />
       <UpdateFacebookBtn />
-      <Facebook />
+      <Facebook facebookData={allFacebookPost} />
     </main>
   );
 }
